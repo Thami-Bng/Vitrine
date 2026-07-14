@@ -66,6 +66,9 @@ SF_SITES = {
 }
 SF_MAX_PAGES = 8            # 50 roles/page, newest first
 
+# Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
+MIN_SALARY_MAX = 9000
+
 # Shared keyword list for keyword-driven sources (Workday needs a search term).
 KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
             "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
@@ -105,7 +108,8 @@ EXCLUDE = re.compile("|".join([
     r"payroll", r"clienteling", r"\bintern\b", r"internship", r"apprentice", r"working student",
     r"fresh graduate", r"beauty advisor", r"client advisor", r"sales associate", r"retail associate",
     r"store manager", r"boutique manager", r"\bcounter\b", r"cashier", r"supply chain", r"logistics",
-    r"warehouse",
+    r"warehouse", r"customer service", r"service assistant", r"call cent", r"receptionist",
+    r"data entry", r"telesales",
 ]), re.I)
 
 GOOD_LINK = ("smartrecruiters","myworkdayjobs","eightfold","avature","successfactors","taleo","icims",
@@ -143,6 +147,52 @@ def relevant(title):
     t=title or ""
     return bool(INCLUDE.search(t)) and not EXCLUDE.search(t)
 
+# Collapse company name variants into a house-group, so the same role from different sources
+# (e.g. Google "Cartier" + Google "Richemont" + Workday "Richemont / Cartier") dedupes together.
+GROUP_MAP = [
+    (("cartier","richemont","van cleef","jaeger","iwc","piaget","vacheron","panerai","montblanc",
+      "chloe","chloé","alaia","alaïa","dunhill","baume","buccellati"),"richemont"),
+    (("kering","gucci","saint laurent","ysl","bottega","balenciaga","mcqueen","boucheron","pomellato",
+      "brioni","qeelin","ginori"),"kering"),
+    (("lvmh","sephora","dior","guerlain","givenchy","fenty","benefit","make up for ever","loewe",
+      "celine","fendi","louis vuitton","bulgari","tiffany","acqua di parma","kenzo"),"lvmh"),
+    (("l'oreal","loreal","lancome","lancôme","kiehl","biotherm","urban decay","kerastase","kérastase"),"loreal"),
+    (("estee","estée","clinique","la mer","jo malone","aveda","bobbi brown","origins","tom ford"),"elc"),
+    (("clarins","myblend"),"clarins"),
+    (("shiseido","nars","drunk elephant","cle de peau","clé de peau"),"shiseido"),
+    (("amorepacific","sulwhasoo","laneige","innisfree"),"amorepacific"),
+    (("puig","charlotte tilbury","carolina herrera","jean paul gaultier","byredo","rabanne"),"puig"),
+]
+def group_of(company):
+    c=(company or "").lower()
+    for kws,g in GROUP_MAP:
+        if any(k in c for k in kws): return g
+    return c
+
+def norm_title(t):
+    return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9 ]"," ",(t or "").lower())).strip()
+
+SOURCE_RANK={"Workday":5,"SuccessFactors":5,"SmartRecruiters":5,"Eightfold":4,"MyCareersFuture":2,"Google Jobs":1}
+
+def dedupe(items):
+    best={}
+    for j in items:
+        key=f"{norm_title(j['title'])}|{group_of(j['company'])}"
+        cur=best.get(key)
+        if cur is None:
+            best[key]=j; continue
+        hi,lo=(j,cur) if SOURCE_RANK.get(j["source"],0)>=SOURCE_RANK.get(cur["source"],0) else (cur,j)
+        if not hi.get("salary") and lo.get("salary"):
+            hi["salary"]=lo["salary"]; hi["salary_max"]=lo.get("salary_max")
+        for k in ("careers","linkedin","mcf","primary"):
+            if not hi["links"].get(k) and lo["links"].get(k): hi["links"][k]=lo["links"][k]
+        hi["url"]=hi["links"].get("primary") or hi.get("url","")
+        if not hi.get("posted_date") and lo.get("posted_date"):
+            hi["posted_date"]=lo["posted_date"]; hi["posted"]=lo.get("posted",hi.get("posted",""))
+        if lo.get("first_seen","z")<hi.get("first_seen","z"): hi["first_seen"]=lo["first_seen"]
+        best[key]=hi
+    return list(best.values())
+
 def to_date(s):
     """Normalise a posting date to ISO (YYYY-MM-DD) for sorting."""
     if not s: return ""
@@ -178,11 +228,12 @@ def extract_links(options, share=""):
     primary=careers or linkedin or best_apply_link(options,share)
     return {"primary":primary,"careers":careers,"linkedin":linkedin,"mcf":mcf}
 
-def job(id_, title, company, source, links, posted="", description="", salary=""):
+def job(id_, title, company, source, links, posted="", description="", salary="", salary_max=None):
     company=(company or "").strip()
     return {"id":str(id_), "title":(title or "").strip(), "company":company, "source":source,
             "type":type_of(company), "sector":sector_of(company,title,description),
-            "posted":posted or "", "posted_date":to_date(posted), "salary":salary or "",
+            "posted":posted or "", "posted_date":to_date(posted),
+            "salary":salary or "", "salary_max":salary_max,
             "links":links, "url":links.get("primary",""),
             "description":(description or "").strip(), "preferred":preferred(company)}
 
@@ -205,11 +256,14 @@ def connector_mycareersfuture():
                 posted=(j.get("metadata") or {}).get("newPostingDate") or j.get("newPostingDate","")
                 sal=j.get("salary") or {}
                 lo, hi = sal.get("minimum"), sal.get("maximum")
-                salary=f"S${lo:,}–{hi:,}/mo" if isinstance(lo,int) and isinstance(hi,int) else ""
+                stype=((sal.get("type") or {}).get("salaryType") or "").lower()
+                per="yr" if "annual" in stype else "mo"
+                salary=f"S${lo:,}–{hi:,}/{per}" if isinstance(lo,int) and isinstance(hi,int) else ""
+                salary_max=(hi//12 if per=="yr" else hi) if isinstance(hi,int) else None
                 url=f"https://www.mycareersfuture.gov.sg/job/{uuid}" if uuid else ""
                 links={"primary":url,"careers":"","linkedin":"","mcf":url}
                 out.append(job(f"mcf-{uuid}",title,comp,"MyCareersFuture",links,
-                               posted,clean_text(j.get("description","")),salary))
+                               posted,clean_text(j.get("description","")),salary,salary_max))
             time.sleep(0.3)
         except requests.RequestException as e:
             print(f"  ! MCF '{q}': {e}",file=sys.stderr)
@@ -402,10 +456,15 @@ def run(dry_run=False):
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)
     # newest first by posting date, then preferred houses, then company
-    jobs=sorted(collected.values(),
-                key=lambda j:(j.get("posted_date") or "0000-00-00", j["type"]=="house"), reverse=True)
-    print(f"\n{len(jobs)} relevant SG roles "
-          f"({sum(1 for j in jobs if j['sector']=='beauty_luxury')} beauty/luxury)")
+    jobs=dedupe(list(collected.values()))
+    before=len(jobs)
+    jobs=[j for j in jobs if not j.get("salary_max") or j["salary_max"]>=MIN_SALARY_MAX]
+    dropped=before-len(jobs)
+    jobs.sort(key=lambda j:(j.get("posted_date") or "0000-00-00", j["type"]=="house"), reverse=True)
+    print(f"\n{len(jobs)} relevant SG roles after dedupe "
+          f"({sum(1 for j in jobs if j['type']=='house')} houses, "
+          f"{sum(1 for j in jobs if j['sector']=='beauty_luxury')} beauty/luxury; "
+          f"dropped {dropped} below S${MIN_SALARY_MAX:,}/mo)")
     if dry_run:
         for j in jobs[:30]:
             print(f"  [{j['type'][:5]:5}|{j['sector'][:6]:6}] {j['posted_date']}  {j['title']} — {j['company']}")

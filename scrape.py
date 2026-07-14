@@ -84,9 +84,9 @@ GREENHOUSE_BOARDS = {"Soho House": "sohohouseco"}
 # /hcmRestApi/resources/latest/recruitingCEJobRequisitions?finder=findReqs;siteNumber=CX,keyword=…
 # Marriott's host/siteNumber are confirmed; Hermès/Tiffany use their front-end hosts (to verify).
 ORACLE_SITES = {
-    "Marriott": {"host": "ejwl.fa.us2.oraclecloud.com", "site": "CX"},
-    "Hermès":   {"host": "talents.hermes.com",          "site": "CX"},
-    "Tiffany":  {"host": "www.tiffanycareers.com",      "site": "CX"},
+    "Marriott": {"host": "ejwl.fa.us2.oraclecloud.com",                  "site": "CX"},
+    "Hermès":   {"host": "fa-eoic-saasfaprod1.fa.ocs.oraclecloud.com",   "site": "CX_12001"},
+    "Tiffany":  {"host": "eljs.fa.us2.oraclecloud.com",                  "site": "CX"},
 }
 
 # Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
@@ -627,7 +627,7 @@ def connector_oracle():
         try:
             offset=0; limit=200
             for _ in range(3):                                  # up to 600 newest matches
-                finder=f"findReqs;siteNumber={site},keyword=Singapore,limit={limit},offset={offset},sortBy=POSTING_DATES_DESC"
+                finder=f"findReqs;siteNumber={site},facetsList=NONE,limit={limit},offset={offset},keyword=Singapore"
                 try:
                     r=requests.get(f"https://{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions",
                                    params={"onlyData":"true","expand":"requisitionList.secondaryLocations","finder":finder},

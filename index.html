@@ -58,6 +58,8 @@
   .job.open .desc{max-height:1600px;}
   .actions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap;}
   .btn{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:8px 13px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+  .btn.dismiss{color:var(--muted);margin-left:auto;font-weight:500;}
+  .btn.dismiss:hover{color:var(--accent);border-color:var(--accent);}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
   .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
   .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;}
@@ -95,6 +97,7 @@
       <button class="chip" data-filter="saved" aria-pressed="false">Saved</button>
       <button class="chip" data-filter="hideAgencies" aria-pressed="false">Hide agencies</button>
       <button class="chip" data-filter="hideApplied" aria-pressed="false">Hide applied</button>
+      <button class="chip" data-filter="notRelevant" aria-pressed="false">Not relevant</button>
     </div>
     <div class="count" id="count"></div>
   </div>
@@ -114,10 +117,10 @@ const SAMPLE={generated_at:new Date().toISOString(),jobs:[
 ]};
 function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
-const state={jobs:[],scope:"house",q:"",new:false,saved:false,hideAgencies:false,hideApplied:false,
-  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied"))};
+const state={jobs:[],scope:"house",q:"",new:false,saved:false,hideAgencies:false,hideApplied:false,notRelevant:false,
+  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed"))};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
-function persist(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));}catch(e){}}
+function persist(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));}catch(e){}}
 function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864e5;}
 function isNew(j){return daysSince(j.first_seen)<=7;}
 
@@ -145,12 +148,17 @@ function renderSources(sources){
 function visible(){
   const q=state.q.trim().toLowerCase();
   return state.jobs.filter(j=>{
-    if(state.scope==="house"&&j.type!=="house")return false;
-    if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
-    if(state.new&&!isNew(j))return false;
-    if(state.saved&&!state.savedSet.has(j.id))return false;
-    if(state.hideAgencies&&j.type==="agency")return false;
-    if(state.hideApplied&&state.appliedSet.has(j.id))return false;
+    if(state.notRelevant){                       // "Not relevant" view: only the set-aside pile
+      if(!state.dismissedSet.has(j.id))return false;
+    }else{
+      if(state.dismissedSet.has(j.id))return false;   // hide set-aside roles everywhere else
+      if(state.scope==="house"&&j.type!=="house")return false;
+      if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
+      if(state.new&&!isNew(j))return false;
+      if(state.saved&&!state.savedSet.has(j.id))return false;
+      if(state.hideAgencies&&j.type==="agency")return false;
+      if(state.hideApplied&&state.appliedSet.has(j.id))return false;
+    }
     if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
     return true;
   }).sort((a,b)=>(b.posted_date||"").localeCompare(a.posted_date||"")||(a.company||"").localeCompare(b.company||""));
@@ -166,10 +174,10 @@ function linkBtns(j){
 }
 function render(){
   const list=document.getElementById("list");const jobs=visible();
-  document.getElementById("count").textContent=jobs.length?`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`:"";
-  if(!jobs.length){list.innerHTML=`<li class="empty"><b>Nothing here yet</b>Try “All Singapore”, clear filters, or wait for the next scan.</li>`;document.getElementById("footer").textContent="";return;}
+  document.getElementById("count").textContent=jobs.length?(state.notRelevant?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
+  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${state.notRelevant?"Nothing set aside":"Nothing here yet"}</b>${state.notRelevant?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try “All Singapore”, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";return;}
   list.innerHTML=jobs.map(j=>{
-    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id);
+    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
     const tag=j.type==="house"?`<span class="tag house">House</span>`:j.type==="agency"?`<span class="tag agency">Agency</span>`:"";
     return `<li class="job ${j.type}${applied?" applied":""}" data-id="${esc(j.id)}">
@@ -185,6 +193,7 @@ function render(){
       <div class="actions">${linkBtns(j)}
         <button class="btn${saved?" on":""}" data-act="save">${saved?"Saved ✓":"Save"}</button>
         <button class="btn${applied?" on":""}" data-act="applied">${applied?"Applied ✓":"Mark applied"}</button>
+        <button class="btn dismiss" data-act="dismiss">${dismissed?"↩ Restore":"Not relevant"}</button>
       </div>
     </li>`;
   }).join("");
@@ -196,7 +205,7 @@ document.getElementById("list").addEventListener("click",e=>{
   const card=e.target.closest(".job");if(!card)return;const id=card.dataset.id;
   if(e.target.closest("[data-stop]"))return;
   const act=e.target.closest("[data-act]");
-  if(act){e.stopPropagation();const set=act.dataset.act==="save"?state.savedSet:state.appliedSet;set.has(id)?set.delete(id):set.add(id);persist();render();return;}
+  if(act){e.stopPropagation();const a=act.dataset.act;const set=a==="save"?state.savedSet:a==="applied"?state.appliedSet:state.dismissedSet;set.has(id)?set.delete(id):set.add(id);persist();render();return;}
   card.classList.toggle("open");
 });
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});

@@ -112,9 +112,37 @@ AGENCIES = [
 
 # Signals that a role is beauty / luxury (for the sector tab).
 LUX_SIGNALS = [
-    "beauty","cosmetic","skincare","skin care","fragrance","perfume","makeup","make-up","luxury",
-    "couture","maison","jewellery","jewelry","watchmaking","fashion house","prestige","parfum","luxasia",
+    "beauty","beaute","beauté","cosmetic","skincare","skin care","haircare","hair care","fragrance",
+    "perfume","perfumery","parfum","makeup","make-up","luxury","luxe","couture","maison","jewellery",
+    "jewelry","watchmaking","watches","prestige","atelier","leather goods","ready-to-wear",
+    "pret-a-porter","prêt-à-porter","high-end","luxasia","fashion house","luxury retail","luxury goods",
 ]
+
+# Wider list of beauty & luxury BRANDS/companies (beyond the marquee PREFERRED_BRANDS used for "Houses").
+# A job at any of these is tagged beauty_luxury even when it carries no description to scan.
+SECTOR_BRANDS = [b.lower() for b in [
+    # luxury fashion / leather / watches / jewellery
+    "coach","tapestry","kate spade","michael kors","capri","versace","jimmy choo","prada","miu miu",
+    "burberry","ferragamo","tod's","tods","valentino","moncler","bally","loro piana","brunello cucinelli",
+    "celine","loewe","fendi","louis vuitton","bulgari","bvlgari","tiffany","chaumet","van cleef",
+    "jaeger","iwc","piaget","vacheron","panerai","montblanc","chloe","chloé","alaia","alaïa","rimowa",
+    "berluti","givenchy","kenzo","marc jacobs","off-white","ralph lauren","longchamp","delvaux","goyard",
+    "dunhill","zegna","thom browne","rolex","patek","audemars","richard mille","omega","tag heuer",
+    "breitling","hublot","chopard","bucherer","hour glass","cortina watch","swatch","harry winston",
+    "graff","de beers","boucheron","pomellato","qeelin","buccellati","boucheron","brioni","mytheresa",
+    "farfetch","net-a-porter","matchesfashion","ssense","24s","moda operandi","club21","club 21","dfs",
+    "valiram","fj benjamin","bluebell","on pedder","pedder","rsh",
+    # beauty / cosmetics / fragrance
+    "coty","wella","kenvue","beiersdorf","nivea","la prairie","aesop","fresh","glossier","charlotte tilbury",
+    "rituals","l'occitane","loccitane","occitane","molton brown","jo malone","byredo","diptyque","creed",
+    "kilian","penhaligon","sk-ii","sk ii","olay","kiehl","urban decay","nyx","maybelline","garnier",
+    "cerave","la roche","vichy","kerastase","kérastase","redken","aveda","bumble and bumble","mac cosmetics",
+    "bobbi brown","clinique","la mer","glamglow","too faced","benefit cosmetics","hourglass","laura mercier",
+    "nars","shu uemura","armani beauty","prada beauty","ysl beaut","dior beaut","guerlain","make up for ever",
+    "fenty","rare beauty","drunk elephant","tatcha","the ordinary","deciem","paula's choice","sulwhasoo",
+    "laneige","innisfree","cosrx","clé de peau","cle de peau","ipsa","kanebo","kose","decorté","decorte",
+    "escentials","escential","sasa","sa sa","luxola","tangs beauty","aveda","natura","avon","the body shop",
+]]
 
 INCLUDE = re.compile("|".join([
     r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"omni-?channel",
@@ -149,7 +177,8 @@ def type_of(company):
     return "other"
 
 def sector_of(company, title, desc):
-    if preferred(company): return "beauty_luxury"
+    c=(company or "").lower()
+    if preferred(company) or any(b in c for b in SECTOR_BRANDS): return "beauty_luxury"
     blob=f"{company} {title} {desc}".lower()
     return "beauty_luxury" if any(w in blob for w in LUX_SIGNALS) else "general"
 

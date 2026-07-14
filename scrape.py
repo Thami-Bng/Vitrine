@@ -41,17 +41,12 @@ SR_FETCH_DETAIL = True
 # Workday tenants (direct from the source). host + site come from the "Apply" URL, e.g.
 # richemont.wd3.myworkdayjobs.com/richemont/... -> host=richemont.wd3.myworkdayjobs.com, site=richemont
 WORKDAY_TENANTS = {
-    # Richemont group (host tenant "richemont", site "richemont")
+    # Richemont group (host tenant "richemont", site "richemont") — open, works well.
     "Richemont / Cartier": {"host": "richemont.wd3.myworkdayjobs.com", "site": "richemont"},
-    # Kering group — one tenant "kering", one site per house.
-    "Balenciaga":        {"host": "kering.wd3.myworkdayjobs.com", "site": "Balenciaga"},   # confirmed
-    "Alexander McQueen": {"host": "kering.wd3.myworkdayjobs.com", "site": "AMQ"},           # confirmed
-    "Gucci":             {"host": "kering.wd3.myworkdayjobs.com", "site": "Gucci"},         # verify
-    "Saint Laurent":     {"host": "kering.wd3.myworkdayjobs.com", "site": "SaintLaurent"},  # verify
-    "Bottega Veneta":    {"host": "kering.wd3.myworkdayjobs.com", "site": "BottegaVeneta"}, # verify
-    "Boucheron":         {"host": "kering.wd3.myworkdayjobs.com", "site": "Boucheron"},     # verify
-    "Kering Corporate":  {"host": "kering.wd3.myworkdayjobs.com", "site": "Kering"},        # verify
-    # add more Workday houses here as we confirm them
+    # NOTE: Kering (kering.wd3.myworkdayjobs.com — Balenciaga/Gucci/Saint Laurent/etc.) blocks
+    # automated access at the server level (robots-disallowed / bot wall), so the API returns
+    # errors from any datacenter IP. We reach Kering roles via Google Jobs instead (they're
+    # syndicated to Indeed/FashionJobs/Jobstreet, which Google indexes). See GJ_POOL below.
 }
 WORKDAY_FETCH_DETAIL = True
 
@@ -81,10 +76,25 @@ def record(label, fetched, kept, error=False):
 KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
             "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
 
-# Google Jobs (SerpApi) — keep lean for the free 250/month quota. 4 x twice-daily x 30 = 240.
-GJ_QUERIES = ["e-commerce Singapore", "product manager Singapore",
-              "product owner Singapore", "digital project manager Singapore"]
+# Google Jobs (SerpApi) — free quota is 250/month. We rotate a pool so we cover the bot-walled
+# houses (Kering) by name without exceeding budget: GJ_PER_RUN x 2 runs/day x 30 = must stay <250.
+# House names are queried directly because Kering roles live on Indeed/FashionJobs/Jobstreet,
+# which Google indexes even though Kering's own site blocks us. relevant() then filters titles.
+GJ_POOL = [
+    "Balenciaga Singapore", "Gucci Singapore", "Saint Laurent Singapore",
+    "Bottega Veneta Singapore", "Alexander McQueen Singapore", "Boucheron Singapore",
+    "e-commerce Singapore luxury", "digital product manager Singapore",
+    "omnichannel manager Singapore", "product owner Singapore beauty",
+]
+GJ_PER_RUN = 4              # 4 x 2/day x 30 = 240 < 250 free quota
 GJ_PAGES = 1
+
+def gj_queries_for_this_run():
+    """Rotate a window through GJ_POOL so every query runs regularly without blowing quota."""
+    n=datetime.now(timezone.utc)
+    slot=n.timetuple().tm_yday*2 + (0 if n.hour < 4 else 1)   # two runs/day: 9am & 3pm SGT
+    start=(slot*GJ_PER_RUN) % len(GJ_POOL)
+    return [GJ_POOL[(start+i) % len(GJ_POOL)] for i in range(GJ_PER_RUN)]
 
 PREFERRED_BRANDS = [b.lower() for b in [
     "lvmh","sephora","l'oreal","loreal","clarins","estee lauder","estée lauder","kering","gucci",
@@ -322,7 +332,9 @@ def connector_google_jobs():
     key=os.getenv("SERPAPI_KEY")
     if not key: print("  · Google Jobs skipped (no SERPAPI_KEY)"); return []
     out=[]
-    for q in GJ_QUERIES:
+    queries=gj_queries_for_this_run()
+    print(f"  · Google Jobs queries this run: {queries}")
+    for q in queries:
         token,page=None,0
         while page<GJ_PAGES:
             params={"engine":"google_jobs","q":q,"location":"Singapore","hl":"en","gl":"sg","api_key":key}
@@ -486,6 +498,16 @@ def run(dry_run=False):
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)
             record(conn.__name__.replace("connector_",""), 0, 0, error=True)
+    # Carry forward roles seen in the last CARRY_DAYS that weren't re-fetched this run, so the
+    # Google Jobs query rotation (and any transient fetch failure) doesn't make roles flicker away.
+    CARRY_DAYS=12
+    cutoff=(datetime.now(timezone.utc)-timedelta(days=CARRY_DAYS)).isoformat()
+    carried=0
+    for jid,pj in prev.items():
+        if jid in collected: continue
+        if (pj.get("first_seen") or "") >= cutoff and relevant(pj.get("title","")):
+            collected[jid]=pj; carried+=1
+    if carried: print(f"   carried forward {carried} recent roles not re-fetched this run")
     # newest first by posting date, then preferred houses, then company
     jobs=dedupe(list(collected.values()))
     before=len(jobs)

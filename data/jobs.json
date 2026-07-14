@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-14T05:54:30.507086+00:00",
+  "generated_at": "2026-07-14T10:41:33.452459+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 445,
-      "kept": 373,
+      "kept": 376,
       "error": false
     },
     {
@@ -33,12 +33,188 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 27,
-      "kept": 16,
+      "fetched": 22,
+      "kept": 17,
       "error": false
     }
   ],
   "jobs": [
+    {
+      "id": "mcf-6b12d463452e65a1079b43380d6647e1",
+      "title": "Data Product Manager",
+      "company": "KOOBITS LEARNING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6b12d463452e65a1079b43380d6647e1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6b12d463452e65a1079b43380d6647e1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6b12d463452e65a1079b43380d6647e1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-1f3c6a0ec5b49d764e51ef9e741973a4",
+      "title": "Term Sheets & Valuation - Product Owner",
+      "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$11,000–18,100/mo",
+      "salary_max": 18100,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/1f3c6a0ec5b49d764e51ef9e741973a4",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/1f3c6a0ec5b49d764e51ef9e741973a4"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/1f3c6a0ec5b49d764e51ef9e741973a4",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-8014e5b5937d2076b009c8a502c03860",
+      "title": "Product Manager, Enterprise Cloud Security - Singapore",
+      "company": "GOOGLE ASIA PACIFIC PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$11,500–23,000/mo",
+      "salary_max": 23000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/8014e5b5937d2076b009c8a502c03860",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/8014e5b5937d2076b009c8a502c03860"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/8014e5b5937d2076b009c8a502c03860",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-037446a45e23ce7b17271746d58c9998",
+      "title": "Sr. Business Analyst- Regulatory Reporting",
+      "company": "AMBITION GROUP SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$8,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/037446a45e23ce7b17271746d58c9998",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/037446a45e23ce7b17271746d58c9998"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/037446a45e23ce7b17271746d58c9998",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-6493515451ec6ff1a865f877883a5748",
+      "title": "Business Analyst- Insurance Domain",
+      "company": "AMBITION GROUP SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$8,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6493515451ec6ff1a865f877883a5748",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6493515451ec6ff1a865f877883a5748"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6493515451ec6ff1a865f877883a5748",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-2deed5d45054a6970296b6542597e767",
+      "title": "Senior VP Business Analyst AI",
+      "company": "CHARTERHOUSE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$15,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2deed5d45054a6970296b6542597e767",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2deed5d45054a6970296b6542597e767"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2deed5d45054a6970296b6542597e767",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-0122a2fe2aa070b17fd259bf81bf3f09",
+      "title": "Business Analyst, Risk & Regulatory (Banking, 1-year renewable contract)",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$6,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/0122a2fe2aa070b17fd259bf81bf3f09",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/0122a2fe2aa070b17fd259bf81bf3f09"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/0122a2fe2aa070b17fd259bf81bf3f09",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-30d3963ab1604498dbbccd914d4cb67d",
+      "title": "Avaloq Business Analyst",
+      "company": "U3 INFOTECH PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$8,000–14,500/mo",
+      "salary_max": 14500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/30d3963ab1604498dbbccd914d4cb67d",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/30d3963ab1604498dbbccd914d4cb67d"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/30d3963ab1604498dbbccd914d4cb67d",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
     {
       "id": "mcf-ec4f01f1ca88fe00ea5993361a38c806",
       "title": "Business Analyst",
@@ -502,28 +678,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-7fa20b37af9f3b03257701d85bc9515b",
-      "title": "Functional business analyst",
-      "company": "RANDSTAD PTE. LIMITED",
-      "source": "MyCareersFuture",
-      "type": "agency",
-      "sector": "general",
-      "posted": "2026-07-13",
-      "posted_date": "2026-07-13",
-      "salary": "S$8,000–9,000/mo",
-      "salary_max": 9000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/7fa20b37af9f3b03257701d85bc9515b",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/7fa20b37af9f3b03257701d85bc9515b"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/7fa20b37af9f3b03257701d85bc9515b",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-fd1b13827c894fb9b88f1b757244d176",
       "title": "Senior Business Analyst (Insurance Industry)",
       "company": "AMBITION GROUP SINGAPORE PTE. LTD.",
@@ -942,6 +1096,28 @@
       "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgUHJvZHVjdCBNYW5hZ2VyLCBBSS1Ecml2ZW4gRGlnaXRhbCBFeHBlcmllbmNlcyIsImNvbXBhbnlfbmFtZSI6IlRhcGVz",
+      "title": "Senior Product Manager, AI-Driven Digital Experiences",
+      "company": "Tapestry",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "2 days ago",
+      "posted_date": "2026-07-12",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.expertini.com/job/senior-product-manager-ai-driven-digital-experiences-singapore-tapestry-293-3808411/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.expertini.com/job/senior-product-manager-ai-driven-digital-experiences-singapore-tapestry-293-3808411/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Tapestry is seeking a Senior Manager for Product Management & AI to lead innovative digital experiences across brands like Coach and Kate Spade New York. This role emphasizes customer-centric strategies and the application of AI in product management. \n\nYou will define the product vision and collaborate with cross-functional teams to optimize product outcomes. Candidates should have over 7 years in digital product management and strong communication skills. \n\nTapestry believes in inclusivity and investing in individual growth, fostering a culture where every employee can thrive. \n\n#J-18808-Ljbffr",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
       "id": "eyJqb2JfdGl0bGUiOiJUZWNobmljYWwgUHJvZHVjdCBPd25lcjogQUktRHJpdmVuIFN0cmF0ZWd5IFx1MDAyNiBEZWxpdmVyeSIsImNvbXBhbnlfbmFtZSI6",
       "title": "Technical Product Owner: AI-Driven Strategy & Delivery",
       "company": "TECH AALTO PTE. LTD.",
@@ -984,28 +1160,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgRS1jb21tZXJjZSBHcm93dGggU3RyYXRlZ2lzdCIsImNvbXBhbnlfbmFtZSI6InRoZSBzdXByZW1lIGhyIGFkdmlzb3J5",
-      "title": "Senior E-commerce Growth Strategist",
-      "company": "the supreme hr advisory pte. ltd.",
-      "source": "Google Jobs",
-      "type": "agency",
-      "sector": "general",
-      "posted": "3 days ago",
-      "posted_date": "2026-07-11",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "The supreme hr advisory pte. ltd. is seeking an experienced e-commerce professional in Singapore. This role involves delivering sales targets and executing growth strategies across platforms like Shopee and Lazada. The ideal candidate should have a proven background in e-commerce sales, strong analytical skills, and the ability to collaborate cross-functionally. Attractive salary package between $5,000 and $8,000 per month based on experience.",
-      "preferred": false,
-      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlLCBBc3Npc3RhbnQgTWFuYWdlciAoQnJhbmQgRmxhZ3NoaXAgU3RvcmUpIiwiY29tcGFueV9uYW1lIjoiU1RBRkZL",
@@ -1466,6 +1620,28 @@
       },
       "url": "https://bebee.com/sg/jobs/now-hiring-ecommerce-associate-luxury-fashion-cettire--talent-617090704743472083?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
       "description": "About us\nCettire is the largest Australian-owned luxury fashion site and we are continuing to grow at a rapid pace.\n\nAbout the role\nWe have an exciting opportunity for an ecommerce assistant to join our growing team. This is a great opportunity to join a fast-growing Luxury Fashion start-up. If you are results-driven, hard working and have a passion for fashion this is the perfect role.\n\nPrimary responsibilities\nPreparing products for the websiteCustomer serviceBooking deliveriesTracking customer ordersInvoice validation The ideal candidateIs results-orientedHas a strong interest in fashionIs able to work in a team or independentlyIs capable of handling a high pressure environment\nMinimum qualifications\nAt least 2 years full time work experienceBachelors Degree or higherFluent English (Other language skills highly regarded, such as Mandarin, Cantonese, Japanese, Korean and/or Italian)\n-Full working rights in Singapore without employer sponsorship for Employment Permit\n\nWhy join us?\n\nGenerous remunerationJoin one of Australia's fastest growing e-commerce sitesClose-knit, friendly teamFast-paced, exciting role and career growth potentialImmediate start available",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgRS1jb21tZXJjZSBHcm93dGggU3RyYXRlZ2lzdCIsImNvbXBhbnlfbmFtZSI6InRoZSBzdXByZW1lIGhyIGFkdmlzb3J5",
+      "title": "Senior E-commerce Growth Strategist",
+      "company": "the supreme hr advisory pte. ltd.",
+      "source": "Google Jobs",
+      "type": "agency",
+      "sector": "general",
+      "posted": "4 days ago",
+      "posted_date": "2026-07-10",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "The supreme hr advisory pte. ltd. is seeking an experienced e-commerce professional in Singapore. This role involves delivering sales targets and executing growth strategies across platforms like Shopee and Lazada. The ideal candidate should have a proven background in e-commerce sales, strong analytical skills, and the ability to collaborate cross-functionally. Attractive salary package between $5,000 and $8,000 per month based on experience.",
       "preferred": false,
       "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
@@ -2636,6 +2812,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIFNwZWNpYWxpc3QsIFNvdXRoIEFzaWEgUGFjaWZpYyIsImNvbXBhbnlfbmFtZSI6IkJ2bGdhcmkiLCJodGlkb2Np",
+      "title": "E-Commerce Specialist, South Asia Pacific",
+      "company": "Bvlgari",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "7 days ago",
+      "posted_date": "2026-07-07",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Position\n\nFounded in 1884, Bulgari's name has today become emblematic of Italian excellence. Perfectly blending tradition and modernity, Bulgari uses its rich history to inspire audacious designs and produce truly colorful creations making us unique.\n\nPart of LVMH Group, Bulgari offers a multitude of positions and activities around the world. Endless possibilities and dynamic career opportunities are available for both experienced professionals and recent graduates. At Bulgari, you are encouraged to demonstrate your potential by pursuing the career direction that suits your natural talents.\n\nBVLGARI is looking for an energetic and highly driven E-Commerce Specialist, South Asia Pacific to join our dynamic team here in Singapore.\n\nJob responsibilities\n\nThe incumbent is expected to drive flawless execution of ecommerce operations for key ecommerce markets in Bulgari SAO namely Singapore and Australia. This position also requires strong stakeholder management as it involves working with local/regional and global stakeholders to advance operational levers across various aspects of the overall Omni Channel business.\n\nEcommerce Operations (SG/AU)\n\nEnsure flawless b.com NPS by proactively tracking and escalating customer feedback to stakeholders. Where it is possible, suggest and drive improvements to process for long term growth.To be the backup for AU in the event of edge case circumstances to ensure flawless business continuity\n\nEcommerce Onsite Operations (SG/AU)\n\nAssist with planning and roll out of online events, such as pre-orders and product launches.Ongoing testing and auditing of com to monitor bugs and errors Fortnightly review and optimization of on-siteUpdate promotional banners in line with online events, KCP's and marketing calendar.Review category pages monthly and ensure merchandizing of pages is aligned with market priorities and sell-through trends.Brief homepage updates, super-navigation image and content block direction to HQ team for localization needsSupport with online visual merchandising when requiredUpdate com store locator and Google trading hours ahead public holidays, KCP's and as required on an adhoc basis.Partner with Global team to review SEO opportunities. To then partner with Marketing team and agency to operationalize and review SEO updatesPartner with Marketing and Marketing agency to review SEM copies with the intent of balancing brand equity and performance marketing Partner with Global teams for any onsite launches via UAT (e.g. New Payment Systems, New conversion optimizations)Additional adhoc tasks as requested both locally, regionally and centrally\n\nEcommerce Insights And Reporting (SG/AU)\n\nAssist in pulling ecommerce reports in partnership with ecommerce manager on a weekly basis\n\nPartnership With Concierge Services\n\nMaximise sales opportunities through CS facilitated remote sales via weekly review of Notify Me reporting.Support Concierge Services relating to e-Commerce product & remote-selling.Act as escalation point for concierge service team in relation to Omni Channel enquiries (SG only). Ensure CS team updates operating hours for daylight saving onsite for AU\n\nPartnership With Merchandising\n\nAct as key contact with merchandising department regarding stock visibility on B.comEnsure visual merchandising is regularly reviewed and optimized to meet Bulgari guidelines and best practice – ensuring product flags are relevant and up to date.Conduct fortnightly merchandising meetings to communicate goals & focuses on relating productCommunicate volume and category opportunities, make recommendations regarding optimization of product offering by market.\n\nPartnership With Marketing\n\nA key contact with marketing team to align product focuses for SEM and social mediaCommunicate with central marketing content team to align on homepage and animation focusesCoordinate with the greater team for planning around key consumption periods (specifically gift guides).\n\nProfile\n\nOperational Excellence: Demonstrates willingness to learn and ability to prioritize based on short- and long-term demandsAdaptability & Resilience: Comfortable navigating ambiguity and demonstrating flexibility to thrive within a fast-evolving e-commerce landscape.Knowledge of ecommerce tools: Willingness to learn various ecommerce systems - GA4, Salesforce (eCommerce cloud), PIM/DAM, Google Console Analytical Proficiency: Comfortable working with numbersRelevant Experience: Ideally possesses prior experience within a Fast-Moving Consumer Goods (FMCG) or e-commerce environment. Experience in the Luxury sector is not a prerequisite but would be considered an asset.",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
       "id": "mcf-10b26548ba79bfd3d810f6e7dae22d8e",
       "title": "Business Analyst",
       "company": "ALLEGIS GROUP SINGAPORE PRIVATE LIMITED",
@@ -2700,28 +2898,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIFNwZWNpYWxpc3QsIFNvdXRoIEFzaWEgUGFjaWZpYyIsImNvbXBhbnlfbmFtZSI6IkJ2bGdhcmkiLCJodGlkb2Np",
-      "title": "E-Commerce Specialist, South Asia Pacific",
-      "company": "Bvlgari",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "beauty_luxury",
-      "posted": "7 days ago",
-      "posted_date": "2026-07-07",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Position\n\nFounded in 1884, Bulgari's name has today become emblematic of Italian excellence. Perfectly blending tradition and modernity, Bulgari uses its rich history to inspire audacious designs and produce truly colorful creations making us unique.\n\nPart of LVMH Group, Bulgari offers a multitude of positions and activities around the world. Endless possibilities and dynamic career opportunities are available for both experienced professionals and recent graduates. At Bulgari, you are encouraged to demonstrate your potential by pursuing the career direction that suits your natural talents.\n\nBVLGARI is looking for an energetic and highly driven E-Commerce Specialist, South Asia Pacific to join our dynamic team here in Singapore.\n\nJob responsibilities\n\nThe incumbent is expected to drive flawless execution of ecommerce operations for key ecommerce markets in Bulgari SAO namely Singapore and Australia. This position also requires strong stakeholder management as it involves working with local/regional and global stakeholders to advance operational levers across various aspects of the overall Omni Channel business.\n\nEcommerce Operations (SG/AU)\n\nEnsure flawless b.com NPS by proactively tracking and escalating customer feedback to stakeholders. Where it is possible, suggest and drive improvements to process for long term growth.To be the backup for AU in the event of edge case circumstances to ensure flawless business continuity\n\nEcommerce Onsite Operations (SG/AU)\n\nAssist with planning and roll out of online events, such as pre-orders and product launches.Ongoing testing and auditing of com to monitor bugs and errors Fortnightly review and optimization of on-siteUpdate promotional banners in line with online events, KCP's and marketing calendar.Review category pages monthly and ensure merchandizing of pages is aligned with market priorities and sell-through trends.Brief homepage updates, super-navigation image and content block direction to HQ team for localization needsSupport with online visual merchandising when requiredUpdate com store locator and Google trading hours ahead public holidays, KCP's and as required on an adhoc basis.Partner with Global team to review SEO opportunities. To then partner with Marketing team and agency to operationalize and review SEO updatesPartner with Marketing and Marketing agency to review SEM copies with the intent of balancing brand equity and performance marketing Partner with Global teams for any onsite launches via UAT (e.g. New Payment Systems, New conversion optimizations)Additional adhoc tasks as requested both locally, regionally and centrally\n\nEcommerce Insights And Reporting (SG/AU)\n\nAssist in pulling ecommerce reports in partnership with ecommerce manager on a weekly basis\n\nPartnership With Concierge Services\n\nMaximise sales opportunities through CS facilitated remote sales via weekly review of Notify Me reporting.Support Concierge Services relating to e-Commerce product & remote-selling.Act as escalation point for concierge service team in relation to Omni Channel enquiries (SG only). Ensure CS team updates operating hours for daylight saving onsite for AU\n\nPartnership With Merchandising\n\nAct as key contact with merchandising department regarding stock visibility on B.comEnsure visual merchandising is regularly reviewed and optimized to meet Bulgari guidelines and best practice – ensuring product flags are relevant and up to date.Conduct fortnightly merchandising meetings to communicate goals & focuses on relating productCommunicate volume and category opportunities, make recommendations regarding optimization of product offering by market.\n\nPartnership With Marketing\n\nA key contact with marketing team to align product focuses for SEM and social mediaCommunicate with central marketing content team to align on homepage and animation focusesCoordinate with the greater team for planning around key consumption periods (specifically gift guides).\n\nProfile\n\nOperational Excellence: Demonstrates willingness to learn and ability to prioritize based on short- and long-term demandsAdaptability & Resilience: Comfortable navigating ambiguity and demonstrating flexibility to thrive within a fast-evolving e-commerce landscape.Knowledge of ecommerce tools: Willingness to learn various ecommerce systems - GA4, Salesforce (eCommerce cloud), PIM/DAM, Google Console Analytical Proficiency: Comfortable working with numbersRelevant Experience: Ideally possesses prior experience within a Fast-Moving Consumer Goods (FMCG) or e-commerce environment. Experience in the Luxury sector is not a prerequisite but would be considered an asset.",
-      "preferred": false,
-      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "mcf-cd30591856572dac35a90b02423dfaf9",
@@ -3384,6 +3560,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-287032c74f659688ba86b84b9130686c",
+      "title": "Interface Designer UX/UI",
+      "company": "INFRASOFT TECHNOLOGIES PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-06-30",
+      "posted_date": "2026-06-30",
+      "salary": "S$7,500–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-1fc5ba8d8522c16fc4da7136aed1ce08",
       "title": "Product Owner, Reporting & MI (Singapore, Malaysia)",
       "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
@@ -3423,28 +3621,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/5cafd8d5ceafa21ee7f58a34066968e2"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/5cafd8d5ceafa21ee7f58a34066968e2",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-287032c74f659688ba86b84b9130686c",
-      "title": "Interface Designer UX/UI",
-      "company": "INFRASOFT TECHNOLOGIES PTE LTD",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-06-30",
-      "posted_date": "2026-06-30",
-      "salary": "S$7,500–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -3778,6 +3954,28 @@
       "description": "Are you passionate about beauty and fashion?Do you stay abreast of the latest trends in both Asian and global fashion?Are you intrigued by the emerging talents making waves in the Asian fashion landscape?",
       "preferred": false,
       "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlLCBTZW5pb3IgRXhlY3V0aXZlIChGYXNoaW9uIHwgTHV4dXJ5IFJldGFpbCkgRFQiLCJjb21wYW55X25hbWUiOiJF",
+      "title": "E-commerce, Senior Executive (Fashion | Luxury Retail) DT",
+      "company": "Elitez Pte Ltd",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://bebee.com/sg/jobs/e-commerce-senior-executive-fashion-luxury-retail-dt-elitez-pte-ltd-north-region--theirstack-688135819?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://bebee.com/sg/jobs/e-commerce-senior-executive-fashion-luxury-retail-dt-elitez-pte-ltd-north-region--theirstack-688135819?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "About the Role\nWe are looking for a driven and hands-on Senior E-Commerce Executive to oversee daily e-commerce operations across multiple online platforms and marketplaces. This role requires someone who is operationally strong, commercially aware, and capable of managing online retail activities independently.\nThe ideal candidate should have a strong interest in fashion and luxury retail, and be confident working closely with the founder in a fast-moving environment.\nKey Responsibilities\n\nManage daily operations of the company’s e-commerce platforms and online marketplaces\nCreate, update, and optimise product listings, pricing, and promotional campaigns\nMonitor website and marketplace performance to ensure smooth customer experience and platform functionality\nCoordinate with internal teams including marketing, logistics, and operations to support online sales initiatives\nAnalyse sales performance, campaign results, and customer behaviour to drive improvements\nHandle customer enquiries and resolve order-related issues promptly\nEnsure accurate inventory synchronisation and stock availability across all platforms\nSupport seasonal campaigns, new launches, and online promotional activities\nTroubleshoot operational issues and provide support during urgent situations when required\n\nRequirements\n\nMinimum 3 – 4 years of relevant experience in e-commerce or online retail operations\nStrong familiarity with platforms such as Shopify, WooCommerce, Lazada, Shopee, and TikTok Shop\nStrong organisational, coordination, and problem-solving skills\nAble to work independently in a fast-paced and dynamic environment\nStrong communication skills and attention to detail\nPassion for fashion, especially luxury fashion and premium retail brands\nMature, resourceful, and confident in working directly with the founder\n\nAttention to: Debbie Tan (debbie.tan@elitez.asia)\nBy submitting any application or résumé to us, you will be deemed to have agreed and consented to us disclosing your personal information to prospective employers for their consideration.\nWe regret to inform you that only shortlisted candidates will be notified. All applications will be treated with the strictest confidence.\n\nElitez Pte Ltd | EA Licence: 16C8004 | Debbie TAN | Registrations No: R26159853",
+      "preferred": false,
+      "first_seen": "2026-07-14T10:41:33.452459+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgTGVhZCwgRW50ZXJ0YWlubWVudCBhbmQgVHJhdmVsIEFkcyIsImNvbXBhbnlfbmFtZSI6IlRpa1RvayIs",

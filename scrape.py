@@ -25,6 +25,9 @@ import requests
 
 OUT = Path("data/jobs.json")
 UA = "vitrine-scraper/1.0 (personal job search)"
+# Some ATS endpoints (e.g. Kering's Workday) block obvious bot UAs — use a browser UA + Origin/Referer there.
+BROWSER_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 TIMEOUT = 25
 
 # Free keyword searches on MyCareersFuture (broad SG coverage, all sectors).
@@ -344,10 +347,12 @@ def connector_google_jobs():
     return out
 
 def connector_workday():
-    out=[]; hdr={"User-Agent":UA,"Content-Type":"application/json","Accept":"application/json"}
+    out=[]
     for label,cfg in WORKDAY_TENANTS.items():
         host=cfg["host"]; site=cfg["site"]; tenant=host.split(".")[0]
         api=f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
+        hdr={"User-Agent":BROWSER_UA,"Content-Type":"application/json","Accept":"application/json",
+             "Origin":f"https://{host}","Referer":f"https://{host}/{site}/"}
         seen_paths=set(); fetched=0; kept=0; errored=False
         try:
             for q in KEYWORDS:

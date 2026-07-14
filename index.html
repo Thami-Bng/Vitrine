@@ -63,6 +63,14 @@
   .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;}
   .empty b{color:var(--ink);font-weight:600;display:block;font-family:"Fraunces",serif;font-size:20px;margin-bottom:6px;}
   footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:28px;letter-spacing:.02em;}
+  .sources{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px;font-size:13px;margin-top:26px;}
+  .sources summary{padding:12px 2px;cursor:pointer;color:var(--muted);font-weight:600;list-style:none;}
+  .sources summary::-webkit-details-marker{display:none;}
+  .src-body{padding-bottom:8px;}
+  .src-row{display:flex;justify-content:space-between;gap:10px;padding:6px 2px;border-top:1px solid var(--line);}
+  .src-n{color:var(--muted);white-space:nowrap;}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;}
+  .dot.ok{background:#3f8f5f;} .dot.zero{background:#cec7bb;} .dot.err{background:#b3371f;}
   @media (max-width:420px){h1{font-size:32px;}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
@@ -92,6 +100,7 @@
   </div>
 
   <ul id="list"></ul>
+  <details class="sources" id="sources" style="display:none"></details>
   <footer id="footer"></footer>
 </div>
 
@@ -120,7 +129,18 @@ async function boot(){
   const bl=state.jobs.filter(j=>j.sector==="beauty_luxury").length;
   const ho=state.jobs.filter(j=>j.type==="house").length;
   document.getElementById("byline").innerHTML=`<b>${ho}</b> houses · <b>${bl}</b> beauty/luxury · <b>${state.jobs.length}</b> total · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  renderSources(data.sources);
   render();
+}
+function renderSources(sources){
+  const el=document.getElementById("sources");
+  if(!sources||!sources.length){el.style.display="none";return;}
+  el.style.display="";
+  const rows=sources.map(s=>{
+    const cls=s.error?"err":(s.fetched===0?"zero":"ok");
+    return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}</span><span class="src-n">${s.fetched} fetched · ${s.kept} SG</span></div>`;
+  }).join("");
+  el.innerHTML=`<summary>Sources &amp; diagnostics</summary><div class="src-body">${rows}</div>`;
 }
 function visible(){
   const q=state.q.trim().toLowerCase();

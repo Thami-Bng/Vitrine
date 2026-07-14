@@ -69,6 +69,11 @@ SF_MAX_PAGES = 8            # 50 roles/page, newest first
 # Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
 MIN_SALARY_MAX = 9000
 
+# Per-source diagnostics, written into jobs.json so the page can show a "Sources" panel.
+STATS = []
+def record(label, fetched, kept, error=False):
+    STATS.append({"label": label, "fetched": fetched, "kept": kept, "error": bool(error)})
+
 # Shared keyword list for keyword-driven sources (Workday needs a search term).
 KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
             "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
@@ -343,38 +348,47 @@ def connector_workday():
     for label,cfg in WORKDAY_TENANTS.items():
         host=cfg["host"]; site=cfg["site"]; tenant=host.split(".")[0]
         api=f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
-        seen_paths=set()
+        seen_paths=set(); fetched=0; kept=0; errored=False
         for q in KEYWORDS:
             try:
                 r=requests.post(api,json={"appliedFacets":{},"limit":20,"offset":0,"searchText":q},
                                 headers=hdr,timeout=TIMEOUT)
             except requests.RequestException as e:
-                print(f"  ! WD {label} '{q}': {e}",file=sys.stderr); continue
+                print(f"  ! WD {label} '{q}': {e}",file=sys.stderr); errored=True; continue
             if r.status_code!=200:
-                print(f"  ! WD {label} '{q}': HTTP {r.status_code}",file=sys.stderr); continue
+                print(f"  ! WD {label} '{q}': HTTP {r.status_code}",file=sys.stderr); errored=True; continue
             for p in r.json().get("jobPostings",[]):
-                if "singapore" not in (p.get("locationsText","") or "").lower():
-                    continue
                 path=p.get("externalPath","")
                 if not path or path in seen_paths:
                     continue
-                seen_paths.add(path)
+                seen_paths.add(path); fetched+=1
+                lt=(p.get("locationsText") or "").lower()
+                ambiguous=bool(re.search(r"\d+\s+location", lt))     # "3 Locations" hides the city
+                if "singapore" not in lt and not ambiguous:
+                    continue
+                desc,locs=wd_detail(host,tenant,site,path,hdr)
+                time.sleep(0.2)
+                if "singapore" not in (lt+" "+locs).lower():
+                    continue
                 url=f"https://{host}/{site}{path}"
-                desc=wd_detail(host,tenant,site,path,hdr) if WORKDAY_FETCH_DETAIL else ""
-                if WORKDAY_FETCH_DETAIL: time.sleep(0.25)
                 links={"primary":url,"careers":url,"linkedin":"","mcf":""}
-                out.append(job(f"wd-{path}",p.get("title"),label,"Workday",links,
-                               p.get("postedOn",""),desc))
+                out.append(job(f"wd-{path}",p.get("title"),label,"Workday",links,p.get("postedOn",""),desc))
+                kept+=1
             time.sleep(0.3)
+        record(f"Workday · {label}", fetched, kept, error=errored)
     return out
 
 def wd_detail(host,tenant,site,path,hdr):
     try:
         r=requests.get(f"https://{host}/wday/cxs/{tenant}/{site}{path}",headers=hdr,timeout=TIMEOUT)
-        if r.status_code!=200: return ""
-        return clean_text((r.json().get("jobPostingInfo") or {}).get("jobDescription",""))
+        if r.status_code!=200: return "",""
+        info=r.json().get("jobPostingInfo") or {}
+        locs=" ".join([info.get("location","") or ""]
+                      +[str(x) for x in (info.get("additionalLocations") or [])]
+                      +[info.get("country","") or ""])
+        return clean_text(info.get("jobDescription","")), locs
     except requests.RequestException:
-        return ""
+        return "",""
 
 def connector_eightfold():
     out=[]; hdr={"User-Agent":UA,"Accept":"application/json"}
@@ -443,6 +457,7 @@ def load_previous():
 
 def run(dry_run=False):
     prev=load_previous(); now=datetime.now(timezone.utc).isoformat()
+    STATS.clear()
     collected={}
     for conn in CONNECTORS:
         print(f"→ {conn.__name__}")
@@ -453,8 +468,11 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
+            if conn.__name__!="connector_workday":     # workday records per-site itself
+                record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)
+            record(conn.__name__.replace("connector_",""), 0, 0, error=True)
     # newest first by posting date, then preferred houses, then company
     jobs=dedupe(list(collected.values()))
     before=len(jobs)
@@ -470,7 +488,7 @@ def run(dry_run=False):
             print(f"  [{j['type'][:5]:5}|{j['sector'][:6]:6}] {j['posted_date']}  {j['title']} — {j['company']}")
         return
     OUT.parent.mkdir(parents=True,exist_ok=True)
-    OUT.write_text(json.dumps({"generated_at":now,"jobs":jobs},indent=2,ensure_ascii=False))
+    OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 
 def main():

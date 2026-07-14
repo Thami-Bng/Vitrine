@@ -46,6 +46,9 @@ WORKDAY_TENANTS = {
     # Chanel (tenant "cc", site "ChanelCareers"). If their Workday turns out to be bot-walled like
     # Kering, this row will show red in the panel and we fall back to Google Jobs ("Chanel Singapore").
     "Chanel": {"host": "cc.wd3.myworkdayjobs.com", "site": "ChanelCareers"},
+    # Luxury hospitality + big drinks house, both on open Workday tenants.
+    "Aman": {"host": "aman.wd103.myworkdayjobs.com", "site": "AmanGroupExternal"},
+    "Pernod Ricard": {"host": "pernodricard.wd3.myworkdayjobs.com", "site": "pernod-ricard"},
     # Chanel (host tenant "cc", site "ChanelCareers") — diagnostics panel will show if it's open.
     "Chanel": {"host": "cc.wd3.myworkdayjobs.com", "site": "ChanelCareers"},
     # NOTE: Kering (kering.wd3.myworkdayjobs.com — Balenciaga/Gucci/Saint Laurent/etc.) blocks
@@ -70,8 +73,12 @@ SF_SITES = {
     "Coty":     {"host": "careers.coty.com"},
     "Shiseido": {"host": "career5.successfactors.eu", "company": "shiseidoco"},
     "Puig":     {"host": "career2.successfactors.eu", "company": "Puig"},
+    "Changi":   {"host": "career10.successfactors.com", "company": "C0010141078P"},
 }
 SF_MAX_PAGES = 6           # 50 roles/page; we search "Singapore" so this is plenty
+
+# Greenhouse job boards — clean public JSON API at boards-api.greenhouse.io.
+GREENHOUSE_BOARDS = {"Soho House": "sohohouseco"}
 
 # Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
 MIN_SALARY_MAX = 9000
@@ -96,6 +103,9 @@ GJ_POOL = [
     # brands on platforms we don't scrape directly (Oracle / Avature / legacy SF / custom)
     "L'Oreal Singapore", "Lancome Singapore", "YSL Beauty Singapore", "Kiehl's Singapore",
     "Ralph Lauren Singapore", "Hermes Singapore", "Tiffany Singapore", "Chanel Singapore",
+    # luxury hospitality / travel on Oracle / Workable / iCIMS / custom sites
+    "Marriott luxury Singapore", "Four Seasons Singapore", "Belmond Singapore",
+    "Mandarin Oriental Singapore", "Banyan Tree Singapore",
     # broad nets
     "e-commerce Singapore luxury", "digital product manager Singapore",
     "omnichannel manager Singapore", "product owner Singapore beauty",
@@ -114,6 +124,7 @@ PREFERRED_BRANDS = [b.lower() for b in [
     "lvmh","sephora","l'oreal","loreal","clarins","estee lauder","estée lauder","kering","gucci",
     "saint laurent","bottega","balenciaga","richemont","cartier","shiseido","amorepacific","puig",
     "guerlain","dior","chanel","hermes","hermès","charlotte tilbury","net-a-porter","ynap","lancome",
+    "bulgari","bvlgari",
 ]]
 
 # Recruitment agencies — tagged, not dropped.
@@ -156,7 +167,44 @@ SECTOR_BRANDS = [b.lower() for b in [
     "fenty","rare beauty","drunk elephant","tatcha","the ordinary","deciem","paula's choice","sulwhasoo",
     "laneige","innisfree","cosrx","clé de peau","cle de peau","ipsa","kanebo","kose","decorté","decorte",
     "escentials","escential","sasa","sa sa","luxola","tangs beauty","aveda","natura","avon","the body shop",
+    "pernod","pernod ricard","moet","moët","hennessy","dom perignon","dom pérignon","krug","veuve clicquot",
 ]]
+
+# Luxury hospitality, travel retail & premium travel — a separate "Travel & Hospitality" vertical.
+HOSPITALITY_BRANDS = [b.lower() for b in [
+    # luxury hotels & resorts
+    "aman","belmond","four seasons","banyan tree","angsana","dhawa","mandarin oriental","raffles","fairmont",
+    "sofitel","accor","pullman","shangri-la","shangri la","rosewood","six senses","como hotel","como hotels",
+    "capella","the peninsula","peninsula hotel","anantara","hyatt","park hyatt","andaz","hilton","conrad",
+    "waldorf","regent","dusit","millennium hotel","pan pacific","parkroyal","marina bay sands","resorts world",
+    "kempinski","oberoi","taj hotel","jumeirah","bulgari hotel","cheval blanc","one&only","oneandonly",
+    "montage","auberge","langham","corinthia","dorchester","ritz-carlton","ritz carlton","st regis","st. regis",
+    "w hotels","edition hotel","westin","sheraton","le meridien","le méridien","soho house","standard hotel",
+    # travel retail & duty free
+    "dfs","lagardère travel","lagardere travel","dufry","avolta","lotte duty free","the shilla","king power",
+    "heinemann","duty free",
+    # airports / airlines / travel platforms
+    "changi","jewel changi","sats","singapore airlines","scoot","cathay","emirates","qatar airways",
+    "klook","booking.com","booking holdings","expedia","agoda","trip.com","traveloka","airbnb",
+    # cruise & rail
+    "silversea","seabourn","ponant","crystal cruises","regent seven seas","oceania cruises","cunard",
+    "orient express","aman resorts",
+]]
+HOSP_SIGNALS = ["hotel","resort","hospitality","travel retail","duty free","duty-free","airline","aviation",
+                "cruise","airport","concierge","members club","members' club","private club","spa resort"]
+
+# For splitting the general pile into readable buckets.
+TECH_SIGNALS = ["software","saas","b2b saas","fintech","technology company","platform","developer","engineer",
+                "data science","machine learning","artificial intelligence","cloud","cybersecurity","blockchain",
+                "crypto","startup","digital agency","gaming","semiconductor","e-wallet","super app",
+                "grab","shopee","sea limited","sea ltd","lazada","gojek","goto","bytedance","tiktok","tik tok",
+                "stripe","google","meta","amazon","microsoft","salesforce","adobe","atlassian","canva","razer",
+                "ninja van","ninjavan","carousell","propertyguru","nium","thunes","wise","revolut","binance",
+                "coinbase","circles.life","coda payments","advance intelligence","openai","anthropic"]
+CONSULT_SIGNALS = ["consulting","consultancy","advisory","management consult","accenture","deloitte","mckinsey",
+                   "bain","boston consulting","bcg","kpmg","pwc","pricewaterhouse","ernst & young","capgemini",
+                   "cognizant","infosys","wipro","tata consultancy","oliver wyman","roland berger","kearney",
+                   "l.e.k","strategy&","slalom","thoughtworks","publicis sapient"]
 
 INCLUDE = re.compile("|".join([
     r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"e-?business",
@@ -192,9 +240,22 @@ def type_of(company):
 
 def sector_of(company, title, desc):
     c=(company or "").lower()
-    if preferred(company) or any(b in c for b in SECTOR_BRANDS): return "beauty_luxury"
     blob=f"{company} {title} {desc}".lower()
+    if any(b in c for b in HOSPITALITY_BRANDS) or any(w in blob for w in HOSP_SIGNALS):
+        return "hospitality"
+    if preferred(company) or any(b in c for b in SECTOR_BRANDS): return "beauty_luxury"
     return "beauty_luxury" if any(w in blob for w in LUX_SIGNALS) else "general"
+
+def category_of(company, title, sector, type_):
+    """Primary bucket for the UI tabs — each role lands in exactly one."""
+    if type_=="house":            return "house"
+    if sector=="hospitality":     return "travel"
+    if sector=="beauty_luxury":   return "beauty_luxury"
+    if type_=="agency":           return "recruiter"
+    blob=f"{company} {title}".lower()
+    if any(w in blob for w in TECH_SIGNALS):    return "tech"
+    if any(w in blob for w in CONSULT_SIGNALS): return "consulting"
+    return "other"
 
 def clean_text(raw):
     if not raw: return ""
@@ -291,8 +352,9 @@ def extract_links(options, share=""):
 
 def job(id_, title, company, source, links, posted="", description="", salary="", salary_max=None):
     company=(company or "").strip()
+    ty=type_of(company); se=sector_of(company,title,description)
     return {"id":str(id_), "title":(title or "").strip(), "company":company, "source":source,
-            "type":type_of(company), "sector":sector_of(company,title,description),
+            "type":ty, "sector":se, "category":category_of(company,title,se,ty),
             "posted":posted or "", "posted_date":to_date(posted),
             "salary":salary or "", "salary_max":salary_max,
             "links":links, "url":links.get("primary",""),
@@ -522,8 +584,34 @@ def connector_successfactors():
         record(f"SuccessFactors · {label}", fetched, kept, error=errored)
     return out
 
+def connector_greenhouse():
+    out=[]; hdr={"User-Agent":BROWSER_UA,"Accept":"application/json"}
+    for label,token in GREENHOUSE_BOARDS.items():
+        fetched=0; kept=0; errored=False
+        try:
+            r=requests.get(f"https://boards-api.greenhouse.io/v1/boards/{token}/jobs",
+                           params={"content":"true"}, headers=hdr, timeout=TIMEOUT)
+            if r.status_code!=200:
+                print(f"  ! GH {label}: HTTP {r.status_code}",file=sys.stderr); errored=True
+            else:
+                for j in r.json().get("jobs",[]):
+                    fetched+=1
+                    loc=((j.get("location") or {}).get("name") or "")
+                    if "singapore" not in loc.lower():
+                        continue
+                    url=j.get("absolute_url","")
+                    links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                    posted=(j.get("updated_at") or "")[:10]
+                    out.append(job(f"gh-{j.get('id')}",j.get("title",""),label,"Greenhouse",links,
+                                   posted,clean_text(j.get("content",""))))
+                    kept+=1
+        except Exception as e:
+            print(f"  ! GH {label}: {e}",file=sys.stderr); errored=True
+        record(f"Greenhouse · {label}", fetched, kept, error=errored)
+    return out
+
 CONNECTORS=[connector_mycareersfuture, connector_smartrecruiters, connector_successfactors,
-            connector_workday, connector_eightfold, connector_google_jobs]
+            connector_workday, connector_greenhouse, connector_eightfold, connector_google_jobs]
 
 # ------------------------------- MAIN ------------------------------- #
 
@@ -546,7 +634,7 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
-            if conn.__name__ not in ("connector_workday","connector_successfactors"):  # these record per-site
+            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse"):  # these record per-site
                 record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)

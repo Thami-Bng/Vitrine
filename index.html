@@ -24,8 +24,10 @@
   .byline b{color:var(--ink);font-weight:600;}
 
   .controls{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 8px;}
-  .tabs{display:flex;background:#ECE8E1;border-radius:999px;padding:3px;margin-bottom:10px;}
-  .tab{flex:1;text-align:center;padding:9px 6px;border:0;background:transparent;border-radius:999px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .tabs{display:flex;gap:3px;background:#ECE8E1;border-radius:999px;padding:3px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;text-align:center;padding:9px 15px;border:0;background:transparent;border-radius:999px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .tab .tc{opacity:.6;font-weight:500;margin-left:4px;}
   .tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06);}
   .search{width:100%;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:11px 16px;font:inherit;color:var(--ink);outline:none;transition:border-color .15s;}
   .search:focus{border-color:var(--accent);}
@@ -104,11 +106,7 @@
   </header>
 
   <div class="controls">
-    <div class="tabs" id="tabs" role="tablist">
-      <button class="tab" data-scope="house" role="tab" aria-selected="true">Houses</button>
-      <button class="tab" data-scope="beauty_luxury" role="tab" aria-selected="false">Beauty &amp; Luxury</button>
-      <button class="tab" data-scope="all" role="tab" aria-selected="false">All Singapore</button>
-    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
     <div class="filterbar">
       <button class="chip filterbtn" id="filterBtn" aria-expanded="false">Filters<span class="fcount" id="fcount"></span></button>
@@ -162,6 +160,25 @@ const SAMPLE={generated_at:new Date().toISOString(),jobs:[
 ]};
 function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
+const CATS=[["house","Houses"],["beauty_luxury","Beauty & Luxury"],["travel","Travel & Hospitality"],
+            ["tech","Tech"],["consulting","Consulting"],["recruiter","Recruiters"],["other","Other"]];
+function catOf(j){
+  if(j.category)return j.category;
+  if(j.type==="house")return "house";
+  if(j.sector==="hospitality")return "travel";
+  if(j.sector==="beauty_luxury")return "beauty_luxury";
+  if(j.type==="agency")return "recruiter";
+  return "other";
+}
+function renderTabs(){
+  const counts={};
+  state.jobs.forEach(j=>{if(!state.dismissedSet.has(j.id)){const c=catOf(j);counts[c]=(counts[c]||0)+1;}});
+  const avail=CATS.filter(([id])=>counts[id]);
+  if(avail.length&&!avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
+  document.getElementById("tabs").innerHTML=avail.map(([id,label])=>
+    `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span></button>`
+  ).join("");
+}
 const state={jobs:[],scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,
   savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed"))};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
@@ -208,9 +225,7 @@ async function boot(){
   try{const r=await fetch("data/jobs.json",{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.jobs&&d.jobs.length)data=d;}}catch(e){}
   state.jobs=data.jobs||[];
   const when=new Date(data.generated_at||Date.now());
-  const bl=state.jobs.filter(j=>j.sector==="beauty_luxury").length;
-  const ho=state.jobs.filter(j=>j.type==="house").length;
-  document.getElementById("byline").innerHTML=`<b>${ho}</b> houses · <b>${bl}</b> beauty/luxury · <b>${state.jobs.length}</b> total · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   renderSources(data.sources);
   render();
   pullRemote();                                   // adopt any marks made on other devices
@@ -230,8 +245,7 @@ function renderSources(sources){
 function visible(){
   const q=state.q.trim().toLowerCase();
   return state.jobs.filter(j=>{
-    if(state.scope==="house"&&j.type!=="house")return false;
-    if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
+    if(!q && catOf(j)!==state.scope)return false;      // browsing shows one category; search spans all
     if(state.onlyNew&&!isNew(j))return false;
     if(state.onlySaved&&!state.savedSet.has(j.id))return false;
     if(state.mAgencies==="hide"&&j.type==="agency")return false;
@@ -268,10 +282,10 @@ function linkBtns(j){
   return out.join("");
 }
 function render(){
-  const list=document.getElementById("list");const jobs=visible();
+  const list=document.getElementById("list");renderTabs();const jobs=visible();
   const onlyDismissed=state.mDismissed==="only";
   document.getElementById("count").textContent=jobs.length?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
-  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try “All Singapore”, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
+  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try another tab, search, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
   list.innerHTML=jobs.map(j=>{
     const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
@@ -308,9 +322,7 @@ document.getElementById("list").addEventListener("click",e=>{
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;
-  state.scope=t.dataset.scope;
-  document.querySelectorAll("#tabs .tab").forEach(x=>x.setAttribute("aria-selected",x.dataset.scope===state.scope));
-  render();
+  state.scope=t.dataset.scope;render();
 });
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});

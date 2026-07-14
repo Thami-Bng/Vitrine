@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-14T03:19:45.647535+00:00",
+  "generated_at": "2026-07-14T03:40:40.311934+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 444,
-      "kept": 373,
+      "kept": 372,
       "error": false
     },
     {
@@ -26,48 +26,6 @@
       "error": false
     },
     {
-      "label": "Workday · Balenciaga",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Alexander McQueen",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Gucci",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Saint Laurent",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Bottega Veneta",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Boucheron",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
-    },
-    {
-      "label": "Workday · Kering Corporate",
-      "fetched": 0,
-      "kept": 0,
-      "error": false
-    },
-    {
       "label": "eightfold",
       "fetched": 0,
       "kept": 0,
@@ -75,8 +33,8 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 40,
-      "kept": 32,
+      "fetched": 35,
+      "kept": 1,
       "error": false
     }
   ],
@@ -234,6 +192,28 @@
       "description": "GovTech in Singapore seeks experienced Product Managers/Senior Product Managers to lead end-to-end development of innovative digital solutions that connect MCCY with Singaporeans and strengthen community engagement through technology. You will spearhead initiatives, manage backlogs, write clear requirements, work with engineers and designers, and track product performance using analytics to deliver high-impact public services. Join GovTech to shape civic tech for the nation.",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJCQUxFTkNJQUdBIEFzc2lzdGFudCBNYW5hZ2VyLCBSZXRhaWwgUGVyZm9ybWFuY2UgXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFu",
+      "title": "BALENCIAGA Assistant Manager, Retail Performance & Omnichannel",
+      "company": "Kering",
+      "source": "Google Jobs",
+      "type": "house",
+      "sector": "beauty_luxury",
+      "posted": "1 day ago",
+      "posted_date": "2026-07-13",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "https://sg.linkedin.com/jobs/view/balenciaga-assistant-manager-retail-performance-omnichannel-at-balenciaga-4439759882?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Don't miss out Kering's outstanding Sales career opportunity: BALENCIAGA Assistant Manager, Retail Performance & Omnichannel for Balenciaga (Regular). Full time in Singapore - Singapore",
+      "preferred": true,
+      "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
       "id": "mcf-d824cc5aa8bb382bbbea916ab222efca",
@@ -1534,28 +1514,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-d63f530ddcfe08335eb09134b9341bd5",
-      "title": "Product Manager",
-      "company": "TALENTVIS SINGAPORE PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-09",
-      "posted_date": "2026-07-09",
-      "salary": "S$8,000–9,500/mo",
-      "salary_max": 9500,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-bdffb0b23260e3f954a59aaf5295a1d6",
       "title": "Healthspan Product Manager",
       "company": "ELYX LIFE PTE. LTD.",
@@ -1886,6 +1844,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-d63f530ddcfe08335eb09134b9341bd5",
+      "title": "Product Manager",
+      "company": "TALENTVIS SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-09",
+      "posted_date": "2026-07-09",
+      "salary": "S$8,000–9,500/mo",
+      "salary_max": 9500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-4fc2c2e98f6b3ea9f2013bd9524ebcdf",
       "title": "Product Owner, SMAI, FE Cost",
       "company": "MICRON SEMICONDUCTOR ASIA OPERATIONS PTE. LTD.",
@@ -1899,7 +1879,7 @@
       "links": {
         "primary": "https://www.mycareersfuture.gov.sg/job/4fc2c2e98f6b3ea9f2013bd9524ebcdf",
         "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/product-owner-smai-fe-cost-at-micron-technology-4436800290?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
         "mcf": "https://www.mycareersfuture.gov.sg/job/4fc2c2e98f6b3ea9f2013bd9524ebcdf"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/4fc2c2e98f6b3ea9f2013bd9524ebcdf",
@@ -2368,28 +2348,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "wd-/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
-      "title": "Regional Digital Project Manager",
-      "company": "Richemont / Cartier",
-      "source": "Workday",
-      "type": "house",
-      "sector": "beauty_luxury",
-      "posted": "7 days ago",
-      "posted_date": "2026-07-07",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
-        "careers": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
-      "description": "",
-      "preferred": true,
-      "first_seen": "2026-07-14T02:54:55.249068+00:00"
     },
     {
       "id": "mcf-b08e450286a4af692f6114a8e1bf4138",
@@ -3294,6 +3252,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-380074292eff3551727b2ca3000b315e",
+      "title": "AI Product Owner",
+      "company": "ARGYLL SCOTT CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-06-30",
+      "posted_date": "2026-06-30",
+      "salary": "S$8,000–13,000/mo",
+      "salary_max": 13000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/380074292eff3551727b2ca3000b315e",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/380074292eff3551727b2ca3000b315e"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/380074292eff3551727b2ca3000b315e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T03:40:40.311934+00:00"
+    },
+    {
       "id": "mcf-287032c74f659688ba86b84b9130686c",
       "title": "Interface Designer UX/UI",
       "company": "INFRASOFT TECHNOLOGIES PTE LTD",
@@ -3490,6 +3470,28 @@
       "description": "",
       "preferred": true,
       "first_seen": "2026-07-14T03:10:16.298037+00:00"
+    },
+    {
+      "id": "wd-/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
+      "title": "Regional Digital Project Manager",
+      "company": "Richemont / Cartier",
+      "source": "Workday",
+      "type": "house",
+      "sector": "beauty_luxury",
+      "posted": "Posted 30+ Days Ago",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
+        "careers": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
+      "description": "",
+      "preferred": true,
+      "first_seen": "2026-07-14T02:54:55.249068+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIFByb2R1Y3QgTWFuYWdlciBMZWFkIChTaW5nYXBvcmUtYmFzZWQpIiwiY29tcGFueV9uYW1lIjoiTWljaGFlbCBQ",

@@ -2,62 +2,77 @@
 """
 Scraper engine — writes data/jobs.json for The Vitrine web page.
 
-Pulls from multiple sources through a common connector interface, normalises everything to one
-schema (with the FULL job description where the source allows), de-duplicates, remembers when each
-role was first seen (so the page can badge "new"), and writes data/jobs.json.
+Sources (all Singapore):
+  • MyCareersFuture — free gov.sg API. Broadest SG coverage (legally-mandated postings), gives
+    the official MCF link. Powers the "All Singapore" view. No key needed.
+  • SmartRecruiters — direct ATS API (free). LVMH Beauty + Kering houses, with full JD.
+  • Google Jobs via SerpApi — adds LinkedIn + international breadth (needs SERPAPI_KEY, quota-limited).
 
-Sources included:
-  • SmartRecruiters — direct ATS API (free, no auth). Fetches the full JD per posting.
-  • Google Jobs via SerpApi — broad aggregator across LinkedIn + every ATS (needs SERPAPI_KEY).
+Each role is tagged: type (house / agency / other) and sector (beauty_luxury / general), gets a
+normalised posting date for sorting, and separate careers / LinkedIn / MyCareersFuture links.
 
-Add a connector by writing one function that returns a list of Job dicts and appending it to
-CONNECTORS. That's the whole extension model.
-
-Usage:
-    python scrape.py            # write data/jobs.json
-    python scrape.py --dry-run  # print a summary, write nothing
-
-Env: SERPAPI_KEY (optional — enables the Google Jobs connector)
+Usage:  python scrape.py [--dry-run]
+Env:    SERPAPI_KEY (optional)
 """
 
 from __future__ import annotations
-import argparse
-import json
-import os
-import re
-import sys
-import time
-from datetime import datetime, timezone
+import argparse, html, json, os, re, sys, time
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
-
 import requests
 
 # ------------------------------- CONFIG ------------------------------- #
 
 OUT = Path("data/jobs.json")
-COUNTRY = "sg"
 UA = "vitrine-scraper/1.0 (personal job search)"
 TIMEOUT = 25
 
-# SmartRecruiters company slugs (verify Kering ones with the connector-level 404 handling).
-SR_COMPANIES = {
-    "LVMH Beauty": "LVMH2",
-    "Gucci": "Gucci",
-    "Saint Laurent": "SaintLaurent",
-    "Bottega Veneta": "BottegaVeneta",
-    "Balenciaga": "Balenciaga",
-}
-SR_FETCH_DETAIL = True          # fetch full JD per posting (more requests, richer data)
+# Free keyword searches on MyCareersFuture (broad SG coverage, all sectors).
+MCF_QUERIES = ["ecommerce", "product owner", "product manager", "digital project manager",
+               "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
 
-# Google Jobs role searches (each sees every company at once).
-GJ_QUERIES = [
-    "e-commerce manager Singapore",
-    "e-commerce product owner Singapore",
-    "digital product manager Singapore beauty",
-    "e-commerce project manager Singapore luxury",
-    "omnichannel manager Singapore beauty",
-    "CRM ecommerce Singapore luxury",
-]
+# SmartRecruiters slugs (LVMH2 confirmed). Kering is NOT here — it's on Workday (see below).
+SR_COMPANIES = {"LVMH Beauty": "LVMH2"}
+SR_FETCH_DETAIL = True
+
+# Workday tenants (direct from the source). host + site come from the "Apply" URL, e.g.
+# richemont.wd3.myworkdayjobs.com/richemont/... -> host=richemont.wd3.myworkdayjobs.com, site=richemont
+WORKDAY_TENANTS = {
+    # Richemont group (host tenant "richemont", site "richemont")
+    "Richemont / Cartier": {"host": "richemont.wd3.myworkdayjobs.com", "site": "richemont"},
+    # Kering group — one tenant "kering", one site per house.
+    "Balenciaga":        {"host": "kering.wd3.myworkdayjobs.com", "site": "Balenciaga"},   # confirmed
+    "Alexander McQueen": {"host": "kering.wd3.myworkdayjobs.com", "site": "AMQ"},           # confirmed
+    "Gucci":             {"host": "kering.wd3.myworkdayjobs.com", "site": "Gucci"},         # verify
+    "Saint Laurent":     {"host": "kering.wd3.myworkdayjobs.com", "site": "SaintLaurent"},  # verify
+    "Bottega Veneta":    {"host": "kering.wd3.myworkdayjobs.com", "site": "BottegaVeneta"}, # verify
+    "Boucheron":         {"host": "kering.wd3.myworkdayjobs.com", "site": "Boucheron"},     # verify
+    "Kering Corporate":  {"host": "kering.wd3.myworkdayjobs.com", "site": "Kering"},        # verify
+    # add more Workday houses here as we confirm them
+}
+WORKDAY_FETCH_DETAIL = True
+
+# Eightfold tenants (Estée Lauder Companies). EXPERIMENTAL — verify on first run.
+EIGHTFOLD_TENANTS = {
+    "Estée Lauder": {"host": "elcompanies.eightfold.ai", "domain": "elcompanies.com"},
+}
+
+# SuccessFactors career sites (SAP). All share the same /search/ + /job/<slug>/<id>/ structure.
+# Location is baked into each job's URL slug, so we filter to Singapore on the slug.
+SF_SITES = {
+    "Sephora":  "jobs.sephora.com",
+    "Shiseido": "careers.shiseido.com",
+    "Clarins":  "careers.groupeclarins.com",
+}
+SF_MAX_PAGES = 8            # 50 roles/page, newest first
+
+# Shared keyword list for keyword-driven sources (Workday needs a search term).
+KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
+            "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
+
+# Google Jobs (SerpApi) — keep lean for the free 250/month quota. 4 x twice-daily x 30 = 240.
+GJ_QUERIES = ["e-commerce Singapore", "product manager Singapore",
+              "product owner Singapore", "digital project manager Singapore"]
 GJ_PAGES = 1
 
 PREFERRED_BRANDS = [b.lower() for b in [
@@ -66,178 +81,342 @@ PREFERRED_BRANDS = [b.lower() for b in [
     "guerlain","dior","chanel","hermes","hermès","charlotte tilbury","net-a-porter","ynap","lancome",
 ]]
 
+# Recruitment agencies — tagged, not dropped.
+AGENCIES = [
+    "michael page","pagegroup","robert walters","randstad","adecco","hays","kelly services","manpower",
+    "morgan mckinley","charterhouse","kerry consulting","recruit express","persolkelly","robert half",
+    "hudson","ambition","links international","jac recruitment","achieve group","good job creations",
+    "reeracoen","supreme hr","gmp recruitment","the edge partnership","cornerstone global","peoplebank",
+]
+
+# Signals that a role is beauty / luxury (for the sector tab).
+LUX_SIGNALS = [
+    "beauty","cosmetic","skincare","skin care","fragrance","perfume","makeup","make-up","luxury",
+    "couture","maison","jewellery","jewelry","watchmaking","fashion house","prestige","parfum","luxasia",
+]
+
 INCLUDE = re.compile("|".join([
-    r"e-?commerce", r"e-?comm", r"e-?boutique", r"product owner", r"product manager",
-    r"digital product", r"\bdigital\b", r"\bomnichannel\b", r"\bdtc\b", r"\bd2c\b",
-    r"business analyst", r"\bcrm\b", r"marketplace", r"\bonline\b",
+    r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"omni-?channel",
+    r"digital consultant", r"product manager", r"product management", r"ui\s*/?\s*ux", r"ux\s*/?\s*ui",
+    r"business analyst", r"performance analyst",
 ]), re.I)
 EXCLUDE = re.compile("|".join([
-    r"\bintern\b", r"internship", r"apprentice", r"working student", r"fresh graduate",
-    r"beauty advisor", r"client advisor", r"sales associate", r"retail associate",
-    r"store manager", r"boutique manager", r"\bcounter\b", r"cashier",
+    r"controller", r"controlling", r"treasury", r"finance", r"accountant", r"\btax\b", r"\baudit",
+    r"payroll", r"clienteling", r"\bintern\b", r"internship", r"apprentice", r"working student",
+    r"fresh graduate", r"beauty advisor", r"client advisor", r"sales associate", r"retail associate",
+    r"store manager", r"boutique manager", r"\bcounter\b", r"cashier", r"supply chain", r"logistics",
+    r"warehouse",
 ]), re.I)
 
+GOOD_LINK = ("smartrecruiters","myworkdayjobs","eightfold","avature","successfactors","taleo","icims",
+             "workday","lever.co","greenhouse","careers.","jobs.","/careers")
+AGGREGATORS = ("trabajo","jobrapido","neuvoo","talent.com","learn4good","jooble","adzuna","whatjobs",
+               "jobsora","recruit.net","mncjobz","kitjob","simplyhired","jobcloud")
 
 # ------------------------------- HELPERS ------------------------------- #
 
-def preferred(company: str) -> bool:
-    c = (company or "").lower()
-    return any(b in c for b in PREFERRED_BRANDS)
+def preferred(company): 
+    c=(company or "").lower(); return any(b in c for b in PREFERRED_BRANDS)
 
-def relevant(title: str, desc: str) -> bool:
-    blob = f"{title} {desc}"
-    return bool(INCLUDE.search(blob)) and not EXCLUDE.search(blob)
+def is_agency(company):
+    c=(company or "").lower(); return any(a in c for a in AGENCIES)
 
-def job(id_, title, company, location, source, url, posted="", description=""):
-    return {
-        "id": str(id_), "title": (title or "").strip(), "company": (company or "").strip(),
-        "location": (location or "").strip(), "source": source, "url": url or "",
-        "posted": posted or "", "description": (description or "").strip(),
-        "preferred": preferred(company),
-    }
+def type_of(company):
+    if is_agency(company): return "agency"
+    if preferred(company): return "house"
+    return "other"
 
+def sector_of(company, title, desc):
+    if preferred(company): return "beauty_luxury"
+    blob=f"{company} {title} {desc}".lower()
+    return "beauty_luxury" if any(w in blob for w in LUX_SIGNALS) else "general"
+
+def clean_text(raw):
+    if not raw: return ""
+    txt=re.sub(r"<\s*(br|/p|/div|/li)\s*>","\n",raw,flags=re.I)
+    txt=re.sub(r"<[^>]+>"," ",txt)
+    txt=html.unescape(txt).replace("\xa0"," ")
+    txt=re.sub(r"[ \t]+"," ",txt); txt=re.sub(r"\n[ \t]+","\n",txt); txt=re.sub(r"\n{3,}","\n\n",txt)
+    return txt.strip()
+
+def relevant(title):
+    t=title or ""
+    return bool(INCLUDE.search(t)) and not EXCLUDE.search(t)
+
+def to_date(s):
+    """Normalise a posting date to ISO (YYYY-MM-DD) for sorting."""
+    if not s: return ""
+    s=str(s).strip().lower()
+    m=re.match(r"(\d{4}-\d{2}-\d{2})", s)
+    if m: return m.group(1)
+    today=datetime.now(timezone.utc).date()
+    if any(w in s for w in ("today","hour","just","min","moment")): return today.isoformat()
+    if "yesterday" in s: return (today-timedelta(days=1)).isoformat()
+    for pat,mult in ((r"(\d+)\s*day",1),(r"(\d+)\s*week",7),(r"(\d+)\s*month",30)):
+        m=re.search(pat,s)
+        if m: return (today-timedelta(days=int(m.group(1))*mult)).isoformat()
+    return ""
+
+def best_apply_link(options, share=""):
+    if not options: return share
+    def score(o):
+        link=(o.get("link") or "").lower(); title=(o.get("title") or "").lower(); s=0
+        if any(g in link for g in GOOD_LINK): s+=5
+        if "career" in title: s+=4
+        if "linkedin" in link: s+=3
+        if any(a in link or a in title for a in AGGREGATORS): s-=6
+        return s
+    return max(options,key=score).get("link") or share
+
+def extract_links(options, share=""):
+    careers=linkedin=mcf=""
+    for o in options:
+        link=o.get("link") or ""; low=link.lower()
+        if "linkedin.com" in low and not linkedin: linkedin=link
+        elif "mycareersfuture" in low and not mcf: mcf=link
+        elif any(g in low for g in GOOD_LINK) and not careers: careers=link
+    primary=careers or linkedin or best_apply_link(options,share)
+    return {"primary":primary,"careers":careers,"linkedin":linkedin,"mcf":mcf}
+
+def job(id_, title, company, source, links, posted="", description="", salary=""):
+    company=(company or "").strip()
+    return {"id":str(id_), "title":(title or "").strip(), "company":company, "source":source,
+            "type":type_of(company), "sector":sector_of(company,title,description),
+            "posted":posted or "", "posted_date":to_date(posted), "salary":salary or "",
+            "links":links, "url":links.get("primary",""),
+            "description":(description or "").strip(), "preferred":preferred(company)}
 
 # ------------------------------- CONNECTORS ------------------------------- #
 
-def connector_smartrecruiters() -> list[dict]:
-    out, base = [], "https://api.smartrecruiters.com/v1/companies/{c}/postings"
-    hdr = {"User-Agent": UA, "Accept": "application/json"}
-    for label, slug in SR_COMPANIES.items():
-        offset = 0
+def connector_mycareersfuture():
+    out=[]; hdr={"User-Agent":UA,"Content-Type":"application/json","Accept":"application/json"}
+    for q in MCF_QUERIES:
+        try:
+            r=requests.post("https://api.mycareersfuture.gov.sg/v2/search",
+                            params={"limit":100,"page":0},
+                            json={"search":q,"sortBy":["new_posting_date"]},
+                            headers=hdr,timeout=TIMEOUT)
+            if r.status_code!=200:
+                print(f"  ! MCF '{q}': HTTP {r.status_code}",file=sys.stderr); continue
+            for j in r.json().get("results",[]):
+                title=j.get("title","")
+                comp=((j.get("postedCompany") or {}) or (j.get("hiringCompany") or {})).get("name","")
+                uuid=j.get("uuid","")
+                posted=(j.get("metadata") or {}).get("newPostingDate") or j.get("newPostingDate","")
+                sal=j.get("salary") or {}
+                lo, hi = sal.get("minimum"), sal.get("maximum")
+                salary=f"S${lo:,}–{hi:,}/mo" if isinstance(lo,int) and isinstance(hi,int) else ""
+                url=f"https://www.mycareersfuture.gov.sg/job/{uuid}" if uuid else ""
+                links={"primary":url,"careers":"","linkedin":"","mcf":url}
+                out.append(job(f"mcf-{uuid}",title,comp,"MyCareersFuture",links,
+                               posted,clean_text(j.get("description","")),salary))
+            time.sleep(0.3)
+        except requests.RequestException as e:
+            print(f"  ! MCF '{q}': {e}",file=sys.stderr)
+    return out
+
+def connector_smartrecruiters():
+    out=[]; base="https://api.smartrecruiters.com/v1/companies/{c}/postings"
+    hdr={"User-Agent":UA,"Accept":"application/json"}
+    for label,slug in SR_COMPANIES.items():
+        offset=0
         while True:
             try:
-                r = requests.get(base.format(c=slug),
-                                 params={"country": COUNTRY, "limit": 100, "offset": offset},
-                                 headers=hdr, timeout=TIMEOUT)
+                r=requests.get(base.format(c=slug),params={"country":"sg","limit":100,"offset":offset},
+                               headers=hdr,timeout=TIMEOUT)
             except requests.RequestException as e:
-                print(f"  ! SR {label}: {e}", file=sys.stderr); break
-            if r.status_code != 200:
-                print(f"  ! SR {label}: HTTP {r.status_code}", file=sys.stderr); break
-            data = r.json()
-            for p in data.get("content", []):
-                loc = p.get("location", {}) or {}
-                title = p.get("name", "")
-                desc = ""
-                if SR_FETCH_DETAIL:
-                    desc = sr_detail(slug, p.get("id", ""), hdr)
-                    time.sleep(0.25)
-                apply_url = (((p.get("actions") or {}).get("apply") or {}).get("url") or
-                             f"https://jobs.smartrecruiters.com/{slug}/{p.get('id','')}")
-                out.append(job(p.get("id"), title, label, loc.get("city", "Singapore"),
-                               "SmartRecruiters", apply_url,
-                               (p.get("releasedDate") or "")[:10], desc))
-            total = data.get("totalFound", 0)
-            offset += 100
-            if offset >= total:
-                break
+                print(f"  ! SR {label}: {e}",file=sys.stderr); break
+            if r.status_code!=200:
+                print(f"  ! SR {label}: HTTP {r.status_code}",file=sys.stderr); break
+            data=r.json()
+            for p in data.get("content",[]):
+                pid=p.get("id","")
+                desc=sr_detail(slug,pid,hdr) if SR_FETCH_DETAIL else ""
+                if SR_FETCH_DETAIL: time.sleep(0.25)
+                apply_url=(((p.get("actions") or {}).get("apply") or {}).get("url") or
+                           f"https://jobs.smartrecruiters.com/{slug}/{pid}")
+                links={"primary":apply_url,"careers":apply_url,"linkedin":"","mcf":""}
+                out.append(job(pid,p.get("name",""),label,"SmartRecruiters",links,
+                               (p.get("releasedDate") or "")[:10],desc))
+            offset+=100
+            if offset>=data.get("totalFound",0): break
             time.sleep(0.3)
     return out
 
-def sr_detail(slug, pid, hdr) -> str:
-    """Fetch the full posting and stitch its sections into one description string."""
-    if not pid:
-        return ""
+def sr_detail(slug,pid,hdr):
+    if not pid: return ""
     try:
-        r = requests.get(f"https://api.smartrecruiters.com/v1/companies/{slug}/postings/{pid}",
-                         headers=hdr, timeout=TIMEOUT)
-        if r.status_code != 200:
-            return ""
-        sections = (((r.json().get("jobAd") or {}).get("sections")) or {})
-        parts = []
-        for key in ("companyDescription", "jobDescription", "qualifications", "additionalInformation"):
-            txt = (sections.get(key) or {}).get("text", "")
-            if txt:
-                parts.append(re.sub(r"<[^>]+>", "", txt).strip())   # strip HTML tags
-        return "\n\n".join(parts)
+        r=requests.get(f"https://api.smartrecruiters.com/v1/companies/{slug}/postings/{pid}",
+                       headers=hdr,timeout=TIMEOUT)
+        if r.status_code!=200: return ""
+        sec=(((r.json().get("jobAd") or {}).get("sections")) or {})
+        parts=[clean_text((sec.get(k) or {}).get("text","")) for k in
+               ("companyDescription","jobDescription","qualifications","additionalInformation")]
+        return "\n\n".join(p for p in parts if p)
     except requests.RequestException:
         return ""
 
-def connector_google_jobs() -> list[dict]:
-    key = os.getenv("SERPAPI_KEY")
-    if not key:
-        print("  · Google Jobs skipped (no SERPAPI_KEY)")
-        return []
-    out = []
+def connector_google_jobs():
+    key=os.getenv("SERPAPI_KEY")
+    if not key: print("  · Google Jobs skipped (no SERPAPI_KEY)"); return []
+    out=[]
     for q in GJ_QUERIES:
-        token, page = None, 0
-        while page < GJ_PAGES:
-            params = {"engine": "google_jobs", "q": q, "location": "Singapore",
-                      "hl": "en", "gl": "sg", "api_key": key}
-            if token:
-                params["next_page_token"] = token
+        token,page=None,0
+        while page<GJ_PAGES:
+            params={"engine":"google_jobs","q":q,"location":"Singapore","hl":"en","gl":"sg","api_key":key}
+            if token: params["next_page_token"]=token
             try:
-                r = requests.get("https://serpapi.com/search.json", params=params, timeout=TIMEOUT)
+                r=requests.get("https://serpapi.com/search.json",params=params,timeout=TIMEOUT)
             except requests.RequestException as e:
-                print(f"  ! GJ '{q}': {e}", file=sys.stderr); break
-            if r.status_code != 200:
-                print(f"  ! GJ '{q}': HTTP {r.status_code}", file=sys.stderr); break
-            data = r.json()
-            for j in data.get("jobs_results", []):
-                ext = j.get("detected_extensions") or {}
-                opts = j.get("apply_options") or []
-                url = (opts[0].get("link") if opts else "") or j.get("share_link", "")
-                out.append(job(j.get("job_id", "")[:120], j.get("title"), j.get("company_name"),
-                               j.get("location"), "Google Jobs", url,
-                               ext.get("posted_at", ""), j.get("description", "")))
-            token = (data.get("serpapi_pagination") or {}).get("next_page_token")
-            page += 1
-            if not token:
-                break
+                print(f"  ! GJ '{q}': {e}",file=sys.stderr); break
+            if r.status_code!=200:
+                print(f"  ! GJ '{q}': HTTP {r.status_code}",file=sys.stderr); break
+            data=r.json()
+            for j in data.get("jobs_results",[]):
+                ext=j.get("detected_extensions") or {}
+                links=extract_links(j.get("apply_options") or [], j.get("share_link",""))
+                out.append(job(j.get("job_id","")[:120],j.get("title"),j.get("company_name"),
+                               "Google Jobs",links,ext.get("posted_at",""),
+                               clean_text(j.get("description",""))))
+            token=(data.get("serpapi_pagination") or {}).get("next_page_token")
+            page+=1
+            if not token: break
             time.sleep(1.0)
     return out
 
-CONNECTORS = [connector_smartrecruiters, connector_google_jobs]
+def connector_workday():
+    out=[]; hdr={"User-Agent":UA,"Content-Type":"application/json","Accept":"application/json"}
+    for label,cfg in WORKDAY_TENANTS.items():
+        host=cfg["host"]; site=cfg["site"]; tenant=host.split(".")[0]
+        api=f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
+        seen_paths=set()
+        for q in KEYWORDS:
+            try:
+                r=requests.post(api,json={"appliedFacets":{},"limit":20,"offset":0,"searchText":q},
+                                headers=hdr,timeout=TIMEOUT)
+            except requests.RequestException as e:
+                print(f"  ! WD {label} '{q}': {e}",file=sys.stderr); continue
+            if r.status_code!=200:
+                print(f"  ! WD {label} '{q}': HTTP {r.status_code}",file=sys.stderr); continue
+            for p in r.json().get("jobPostings",[]):
+                if "singapore" not in (p.get("locationsText","") or "").lower():
+                    continue
+                path=p.get("externalPath","")
+                if not path or path in seen_paths:
+                    continue
+                seen_paths.add(path)
+                url=f"https://{host}/{site}{path}"
+                desc=wd_detail(host,tenant,site,path,hdr) if WORKDAY_FETCH_DETAIL else ""
+                if WORKDAY_FETCH_DETAIL: time.sleep(0.25)
+                links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                out.append(job(f"wd-{path}",p.get("title"),label,"Workday",links,
+                               p.get("postedOn",""),desc))
+            time.sleep(0.3)
+    return out
 
+def wd_detail(host,tenant,site,path,hdr):
+    try:
+        r=requests.get(f"https://{host}/wday/cxs/{tenant}/{site}{path}",headers=hdr,timeout=TIMEOUT)
+        if r.status_code!=200: return ""
+        return clean_text((r.json().get("jobPostingInfo") or {}).get("jobDescription",""))
+    except requests.RequestException:
+        return ""
+
+def connector_eightfold():
+    out=[]; hdr={"User-Agent":UA,"Accept":"application/json"}
+    for label,cfg in EIGHTFOLD_TENANTS.items():
+        try:
+            r=requests.get(f"https://{cfg['host']}/api/apply/v2/jobs",
+                params={"domain":cfg["domain"],"location":"Singapore","start":0,"num":100},
+                headers=hdr,timeout=TIMEOUT)
+        except requests.RequestException as e:
+            print(f"  ! Eightfold {label}: {e}",file=sys.stderr); continue
+        if r.status_code!=200:
+            print(f"  ! Eightfold {label}: HTTP {r.status_code} (may need endpoint tweak)",file=sys.stderr); continue
+        data=r.json()
+        for p in (data.get("positions") or data.get("data") or []):
+            loc=p.get("location") or (", ".join(p.get("locations",[])) if isinstance(p.get("locations"),list) else "")
+            if "singapore" not in (loc or "").lower():
+                continue
+            pid=p.get("id") or p.get("position_id") or p.get("displayJobId","")
+            url=p.get("canonicalPositionUrl") or f"https://{cfg['host']}/careers?pid={pid}"
+            links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+            out.append(job(f"ef-{pid}",p.get("name") or p.get("title"),label,"Eightfold",links,
+                           "",clean_text(p.get("job_description",""))))
+    return out
+
+def connector_successfactors():
+    out=[]; hdr={"User-Agent":UA}
+    # job title links look like  <a href="/job/<slug>/<id>/">Title</a>  — slug starts with the city
+    job_re=re.compile(r'href="(/job/([^"/]+?)/(\d+)/)"[^>]*>\s*([^<]{3,160}?)\s*</a>', re.I)
+    for label,host in SF_SITES.items():
+        seen=set()
+        for page in range(SF_MAX_PAGES):
+            try:
+                r=requests.get(f"https://{host}/search/",
+                               params={"q":"","sortColumn":"referencedate","sortDirection":"desc",
+                                       "startrow":page*50},
+                               headers=hdr,timeout=TIMEOUT)
+            except requests.RequestException as e:
+                print(f"  ! SF {label}: {e}",file=sys.stderr); break
+            if r.status_code!=200:
+                print(f"  ! SF {label}: HTTP {r.status_code}",file=sys.stderr); break
+            matches=job_re.findall(r.text)
+            if not matches:
+                break                                   # past the last page
+            for href,slug,jid,title in matches:
+                if jid in seen:
+                    continue
+                seen.add(jid)
+                if not slug.lower().startswith("singapore"):
+                    continue
+                url=f"https://{host}{href}"
+                links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                out.append(job(f"sf-{jid}",clean_text(title),label,"SuccessFactors",links,"",""))
+            time.sleep(0.4)
+    return out
+
+CONNECTORS=[connector_mycareersfuture, connector_smartrecruiters, connector_successfactors,
+            connector_workday, connector_eightfold, connector_google_jobs]
 
 # ------------------------------- MAIN ------------------------------- #
 
-def load_previous() -> dict:
+def load_previous():
     if OUT.exists():
-        try:
-            prev = json.loads(OUT.read_text())
-            return {j["id"]: j for j in prev.get("jobs", [])}
-        except (json.JSONDecodeError, KeyError):
-            return {}
+        try: return {j["id"]:j for j in json.loads(OUT.read_text()).get("jobs",[])}
+        except (json.JSONDecodeError,KeyError): return {}
     return {}
 
-def run(dry_run: bool = False) -> None:
-    prev = load_previous()
-    now = datetime.now(timezone.utc).isoformat()
-
-    collected = {}
+def run(dry_run=False):
+    prev=load_previous(); now=datetime.now(timezone.utc).isoformat()
+    collected={}
     for conn in CONNECTORS:
         print(f"→ {conn.__name__}")
         try:
-            for j in conn():
-                if "singapore" not in j["location"].lower():
-                    continue
-                if not relevant(j["title"], j["description"]):
-                    continue
-                # carry over first_seen if we've seen this id before
-                j["first_seen"] = prev.get(j["id"], {}).get("first_seen", now)
-                collected[j["id"]] = j
+            got=conn()
+            kept=[j for j in got if relevant(j["title"])]
+            for j in kept:
+                j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
+                collected[j["id"]]=j
+            print(f"   {len(got)} fetched · {len(kept)} relevant")
         except Exception as e:
-            print(f"  ! {conn.__name__} crashed: {e}", file=sys.stderr)
-
-    jobs = sorted(collected.values(),
-                  key=lambda j: (not j["preferred"], j["first_seen"] < now, j["company"]))
-    new_count = sum(1 for j in jobs if j["first_seen"] == now and prev)
-    print(f"\n{len(jobs)} relevant SG roles · {new_count} new since last run")
-
+            print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)
+    # newest first by posting date, then preferred houses, then company
+    jobs=sorted(collected.values(),
+                key=lambda j:(j.get("posted_date") or "0000-00-00", j["type"]=="house"), reverse=True)
+    print(f"\n{len(jobs)} relevant SG roles "
+          f"({sum(1 for j in jobs if j['sector']=='beauty_luxury')} beauty/luxury)")
     if dry_run:
-        for j in jobs[:25]:
-            tag = "⭐" if j["preferred"] else " "
-            print(f"  {tag} {j['title']} — {j['company']} ({j['source']})")
+        for j in jobs[:30]:
+            print(f"  [{j['type'][:5]:5}|{j['sector'][:6]:6}] {j['posted_date']}  {j['title']} — {j['company']}")
         return
-
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"generated_at": now, "jobs": jobs}, indent=2, ensure_ascii=False))
+    OUT.parent.mkdir(parents=True,exist_ok=True)
+    OUT.write_text(json.dumps({"generated_at":now,"jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 
-def main() -> None:
-    ap = argparse.ArgumentParser(description="Scrape SG luxury/beauty roles into data/jobs.json")
-    ap.add_argument("--dry-run", action="store_true")
+def main():
+    ap=argparse.ArgumentParser(); ap.add_argument("--dry-run",action="store_true")
     run(dry_run=ap.parse_args().dry_run)
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()

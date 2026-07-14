@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-14T04:32:14.041102+00:00",
+  "generated_at": "2026-07-14T05:54:30.507086+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 445,
-      "kept": 372,
+      "kept": 373,
       "error": false
     },
     {
@@ -33,12 +33,34 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 17,
-      "kept": 8,
+      "fetched": 27,
+      "kept": 16,
       "error": false
     }
   ],
   "jobs": [
+    {
+      "id": "mcf-ec4f01f1ca88fe00ea5993361a38c806",
+      "title": "Business Analyst",
+      "company": "A-IT INVESTMENT PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$8,500–13,000/mo",
+      "salary_max": 13000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ec4f01f1ca88fe00ea5993361a38c806",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ec4f01f1ca88fe00ea5993361a38c806"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ec4f01f1ca88fe00ea5993361a38c806",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
+    },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFeGVjdXRpdmUsIEVjb21tZXJjZSBEaXN0cmlidXRpb24iLCJjb21wYW55X25hbWUiOiJES1NIIiwiaHRpZG9jaWQiOiJlSGo3QTF2",
       "title": "Executive, Ecommerce Distribution",
@@ -82,28 +104,6 @@
       "description": "Position Summary\n\nRole and Responsibilities\n\nRole Responsibilities\n\nAccountable for end-to-end online sales performance of Home Appliances and Air Conditioners across Samsung.com and key marketplaces.Develop and execute annual and quarterly channel plans, including pricing, promotional mechanics, bundles, and inventory alignment to deliver revenue and margin targets.Lead go-to-market planning and execution for major launches and double-digit campaigns, ensuring strong commercial readiness, traffic acquisition, and conversion optimization.Monitor key KPIs (GMV, conversion rate, traffic, AOV, CAC, margin) and drive continuous optimization of pricing, media mix, onsite merchandising, and promotional structure.Oversee product listings, content quality, review management, and merchandising strategy to improve discoverability, conversion, and customer confidence.Partner with Business Units, Performance Marketing, Regional HQ, and agencies to secure investment, align strategy, and ensure seamless execution.Work closely with BU and Finance to manage profit simulation, campaign approvals, promotional spend, and cost-to-serve discipline.Improve decision confidence for big-ticket purchases (e.g., AC, HA) through clear process communication, site-visit flows, reviews, and post-purchase journey enhancements.\n\nSkills And Qualifications\n\nRole Requirements:\n\nBachelor’s degree in Business, Marketing, eCommerce, or a related field.Minimum 5 years of experience in eCommerce sales, D2C channel management, or online business development, preferably in consumer electronics industry.Experience collaborating across regional and global teams, with strong stakeholder management skills to secure alignment and investment.Strong analytical skills with experience tracking KPIs such as revenue, conversion rates, and traffic performance and using insights to optimize results.Highly organized, results-driven, and detail-oriented, with the ability to manage multiple priorities in a fast-paced environment.Excellent communication and leadership skills, with the ability to drive collaboration across cross-functional teams. Please visit Samsung membership to see Privacy Policy, which defaults according to your location. You can change Country/Language at the bottom of the page. If you are European Economic Resident, please click here.",
       "preferred": false,
       "first_seen": "2026-07-13T15:00:40.944211+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJEaWdpdGFsIEFzc2V0IFByb2R1Y3QgTWFuYWdlciIsImNvbXBhbnlfbmFtZSI6IlNHQiIsImh0aWRvY2lkIjoibHdFdW1seDdCaTNa",
-      "title": "Digital Asset Product Manager",
-      "company": "SGB",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "posted": "24 hours ago",
-      "posted_date": "2026-07-14",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": ""
-      },
-      "url": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Job summary:\n\nAs a Digital Asset Product Manager in the product team, you will be responsible for building the digital asset product for the bank. The digital asset products mainly cover the digital asset wallet, digital asset custodian, digital asset trading, digital asset yield offerings.\n\nKey responsibilities: \n\nDesign the end-to-end digital asset product solution for corporate and retail customer.\n\nConduct research and evaluation of the partners to support the scalability and efficiency of the offerings. \n\nEnsure adherence to compliance, risk, cybersecurity and information security policies of the solution.\n\nOwn the whole life cycle of the implementation, from planning, drafting new product memorandum, PRD, to conducting testing and production verification.\n\nMonitor system performance, identify potential issues, and coordinate with relevant teams to implement preventive or corrective actions.\n\nQualifications: \n\n5–10 years of product manager experience in digital asset area. \n\nHave 0 to 1 experience in building the digital asset products or functions.\n\nSolid knowledge in bank offering and functions.\n\nComfortable in discussing with developers or the vendors about the technology design in detail.\n\nHave ability to work with cross-functional teams to deliver compliant and user-centric technology solutions.\n\nFluent in Mandarin and English in both oral and written.",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJQcmluY2lwYWwgUHJvZHVjdCBNYW5hZ2VyLCBUcmFuc2FjdGlvbiBQbGF0Zm9ybSIsImNvbXBhbnlfbmFtZSI6IlByb2R1Y3QiLCJo",
@@ -786,6 +786,50 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJEaWdpdGFsIEFzc2V0IFByb2R1Y3QgTWFuYWdlciIsImNvbXBhbnlfbmFtZSI6IlNHQiIsImh0aWRvY2lkIjoibHdFdW1seDdCaTNa",
+      "title": "Digital Asset Product Manager",
+      "company": "SGB",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "1 day ago",
+      "posted_date": "2026-07-13",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.linkedin.com/jobs/view/digital-asset-product-manager-at-sgb-4439119563?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Job summary:\n\nAs a Digital Asset Product Manager in the product team, you will be responsible for building the digital asset product for the bank. The digital asset products mainly cover the digital asset wallet, digital asset custodian, digital asset trading, digital asset yield offerings.\n\nKey responsibilities: \n\nDesign the end-to-end digital asset product solution for corporate and retail customer.\n\nConduct research and evaluation of the partners to support the scalability and efficiency of the offerings. \n\nEnsure adherence to compliance, risk, cybersecurity and information security policies of the solution.\n\nOwn the whole life cycle of the implementation, from planning, drafting new product memorandum, PRD, to conducting testing and production verification.\n\nMonitor system performance, identify potential issues, and coordinate with relevant teams to implement preventive or corrective actions.\n\nQualifications: \n\n5–10 years of product manager experience in digital asset area. \n\nHave 0 to 1 experience in building the digital asset products or functions.\n\nSolid knowledge in bank offering and functions.\n\nComfortable in discussing with developers or the vendors about the technology design in detail.\n\nHave ability to work with cross-functional teams to deliver compliant and user-centric technology solutions.\n\nFluent in Mandarin and English in both oral and written.",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJHcm93dGgtRm9jdXNlZCBQcm9kdWN0IE1hbmFnZXIgZm9yIFNNRSBEaWdpdGFsIFNvbHV0aW9ucyIsImNvbXBhbnlfbmFtZSI6IlNp",
+      "title": "Growth-Focused Product Manager for SME Digital Solutions",
+      "company": "Singtel Group",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "1 day ago",
+      "posted_date": "2026-07-13",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.trabajo.org/job-979-156f3135035bbe88df80581747374795?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.trabajo.org/job-979-156f3135035bbe88df80581747374795?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Singtel Group in Singapore is seeking a Product Manager to oversee the GOMOBIz portfolio, focusing on revenue growth and customer retention for SMEs. The ideal candidate has at least 5 years of experience in product management or business development within the telecommunications sector. Responsibilities include strategy development, managing partnerships, and improving product performance. Candidates should possess strong analytical and project management skills, as well as a degree in a relevant field.",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJQcmluY2lwYWwgUHJvZHVjdCBNYW5hZ2VyLCBUcmFuc2FjdGlvbiBQbGF0Zm9ybSIsImNvbXBhbnlfbmFtZSI6IkdyYWIiLCJodGlk",
@@ -2658,28 +2702,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-cd30591856572dac35a90b02423dfaf9",
-      "title": "Business Analyst",
-      "company": "VINOVA PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-07",
-      "posted_date": "2026-07-07",
-      "salary": "S$7,100–9,800/mo",
-      "salary_max": 9800,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIFNwZWNpYWxpc3QsIFNvdXRoIEFzaWEgUGFjaWZpYyIsImNvbXBhbnlfbmFtZSI6IkJ2bGdhcmkiLCJodGlkb2Np",
       "title": "E-Commerce Specialist, South Asia Pacific",
       "company": "Bvlgari",
@@ -2700,6 +2722,28 @@
       "description": "Position\n\nFounded in 1884, Bulgari's name has today become emblematic of Italian excellence. Perfectly blending tradition and modernity, Bulgari uses its rich history to inspire audacious designs and produce truly colorful creations making us unique.\n\nPart of LVMH Group, Bulgari offers a multitude of positions and activities around the world. Endless possibilities and dynamic career opportunities are available for both experienced professionals and recent graduates. At Bulgari, you are encouraged to demonstrate your potential by pursuing the career direction that suits your natural talents.\n\nBVLGARI is looking for an energetic and highly driven E-Commerce Specialist, South Asia Pacific to join our dynamic team here in Singapore.\n\nJob responsibilities\n\nThe incumbent is expected to drive flawless execution of ecommerce operations for key ecommerce markets in Bulgari SAO namely Singapore and Australia. This position also requires strong stakeholder management as it involves working with local/regional and global stakeholders to advance operational levers across various aspects of the overall Omni Channel business.\n\nEcommerce Operations (SG/AU)\n\nEnsure flawless b.com NPS by proactively tracking and escalating customer feedback to stakeholders. Where it is possible, suggest and drive improvements to process for long term growth.To be the backup for AU in the event of edge case circumstances to ensure flawless business continuity\n\nEcommerce Onsite Operations (SG/AU)\n\nAssist with planning and roll out of online events, such as pre-orders and product launches.Ongoing testing and auditing of com to monitor bugs and errors Fortnightly review and optimization of on-siteUpdate promotional banners in line with online events, KCP's and marketing calendar.Review category pages monthly and ensure merchandizing of pages is aligned with market priorities and sell-through trends.Brief homepage updates, super-navigation image and content block direction to HQ team for localization needsSupport with online visual merchandising when requiredUpdate com store locator and Google trading hours ahead public holidays, KCP's and as required on an adhoc basis.Partner with Global team to review SEO opportunities. To then partner with Marketing team and agency to operationalize and review SEO updatesPartner with Marketing and Marketing agency to review SEM copies with the intent of balancing brand equity and performance marketing Partner with Global teams for any onsite launches via UAT (e.g. New Payment Systems, New conversion optimizations)Additional adhoc tasks as requested both locally, regionally and centrally\n\nEcommerce Insights And Reporting (SG/AU)\n\nAssist in pulling ecommerce reports in partnership with ecommerce manager on a weekly basis\n\nPartnership With Concierge Services\n\nMaximise sales opportunities through CS facilitated remote sales via weekly review of Notify Me reporting.Support Concierge Services relating to e-Commerce product & remote-selling.Act as escalation point for concierge service team in relation to Omni Channel enquiries (SG only). Ensure CS team updates operating hours for daylight saving onsite for AU\n\nPartnership With Merchandising\n\nAct as key contact with merchandising department regarding stock visibility on B.comEnsure visual merchandising is regularly reviewed and optimized to meet Bulgari guidelines and best practice – ensuring product flags are relevant and up to date.Conduct fortnightly merchandising meetings to communicate goals & focuses on relating productCommunicate volume and category opportunities, make recommendations regarding optimization of product offering by market.\n\nPartnership With Marketing\n\nA key contact with marketing team to align product focuses for SEM and social mediaCommunicate with central marketing content team to align on homepage and animation focusesCoordinate with the greater team for planning around key consumption periods (specifically gift guides).\n\nProfile\n\nOperational Excellence: Demonstrates willingness to learn and ability to prioritize based on short- and long-term demandsAdaptability & Resilience: Comfortable navigating ambiguity and demonstrating flexibility to thrive within a fast-evolving e-commerce landscape.Knowledge of ecommerce tools: Willingness to learn various ecommerce systems - GA4, Salesforce (eCommerce cloud), PIM/DAM, Google Console Analytical Proficiency: Comfortable working with numbersRelevant Experience: Ideally possesses prior experience within a Fast-Moving Consumer Goods (FMCG) or e-commerce environment. Experience in the Luxury sector is not a prerequisite but would be considered an asset.",
       "preferred": false,
       "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
+      "id": "mcf-cd30591856572dac35a90b02423dfaf9",
+      "title": "Business Analyst",
+      "company": "VINOVA PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-07",
+      "posted_date": "2026-07-07",
+      "salary": "S$7,100–9,800/mo",
+      "salary_max": 9800,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "mcf-ef575b0ee251e79ee4e2791556376ea7",
@@ -3428,6 +3472,28 @@
       "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgLSBEaWdpdGFsIFByb2R1Y3RzIiwiY29tcGFueV9uYW1lIjoiTW9uZWUiLCJodGlkb2NpZCI6IkFmMVpJ",
+      "title": "Product Manager - Digital Products",
+      "company": "Monee",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "15 days ago",
+      "posted_date": "2026-06-29",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.linkedin.com/jobs/view/product-manager-digital-products-at-monee-4342071464?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/product-manager-digital-products-at-monee-4342071464?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.linkedin.com/jobs/view/product-manager-digital-products-at-monee-4342071464?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "About The Team\n\nOur product manager is dedicated to orchestrating the entire development of a diverse range of digital goods. These goods encompass, though are not confined to, mobile top-up, bill payment, game top-up, e-voucher, movie and attraction ticket. New team members will experience both the opportunities and challenges brought by the rapid evolution and growth of a Southeast Asia–wide digital platform.\n\nThis PM role is responsible for the digital product portfolio (For example, telco, eSIM, entertainment, e-voucher, etc), covering frontend user experience, mid-platform architecture and analysis, and collaboration with the supply chain to drive financial profitability and business growth.\n\nJob Description\n\nDefine and execute user-end product strategies. Build and optimize the end-to-end user decision journey (search, browse, compare, purchase) through requirement insights, feature planning, and UX enhancements to improve traffic and conversion.Design and refine core backend logic, including pricing frameworks and fulfillment workflows, and lead deep API integrations with suppliers.Own business acquisition end-to-end: lead market research and business discussions to shape strategy, independently drive regional-level contract negotiations with suppliers, and oversee partner evaluation and system onboarding.Establish key metrics and conduct data analysis and competitive research to identify growth opportunities and guide product iterations.Collaborate cross-functionally to align resources and deliver business-aligned product solutions, ensuring timely launches and expected performance outcomes.\n\nRequirements\n\nBachelor’s degree, preferably with a major in Computing or Information related fields.Minimum 2 years of experience in product management, prior experience in digital products is preferred.Good sense of ownership with the ability to drive business discussions and acquisition initiatives, from identifying opportunities to closing deals.Decent understanding of FE user experience, with solid data analysis skills and the ability to design effective solutions.Hands-on experience with API integrations; able to quickly understand new supplier interfaces and independently complete integration analysis.Good communication skills to facilitate cross-team collaborations. Self-driven, positive attitude, and a team player.",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
+    },
+    {
       "id": "mcf-e83446ddc7d81f83174160b1acddf6bf",
       "title": "UX/UI Designer (Public Sector)",
       "company": "WEBSPARKS PTE. LTD.",
@@ -3582,6 +3648,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJEaWdpdGFsIFByb2R1Y3QgTWFuYWdlciAoQmFuayBJIEVhc3QgSSBVcCB0byAxMWspIiwiY29tcGFueV9uYW1lIjoiQURFQ0NPIFBF",
+      "title": "Digital Product Manager (Bank I East I Up to 11k)",
+      "company": "ADECCO PERSONNEL PTE LTD",
+      "source": "Google Jobs",
+      "type": "agency",
+      "sector": "general",
+      "posted": "28 days ago",
+      "posted_date": "2026-06-16",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://en-sg.whatjobs.com/jobs/digital-product-manager-bank-i/scotts-road-singapore?id=87647611&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://en-sg.whatjobs.com/jobs/digital-product-manager-bank-i/scotts-road-singapore?id=87647611&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/banking-finance/digital-product-manager-adecco-personnel-10b59114bd04138fcbdcd7b92dded050?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+      },
+      "url": "https://en-sg.whatjobs.com/jobs/digital-product-manager-bank-i/scotts-road-singapore?id=87647611&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "The Opportunity\n\nOpportunity to work for one of the leading financial service providers and top banksGreat exposure to learn about banking products and services domainEast Location\nThe Job\n\n1. Develop Retail Banking Product Proposition:\n\nPartner with Product to formulate sound digital product proposition that appeals to customersConduct small experiments to assess market acceptance and iterate continuously to achieve the desired outcome\n2. Design Customer Journey with data in mind:\n\nWork closely with a wide range of stakeholders on customer immersions to understand customer job to be done and define a digital experience that truly meet customers’ needs across different digital touchpointsDrive customer immersions by listening to customer feedbacks and conduct researches on the best and evolving market practice to define the most efficient/customer-friendly UI experienceStudy customer profile, segment & transactional behaviors. Be prepared to speak to customer to gain a better & deeper insight to the problem statement & opportunity\n3. Take charge in Online Channel Share:\n\nDevelop ideas to grow online acquisition channel share by leveraging on our digital platformsAnalyze and leverage on internal Data to identify areas of opportunities to increase penetration of digital adoptionEngage Product and Business Analytics on targeted marketing campaigns to target the right customers\n4. Drive retail banking initiatives in the personal investing space:\n\nLead/coordinate the development of key initiatives with various stakeholders from onboarding till fulfilment.Understand market situation and use data to propose enhancement recommendationsSupport post-implementation tasks such as user training to touch-points, production problem investigation and escalation\nThe Talent\n\nMin 3 years of experience in digital product management within banking or financial servicesStrong understanding of customer journey design and digital user experience (UI/UX)Data-driven mindset with ability to analyze customer behavior and drive insightsProven ability to run experiments and iterate product features based on user feedbackExperience driving digital adoption and growing online channelsAbility to work cross-functionally with product, tech, analytics, and marketing teamsExposure to retail banking and/or personal investing products is preferredStrong stakeholder management and project delivery skills end-to-end\nNext Steps\n\nSend your resume to yueshan.wu@adecco.comEmail Topic: Digital Product Manager\nWu Yue Shan\n\nEA License No: 91C2918\n\nPersonnel Registration Number: R25138923",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
+    },
+    {
       "id": "eyJqb2JfdGl0bGUiOiJQcmluY2lwYWwgUHJvZHVjdCBNYW5hZ2VyIChTaW5nYXBvcmUgQmFzZWQpIiwiY29tcGFueV9uYW1lIjoiQWdvZGEuY29tIiwiaHRp",
       "title": "Principal Product Manager (Singapore Based)",
       "company": "Agoda.com",
@@ -3602,6 +3690,28 @@
       "description": "About Agoda\n\nAt Agoda, we bridge the world through travel. Our story began in 2005, when two lifelong friends and entrepreneurs, driven by their passion for travel, launched Agoda to make it easier for everyone to explore the world. \n\nToday, we are part of Booking Holdings [NASDAQ: BKNG], with a diverse team of over 7,000 people from 90 countries, working together in offices around the globe. Every day, we connect people to destinations and experiences, with our great deals across our millions of hotels and holiday properties, flights, and experiences worldwide.\n\nNo two days are the same at Agoda. Data and technology are at the heart of our culture, fueling our curiosity and innovation. If you’re ready to begin your best journey and help build travel for the world, join us.\n\nGet to know our team: In Product, ideas come alive. The world is moving fast so our culture empowers ownership and minimal bureaucracy. That’s the environment that enables you to do what you think is right – and quickly. Our Product Managers move fast, fail, learn, and pivot. Being a product-centric organization, our team works cross-functionally to build products from conception to launch by bringing together engineering and business worlds. Agoda Product Managers work closely with executive leadership and have high visibility among the C-suite; they have direct impact on Agoda’s growth and strategy. Product puts our travelers first and delivers that special travel experience in the most creative expression.\n\nThe opportunity:This role is SINGAPORE-BASED, Our Principal Product Managers are analytical, data-driven product leaders who independently drive large, complex initiatives end-to-end. In this role, you will lead the Trip Planner team, shaping a multi-quarter to multi-year vision for how travelers plan and manage their whole trip with Agoda.\n\nAs our Trip Planner Principal Product Manager, you will lead a group of Product Managers and partner closely with senior leaders across Product, Engineering, Design, Data, and business functions to define strategy and align stakeholders around a clear roadmap for the trip canvas and cross-product travel experiences.\n\nYou will have dedicated engineering capacity that you are accountable for directing and prioritizing, and are expected to be hands-on with your teams, with strong technical understanding of Agoda’s systems. You will champion a culture that balances traveler experience with KPI optimization and quality, driving cross-team initiatives that meaningfully improve our Trip Planner product.\n\nBeyond your immediate scope, you are an agent of change and a culture carrier: you initiate better ways of working and you help develop other PMs by modeling Agoda’s product principles and leadership behaviors.\n\nIn this role, you’ll get to: \nLead and develop a group of Product Managers, providing clear direction, coaching, and actionable feedback.\nShape product vision and roadmap aligned with Agoda’s business goals.\nAnalyze the online travel ecosystem, markets, competitive landscape and user requirements.\nConceptualize, launch and optimize products and features, experiment, test their performance and iterate quickly.\nWork collaboratively with Engineering, Data Science, Machine Learning engineering, Marketing, Legal and UX teams on cutting-edge technologies.\nDevelop innovative solutions to some of the world’s difficult problems by collaborating as needed across regions, product areas, and functions.\n\nWhat you’ll need to succeed:\nBachelor’s degree in technical field (i.e. Computer Science, Statistics, Engineering, Mathematics, or similar quantitative discipline).\nProven ability to leverage analytics and quantitative methods to inform and influence decision-making\nStrong data skills \nExcellent communication skills (both verbal and written in English) with proven ability to convey complex messages clearly and with conviction to different stakeholders\nExperience developing and launching products\nExperience leading global product vision, go-to-market strategy and design discussions.\nExperience leading and developing a team of Product Managers.\nExperience in travel planning, trip management, or itinerary products (e.g., trip planners, travel assistants, or similar multi-product experiences).\nUnderstanding of generative AI and machine learning concepts.\nEntrepreneurial and analytical skills; effective at breaking down complex problems and driving and managing change\nHands-on mentality\n\nIt’s great if you have:\nMBA or Master’s degree in Math, Economics, Computer Science or Statistics\nData tools – SQL, Python, R, or equivalent\nThis role is based in Singapore. We are unable to offer visa sponsorship for this position, and candidates are expected to have valid work authorization in Singapore.\n\n#seattle #sanfrancisco #beijing #newyork #london #bangkok #singapore #chicago #hongkong #singapore #berlin #shanghai #losangeles #boston #austin #toronto #luxembourg #munich #oslo #copenhagen #stockholm #helsinki #brussels #hamburg #stuttgart #taipei #hamburg #stuttgart #dublin #telaviv #sydney #melbourne #perth #vancouver #montreal #prague #paris #dublin #telaviv #milan #rome #tokyo #osaka #lisbon #amsterdam\n\nPlease review our Hiring Process Guidelines before your interview — click here to learn how interviewing at Agoda works.\n\nDiscover more about working at Agoda\n\nAgoda Careers https://careersatagoda.com\nFacebook https://www.facebook.com/agodacareers/\nLinkedIn https://www.linkedin.com/company/agoda\nYouTube https://www.youtube.com/agodalife\n\nEqual Opportunity Employer \n\nAt Agoda, we pride ourselves on being a company represented by people of all different backgrounds and orientations. We prioritize attracting diverse talent and cultivating an inclusive environment that encourages collaboration and innovation. Employment at Agoda is based solely on a person’s merit and qualifications. We are committed to providing equal employment opportunity regardless of sex, age, race, color, national origin, religion, marital status, pregnancy, sexual orientation, gender identity, disability, citizenship, veteran or military status, and other legally protected characteristics.\n\nWe will keep your application on file so that we can consider you for future vacancies and you can always ask to have your details removed from the file. For more details please read our privacy policy.\n\nDisclaimer\n\nWe do not accept any terms or conditions, nor do we recognize any agency’s representation of a candidate, from unsolicited third-party or agency submissions. If we receive unsolicited or speculative CVs, we reserve the right to contact and hire the candidate directly without any obligation to pay a recruitment fee.",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgKERpZ2l0YWwgUHJvZHVjdHMpLCBJVEQgKDEgeWVhciBjb250cmFjdCkiLCJjb21wYW55X25hbWUiOiJF",
+      "title": "Product Manager (Digital Products), ITD (1 year contract)",
+      "company": "EDB Economic Development Board",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "29 days ago",
+      "posted_date": "2026-06-15",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sggovterp.wd102.myworkdayjobs.com/en-US/PublicServiceCareers/job/Product-Manager--Digital-Products---ITD--1-year-contract-_JR-10000051978?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sggovterp.wd102.myworkdayjobs.com/en-US/PublicServiceCareers/job/Product-Manager--Digital-Products---ITD--1-year-contract-_JR-10000051978?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sggovterp.wd102.myworkdayjobs.com/en-US/PublicServiceCareers/job/Product-Manager--Digital-Products---ITD--1-year-contract-_JR-10000051978?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "[What the role is] About the Information Technology (IT) Division, EDB Our IT Division works in close partnership with EDB’s business divisions to drive digital transformation. We build digital products that leverage technology to improve EDB’s operational efficiency, create exceptional customer experience and deliver enhanced business value for EDB.  We thrive on teamwork, and form cross functional teams of product managers, designers and engineers who work hand in hand to develop solutions for our organisation and customers.   We are seeking to hire a highly motivated and experienced Product Manager to join our team. We are a team of passionate and creative technology professionals committed to using modern software development practices such as product management, design thinking, agile and DevOps to achieve EDB’’s business objectives.  As a Product Manager, you will be responsible for the entire product lifecycle of one of our core digital product offerings which is used by companies in Singapore. This is an excellent opportunity for a technology professional looking to build on competencies and experience. [What you will be working on] Key roles and responsibilities  Oversee the entire product lifecycle of assigned digital products, from planning to execution in support of EDB strategy or digital objectives.  Conduct market research and gather customer feedback to identify new product opportunities and improve existing products Develop and maintain a vision and product roadmap that aligns with business objectives and customer needs Work closely with stakeholders and across teams to define product requirements and ensure timely delivery of high-quality products Oversee product design and development including setting time frames and clear deliverables Implement product roll out and communication plan and provide support throughout the product life cycle including reviews where needed. Establish and ensure appropriate governance functions for the product in accordance with Singapore Government and enterprise policies, practices and on behalf of the executive sponsor. Lead and manage project team members throughout the product life cycle to ensure that product goals are accomplished on schedule, within budget, and in line with business objectives. Conduct procurement activities such as tenders and requests for proposals to obtain solutions and services for the delivery of the product. Review proposals or plans (internal or provided by external service provider) to determine time frame, funding limitations, procedures for accomplishing projects, staffing requirements and allotment of available departmental resources to various project phases. Partner with the Information Security colleagues to conduct risk assessment and mitigation and ensure compliance with government and EDB policies, risk management, implementation, change management and system performance. Establish standards and procedures for reporting and documentation. Continuously benchmark team product performance to identify improvements and achieve higher capability maturity. Lead and manage a team of support personnel to provide ongoing run-and-maintenance of IT systems. [What we are looking for] To be successful in this role, you should have: Bachelor’s degree in Computer Science, Information Systems, Business, Engineering, or equivalent work experience At least 2 years of experience in product management working with various business units to launch and manage complex and high-risk products. Strong knowledge of product management methodology and experience, or familiarity with major frameworks implementing Agile principles, e.g., XP (preferred), Scrum, Kanban, Lean Development. Product or Project Management Professional training and certification will be an added advantage, e.g., PMI, Prince II, MSP. Excellent interpersonal and communication skills, both written and spoken; including ability and experience in influencing, engaging and managing stakeholders across all levels of seniority internally and externally Possess a driven, self-motivated, and positive attitude, excellent work ethic and is a team player Familiarity with generative AI tools and platforms (e.g., ChatGPT, Claude, GitHub Copilot, or similar) and understanding of their applications in product management practices Strong analytical and problem-solving skills. Demonstrated ability to lead and build high-performing product teams. Exceptional planning and execution skills Singaporean or Permanent Resident http://jobs.careers.gov.sg The Singapore Public Service plays a key role in the economic growth, progress and stability of Singapore by formulating and implementing government policies, as well as providing key public services. Whether you are a fresh graduate joining the workforce or an experienced professional, the Singapore Public Service offers a great variety of job opportunities for you. The work in the Public Service can be broadly categorised into the following sectors: Economic, Social, Security & External Relations, and Administration & Corporate Development. Be part of the team that shapes the future of Singapore. Log on and take your first step towards a career that matters! Need help? Please click here for assistance. Our team will contact you shortly!",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
     },
     {
       "id": "wd-/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
@@ -3668,6 +3778,28 @@
       "description": "Are you passionate about beauty and fashion?Do you stay abreast of the latest trends in both Asian and global fashion?Are you intrigued by the emerging talents making waves in the Asian fashion landscape?",
       "preferred": false,
       "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgTGVhZCwgRW50ZXJ0YWlubWVudCBhbmQgVHJhdmVsIEFkcyIsImNvbXBhbnlfbmFtZSI6IlRpa1RvayIs",
+      "title": "Product Manager Lead, Entertainment and Travel Ads",
+      "company": "TikTok",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.linkedin.com/jobs/view/product-manager-lead-entertainment-and-travel-ads-at-tiktok-4437373782?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/product-manager-lead-entertainment-and-travel-ads-at-tiktok-4437373782?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.linkedin.com/jobs/view/product-manager-lead-entertainment-and-travel-ads-at-tiktok-4437373782?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Responsibilities\nAbout the Team\nTikTok is shaping the future of advertising and e-commerce on one of the world's leading platforms. The TikTok Content and Service Ads team, within the TikTok Monetization Product organization, is seeking a Product Leader to define and drive the vision, strategy, and execution of innovative advertising products serving web advertisers and travel and entertainment clients.\nOur mission is to establish TikTok as the premier advertising platform for these verticals by delivering scalable, data-driven product solutions that accelerate advertiser growth, maximize performance, and create long-term business value.\n\nResponsibilities\n- Define and lead the long-term product vision, strategy, and roadmap for Web Ads and Open-Loop E-Commerce advertising solutions across travel, entertainment, and web advertiser segments.\n- Own business outcomes, including revenue growth, advertiser satisfaction, retention, and overall platform adoption, while ensuring sustainable and scalable product development.\n- Build, mentor, and inspire high-performing product management teams, fostering a culture of innovation, customer obsession, operational excellence, and accountability.\n- Partner with executive leadership and cross-functional stakeholders to align product investments with company objectives and market opportunities.\n- Drive the development of highly scalable machine learning–powered advertising products that improve advertiser performance and maximize return on ad spend (ROAS).\n- Lead cross-functional teams across engineering, data science, design, operations, sales, and marketing to deliver end-to-end product solutions from concept through launch and continuous optimization.\n- Establish frameworks for identifying market opportunities, customer pain points, and emerging industry trends, translating insights into impactful product strategies.\n- Champion advertiser-centric innovation by developing advanced targeting, optimization, attribution, measurement, and product-matching capabilities.\n- Ensure products adhere to evolving privacy regulations and industry standards while promoting responsible and effective use of advertising signals.\n- Foster strong partnerships across Targeting, Attribution, Optimization, Insights, and other platform teams to unlock new capabilities and improve advertising performance globally.\n- Serve as a thought leader and advocate for the travel, entertainment, and web advertising ecosystem, influencing product direction across the broader monetization organization.\n\nQualifications\nMinimum Qualification(s)\n- Bachelor's degree in Computer Science, Engineering, Mathematics, Statistics, or a related technical field.\n- 5+ years of product management experience, including significant experience leading advertising technology products and teams.\n- Demonstrated success defining product vision, strategy, and execution for large-scale advertising, monetization, or machine learning–driven products.\n- Deep expertise in the digital advertising ecosystem, preferably including ad delivery, targeting, attribution, optimization, and measurement systems.\n- Strong understanding of the travel, entertainment, and/or web advertising industries and their evolving business needs.\n- Experience leading global cross-functional initiatives involving engineering, data science, sales, operations, and business teams.\n- Fluency in both English and Mandarin required: the role involves frequent communication with global teams, clients and stakeholders in English - speaking regions as well as Chinese- speaking markets. Proficiency in Mandarin is essential to effectively engage with Chinese- speaking partners, understand cultural nuances, and navigate business transactions in key markets, ensuring smooth cross- cultural collaboration and market expansion.\n\nPreferred Qualification(s)\n- MBA, Master's degree, or other advanced degree in a relevant field.\n- Experience leading product organizations in a fast-growing technology company or fast-paced environment.\n- Strong understanding of web advertiser needs, performance marketing, and e-commerce advertising solutions.\n- Experience scaling international advertising products across multiple markets and regions.\n- Demonstrated ability to drive organizational alignment and influence company-wide product strategy.\n\nAbout TikTok\nTikTok is the leading destination for short-form mobile video. At TikTok, our mission is to inspire creativity and bring joy. TikTok's global headquarters are in Los Angeles and Singapore, and we also have offices in New York City, London, Dublin, Paris, Berlin, Dubai, Jakarta, Seoul, and Tokyo.​\n\nWhy Join Us\nInspiring creativity is at the core of TikTok's mission. Our innovative product is built to help people authentically express themselves, discover and connect – and our global, diverse teams make that possible. Together, we create value for our communities, inspire creativity and bring joy - a mission we work towards every day.​\nWe strive to do great things with great people. We lead with curiosity, humility, and a desire to make impact in a rapidly growing tech company. Every challenge is an opportunity to learn and innovate as one team. We're resilient and embrace challenges as they come. By constantly iterating and fostering an Always Day 1 mindset, we achieve meaningful breakthroughs for ourselves, our company, and our users. When we create and grow together, the possibilities are limitless. Join us.​\n​\nDiversity & Inclusion​\nTikTok is committed to creating an inclusive space where employees are valued for their skills, experiences, and unique perspectives. Our platform connects people from across the globe and so does our workplace. At TikTok, our mission is to inspire creativity and bring joy. To achieve that goal, we are committed to celebrating our diverse voices and to creating an environment that reflects the many communities we reach. We are passionate about this and hope you are too.​",
+      "preferred": false,
+      "first_seen": "2026-07-14T05:54:30.507086+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIFByb2R1Y3QgTWFuYWdlciBMZWFkIChTaW5nYXBvcmUtYmFzZWQpIiwiY29tcGFueV9uYW1lIjoiTWljaGFlbCBQ",

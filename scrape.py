@@ -43,6 +43,11 @@ SR_FETCH_DETAIL = True
 WORKDAY_TENANTS = {
     # Richemont group (host tenant "richemont", site "richemont") — open, works well.
     "Richemont / Cartier": {"host": "richemont.wd3.myworkdayjobs.com", "site": "richemont"},
+    # Chanel (tenant "cc", site "ChanelCareers"). If their Workday turns out to be bot-walled like
+    # Kering, this row will show red in the panel and we fall back to Google Jobs ("Chanel Singapore").
+    "Chanel": {"host": "cc.wd3.myworkdayjobs.com", "site": "ChanelCareers"},
+    # Chanel (host tenant "cc", site "ChanelCareers") — diagnostics panel will show if it's open.
+    "Chanel": {"host": "cc.wd3.myworkdayjobs.com", "site": "ChanelCareers"},
     # NOTE: Kering (kering.wd3.myworkdayjobs.com — Balenciaga/Gucci/Saint Laurent/etc.) blocks
     # automated access at the server level (robots-disallowed / bot wall), so the API returns
     # errors from any datacenter IP. We reach Kering roles via Google Jobs instead (they're
@@ -55,14 +60,18 @@ EIGHTFOLD_TENANTS = {
     "Estée Lauder": {"host": "elcompanies.eightfold.ai", "domain": "elcompanies.com"},
 }
 
-# SuccessFactors career sites (SAP). All share the same /search/ + /job/<slug>/<id>/ structure.
+# SuccessFactors career sites (SAP). Two shapes, same engine:
+#  · modern Career-Site-Builder on the brand's own domain (jobs.sephora.com, …)
+#  · legacy hosted portal on SF's domain, reached with ?company=X (career5.successfactors.eu, …)
 # Location is baked into each job's URL slug, so we filter to Singapore on the slug.
 SF_SITES = {
-    "Sephora":  "jobs.sephora.com",
-    "Shiseido": "careers.shiseido.com",
-    "Clarins":  "careers.groupeclarins.com",
+    "Sephora":  {"host": "jobs.sephora.com"},
+    "Clarins":  {"host": "careers.groupeclarins.com"},
+    "Coty":     {"host": "careers.coty.com"},
+    "Shiseido": {"host": "career5.successfactors.eu", "company": "shiseidoco"},
+    "Puig":     {"host": "career2.successfactors.eu", "company": "Puig"},
 }
-SF_MAX_PAGES = 8            # 50 roles/page, newest first
+SF_MAX_PAGES = 6           # 50 roles/page; we search "Singapore" so this is plenty
 
 # Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
 MIN_SALARY_MAX = 9000
@@ -81,8 +90,13 @@ KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digi
 # House names are queried directly because Kering roles live on Indeed/FashionJobs/Jobstreet,
 # which Google indexes even though Kering's own site blocks us. relevant() then filters titles.
 GJ_POOL = [
+    # Kering houses (own Workday is bot-walled — reached via Google's index of Indeed/FashionJobs)
     "Balenciaga Singapore", "Gucci Singapore", "Saint Laurent Singapore",
     "Bottega Veneta Singapore", "Alexander McQueen Singapore", "Boucheron Singapore",
+    # brands on platforms we don't scrape directly (Oracle / Avature / legacy SF / custom)
+    "L'Oreal Singapore", "Lancome Singapore", "YSL Beauty Singapore", "Kiehl's Singapore",
+    "Ralph Lauren Singapore", "Hermes Singapore", "Tiffany Singapore", "Chanel Singapore",
+    # broad nets
     "e-commerce Singapore luxury", "digital product manager Singapore",
     "omnichannel manager Singapore", "product owner Singapore beauty",
 ]
@@ -145,9 +159,9 @@ SECTOR_BRANDS = [b.lower() for b in [
 ]]
 
 INCLUDE = re.compile("|".join([
-    r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"omni-?channel",
-    r"digital consultant", r"product manager", r"product management", r"ui\s*/?\s*ux", r"ux\s*/?\s*ui",
-    r"business analyst", r"performance analyst",
+    r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"e-?business",
+    r"omni-?channel", r"digital consultant", r"product manager", r"product management",
+    r"ui\s*/?\s*ux", r"ux\s*/?\s*ui", r"business analyst", r"performance analyst",
 ]), re.I)
 EXCLUDE = re.compile("|".join([
     r"controller", r"controlling", r"treasury", r"finance", r"accountant", r"\btax\b", r"\baudit",
@@ -468,34 +482,44 @@ def connector_eightfold():
     return out
 
 def connector_successfactors():
-    out=[]; hdr={"User-Agent":UA}
-    # job title links look like  <a href="/job/<slug>/<id>/">Title</a>  — slug starts with the city
-    job_re=re.compile(r'href="(/job/([^"/]+?)/(\d+)/)"[^>]*>\s*([^<]{3,160}?)\s*</a>', re.I)
-    for label,host in SF_SITES.items():
-        seen=set()
-        for page in range(SF_MAX_PAGES):
-            try:
-                r=requests.get(f"https://{host}/search/",
-                               params={"q":"","sortColumn":"referencedate","sortDirection":"desc",
-                                       "startrow":page*50},
-                               headers=hdr,timeout=TIMEOUT)
-            except requests.RequestException as e:
-                print(f"  ! SF {label}: {e}",file=sys.stderr); break
-            if r.status_code!=200:
-                print(f"  ! SF {label}: HTTP {r.status_code}",file=sys.stderr); break
-            matches=job_re.findall(r.text)
-            if not matches:
-                break                                   # past the last page
-            for href,slug,jid,title in matches:
-                if jid in seen:
-                    continue
-                seen.add(jid)
-                if not slug.lower().startswith("singapore"):
-                    continue
-                url=f"https://{host}{href}"
-                links={"primary":url,"careers":url,"linkedin":"","mcf":""}
-                out.append(job(f"sf-{jid}",clean_text(title),label,"SuccessFactors",links,"",""))
-            time.sleep(0.4)
+    out=[]; hdr={"User-Agent":BROWSER_UA}
+    # Job links look like  href="[optional /region]/job/<slug>/<id>/"  — slug carries the city.
+    # The optional prefix matters: Sephora uses /Singapore/job/…, so anchoring at /job/ misses it.
+    job_re=re.compile(r'href="([^"]*?/job/([^"/]+?)/(\d+)/)"[^>]*>\s*([^<]{3,160}?)\s*</a>', re.I)
+    for label,cfg in SF_SITES.items():
+        host=cfg["host"]; company=cfg.get("company")
+        seen=set(); fetched=0; kept=0; errored=False
+        try:
+            for page in range(SF_MAX_PAGES):
+                params={"q":"Singapore","sortColumn":"referencedate","sortDirection":"desc","startrow":page*50}
+                if company: params["company"]=company
+                try:
+                    r=requests.get(f"https://{host}/search/",params=params,headers=hdr,timeout=TIMEOUT)
+                except requests.RequestException as e:
+                    print(f"  ! SF {label}: {e}",file=sys.stderr); errored=True; break
+                if r.status_code!=200:
+                    print(f"  ! SF {label}: HTTP {r.status_code}",file=sys.stderr); errored=True; break
+                matches=job_re.findall(r.text)
+                if not matches:
+                    break                                       # past the last page
+                new=False
+                for href,slug,jid,title in matches:
+                    if jid in seen:
+                        continue
+                    seen.add(jid); fetched+=1; new=True
+                    if "singapore" not in slug.lower():
+                        continue
+                    url=f"https://{host}{href}"
+                    if company: url += ("&" if "?" in url else "?")+f"company={company}"
+                    links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                    out.append(job(f"sf-{jid}",clean_text(title),label,"SuccessFactors",links,"",""))
+                    kept+=1
+                time.sleep(0.3)
+                if not new:
+                    break
+        except Exception as e:
+            print(f"  ! SF {label} crashed: {e}",file=sys.stderr); errored=True
+        record(f"SuccessFactors · {label}", fetched, kept, error=errored)
     return out
 
 CONNECTORS=[connector_mycareersfuture, connector_smartrecruiters, connector_successfactors,
@@ -522,7 +546,7 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
-            if conn.__name__!="connector_workday":     # workday records per-site itself
+            if conn.__name__ not in ("connector_workday","connector_successfactors"):  # these record per-site
                 record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)

@@ -349,32 +349,40 @@ def connector_workday():
         host=cfg["host"]; site=cfg["site"]; tenant=host.split(".")[0]
         api=f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
         seen_paths=set(); fetched=0; kept=0; errored=False
-        for q in KEYWORDS:
-            try:
-                r=requests.post(api,json={"appliedFacets":{},"limit":20,"offset":0,"searchText":q},
-                                headers=hdr,timeout=TIMEOUT)
-            except requests.RequestException as e:
-                print(f"  ! WD {label} '{q}': {e}",file=sys.stderr); errored=True; continue
-            if r.status_code!=200:
-                print(f"  ! WD {label} '{q}': HTTP {r.status_code}",file=sys.stderr); errored=True; continue
-            for p in r.json().get("jobPostings",[]):
-                path=p.get("externalPath","")
-                if not path or path in seen_paths:
-                    continue
-                seen_paths.add(path); fetched+=1
-                lt=(p.get("locationsText") or "").lower()
-                ambiguous=bool(re.search(r"\d+\s+location", lt))     # "3 Locations" hides the city
-                if "singapore" not in lt and not ambiguous:
-                    continue
-                desc,locs=wd_detail(host,tenant,site,path,hdr)
-                time.sleep(0.2)
-                if "singapore" not in (lt+" "+locs).lower():
-                    continue
-                url=f"https://{host}/{site}{path}"
-                links={"primary":url,"careers":url,"linkedin":"","mcf":""}
-                out.append(job(f"wd-{path}",p.get("title"),label,"Workday",links,p.get("postedOn",""),desc))
-                kept+=1
-            time.sleep(0.3)
+        try:
+            for q in KEYWORDS:
+                try:
+                    r=requests.post(api,json={"appliedFacets":{},"limit":20,"offset":0,"searchText":q},
+                                    headers=hdr,timeout=TIMEOUT)
+                except requests.RequestException as e:
+                    print(f"  ! WD {label} '{q}': {e}",file=sys.stderr); errored=True; continue
+                if r.status_code!=200:
+                    print(f"  ! WD {label} '{q}': HTTP {r.status_code}",file=sys.stderr); errored=True; continue
+                try:
+                    postings=r.json().get("jobPostings",[])
+                except ValueError:
+                    print(f"  ! WD {label} '{q}': non-JSON response",file=sys.stderr); errored=True; continue
+                for p in postings:
+                    path=p.get("externalPath","")
+                    if not path or path in seen_paths:
+                        continue
+                    seen_paths.add(path); fetched+=1
+                    lt=(p.get("locationsText") or "").lower()
+                    desc=""
+                    if "singapore" not in lt:
+                        if not re.search(r"\d+\s+location", lt):   # clearly another city
+                            continue
+                        desc,locs=wd_detail(host,tenant,site,path,hdr)  # ambiguous: confirm city
+                        time.sleep(0.2)
+                        if "singapore" not in locs.lower():
+                            continue
+                    url=f"https://{host}/{site}{path}"
+                    links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                    out.append(job(f"wd-{path}",p.get("title"),label,"Workday",links,p.get("postedOn",""),desc))
+                    kept+=1
+                time.sleep(0.3)
+        except Exception as e:
+            print(f"  ! WD {label} crashed: {e}",file=sys.stderr); errored=True
         record(f"Workday · {label}", fetched, kept, error=errored)
     return out
 
@@ -387,7 +395,7 @@ def wd_detail(host,tenant,site,path,hdr):
                       +[str(x) for x in (info.get("additionalLocations") or [])]
                       +[info.get("country","") or ""])
         return clean_text(info.get("jobDescription","")), locs
-    except requests.RequestException:
+    except Exception:
         return "",""
 
 def connector_eightfold():

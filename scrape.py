@@ -80,6 +80,15 @@ SF_MAX_PAGES = 6           # 50 roles/page; we search "Singapore" so this is ple
 # Greenhouse job boards — clean public JSON API at boards-api.greenhouse.io.
 GREENHOUSE_BOARDS = {"Soho House": "sohohouseco"}
 
+# Oracle Recruiting Cloud sites. host + siteNumber (usually CX). Search endpoint is
+# /hcmRestApi/resources/latest/recruitingCEJobRequisitions?finder=findReqs;siteNumber=CX,keyword=…
+# Marriott's host/siteNumber are confirmed; Hermès/Tiffany use their front-end hosts (to verify).
+ORACLE_SITES = {
+    "Marriott": {"host": "ejwl.fa.us2.oraclecloud.com", "site": "CX"},
+    "Hermès":   {"host": "talents.hermes.com",          "site": "CX"},
+    "Tiffany":  {"host": "www.tiffanycareers.com",      "site": "CX"},
+}
+
 # Drop roles whose UPPER salary band is below this (monthly SGD). Roles with no salary are kept.
 MIN_SALARY_MAX = 9000
 
@@ -610,8 +619,54 @@ def connector_greenhouse():
         record(f"Greenhouse · {label}", fetched, kept, error=errored)
     return out
 
+def connector_oracle():
+    out=[]; hdr={"User-Agent":BROWSER_UA,"Accept":"application/json"}
+    for label,cfg in ORACLE_SITES.items():
+        host=cfg["host"]; site=cfg["site"]
+        fetched=0; kept=0; errored=False
+        try:
+            offset=0; limit=200
+            for _ in range(3):                                  # up to 600 newest matches
+                finder=f"findReqs;siteNumber={site},keyword=Singapore,limit={limit},offset={offset},sortBy=POSTING_DATES_DESC"
+                try:
+                    r=requests.get(f"https://{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions",
+                                   params={"onlyData":"true","expand":"requisitionList.secondaryLocations","finder":finder},
+                                   headers=hdr,timeout=TIMEOUT)
+                except requests.RequestException as e:
+                    print(f"  ! ORC {label}: {e}",file=sys.stderr); errored=True; break
+                if r.status_code!=200:
+                    print(f"  ! ORC {label}: HTTP {r.status_code}",file=sys.stderr); errored=True; break
+                try:
+                    data=r.json()
+                except ValueError:
+                    print(f"  ! ORC {label}: non-JSON",file=sys.stderr); errored=True; break
+                reqs=[]
+                for it in data.get("items",[]):
+                    reqs += it.get("requisitionList",[]) or []
+                if not reqs:
+                    break
+                for req in reqs:
+                    fetched+=1
+                    loc=str(req.get("PrimaryLocation") or "")
+                    secs=" ".join(str(x.get("Name","")) for x in (req.get("secondaryLocations") or []))
+                    if "singapore" not in (loc+" "+secs).lower():
+                        continue
+                    rid=req.get("Id") or req.get("RequisitionId") or ""
+                    url=f"https://{host}/hcmUI/CandidateExperience/en/sites/{site}/job/{rid}"
+                    links={"primary":url,"careers":url,"linkedin":"","mcf":""}
+                    posted=str(req.get("PostedDate") or "")[:10]
+                    out.append(job(f"orc-{rid}",req.get("Title",""),label,"Oracle",links,posted,""))
+                    kept+=1
+                if len(reqs)<limit:
+                    break
+                offset+=limit; time.sleep(0.3)
+        except Exception as e:
+            print(f"  ! ORC {label} crashed: {e}",file=sys.stderr); errored=True
+        record(f"Oracle · {label}", fetched, kept, error=errored)
+    return out
+
 CONNECTORS=[connector_mycareersfuture, connector_smartrecruiters, connector_successfactors,
-            connector_workday, connector_greenhouse, connector_eightfold, connector_google_jobs]
+            connector_workday, connector_greenhouse, connector_oracle, connector_eightfold, connector_google_jobs]
 
 # ------------------------------- MAIN ------------------------------- #
 
@@ -634,7 +689,7 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
-            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse"):  # these record per-site
+            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse","connector_oracle"):  # these record per-site
                 record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)

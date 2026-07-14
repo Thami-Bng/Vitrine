@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T12:07:48.428798+00:00",
+  "generated_at": "2026-07-14T12:28:43.845422+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -27,9 +27,9 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 5,
-      "kept": 5,
-      "error": false
+      "fetched": 0,
+      "kept": 0,
+      "error": true
     },
     {
       "label": "SuccessFactors · Shiseido",
@@ -51,7 +51,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 144,
+      "fetched": 145,
       "kept": 7,
       "error": false
     },
@@ -75,8 +75,26 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 370,
+      "fetched": 371,
       "kept": 0,
+      "error": false
+    },
+    {
+      "label": "Oracle · Marriott",
+      "fetched": 74,
+      "kept": 68,
+      "error": false
+    },
+    {
+      "label": "Oracle · Hermès",
+      "fetched": 2,
+      "kept": 1,
+      "error": false
+    },
+    {
+      "label": "Oracle · Tiffany",
+      "fetched": 4,
+      "kept": 3,
       "error": false
     },
     {
@@ -431,29 +449,6 @@
       "description": "GovTech in Singapore seeks experienced Product Managers/Senior Product Managers to lead end-to-end development of innovative digital solutions that connect MCCY with Singaporeans and strengthen community engagement through technology. You will spearhead initiatives, manage backlogs, write clear requirements, work with engineers and designers, and track product performance using analytics to deliver high-impact public services. Join GovTech to shape civic tech for the nation.",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJCQUxFTkNJQUdBIEFzc2lzdGFudCBNYW5hZ2VyLCBSZXRhaWwgUGVyZm9ybWFuY2UgXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFu",
-      "title": "BALENCIAGA Assistant Manager, Retail Performance & Omnichannel",
-      "company": "Kering",
-      "source": "Google Jobs",
-      "type": "house",
-      "sector": "beauty_luxury",
-      "category": "house",
-      "posted": "1 day ago",
-      "posted_date": "2026-07-13",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "linkedin": "https://sg.linkedin.com/jobs/view/balenciaga-assistant-manager-retail-performance-omnichannel-at-balenciaga-4439759882?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": ""
-      },
-      "url": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Don't miss out Kering's outstanding Sales career opportunity: BALENCIAGA Assistant Manager, Retail Performance & Omnichannel for Balenciaga (Regular). Full time in Singapore - Singapore",
-      "preferred": true,
-      "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
       "id": "mcf-d824cc5aa8bb382bbbea916ab222efca",
@@ -1139,6 +1134,29 @@
       "description": "Responsibilities\n\nManage the full project lifecycle from planning through implementation, testing, deployment, and operational handover.Drive project governance, including scope, schedule, budget, risks, issues, dependencies, and executive reporting.Coordinate cross-functional teams across business, engineering, architecture, security, infrastructure, and vendors.Manage vendor performance, procurement activities, contract deliverables, and project quality.Support Agile delivery, UAT, deployment planning, change management, and continuous improvement initiatives.Ensure compliance with government standards for security, cloud adoption, data protection, and operational resilience.\n\nRequirement\n\ns8–10 years of project management experience delivering large-scale technology or digital transformation projects.Proven experience managing multiple stakeholders, vendors, system integrations, and complex project dependencies.Strong knowledge of SDLC, Agile methodologies, project governance, risk management, and release management.Experience working with cloud, SaaS, system integration, data, AI, or modernization initiatives is advantageous.Excellent stakeholder management, communication, planning, and problem-solving skills.PMP, PRINCE2, Scrum, SAFe, ITIL, or cloud certifications are advantageous\n\n.",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJCQUxFTkNJQUdBIEFzc2lzdGFudCBNYW5hZ2VyLCBSZXRhaWwgUGVyZm9ybWFuY2UgXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFu",
+      "title": "BALENCIAGA Assistant Manager, Retail Performance & Omnichannel",
+      "company": "Kering",
+      "source": "Google Jobs",
+      "type": "house",
+      "sector": "beauty_luxury",
+      "category": "house",
+      "posted": "2 days ago",
+      "posted_date": "2026-07-12",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "https://sg.linkedin.com/jobs/view/balenciaga-assistant-manager-retail-performance-omnichannel-at-balenciaga-4439759882?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.fashionjobs.com/job/Balenciaga-assistant-manager-retail-performance-omnichannel,11856178.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Don't miss out Kering's outstanding Sales career opportunity: BALENCIAGA Assistant Manager, Retail Performance & Omnichannel for Balenciaga (Regular). Full time in Singapore - Singapore",
+      "preferred": true,
+      "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
       "id": "mcf-f679d6f7f3501462f7eca7444d972441",

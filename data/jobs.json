@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-14T03:53:47.776453+00:00",
+  "generated_at": "2026-07-14T04:32:14.041102+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 444,
+      "fetched": 445,
       "kept": 372,
       "error": false
     },
@@ -33,8 +33,8 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 35,
-      "kept": 1,
+      "fetched": 17,
+      "kept": 8,
       "error": false
     }
   ],
@@ -876,6 +876,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIENoYW5uZWwgTGVhZCwgR3JvY2VyeSBPbmxpbmUgKEh5YnJpZCkiLCJjb21wYW55X25hbWUiOiJjb3JsaXNvbiBw",
+      "title": "E-commerce Channel Lead, Grocery Online (Hybrid)",
+      "company": "corlison private limited",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "posted": "2 days ago",
+      "posted_date": "2026-07-12",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Corlison Private Limited in Singapore is looking for a candidate to oversee key e-commerce channels including Redmart and Fairprice Online. You will manage sales strategies, prices, and promotional campaigns, while ensuring alignment with operations and logistics. \n\nThis role offers a flexible work week, regular office hours, and an annual training programme aimed at enhancing your skills. A basic monthly salary of SGD 5,500 to 6,000 is provided along with other benefits. \n\n#J-18808-Ljbffr",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
       "id": "eyJqb2JfdGl0bGUiOiJUZWNobmljYWwgUHJvZHVjdCBPd25lcjogQUktRHJpdmVuIFN0cmF0ZWd5IFx1MDAyNiBEZWxpdmVyeSIsImNvbXBhbnlfbmFtZSI6",
       "title": "Technical Product Owner: AI-Driven Strategy & Delivery",
       "company": "TECH AALTO PTE. LTD.",
@@ -918,6 +940,28 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgRS1jb21tZXJjZSBHcm93dGggU3RyYXRlZ2lzdCIsImNvbXBhbnlfbmFtZSI6InRoZSBzdXByZW1lIGhyIGFkdmlzb3J5",
+      "title": "Senior E-commerce Growth Strategist",
+      "company": "the supreme hr advisory pte. ltd.",
+      "source": "Google Jobs",
+      "type": "agency",
+      "sector": "general",
+      "posted": "3 days ago",
+      "posted_date": "2026-07-11",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.trabajo.org/job-2280-f64fba2df738f0a9248d355f4e49e7ae?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "The supreme hr advisory pte. ltd. is seeking an experienced e-commerce professional in Singapore. This role involves delivering sales targets and executing growth strategies across platforms like Shopee and Lazada. The ideal candidate should have a proven background in e-commerce sales, strong analytical skills, and the ability to collaborate cross-functionally. Attractive salary package between $5,000 and $8,000 per month based on experience.",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlLCBBc3Npc3RhbnQgTWFuYWdlciAoQnJhbmQgRmxhZ3NoaXAgU3RvcmUpIiwiY29tcGFueV9uYW1lIjoiU1RBRkZL",
@@ -1336,6 +1380,50 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgRS1Db21tZXJjZSBTdHJhdGVnaXN0IOKAkyBMdXh1cnkgQnJhbmQgT25saW5lIiwiY29tcGFueV9uYW1lIjoiRG9ybW9u",
+      "title": "Senior E-Commerce Strategist – Luxury Brand Online",
+      "company": "Dormont Manufacturing Co",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "4 days ago",
+      "posted_date": "2026-07-10",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.thebigjobsite.com/details/45382D290B874C54F428F99C05BAD62D/senior-e-commerce-strategist---luxury-brand-online?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.thebigjobsite.com/details/45382D290B874C54F428F99C05BAD62D/senior-e-commerce-strategist---luxury-brand-online?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Dormont Manufacturing Co in Singapore is seeking an E-commerce Manager responsible for overseeing direct-to-consumer online store operations. The role involves collaborating with various teams to manage product listings, pricing, and overall user experience on the Shopify platform. Ideal candidates will possess 2-3 years of experience in the e-commerce space, focusing on driving online sales and analyzing performance metrics such as conversion rates and traffic sources. This position offers significant opportunities for professional growth and development.",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJOb3cgSGlyaW5nOiBFY29tbWVyY2UgQXNzb2NpYXRlIC0gTHV4dXJ5IEZhc2hpb24iLCJjb21wYW55X25hbWUiOiJDZXR0aXJlIiwi",
+      "title": "Now Hiring: Ecommerce Associate - Luxury Fashion",
+      "company": "Cettire",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "4 days ago",
+      "posted_date": "2026-07-10",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://bebee.com/sg/jobs/now-hiring-ecommerce-associate-luxury-fashion-cettire--talent-617090704743472083?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://bebee.com/sg/jobs/now-hiring-ecommerce-associate-luxury-fashion-cettire--talent-617090704743472083?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "About us\nCettire is the largest Australian-owned luxury fashion site and we are continuing to grow at a rapid pace.\n\nAbout the role\nWe have an exciting opportunity for an ecommerce assistant to join our growing team. This is a great opportunity to join a fast-growing Luxury Fashion start-up. If you are results-driven, hard working and have a passion for fashion this is the perfect role.\n\nPrimary responsibilities\nPreparing products for the websiteCustomer serviceBooking deliveriesTracking customer ordersInvoice validation The ideal candidateIs results-orientedHas a strong interest in fashionIs able to work in a team or independentlyIs capable of handling a high pressure environment\nMinimum qualifications\nAt least 2 years full time work experienceBachelors Degree or higherFluent English (Other language skills highly regarded, such as Mandarin, Cantonese, Japanese, Korean and/or Italian)\n-Full working rights in Singapore without employer sponsorship for Employment Permit\n\nWhy join us?\n\nGenerous remunerationJoin one of Australia's fastest growing e-commerce sitesClose-knit, friendly teamFast-paced, exciting role and career growth potentialImmediate start available",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgLSBUcmFkaW5nIEV4cGVyaWVuY2UgfCBTaW5nYXBvcmUsIFNHIiwiY29tcGFueV9uYW1lIjoiQXhpIiwi",
@@ -2592,6 +2680,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIFNwZWNpYWxpc3QsIFNvdXRoIEFzaWEgUGFjaWZpYyIsImNvbXBhbnlfbmFtZSI6IkJ2bGdhcmkiLCJodGlkb2Np",
+      "title": "E-Commerce Specialist, South Asia Pacific",
+      "company": "Bvlgari",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "7 days ago",
+      "posted_date": "2026-07-07",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.fashionjobs.com/job/bulgari/E-commerce-specialist-south-asia-pacific,11624123.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Position\n\nFounded in 1884, Bulgari's name has today become emblematic of Italian excellence. Perfectly blending tradition and modernity, Bulgari uses its rich history to inspire audacious designs and produce truly colorful creations making us unique.\n\nPart of LVMH Group, Bulgari offers a multitude of positions and activities around the world. Endless possibilities and dynamic career opportunities are available for both experienced professionals and recent graduates. At Bulgari, you are encouraged to demonstrate your potential by pursuing the career direction that suits your natural talents.\n\nBVLGARI is looking for an energetic and highly driven E-Commerce Specialist, South Asia Pacific to join our dynamic team here in Singapore.\n\nJob responsibilities\n\nThe incumbent is expected to drive flawless execution of ecommerce operations for key ecommerce markets in Bulgari SAO namely Singapore and Australia. This position also requires strong stakeholder management as it involves working with local/regional and global stakeholders to advance operational levers across various aspects of the overall Omni Channel business.\n\nEcommerce Operations (SG/AU)\n\nEnsure flawless b.com NPS by proactively tracking and escalating customer feedback to stakeholders. Where it is possible, suggest and drive improvements to process for long term growth.To be the backup for AU in the event of edge case circumstances to ensure flawless business continuity\n\nEcommerce Onsite Operations (SG/AU)\n\nAssist with planning and roll out of online events, such as pre-orders and product launches.Ongoing testing and auditing of com to monitor bugs and errors Fortnightly review and optimization of on-siteUpdate promotional banners in line with online events, KCP's and marketing calendar.Review category pages monthly and ensure merchandizing of pages is aligned with market priorities and sell-through trends.Brief homepage updates, super-navigation image and content block direction to HQ team for localization needsSupport with online visual merchandising when requiredUpdate com store locator and Google trading hours ahead public holidays, KCP's and as required on an adhoc basis.Partner with Global team to review SEO opportunities. To then partner with Marketing team and agency to operationalize and review SEO updatesPartner with Marketing and Marketing agency to review SEM copies with the intent of balancing brand equity and performance marketing Partner with Global teams for any onsite launches via UAT (e.g. New Payment Systems, New conversion optimizations)Additional adhoc tasks as requested both locally, regionally and centrally\n\nEcommerce Insights And Reporting (SG/AU)\n\nAssist in pulling ecommerce reports in partnership with ecommerce manager on a weekly basis\n\nPartnership With Concierge Services\n\nMaximise sales opportunities through CS facilitated remote sales via weekly review of Notify Me reporting.Support Concierge Services relating to e-Commerce product & remote-selling.Act as escalation point for concierge service team in relation to Omni Channel enquiries (SG only). Ensure CS team updates operating hours for daylight saving onsite for AU\n\nPartnership With Merchandising\n\nAct as key contact with merchandising department regarding stock visibility on B.comEnsure visual merchandising is regularly reviewed and optimized to meet Bulgari guidelines and best practice – ensuring product flags are relevant and up to date.Conduct fortnightly merchandising meetings to communicate goals & focuses on relating productCommunicate volume and category opportunities, make recommendations regarding optimization of product offering by market.\n\nPartnership With Marketing\n\nA key contact with marketing team to align product focuses for SEM and social mediaCommunicate with central marketing content team to align on homepage and animation focusesCoordinate with the greater team for planning around key consumption periods (specifically gift guides).\n\nProfile\n\nOperational Excellence: Demonstrates willingness to learn and ability to prioritize based on short- and long-term demandsAdaptability & Resilience: Comfortable navigating ambiguity and demonstrating flexibility to thrive within a fast-evolving e-commerce landscape.Knowledge of ecommerce tools: Willingness to learn various ecommerce systems - GA4, Salesforce (eCommerce cloud), PIM/DAM, Google Console Analytical Proficiency: Comfortable working with numbersRelevant Experience: Ideally possesses prior experience within a Fast-Moving Consumer Goods (FMCG) or e-commerce environment. Experience in the Luxury sector is not a prerequisite but would be considered an asset.",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
+    },
+    {
       "id": "mcf-ef575b0ee251e79ee4e2791556376ea7",
       "title": "Business Analyst, Data Management (for Banking industry)",
       "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
@@ -2788,6 +2898,28 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJIZWFkIG9mIEVjb21tZXJjZSBHcm93dGgg4oCUIEx1eHVyeSBcdTAwMjYgU2Vjb25kaGFuZCIsImNvbXBhbnlfbmFtZSI6IlZhbHVl",
+      "title": "Head of Ecommerce Growth — Luxury & Secondhand",
+      "company": "Valuemax Group Ltd",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "9 days ago",
+      "posted_date": "2026-07-05",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://www.jobleads.com/sg/job/head-of-ecommerce-growth-luxury-secondhand--singapore--e921275007d4b81947d1cc51c780a46c7?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://www.jobleads.com/sg/job/head-of-ecommerce-growth-luxury-secondhand--singapore--e921275007d4b81947d1cc51c780a46c7?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Valuemax Group Ltd in Singapore is seeking a Head of Ecommerce to drive their online business growth. The role includes full P&L responsibility and strategy development for ecommerce, alongside managing key digital marketing initiatives and operations.\n\nThe ideal candidate has at least 7 years of ecommerce experience, including leadership roles, and a demonstrated ability to grow ecommerce businesses. Experience in luxury goods or high-value secondhand markets is a plus. This position offers a dynamic and rewarding environment.",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "mcf-ad789c6c38bac14e5d48beadecfd4c1f",
@@ -3186,6 +3318,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-345976eff3b519d014c1d60e0e0bc1db",
+      "title": "SAP Reporting and Analytics Product Owner, 1-year fixed term (Mining)",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-06-30",
+      "posted_date": "2026-06-30",
+      "salary": "S$14,700–18,900/mo",
+      "salary_max": 18900,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-1fc5ba8d8522c16fc4da7136aed1ce08",
       "title": "Product Owner, Reporting & MI (Singapore, Malaysia)",
       "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
@@ -3230,23 +3384,23 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-345976eff3b519d014c1d60e0e0bc1db",
-      "title": "SAP Reporting and Analytics Product Owner, 1-year fixed term (Mining)",
-      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "id": "mcf-287032c74f659688ba86b84b9130686c",
+      "title": "Interface Designer UX/UI",
+      "company": "INFRASOFT TECHNOLOGIES PTE LTD",
       "source": "MyCareersFuture",
       "type": "other",
       "sector": "general",
       "posted": "2026-06-30",
       "posted_date": "2026-06-30",
-      "salary": "S$15,000–20,000/mo",
-      "salary_max": 20000,
+      "salary": "S$7,500–11,000/mo",
+      "salary_max": 11000,
       "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
+        "primary": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
         "careers": "",
         "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db"
+        "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
       },
-      "url": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
+      "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -3274,28 +3428,6 @@
       "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
-      "id": "mcf-287032c74f659688ba86b84b9130686c",
-      "title": "Interface Designer UX/UI",
-      "company": "INFRASOFT TECHNOLOGIES PTE LTD",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-06-30",
-      "posted_date": "2026-06-30",
-      "salary": "S$7,500–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-e83446ddc7d81f83174160b1acddf6bf",
       "title": "UX/UI Designer (Public Sector)",
       "company": "WEBSPARKS PTE. LTD.",
@@ -3316,6 +3448,28 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJSZWdpb25hbCBFLWNvbW1lcmNlIE9wZXJhdGlvbnMgQ29vcmRpbmF0b3IiLCJjb21wYW55X25hbWUiOiJSSUNIRU1PTlQgTFVYVVJZ",
+      "title": "Regional E-commerce Operations Coordinator",
+      "company": "RICHEMONT LUXURY (SINGAPORE) PTE. LTD.",
+      "source": "Google Jobs",
+      "type": "house",
+      "sector": "beauty_luxury",
+      "posted": "19 days ago",
+      "posted_date": "2026-06-25",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://en-sg.whatjobs.com/jobs/regional-e-commerce-operations-coordinator/orchard-road-singapore?id=88000705&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://en-sg.whatjobs.com/jobs/regional-e-commerce-operations-coordinator/orchard-road-singapore?id=88000705&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/general-management/regional-e-commerce-operations-coordinator-richemont-luxury-a69bbb4ed2e5f3c6eb19ad5fc7b90be1?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+      },
+      "url": "https://en-sg.whatjobs.com/jobs/regional-e-commerce-operations-coordinator/orchard-road-singapore?id=88000705&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Staff Sales Order Management\n\nAct as the primary point of contact for all internal staff purchases across SEAO\n\nManage end-to-end fulfilment of orders for all staff sales\n\nHandle staff inquiries on stock availability, delivery lead time\n\nManage stock transfers between networks and markets to fulfil staff sales orders\n\nCoordinate with logistics and warehouse team for final mile deliveries\n\nMaintain accurate records in SAP to ensure all pricing, discounts and shipping details are correctly applied\n\nWork with HQ on catalogues and prices updates and ensure accuracy across all markets\n\nE-Commerce Sales Order Management\n\nSupport daily Ecom operations by handling delivery inquiries and ad-hoc requests from CRC\n\nCoordinate with warehouse and logistics to ensure timely dispatch and delivery\n\nManage packaging replenishments across markets according to their needs\n\nMonitor and manage stock transfers from other networks to fulfil Ecom firm orders\n\nCreate purchase orders for HQ and monitor delivery to ensure timely receipt in SEAO\n\nMaintain accurate inventory on all platforms, especially for markets with manual flows to ensure stock optimization on the websites\n\nProactively monitor automated workflows to prevent bottlenecks\n\nData Integrity & Reporting\n\nMaintain meticulous records of all transactions and operational KPIs\n\nUpdate weekly and monthly reports on order volumes, and statuses of open orders\n\nIdentify bottlenecks and propose improvements to workflows",
+      "preferred": true,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "mcf-a0f16d0913d900327d2cf93c9b0e0b94",
@@ -3492,6 +3646,28 @@
       "description": "",
       "preferred": true,
       "first_seen": "2026-07-14T02:54:55.249068+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJFY29tbWVyY2UgRXhlY3V0aXZlIHwgSG9tZSwgQmVhdXR5IFx1MDAyNiBGYXNoaW9uIHwgTHV4dXJ5IHwgU2luZ2Fwb3JlLWJhc2Vk",
+      "title": "Ecommerce Executive | Home, Beauty & Fashion | Luxury | Singapore-based",
+      "company": "Finest People",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "beauty_luxury",
+      "posted": "",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://finestpeople.com/sg/job/ecommerce-executive-home-beauty-fashion-luxury-singapore-based/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://finestpeople.com/sg/job/ecommerce-executive-home-beauty-fashion-luxury-singapore-based/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Are you passionate about beauty and fashion?Do you stay abreast of the latest trends in both Asian and global fashion?Are you intrigued by the emerging talents making waves in the Asian fashion landscape?",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIFByb2R1Y3QgTWFuYWdlciBMZWFkIChTaW5nYXBvcmUtYmFzZWQpIiwiY29tcGFueV9uYW1lIjoiTWljaGFlbCBQ",

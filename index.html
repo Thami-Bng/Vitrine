@@ -32,6 +32,24 @@
   .chips{display:flex;gap:8px;margin-top:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
   .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s;}
   .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .chip.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .filterbar{margin-top:10px;}
+  .filterbtn{display:inline-flex;align-items:center;gap:7px;}
+  .filterbtn::before{content:"";width:13px;height:13px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18l-7 8v6l-4-2v-4z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18l-7 8v6l-4-2v-4z'/%3E%3C/svg%3E") center/contain no-repeat;}
+  .fcount{min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:none;align-items:center;justify-content:center;}
+  .fcount.on{display:inline-flex;}
+  .panel{margin-top:10px;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:6px 14px;}
+  .prow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
+  .prow:last-child{border-bottom:0;}
+  .plabel{font-size:13.5px;font-weight:600;color:var(--ink);}
+  .pgroup{display:flex;gap:8px;}
+  .pchip{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:6px 13px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;}
+  .pchip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+  .seg button{font:inherit;font-size:12.5px;font-weight:600;padding:6px 14px;border:0;background:transparent;color:var(--muted);cursor:pointer;border-left:1px solid var(--line);}
+  .seg button:first-child{border-left:0;}
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff;}
+  .prow-actions{justify-content:flex-end;gap:8px;}
   .count{font-size:12px;color:var(--muted);margin:12px 2px 0;}
 
   ul{list-style:none;margin:0;padding:0;}
@@ -92,12 +110,39 @@
       <button class="tab" data-scope="all" role="tab" aria-selected="false">All Singapore</button>
     </div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
-    <div class="chips" id="chips">
-      <button class="chip" data-filter="new" aria-pressed="false">New</button>
-      <button class="chip" data-filter="saved" aria-pressed="false">Saved</button>
-      <button class="chip" data-filter="hideAgencies" aria-pressed="false">Hide agencies</button>
-      <button class="chip" data-filter="hideApplied" aria-pressed="false">Hide applied</button>
-      <button class="chip" data-filter="notRelevant" aria-pressed="false">Not relevant</button>
+    <div class="filterbar">
+      <button class="chip filterbtn" id="filterBtn" aria-expanded="false">Filters<span class="fcount" id="fcount"></span></button>
+    </div>
+    <div class="panel" id="panel" hidden>
+      <div class="prow">
+        <span class="plabel">Show only</span>
+        <div class="pgroup">
+          <button class="pchip" data-toggle="onlyNew">New</button>
+          <button class="pchip" data-toggle="onlySaved">Saved</button>
+        </div>
+      </div>
+      <div class="prow">
+        <span class="plabel">Applied</span>
+        <div class="seg" data-seg="mApplied">
+          <button data-val="show">Show</button><button data-val="hide">Hide</button><button data-val="only">Only</button>
+        </div>
+      </div>
+      <div class="prow">
+        <span class="plabel">Not relevant</span>
+        <div class="seg" data-seg="mDismissed">
+          <button data-val="show">Show</button><button data-val="hide">Hide</button><button data-val="only">Only</button>
+        </div>
+      </div>
+      <div class="prow">
+        <span class="plabel">Agencies</span>
+        <div class="seg" data-seg="mAgencies">
+          <button data-val="show">Show</button><button data-val="hide">Hide</button>
+        </div>
+      </div>
+      <div class="prow prow-actions">
+        <button class="pchip" id="resetFilters">Reset</button>
+        <button class="chip primary" id="closeFilters">Done</button>
+      </div>
     </div>
     <div class="count" id="count"></div>
   </div>
@@ -117,10 +162,44 @@ const SAMPLE={generated_at:new Date().toISOString(),jobs:[
 ]};
 function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
-const state={jobs:[],scope:"house",q:"",new:false,saved:false,hideAgencies:false,hideApplied:false,notRelevant:false,
+const state={jobs:[],scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,
   savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed"))};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
-function persist(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));}catch(e){}}
+function cacheLocal(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));}catch(e){}}
+
+/* ── Cross-device sync ─────────────────────────────────────────────────────
+   Paste your Cloudflare Worker URL and token below to sync saved / applied /
+   not-relevant marks across devices. Leave url blank to stay device-only.   */
+const SYNC={url:"https://vitrine-sync.thamibenghazi.workers.dev", key:"PASTE_YOUR_SYNC_TOKEN_HERE"};
+let lastLocalChange=0, pushTimer=null;
+function applyRemote(o){
+  if(!o) return;
+  state.savedSet=new Set(o.saved||[]);
+  state.appliedSet=new Set(o.applied||[]);
+  state.dismissedSet=new Set(o.dismissed||[]);
+  cacheLocal();
+}
+async function pullRemote(){
+  if(!SYNC.url) return;
+  try{
+    const r=await fetch(SYNC.url,{headers:{Authorization:"Bearer "+SYNC.key}});
+    if(!r.ok) return;
+    const o=await r.json();
+    if((o.updated||0) >= lastLocalChange){ applyRemote(o); render(); }   // don't clobber a fresh local edit
+  }catch(e){}
+}
+async function pushRemote(){
+  if(!SYNC.url) return;
+  try{
+    await fetch(SYNC.url,{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
+      body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet]})});
+  }catch(e){}
+}
+function persist(){                       // called on every save/applied/dismiss toggle
+  cacheLocal();
+  lastLocalChange=Date.now();
+  if(SYNC.url){clearTimeout(pushTimer);pushTimer=setTimeout(pushRemote,800);}
+}
 function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864e5;}
 function isNew(j){return daysSince(j.first_seen)<=7;}
 
@@ -134,7 +213,10 @@ async function boot(){
   document.getElementById("byline").innerHTML=`<b>${ho}</b> houses · <b>${bl}</b> beauty/luxury · <b>${state.jobs.length}</b> total · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   renderSources(data.sources);
   render();
+  pullRemote();                                   // adopt any marks made on other devices
 }
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)pullRemote();});
+window.addEventListener("focus",pullRemote);
 function renderSources(sources){
   const el=document.getElementById("sources");
   if(!sources||!sources.length){el.style.display="none";return;}
@@ -148,20 +230,33 @@ function renderSources(sources){
 function visible(){
   const q=state.q.trim().toLowerCase();
   return state.jobs.filter(j=>{
-    if(state.notRelevant){                       // "Not relevant" view: only the set-aside pile
-      if(!state.dismissedSet.has(j.id))return false;
-    }else{
-      if(state.dismissedSet.has(j.id))return false;   // hide set-aside roles everywhere else
-      if(state.scope==="house"&&j.type!=="house")return false;
-      if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
-      if(state.new&&!isNew(j))return false;
-      if(state.saved&&!state.savedSet.has(j.id))return false;
-      if(state.hideAgencies&&j.type==="agency")return false;
-      if(state.hideApplied&&state.appliedSet.has(j.id))return false;
-    }
+    if(state.scope==="house"&&j.type!=="house")return false;
+    if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
+    if(state.onlyNew&&!isNew(j))return false;
+    if(state.onlySaved&&!state.savedSet.has(j.id))return false;
+    if(state.mAgencies==="hide"&&j.type==="agency")return false;
+    const ap=state.appliedSet.has(j.id), di=state.dismissedSet.has(j.id);
+    if(state.mApplied==="hide"&&ap)return false;
+    if(state.mApplied==="only"&&!ap)return false;
+    if(state.mDismissed==="hide"&&di)return false;
+    if(state.mDismissed==="only"&&!di)return false;
     if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
     return true;
   }).sort((a,b)=>(b.posted_date||"").localeCompare(a.posted_date||"")||(a.company||"").localeCompare(b.company||""));
+}
+function activeFilterCount(){
+  return (state.onlyNew?1:0)+(state.onlySaved?1:0)+(state.mApplied!=="show"?1:0)+(state.mDismissed!=="hide"?1:0)+(state.mAgencies!=="show"?1:0);
+}
+function syncPanel(){
+  document.querySelectorAll("#panel .pchip[data-toggle]").forEach(b=>b.setAttribute("aria-pressed",!!state[b.dataset.toggle]));
+  document.querySelectorAll("#panel .seg").forEach(seg=>{
+    const cur=state[seg.dataset.seg];
+    seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.val===cur));
+  });
+  const n=activeFilterCount(),fc=document.getElementById("fcount");
+  fc.textContent=n||"";fc.classList.toggle("on",n>0);
+  document.getElementById("panel").hidden=!state.panelOpen;
+  document.getElementById("filterBtn").setAttribute("aria-expanded",state.panelOpen);
 }
 function linkBtns(j){
   const L=j.links||{};const out=[];
@@ -174,8 +269,9 @@ function linkBtns(j){
 }
 function render(){
   const list=document.getElementById("list");const jobs=visible();
-  document.getElementById("count").textContent=jobs.length?(state.notRelevant?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
-  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${state.notRelevant?"Nothing set aside":"Nothing here yet"}</b>${state.notRelevant?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try “All Singapore”, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";return;}
+  const onlyDismissed=state.mDismissed==="only";
+  document.getElementById("count").textContent=jobs.length?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
+  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try “All Singapore”, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
   list.innerHTML=jobs.map(j=>{
     const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
@@ -198,6 +294,7 @@ function render(){
     </li>`;
   }).join("");
   document.getElementById("footer").textContent="The Vitrine · refreshed 9am & 3pm SGT";
+  syncPanel();
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
@@ -215,9 +312,16 @@ document.getElementById("tabs").addEventListener("click",e=>{
   document.querySelectorAll("#tabs .tab").forEach(x=>x.setAttribute("aria-selected",x.dataset.scope===state.scope));
   render();
 });
-document.getElementById("chips").addEventListener("click",e=>{
-  const c=e.target.closest(".chip");if(!c)return;const f=c.dataset.filter;
-  state[f]=!state[f];c.setAttribute("aria-pressed",state[f]);render();
+document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
+document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});
+document.getElementById("resetFilters").addEventListener("click",()=>{
+  state.onlyNew=false;state.onlySaved=false;state.mApplied="show";state.mDismissed="hide";state.mAgencies="show";render();
+});
+document.getElementById("panel").addEventListener("click",e=>{
+  const tog=e.target.closest(".pchip[data-toggle]");
+  if(tog){state[tog.dataset.toggle]=!state[tog.dataset.toggle];render();return;}
+  const seg=e.target.closest(".seg button");
+  if(seg){state[seg.parentElement.dataset.seg]=seg.dataset.val;render();return;}
 });
 boot();
 </script>

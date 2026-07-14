@@ -9,111 +9,82 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F8F7F4; --card:#FFFFFF; --ink:#1A1714; --muted:#6B655C;
-    --line:#E4DFD6; --accent:#7B1E3B; --accent-soft:#F3E4E8; --gold:#9C7B34;
-    --radius:14px; --maxw:660px;
+    --paper:#F8F7F4; --card:#FFFFFF; --ink:#1A1714; --muted:#6B655C; --line:#E4DFD6;
+    --accent:#7B1E3B; --accent-soft:#F3E4E8; --ochre:#8A6A1E; --ochre-soft:#F1EAD6;
+    --radius:14px; --maxw:680px;
   }
   *{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:"Inter",system-ui,sans-serif; line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 18px 64px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 64px;}
+  header{padding:32px 0 16px;text-align:center;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  h1{font-family:"Fraunces",serif;font-weight:500;font-size:38px;line-height:1.02;margin:8px 0 6px;letter-spacing:-.01em;}
+  h1 em{font-style:italic;color:var(--accent);}
+  .byline{font-size:13px;color:var(--muted);}
+  .byline b{color:var(--ink);font-weight:600;}
 
-  /* ---- Masthead ---- */
-  header{padding:34px 0 18px; text-align:center; border-bottom:1px solid var(--line);}
-  .eyebrow{
-    font-size:11px; letter-spacing:.32em; text-transform:uppercase;
-    color:var(--muted); font-weight:600;
-  }
-  h1{
-    font-family:"Fraunces",serif; font-weight:500; font-size:40px;
-    line-height:1.02; margin:10px 0 6px; letter-spacing:-.01em;
-  }
-  h1 em{font-style:italic; color:var(--accent);}
-  .byline{font-size:13px; color:var(--muted);}
-  .byline b{color:var(--ink); font-weight:600;}
-
-  /* ---- Controls ---- */
-  .controls{position:sticky; top:0; z-index:5; background:var(--paper); padding:14px 0 8px;}
-  .search{
-    width:100%; border:1px solid var(--line); background:var(--card);
-    border-radius:999px; padding:12px 16px; font:inherit; color:var(--ink);
-    outline:none; transition:border-color .15s;
-  }
+  .controls{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 8px;}
+  .tabs{display:flex;background:#ECE8E1;border-radius:999px;padding:3px;margin-bottom:10px;}
+  .tab{flex:1;text-align:center;padding:9px 8px;border:0;background:transparent;border-radius:999px;font:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;}
+  .tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  .search{width:100%;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:11px 16px;font:inherit;color:var(--ink);outline:none;transition:border-color .15s;}
   .search:focus{border-color:var(--accent);}
-  .chips{display:flex; gap:8px; margin-top:10px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:2px;}
-  .chip{
-    flex:0 0 auto; border:1px solid var(--line); background:var(--card);
-    color:var(--muted); border-radius:999px; padding:7px 14px; font-size:13px;
-    font-weight:500; cursor:pointer; white-space:nowrap; transition:all .15s;
-  }
-  .chip[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink);}
-  .count{font-size:12px; color:var(--muted); margin:12px 2px 0;}
+  .chips{display:flex;gap:8px;margin-top:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+  .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s;}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .count{font-size:12px;color:var(--muted);margin:12px 2px 0;}
 
-  /* ---- Cards ---- */
-  ul{list-style:none; margin:0; padding:0;}
-  .job{
-    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-    padding:16px 16px 14px; margin-top:12px; cursor:pointer;
-    transition:border-color .15s, box-shadow .15s, opacity .2s;
-  }
-  .job:hover{border-color:#cfc8bb;}
-  .job.applied{opacity:.55;}
-  .job.applied .title{text-decoration:line-through; text-decoration-color:var(--muted);}
-  .top{display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
-  .company{
-    font-family:"Fraunces",serif; font-size:14px; font-weight:600; color:var(--accent);
-    display:flex; align-items:center; gap:6px;
-  }
-  .star{color:var(--gold); font-size:13px;}
-  .title{font-size:17px; font-weight:600; margin:3px 0 8px; line-height:1.25;}
-  .meta{font-size:12.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:4px 10px;}
+  ul{list-style:none;margin:0;padding:0;}
+  .job{background:var(--card);border:1px solid var(--line);border-left:4px solid #d9d2c6;border-radius:var(--radius);padding:15px 16px 13px;margin-top:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,opacity .2s;}
+  .job.house{border-left-color:var(--accent);}
+  .job.agency{border-left-color:var(--ochre);}
+  .job:hover{box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .job.applied{opacity:.5;}
+  .job.applied .title{text-decoration:line-through;text-decoration-color:var(--muted);}
+  .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
+  .company-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .company{font-family:"Fraunces",serif;font-size:14px;font-weight:600;color:var(--ink);}
+  .job.house .company{color:var(--accent);}
+  .tag{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;padding:2px 7px;border-radius:999px;}
+  .tag.house{color:var(--accent);background:var(--accent-soft);}
+  .tag.agency{color:var(--ochre);background:var(--ochre-soft);}
+  .title{font-size:17px;font-weight:600;margin:3px 0 8px;line-height:1.25;}
+  .meta{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;}
   .meta span{white-space:nowrap;}
-  .badge{
-    flex:0 0 auto; font-size:10px; letter-spacing:.08em; text-transform:uppercase;
-    font-weight:600; color:var(--accent); border:1px solid var(--accent);
-    border-radius:999px; padding:3px 8px; height:fit-content;
-  }
-  .desc{
-    max-height:0; overflow:hidden; transition:max-height .28s ease;
-    font-size:14px; color:#3a352e;
-  }
-  .desc-inner{padding-top:12px; margin-top:12px; border-top:1px solid var(--line); white-space:pre-line;}
-  .job.open .desc{max-height:1400px;}
-  .actions{display:flex; gap:8px; margin-top:14px;}
-  .btn{
-    font:inherit; font-size:13px; font-weight:600; border-radius:999px; padding:9px 14px;
-    border:1px solid var(--line); background:var(--card); color:var(--ink);
-    cursor:pointer; transition:all .15s; text-decoration:none; display:inline-flex; align-items:center; gap:5px;
-  }
-  .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff;}
-  .btn.on{background:var(--accent-soft); border-color:var(--accent); color:var(--accent);}
-  .empty{text-align:center; color:var(--muted); padding:56px 20px; font-size:15px;}
-  .empty b{color:var(--ink); font-weight:600; display:block; font-family:"Fraunces",serif; font-size:20px; margin-bottom:6px;}
-  footer{text-align:center; color:var(--muted); font-size:11.5px; margin-top:28px; letter-spacing:.02em;}
-
-  @media (max-width:420px){ h1{font-size:33px;} }
-  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+  .meta .sal{color:var(--accent);font-weight:600;}
+  .badge{flex:0 0 auto;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:3px 8px;height:fit-content;}
+  .desc{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14px;color:#3a352e;}
+  .desc-inner{padding-top:12px;margin-top:12px;border-top:1px solid var(--line);white-space:pre-line;}
+  .job.open .desc{max-height:1600px;}
+  .actions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap;}
+  .btn{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:8px 13px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+  .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;}
+  .empty b{color:var(--ink);font-weight:600;display:block;font-family:"Fraunces",serif;font-size:20px;margin-bottom:6px;}
+  footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:28px;letter-spacing:.02em;}
+  @media (max-width:420px){h1{font-size:32px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Luxury &amp; Beauty · Singapore</div>
+    <div class="eyebrow">Singapore · E-commerce &amp; Product</div>
     <h1>The <em>Vitrine</em></h1>
     <div class="byline" id="byline">Loading roles…</div>
   </header>
 
   <div class="controls">
+    <div class="tabs" id="tabs" role="tablist">
+      <button class="tab" data-scope="beauty_luxury" role="tab" aria-selected="true">Beauty &amp; Luxury</button>
+      <button class="tab" data-scope="all" role="tab" aria-selected="false">All Singapore</button>
+    </div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
     <div class="chips" id="chips">
-      <button class="chip" data-filter="all" aria-pressed="true">All</button>
-      <button class="chip" data-filter="preferred" aria-pressed="false">★ Houses</button>
       <button class="chip" data-filter="new" aria-pressed="false">New</button>
       <button class="chip" data-filter="saved" aria-pressed="false">Saved</button>
+      <button class="chip" data-filter="hideAgencies" aria-pressed="false">Hide agencies</button>
       <button class="chip" data-filter="hideApplied" aria-pressed="false">Hide applied</button>
     </div>
     <div class="count" id="count"></div>
@@ -124,145 +95,98 @@
 </div>
 
 <script>
-// ---- Sample data: the page renders standalone with this, and swaps to data/jobs.json when deployed.
-const SAMPLE = {
-  generated_at: new Date().toISOString(),
-  jobs: [
-    {id:"s1", title:"E-commerce Manager, Singapore & Malaysia", company:"Clarins", location:"Singapore",
-     source:"SmartRecruiters", posted:"6 days ago", preferred:true, first_seen:new Date().toISOString(),
-     url:"https://www.groupeclarins.com/job-offers/",
-     description:"Lead the e-commerce business for Singapore & Malaysia across the DTC site (Salesforce Commerce Cloud). Own the online P&L, trading calendar, merchandising, and conversion. Partner with regional digital, CRM and marketing to grow the channel."},
-    {id:"s2", title:"Product Manager", company:"Sephora", location:"Singapore",
-     source:"Google Jobs", posted:"2 days ago", preferred:true, first_seen:new Date().toISOString(),
-     url:"https://jobs.sephora.com/Singapore/search?locale=en_US",
-     description:"Own the top-of-funnel discovery experience across web and app — content management, search, personalisation and experimentation — working with Digital, Data, UI/UX and Engineering to optimise how millions of shoppers find products."},
-    {id:"s3", title:"eCommerce DTC Project Manager, SAPMENA", company:"L'Oréal", location:"Singapore",
-     source:"Google Jobs", posted:"Today", preferred:true, first_seen:new Date().toISOString(),
-     url:"https://careers.loreal.com/en_US/jobs/SearchJobs",
-     description:"Drive direct-to-consumer e-commerce projects across the SAPMENA region: roadmap, site features, and cross-market rollouts. Coordinate brand, tech and data teams to deliver the DTC agenda."},
-    {id:"s4", title:"Senior Manager, Digital Merchandising", company:"Sephora", location:"Singapore",
-     source:"SuccessFactors", posted:"9 days ago", preferred:true, first_seen:"2026-07-01T00:00:00Z",
-     url:"https://jobs.sephora.com/Singapore/search?locale=en_US",
-     description:"Drive digital merchandising across SEA platforms — assortment, conversion and best-in-class product pages — hitting revenue and growth targets."},
-    {id:"s5", title:"Director, CRM Digital & E-commerce, APAC", company:"Clarins", location:"Singapore",
-     source:"SmartRecruiters", posted:"12 days ago", preferred:true, first_seen:"2026-06-28T00:00:00Z",
-     url:"https://www.groupeclarins.com/job-offers/",
-     description:"Regional leadership role owning CRM, digital and e-commerce strategy across APAC markets. A step up in scope — regional P&L and team leadership."},
-    {id:"s6", title:"E-commerce Business Analyst", company:"Guerlain", location:"Singapore",
-     source:"SmartRecruiters", posted:"4 days ago", preferred:true, first_seen:new Date().toISOString(),
-     url:"https://careers.smartrecruiters.com/LVMH2",
-     description:"Support the APAC e-commerce team with analytics, reporting (GA4, Looker), and requirements definition for site and CRM initiatives."}
-  ]
-};
+const SAMPLE={generated_at:new Date().toISOString(),jobs:[
+  {id:"s0",title:"Regional Digital Project Manager",company:"Richemont / Cartier",source:"Workday",type:"house",sector:"beauty_luxury",posted:"today",posted_date:iso(0),first_seen:iso(0),salary:"",description:"Lead the digital projects defined in the regional digital roadmap — client experience, web and social integration, retail digital solutions — from conception to go-live, applying Agile/Scrum. Ideally within luxury retail or premium beauty.",links:{careers:"https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",linkedin:"",mcf:"",primary:"https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1"}},
+  {id:"s1",title:"E-commerce Manager, Singapore & Malaysia",company:"Clarins",source:"SmartRecruiters",type:"house",sector:"beauty_luxury",posted:"6 days ago",posted_date:iso(-6),first_seen:iso(0),salary:"",description:"Lead the e-commerce business across the DTC site (Salesforce Commerce Cloud). Own the online P&L, trading calendar, merchandising and conversion.",links:{careers:"https://www.groupeclarins.com/job-offers/",linkedin:"",mcf:"",primary:"https://www.groupeclarins.com/job-offers/"}},
+  {id:"s2",title:"Product Manager",company:"Sephora",source:"Google Jobs",type:"house",sector:"beauty_luxury",posted:"2 days ago",posted_date:iso(-2),first_seen:iso(0),salary:"",description:"Own the discovery experience across web and app — search, personalisation and experimentation.",links:{careers:"https://jobs.sephora.com/Singapore/search",linkedin:"https://www.linkedin.com/jobs/",mcf:"",primary:"https://jobs.sephora.com/Singapore/search"}},
+  {id:"s4",title:"Digital Project Manager",company:"Michael Page",source:"Google Jobs",type:"agency",sector:"general",posted:"4 days ago",posted_date:iso(-4),first_seen:iso(0),salary:"S$7,000–9,000/mo",description:"On behalf of a client: manage digital delivery across e-commerce platforms.",links:{careers:"",linkedin:"https://www.linkedin.com/jobs/",mcf:"",primary:"https://www.linkedin.com/jobs/"}},
+  {id:"s5",title:"Business Analyst, Digital",company:"DBS Bank",source:"MyCareersFuture",type:"other",sector:"general",posted:"1 day ago",posted_date:iso(-1),first_seen:iso(0),salary:"S$6,500–8,500/mo",description:"Requirements analysis for digital banking products.",links:{careers:"",linkedin:"",mcf:"https://www.mycareersfuture.gov.sg/",primary:"https://www.mycareersfuture.gov.sg/"}}
+]};
+function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
-const state = { jobs:[], filter:"all", hideApplied:false, q:"",
-  saved:new Set(load("vitrine_saved")), applied:new Set(load("vitrine_applied")) };
-
-function load(k){ try{ return JSON.parse(localStorage.getItem(k)||"[]"); }catch(e){ return []; } }
-function persist(){ try{
-  localStorage.setItem("vitrine_saved",JSON.stringify([...state.saved]));
-  localStorage.setItem("vitrine_applied",JSON.stringify([...state.applied]));
-}catch(e){} }
-
-function daysSince(iso){ if(!iso) return 999; return (Date.now()-new Date(iso))/864e5; }
-function isNew(j){ return daysSince(j.first_seen) <= 7; }
+const state={jobs:[],scope:"beauty_luxury",q:"",new:false,saved:false,hideAgencies:false,hideApplied:false,
+  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied"))};
+function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
+function persist(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));}catch(e){}}
+function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864e5;}
+function isNew(j){return daysSince(j.first_seen)<=7;}
 
 async function boot(){
-  let data = SAMPLE;
-  try{
-    const r = await fetch("data/jobs.json", {cache:"no-store"});
-    if(r.ok){ const d = await r.json(); if(d && d.jobs && d.jobs.length) data = d; }
-  }catch(e){ /* standalone preview: keep sample */ }
-  state.jobs = data.jobs || [];
-  const when = new Date(data.generated_at||Date.now());
-  const newCount = state.jobs.filter(isNew).length;
-  document.getElementById("byline").innerHTML =
-    `<b>${state.jobs.length}</b> open roles · <b>${newCount}</b> new · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  let data=SAMPLE;
+  try{const r=await fetch("data/jobs.json",{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.jobs&&d.jobs.length)data=d;}}catch(e){}
+  state.jobs=data.jobs||[];
+  const when=new Date(data.generated_at||Date.now());
+  const bl=state.jobs.filter(j=>j.sector==="beauty_luxury").length;
+  document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · <b>${bl}</b> beauty/luxury · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   render();
 }
-
 function visible(){
-  const q = state.q.trim().toLowerCase();
+  const q=state.q.trim().toLowerCase();
   return state.jobs.filter(j=>{
-    if(state.filter==="preferred" && !j.preferred) return false;
-    if(state.filter==="new" && !isNew(j)) return false;
-    if(state.filter==="saved" && !state.saved.has(j.id)) return false;
-    if(state.hideApplied && state.applied.has(j.id)) return false;
-    if(q){
-      const hay = `${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();
-      if(!hay.includes(q)) return false;
-    }
+    if(state.scope==="beauty_luxury"&&j.sector!=="beauty_luxury")return false;
+    if(state.new&&!isNew(j))return false;
+    if(state.saved&&!state.savedSet.has(j.id))return false;
+    if(state.hideAgencies&&j.type==="agency")return false;
+    if(state.hideApplied&&state.appliedSet.has(j.id))return false;
+    if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
     return true;
-  }).sort((a,b)=>
-    (b.preferred-a.preferred) || (isNew(b)-isNew(a)) || a.company.localeCompare(b.company)
-  );
+  }).sort((a,b)=>(b.posted_date||"").localeCompare(a.posted_date||"")||(a.company||"").localeCompare(b.company||""));
 }
-
+function linkBtns(j){
+  const L=j.links||{};const out=[];
+  if(L.careers)out.push(`<a class="btn primary" href="${esc(L.careers)}" target="_blank" rel="noopener" data-stop>Careers ↗</a>`);
+  if(L.linkedin)out.push(`<a class="btn" href="${esc(L.linkedin)}" target="_blank" rel="noopener" data-stop>LinkedIn ↗</a>`);
+  if(L.mcf)out.push(`<a class="btn" href="${esc(L.mcf)}" target="_blank" rel="noopener" data-stop>MyCareersFuture ↗</a>`);
+  if(!out.length&&L.primary)out.push(`<a class="btn primary" href="${esc(L.primary)}" target="_blank" rel="noopener" data-stop>Open ↗</a>`);
+  if(!out.length)out.push(`<span class="btn" style="opacity:.5">No link</span>`);
+  return out.join("");
+}
 function render(){
-  const list = document.getElementById("list");
-  const jobs = visible();
-  document.getElementById("count").textContent =
-    jobs.length ? `Showing ${jobs.length} role${jobs.length>1?"s":""}` : "";
-  if(!jobs.length){
-    list.innerHTML = `<li class="empty"><b>Nothing here yet</b>Try “All”, clear the search, or wait for the next scan.</li>`;
-    document.getElementById("footer").textContent = "";
-    return;
-  }
-  list.innerHTML = jobs.map(j=>{
-    const saved = state.saved.has(j.id), applied = state.applied.has(j.id);
-    const meta = [j.location, j.source, j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("");
-    return `<li class="job${applied?" applied":""}" data-id="${j.id}">
+  const list=document.getElementById("list");const jobs=visible();
+  document.getElementById("count").textContent=jobs.length?`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`:"";
+  if(!jobs.length){list.innerHTML=`<li class="empty"><b>Nothing here yet</b>Try “All Singapore”, clear filters, or wait for the next scan.</li>`;document.getElementById("footer").textContent="";return;}
+  list.innerHTML=jobs.map(j=>{
+    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id);
+    const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
+    const tag=j.type==="house"?`<span class="tag house">House</span>`:j.type==="agency"?`<span class="tag agency">Agency</span>`:"";
+    return `<li class="job ${j.type}${applied?" applied":""}" data-id="${esc(j.id)}">
       <div class="top">
         <div>
-          <div class="company">${j.preferred?'<span class="star">★</span>':""}${esc(j.company)}</div>
+          <div class="company-row"><span class="company">${esc(j.company||"—")}</span>${tag}</div>
           <div class="title">${esc(j.title)}</div>
           <div class="meta">${meta}</div>
         </div>
         ${isNew(j)?'<span class="badge">New</span>':""}
       </div>
-      <div class="desc"><div class="desc-inner">${esc(j.description||"No description captured. Open the role to read the full posting.")}
-        <div class="actions">
-          <a class="btn primary" href="${esc(j.url||"#")}" target="_blank" rel="noopener" data-stop>Open role ↗</a>
-          <button class="btn${saved?" on":""}" data-act="save">${saved?"Saved ✓":"Save"}</button>
-          <button class="btn${applied?" on":""}" data-act="applied">${applied?"Applied ✓":"Mark applied"}</button>
-        </div>
-      </div></div>
+      <div class="desc"><div class="desc-inner">${esc(j.description||"No description captured — open the role to read the full posting.")}</div></div>
+      <div class="actions">${linkBtns(j)}
+        <button class="btn${saved?" on":""}" data-act="save">${saved?"Saved ✓":"Save"}</button>
+        <button class="btn${applied?" on":""}" data-act="applied">${applied?"Applied ✓":"Mark applied"}</button>
+      </div>
     </li>`;
   }).join("");
-  document.getElementById("footer").textContent = "The Vitrine · refreshed twice daily";
+  document.getElementById("footer").textContent="The Vitrine · refreshed 9am & 3pm SGT";
 }
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
-function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-
-// events
-document.getElementById("list").addEventListener("click", e=>{
-  const card = e.target.closest(".job"); if(!card) return;
-  const id = card.dataset.id;
-  if(e.target.closest("[data-stop]")) return;            // let the link open
-  const act = e.target.closest("[data-act]");
-  if(act){
-    e.stopPropagation();
-    const set = act.dataset.act==="save" ? state.saved : state.applied;
-    set.has(id) ? set.delete(id) : set.add(id);
-    persist(); render(); return;
-  }
-  card.classList.toggle("open");                          // tap body = expand
+document.getElementById("list").addEventListener("click",e=>{
+  const card=e.target.closest(".job");if(!card)return;const id=card.dataset.id;
+  if(e.target.closest("[data-stop]"))return;
+  const act=e.target.closest("[data-act]");
+  if(act){e.stopPropagation();const set=act.dataset.act==="save"?state.savedSet:state.appliedSet;set.has(id)?set.delete(id):set.add(id);persist();render();return;}
+  card.classList.toggle("open");
 });
-document.getElementById("search").addEventListener("input", e=>{ state.q=e.target.value; render(); });
-document.getElementById("chips").addEventListener("click", e=>{
-  const c = e.target.closest(".chip"); if(!c) return;
-  const f = c.dataset.filter;
-  if(f==="hideApplied"){
-    state.hideApplied=!state.hideApplied;
-    c.setAttribute("aria-pressed", state.hideApplied);
-  } else {
-    state.filter = state.filter===f && f!=="all" ? "all" : f;
-    document.querySelectorAll('.chip[data-filter]:not([data-filter="hideApplied"])')
-      .forEach(x=>x.setAttribute("aria-pressed", x.dataset.filter===state.filter));
-  }
+document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
+document.getElementById("tabs").addEventListener("click",e=>{
+  const t=e.target.closest(".tab");if(!t)return;
+  state.scope=t.dataset.scope;
+  document.querySelectorAll("#tabs .tab").forEach(x=>x.setAttribute("aria-selected",x.dataset.scope===state.scope));
   render();
 });
-
+document.getElementById("chips").addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(!c)return;const f=c.dataset.filter;
+  state[f]=!state[f];c.setAttribute("aria-pressed",state[f]);render();
+});
 boot();
 </script>
 </body>

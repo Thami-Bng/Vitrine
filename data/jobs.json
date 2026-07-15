@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T01:39:10.873874+00:00",
+  "generated_at": "2026-07-15T03:55:14.674601+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -81,8 +81,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 75,
-      "kept": 68,
+      "fetched": 73,
+      "kept": 66,
       "error": false
     },
     {
@@ -112,6 +112,75 @@
   ],
   "jobs": [
     {
+      "id": "mcf-e8e961b2bbe1d8e479867d2cb1ac7047",
+      "title": "STAFF PRODUCT OWNER, Cost Solutions, Smart Manufacturing & AI",
+      "company": "MICRON SEMICONDUCTOR ASIA OPERATIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$9,500–16,500/mo",
+      "salary_max": 16500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e8e961b2bbe1d8e479867d2cb1ac7047",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e8e961b2bbe1d8e479867d2cb1ac7047"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e8e961b2bbe1d8e479867d2cb1ac7047",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T03:55:14.674601+00:00"
+    },
+    {
+      "id": "mcf-eb60ffa15c787b849cacd8dce65de486",
+      "title": "Senior Commercial Product Manager (B2B)",
+      "company": "GREATERHEAT PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$8,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/eb60ffa15c787b849cacd8dce65de486",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/eb60ffa15c787b849cacd8dce65de486"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/eb60ffa15c787b849cacd8dce65de486",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T03:55:14.674601+00:00"
+    },
+    {
+      "id": "mcf-2405e82f2dd9bdb8bbc0a1280e7a4d33",
+      "title": "Lead Product Manager",
+      "company": "IKAS INTERNATIONAL (ASIA) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$10,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2405e82f2dd9bdb8bbc0a1280e7a4d33",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2405e82f2dd9bdb8bbc0a1280e7a4d33"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2405e82f2dd9bdb8bbc0a1280e7a4d33",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T03:55:14.674601+00:00"
+    },
+    {
       "id": "mcf-b5cc011770ec66f1fd2c405089bdab3c",
       "title": "Product Manager (Video Enterprise Platform)",
       "company": "ST ENGINEERING ADVANCED NETWORKS & SENSORS PTE. LTD.",
@@ -133,6 +202,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T01:39:10.873874+00:00"
+    },
+    {
+      "id": "mcf-36e4d2dc8fdb8c9f63e9cb4af6a483ac",
+      "title": "MUTUAL FUND PRODUCT MANAGER - PRIVATE BANKING (RT)",
+      "company": "TALENTVIS SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$7,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/36e4d2dc8fdb8c9f63e9cb4af6a483ac",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/36e4d2dc8fdb8c9f63e9cb4af6a483ac"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/36e4d2dc8fdb8c9f63e9cb4af6a483ac",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T03:55:14.674601+00:00"
     },
     {
       "id": "mcf-f6667ae4e2f5bcb655187c9fd5aa6bd5",
@@ -3525,29 +3617,6 @@
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
     {
-      "id": "mcf-ad789c6c38bac14e5d48beadecfd4c1f",
-      "title": "E-COMMERCE MANAGER",
-      "company": "BIPO SERVICE (SINGAPORE) PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-03",
-      "posted_date": "2026-07-03",
-      "salary": "S$7,000–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-4e8f22835f4e7a6c9975c5294f02f8ad",
       "title": "Product Manager FX Sales and Advisory (private banking)",
       "company": "RECRUIT AVENUE PTE. LTD.",
@@ -3681,6 +3750,29 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/e5894587258254fb81c697e6517f1ef1"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/e5894587258254fb81c697e6517f1ef1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-ad789c6c38bac14e5d48beadecfd4c1f",
+      "title": "E-COMMERCE MANAGER",
+      "company": "BIPO SERVICE (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-03",
+      "posted_date": "2026-07-03",
+      "salary": "S$7,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ad789c6c38bac14e5d48beadecfd4c1f",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"

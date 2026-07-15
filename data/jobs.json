@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T03:55:14.674601+00:00",
+  "generated_at": "2026-07-15T05:30:25.897530+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 450,
-      "kept": 373,
+      "kept": 372,
       "error": false
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 19,
+      "fetched": 18,
       "kept": 0,
       "error": false
     }
@@ -202,6 +202,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T01:39:10.873874+00:00"
+    },
+    {
+      "id": "mcf-d35995d7e2498047904ccaf594c6b635",
+      "title": "Product Manager, Agentic Safety - Singapore",
+      "company": "GOOGLE ASIA PACIFIC PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$15,500–31,000/mo",
+      "salary_max": 31000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T05:30:25.897530+00:00"
     },
     {
       "id": "mcf-36e4d2dc8fdb8c9f63e9cb4af6a483ac",

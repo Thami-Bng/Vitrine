@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-14T12:28:43.845422+00:00",
+  "generated_at": "2026-07-15T01:39:10.873874+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 445,
-      "kept": 377,
+      "fetched": 450,
+      "kept": 373,
       "error": false
     },
     {
@@ -27,9 +27,9 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 0,
-      "kept": 0,
-      "error": true
+      "fetched": 5,
+      "kept": 5,
+      "error": false
     },
     {
       "label": "SuccessFactors · Shiseido",
@@ -51,7 +51,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 145,
+      "fetched": 146,
       "kept": 7,
       "error": false
     },
@@ -63,7 +63,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 32,
+      "fetched": 33,
       "kept": 0,
       "error": false
     },
@@ -75,13 +75,13 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 371,
+      "fetched": 373,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 74,
+      "fetched": 75,
       "kept": 68,
       "error": false
     },
@@ -105,12 +105,104 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 35,
-      "kept": 1,
+      "fetched": 19,
+      "kept": 0,
       "error": false
     }
   ],
   "jobs": [
+    {
+      "id": "mcf-b5cc011770ec66f1fd2c405089bdab3c",
+      "title": "Product Manager (Video Enterprise Platform)",
+      "company": "ST ENGINEERING ADVANCED NETWORKS & SENSORS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$7,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/b5cc011770ec66f1fd2c405089bdab3c",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/b5cc011770ec66f1fd2c405089bdab3c"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/b5cc011770ec66f1fd2c405089bdab3c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T01:39:10.873874+00:00"
+    },
+    {
+      "id": "mcf-f6667ae4e2f5bcb655187c9fd5aa6bd5",
+      "title": "Product Manager (Cybersecurity Solutions)",
+      "company": "JJ CONSULTING SERVICES",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$10,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-84394d69d051d85907753aca1f192ae6",
+      "title": "Reporting and Analytics Product Owner 1-Year Fixed Term",
+      "company": "SELECT 4 PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$14,700–18,900/mo",
+      "salary_max": 18900,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/84394d69d051d85907753aca1f192ae6",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/84394d69d051d85907753aca1f192ae6"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/84394d69d051d85907753aca1f192ae6",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T01:39:10.873874+00:00"
+    },
+    {
+      "id": "mcf-fb7a4dc058fe1ea777fea11e87470ee8",
+      "title": "Senior Product Manager, Localization (Korean Speaking)",
+      "company": "AGODA COMPANY PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "hospitality",
+      "category": "travel",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$7,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/fb7a4dc058fe1ea777fea11e87470ee8",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/fb7a4dc058fe1ea777fea11e87470ee8"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/fb7a4dc058fe1ea777fea11e87470ee8",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T01:39:10.873874+00:00"
+    },
     {
       "id": "mcf-6b12d463452e65a1079b43380d6647e1",
       "title": "Data Product Manager",
@@ -179,6 +271,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T10:41:33.452459+00:00"
+    },
+    {
+      "id": "mcf-2c2d5b51f6fb7585eb88b5769bec3198",
+      "title": "*GOV* UIUX Designer",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-14",
+      "posted_date": "2026-07-14",
+      "salary": "S$6,500–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2c2d5b51f6fb7585eb88b5769bec3198",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2c2d5b51f6fb7585eb88b5769bec3198"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2c2d5b51f6fb7585eb88b5769bec3198",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T01:39:10.873874+00:00"
     },
     {
       "id": "mcf-037446a45e23ce7b17271746d58c9998",
@@ -2408,6 +2523,29 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-81b2d96d00ce95874c5d7c5465aa6f5a",
+      "title": "Product Manager(Satellite Comm)",
+      "company": "OAKTREE CONSULTING",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-4fc2c2e98f6b3ea9f2013bd9524ebcdf",
       "title": "Product Owner, SMAI, FE Cost",
       "company": "MICRON SEMICONDUCTOR ASIA OPERATIONS PTE. LTD.",
@@ -2656,29 +2794,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-81b2d96d00ce95874c5d7c5465aa6f5a",
-      "title": "Product Manager(Satellite Comm)",
-      "company": "OAKTREE CONSULTING",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "consulting",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$8,000–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -3045,29 +3160,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/2ee97f7c05e70b49ccac8234703db0c9"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/2ee97f7c05e70b49ccac8234703db0c9",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-f6667ae4e2f5bcb655187c9fd5aa6bd5",
-      "title": "Product Manager (Cybersecurity Solutions)",
-      "company": "JJ CONSULTING SERVICES",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-07",
-      "posted_date": "2026-07-07",
-      "salary": "S$10,000–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -3844,29 +3936,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-345976eff3b519d014c1d60e0e0bc1db",
-      "title": "SAP Reporting and Analytics Product Owner, 1-year fixed term (Mining)",
-      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-06-30",
-      "posted_date": "2026-06-30",
-      "salary": "S$14,700–18,900/mo",
-      "salary_max": 18900,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-287032c74f659688ba86b84b9130686c",
       "title": "Interface Designer UX/UI",
       "company": "INFRASOFT TECHNOLOGIES PTE LTD",
@@ -3885,6 +3954,29 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-345976eff3b519d014c1d60e0e0bc1db",
+      "title": "SAP Reporting and Analytics Product Owner, 1-year fixed term (Mining)",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-06-30",
+      "posted_date": "2026-06-30",
+      "salary": "S$14,700–18,900/mo",
+      "salary_max": 18900,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/345976eff3b519d014c1d60e0e0bc1db",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"

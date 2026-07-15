@@ -25,8 +25,18 @@
   .byline b{color:var(--ink);font-weight:600;}
 
   .controls{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 8px;}
-  .tabs{display:flex;gap:3px;background:#ECE8E1;border-radius:999px;padding:3px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;}
-  .tabs::-webkit-scrollbar{display:none;}
+  .modebar{display:flex;gap:6px;margin-bottom:10px;}
+  .mode{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;border:1px solid var(--line);background:var(--card);border-radius:999px;font:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;}
+  .mode:hover{color:var(--ink);}
+  .mode[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .mbadge{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ECE8E1;color:var(--muted);}
+  .mbadge.due{background:var(--accent);color:#fff;}
+  .mode[aria-selected="true"] .mbadge{background:rgba(255,255,255,.22);color:#fff;}
+  .mode[aria-selected="true"] .mbadge.due{background:#fff;color:var(--accent);}
+  /* Categories wrap onto as many lines as they need — nothing is ever hidden
+     off-screen. (Previously this row scrolled horizontally with the scrollbar
+     hidden, so later categories were unreachable and invisible.) */
+  .tabs{display:flex;flex-wrap:wrap;gap:4px;background:#ECE8E1;border-radius:16px;padding:4px;margin-bottom:10px;}
   .tab{flex:0 0 auto;text-align:center;padding:9px 15px;border:0;background:transparent;border-radius:999px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
   .tab .tc{opacity:.6;font-weight:500;margin-left:4px;}
   .tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06);}
@@ -98,7 +108,6 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
   .tag.tracked{color:var(--ink);background:#ECE8E1;}
   .btn.track.on{background:var(--ink);border-color:var(--ink);color:#fff;}
-  .tab.tab-pipe .tc{opacity:1;color:var(--accent);font-weight:700;}
 
   .gear{position:absolute;top:22px;right:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:16px;line-height:1;cursor:pointer;transition:all .15s;}
   .gear:hover{color:var(--accent);border-color:var(--accent);}
@@ -177,6 +186,7 @@
   </header>
 
   <div class="controls">
+    <div class="modebar" id="modebar" role="tablist"></div>
     <div class="tabs" id="tabs" role="tablist"></div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
     <div class="filterbar" id="filterbar">
@@ -255,17 +265,21 @@ function renderTabs(){
   const counts={};
   state.jobs.forEach(j=>{if(!state.dismissedSet.has(j.id)){const c=catOf(j);counts[c]=(counts[c]||0)+1;}});
   const avail=CATS.filter(([id])=>counts[id]);
-  if(state.scope!=="pipeline" && avail.length && !avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
-  const pipeN=Object.keys(state.pipeline).filter(id=>jobById(id)).length;
-  const dueN=followUps().length;
-  let html=avail.map(([id,label])=>
+  if(avail.length&&!avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
+  document.getElementById("tabs").innerHTML=avail.map(([id,label])=>
     `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span></button>`
   ).join("");
-  const pipeBadge=pipeN?`<span class="tc">${dueN?dueN+" due":pipeN}</span>`:"";
-  html+=`<button class="tab tab-pipe" data-scope="pipeline" role="tab" aria-selected="${state.scope==="pipeline"}">Pipeline${pipeBadge}</button>`;
-  document.getElementById("tabs").innerHTML=html;
 }
-const state={jobs:[],scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+// Browse vs Pipeline is a MODE, not a category — a different surface, so it gets
+// its own switch instead of competing with Houses / Tech / etc.
+function renderModebar(){
+  const dueN=followUps().length, pipeN=trackedItems().length;
+  const badge=dueN?`<span class="mbadge due">${dueN} due</span>`:(pipeN?`<span class="mbadge">${pipeN}</span>`:"");
+  document.getElementById("modebar").innerHTML=`
+    <button class="mode" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"}">Browse roles</button>
+    <button class="mode" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"}">Pipeline${badge}</button>`;
+}
+const state={jobs:[],mode:"browse",scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
   savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed")),
   pipeline:loadObj("v_pipeline")};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
@@ -386,8 +400,11 @@ function linkBtns(j){
   return out.join("");
 }
 function render(){
+  renderModebar();
+  const inPipe=state.mode==="pipeline";
+  document.getElementById("tabs").style.display=inPipe?"none":"";      // categories are a Browse concern
+  if(inPipe){renderPipeline();return;}
   renderTabs();
-  if(state.scope==="pipeline"){renderPipeline();return;}
   document.getElementById("filterbar").style.display="";
   const list=document.getElementById("list");const jobs=visible();
   const onlyDismissed=state.mDismissed==="only";
@@ -429,14 +446,15 @@ const CHANNELS=[["linkedin","LinkedIn"],["email","Email"],["referral","Referral"
 const FOLLOWUP_DAYS=5;
 function todayStr(){return new Date().toISOString().slice(0,10);}
 function jobById(id){return state.jobs.find(j=>j.id===id);}
-function isTracked(id){return !!state.pipeline[id];}
+function isTracked(id){const r=state.pipeline[id];return !!r && !r.deleted;}
 function ensureRecord(id){
-  if(!state.pipeline[id]) state.pipeline[id]={stage:"spotted",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now()};
+  const r=state.pipeline[id];
+  if(!r || r.deleted) state.pipeline[id]={stage:"spotted",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now()};
   return state.pipeline[id];
 }
 function trackedItems(){
   return Object.keys(state.pipeline).map(id=>({id,rec:state.pipeline[id],job:jobById(id)}))
-    .filter(x=>x.job).sort((a,b)=>(b.rec.updatedAt||0)-(a.rec.updatedAt||0));
+    .filter(x=>x.job && x.rec && !x.rec.deleted).sort((a,b)=>(b.rec.updatedAt||0)-(a.rec.updatedAt||0));
 }
 function followUps(){
   const out=[];
@@ -587,7 +605,7 @@ function closeSettings(){document.getElementById("setOverlay").hidden=true;}
 function renderSettings(){
   const m=statusMeta(),cls=m[0],label=m[1];
   const url=SYNC.url, hasKey=!!SYNC.key;
-  const trackedN=Object.keys(state.pipeline).filter(id=>jobById(id)).length;
+  const trackedN=trackedItems().length;
   document.getElementById("setSheet").innerHTML=`
     <div class="sheet-h">
       <div><div class="co">The Vitrine</div><div class="ti">Settings</div></div>
@@ -649,7 +667,7 @@ document.getElementById("overlay").addEventListener("click",e=>{
   if(e.target.id==="overlay"){closeEditor();return;}
   const id=state.editId;if(id==null)return;const rec=ensureRecord(id);
   if(e.target.closest("[data-close]")){closeEditor();return;}
-  if(e.target.closest("[data-untrack]")){delete state.pipeline[id];persist();closeEditor();return;}
+  if(e.target.closest("[data-untrack]")){state.pipeline[id]={deleted:true,updatedAt:Date.now()};persist();closeEditor();return;}
   if(e.target.closest("[data-addc]")){rec.contacts=rec.contacts||[];rec.contacts.push({name:"",role:"",channel:"linkedin",status:"to_contact",date:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
   const del=e.target.closest("[data-cdel]");
   if(del){const ci=+del.closest(".contact").dataset.ci;rec.contacts.splice(ci,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
@@ -693,6 +711,10 @@ document.getElementById("search").addEventListener("input",e=>{state.q=e.target.
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;
   state.scope=t.dataset.scope;render();
+});
+document.getElementById("modebar").addEventListener("click",e=>{
+  const m=e.target.closest(".mode");if(!m)return;
+  state.mode=m.dataset.mode;render();
 });
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});

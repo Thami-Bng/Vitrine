@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-15T05:30:25.897530+00:00",
+  "generated_at": "2026-07-15T10:44:57.779796+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 450,
+      "fetched": 452,
       "kept": 372,
       "error": false
     },
@@ -27,8 +27,8 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 5,
-      "kept": 5,
+      "fetched": 6,
+      "kept": 6,
       "error": false
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 123,
+      "fetched": 121,
       "kept": 8,
       "error": false
     },
@@ -69,20 +69,20 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 90,
+      "fetched": 91,
       "kept": 0,
       "error": false
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 373,
+      "fetched": 375,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 73,
-      "kept": 66,
+      "fetched": 74,
+      "kept": 67,
       "error": false
     },
     {
@@ -111,6 +111,52 @@
     }
   ],
   "jobs": [
+    {
+      "id": "mcf-330f7cc0e6109befa6ff9b557b28e05e",
+      "title": "Staff Product Manager",
+      "company": "THE TRADE DESK (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$16,000–22,000/mo",
+      "salary_max": 22000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/330f7cc0e6109befa6ff9b557b28e05e",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/330f7cc0e6109befa6ff9b557b28e05e"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/330f7cc0e6109befa6ff9b557b28e05e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-7f2bc38e473fc84b72eb135cb1569696",
+      "title": "Digital Product Manager",
+      "company": "JALANDHAR SC PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$8,500–11,500/mo",
+      "salary_max": 11500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/7f2bc38e473fc84b72eb135cb1569696",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/7f2bc38e473fc84b72eb135cb1569696"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/7f2bc38e473fc84b72eb135cb1569696",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
     {
       "id": "mcf-e8e961b2bbe1d8e479867d2cb1ac7047",
       "title": "STAFF PRODUCT OWNER, Cost Solutions, Smart Manufacturing & AI",
@@ -204,6 +250,29 @@
       "first_seen": "2026-07-15T01:39:10.873874+00:00"
     },
     {
+      "id": "mcf-bd532677f50cdeb1902b255032cc80b8",
+      "title": "Technical Product Manager",
+      "company": "ZENIKA PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/bd532677f50cdeb1902b255032cc80b8",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/bd532677f50cdeb1902b255032cc80b8"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/bd532677f50cdeb1902b255032cc80b8",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
       "id": "mcf-d35995d7e2498047904ccaf594c6b635",
       "title": "Product Manager, Agentic Safety - Singapore",
       "company": "GOOGLE ASIA PACIFIC PTE. LTD.",
@@ -271,6 +340,121 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-6bb7c542121204ac12dd90f08e4754aa",
+      "title": "Senior Business Analyst(1year Contract) ES",
+      "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6bb7c542121204ac12dd90f08e4754aa",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6bb7c542121204ac12dd90f08e4754aa"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6bb7c542121204ac12dd90f08e4754aa",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-3c7d71df609448c73b38ce8d876cf41f",
+      "title": "Senior Business Analyst(1year Contract) GM",
+      "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/3c7d71df609448c73b38ce8d876cf41f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/3c7d71df609448c73b38ce8d876cf41f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/3c7d71df609448c73b38ce8d876cf41f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-f328c392c479c7bd4b41611ec5033b2b",
+      "title": "Senior Business Analyst(1year Contract) JT",
+      "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f328c392c479c7bd4b41611ec5033b2b",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f328c392c479c7bd4b41611ec5033b2b"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f328c392c479c7bd4b41611ec5033b2b",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-50f8c2b62fceea091c00ed48d98e9648",
+      "title": "Business Analyst(1year contract) EA",
+      "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/50f8c2b62fceea091c00ed48d98e9648",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/50f8c2b62fceea091c00ed48d98e9648"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/50f8c2b62fceea091c00ed48d98e9648",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-28976f96fa126efd443779603bf5cfb9",
+      "title": "Business Analyst",
+      "company": "CERTIS TECHNOLOGY (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/28976f96fa126efd443779603bf5cfb9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/28976f96fa126efd443779603bf5cfb9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/28976f96fa126efd443779603bf5cfb9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T10:44:57.779796+00:00"
     },
     {
       "id": "mcf-84394d69d051d85907753aca1f192ae6",
@@ -3412,29 +3596,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-5f9a1b58098a414b1cdef98be1654af4",
-      "title": "Machine Learning Engineer - Feed E-Commerce - Singapore",
-      "company": "BYTEDANCE PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-06",
-      "posted_date": "2026-07-06",
-      "salary": "S$11,250–22,500/mo",
-      "salary_max": 22500,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-3ab2f150cdacafbb09b2880283784e70",
       "title": "Senior Product Manager",
       "company": "IKAS INTERNATIONAL (ASIA) PTE. LTD.",
@@ -3591,6 +3752,29 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/3f8329d53291c1fd6053b90d2230df0c"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/3f8329d53291c1fd6053b90d2230df0c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-5f9a1b58098a414b1cdef98be1654af4",
+      "title": "Machine Learning Engineer - Feed E-Commerce - Singapore",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-06",
+      "posted_date": "2026-07-06",
+      "salary": "S$11,250–22,500/mo",
+      "salary_max": 22500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5f9a1b58098a414b1cdef98be1654af4",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"

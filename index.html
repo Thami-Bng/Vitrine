@@ -12,11 +12,12 @@
     --paper:#F8F7F4; --card:#FFFFFF; --ink:#1A1714; --muted:#6B655C; --line:#E4DFD6;
     --accent:#7B1E3B; --accent-soft:#F3E4E8; --ochre:#8A6A1E; --ochre-soft:#F1EAD6;
     --radius:14px; --maxw:680px;
+    --ok:#3f8f5f; --ok-soft:#E4EFE7;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 64px;}
-  header{padding:32px 0 16px;text-align:center;border-bottom:1px solid var(--line);}
+  header{padding:32px 0 16px;text-align:center;border-bottom:1px solid var(--line);position:relative;}
   .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:600;}
   h1{font-family:"Fraunces",serif;font-weight:500;font-size:38px;line-height:1.02;margin:8px 0 6px;letter-spacing:-.01em;}
   h1 em{font-style:italic;color:var(--accent);}
@@ -95,11 +96,81 @@
   .dot.ok{background:#3f8f5f;} .dot.zero{background:#cec7bb;} .dot.err{background:#b3371f;}
   @media (max-width:420px){h1{font-size:32px;}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+  .tag.tracked{color:var(--ink);background:#ECE8E1;}
+  .btn.track.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .tab.tab-pipe .tc{opacity:1;color:var(--accent);font-weight:700;}
+
+  .gear{position:absolute;top:22px;right:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:16px;line-height:1;cursor:pointer;transition:all .15s;}
+  .gear:hover{color:var(--accent);border-color:var(--accent);}
+
+  /* Pipeline */
+  .section-h{font-family:"Fraunces",serif;font-size:15px;font-weight:600;color:var(--ink);margin:22px 2px 4px;display:flex;align-items:baseline;gap:8px;}
+  .section-h .n{font-size:12px;font-weight:600;color:var(--muted);font-family:"Inter",sans-serif;}
+  .section-h.due{color:var(--accent);}
+  .prec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;cursor:pointer;transition:box-shadow .15s;}
+  .prec:hover{box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .prec .pc-co{font-family:"Fraunces",serif;font-size:13px;font-weight:600;color:var(--accent);}
+  .prec .pc-title{font-size:15px;font-weight:600;margin:2px 0 6px;line-height:1.25;}
+  .prec .pc-meta{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px;}
+  .prec.duecard{border-color:var(--accent);border-left:4px solid var(--accent);}
+  .prec.duecard.next{border-left-color:var(--ochre);}
+  .due-line{font-size:12.5px;color:var(--ink);margin:2px 0 10px;}
+  .due-line b{color:var(--accent);}
+  .prec-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+  .mini{font:inherit;font-size:12px;font-weight:600;border-radius:999px;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;}
+  .mini.go{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  /* Sheets (editor + settings) */
+  .overlay{position:fixed;inset:0;z-index:40;background:rgba(26,23,20,.42);display:flex;align-items:flex-end;justify-content:center;padding:0;}
+  .overlay[hidden]{display:none;}
+  .sheet{background:var(--paper);width:100%;max-width:var(--maxw);max-height:92vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -8px 40px rgba(0,0,0,.18);}
+  @media (min-width:560px){.overlay{align-items:center;padding:24px;}.sheet{border-radius:20px;}}
+  .sheet-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .sheet-h .co{font-family:"Fraunces",serif;font-size:13px;font-weight:600;color:var(--accent);}
+  .sheet-h .ti{font-size:18px;font-weight:600;line-height:1.2;margin-top:2px;}
+  .xclose{border:0;background:transparent;font-size:22px;line-height:1;color:var(--muted);cursor:pointer;padding:2px 4px;}
+  .fld{margin-top:18px;}
+  .fld > label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .stagewrap{display:flex;flex-wrap:wrap;gap:7px;}
+  .stagebtn{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:7px 12px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;}
+  .stagebtn[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .inp{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;color:var(--ink);outline:none;}
+  .inp:focus{border-color:var(--accent);}
+  textarea.inp{resize:vertical;min-height:64px;line-height:1.45;}
+  .contact{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 12px;margin-bottom:10px;}
+  .contact .crow{display:flex;gap:8px;}
+  .contact .crow .inp{margin-bottom:0;}
+  .cname{flex:1;}
+  .cchan{flex:0 0 108px;}
+  .contact .crow2{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap;}
+  .cstat{font:inherit;font-size:12px;font-weight:700;border-radius:999px;padding:6px 12px;border:1px solid var(--line);cursor:pointer;background:#ECE8E1;color:var(--muted);}
+  .cstat[data-s="contacted"]{background:var(--ochre-soft);color:var(--ochre);border-color:var(--ochre-soft);}
+  .cstat[data-s="replied"]{background:var(--ok-soft);color:var(--ok);border-color:var(--ok-soft);}
+  .cstat[data-s="no_reply"]{background:#F0E7E3;color:#9a6a55;border-color:#F0E7E3;}
+  .cdate{font-size:11.5px;color:var(--muted);}
+  .cdel{margin-left:auto;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:15px;padding:2px 4px;}
+  .addc{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:8px 14px;border:1px dashed var(--line);background:transparent;color:var(--muted);cursor:pointer;width:100%;}
+  .sheet-foot{display:flex;gap:10px;margin-top:24px;align-items:center;}
+  .sheet-foot .untrack{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline;}
+  .sheet-foot .done{margin-left:auto;background:var(--accent);border:1px solid var(--accent);color:#fff;font:inherit;font-size:13.5px;font-weight:600;border-radius:999px;padding:10px 22px;cursor:pointer;}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:6px;}
+  /* Settings */
+  .set-sec{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+  .set-sec:first-of-type{border-top:0;padding-top:0;margin-top:16px;}
+  .set-h{font-family:"Fraunces",serif;font-size:16px;font-weight:600;margin:0 0 4px;}
+  .set-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px;line-height:1.45;}
+  .statusrow{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:13px;font-weight:600;}
+  .sdot{width:9px;height:9px;border-radius:50%;background:#cec7bb;}
+  .sdot.on{background:var(--ok);} .sdot.err{background:#b3371f;} .sdot.busy{background:var(--ochre);}
+  .set-btn{font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:9px 16px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;}
+  .set-btn.go{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .set-btn.block{width:100%;margin-top:8px;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
+    <button class="gear" id="settingsBtn" title="Backup &amp; sync" aria-label="Settings, backup and sync">⚙</button>
     <div class="eyebrow">Singapore · E-commerce &amp; Product</div>
     <h1>The <em>Vitrine</em></h1>
     <div class="byline" id="byline">Loading roles…</div>
@@ -108,7 +179,7 @@
   <div class="controls">
     <div class="tabs" id="tabs" role="tablist"></div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
-    <div class="filterbar">
+    <div class="filterbar" id="filterbar">
       <button class="chip filterbtn" id="filterBtn" aria-expanded="false">Filters<span class="fcount" id="fcount"></span></button>
     </div>
     <div class="panel" id="panel" hidden>
@@ -150,6 +221,16 @@
   <footer id="footer"></footer>
 </div>
 
+<!-- Pipeline editor -->
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+</div>
+<!-- Settings · backup · sync -->
+<div class="overlay" id="setOverlay" hidden>
+  <div class="sheet" id="setSheet" role="dialog" aria-modal="true"></div>
+</div>
+<input type="file" id="restoreInput" accept="application/json,.json" hidden>
+
 <script>
 const SAMPLE={generated_at:new Date().toISOString(),jobs:[
   {id:"s0",title:"Regional Digital Project Manager",company:"Richemont / Cartier",source:"Workday",type:"house",sector:"beauty_luxury",posted:"today",posted_date:iso(0),first_seen:iso(0),salary:"",description:"Lead the digital projects defined in the regional digital roadmap — client experience, web and social integration, retail digital solutions — from conception to go-live, applying Agile/Scrum. Ideally within luxury retail or premium beauty.",links:{careers:"https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",linkedin:"",mcf:"",primary:"https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1"}},
@@ -174,48 +255,71 @@ function renderTabs(){
   const counts={};
   state.jobs.forEach(j=>{if(!state.dismissedSet.has(j.id)){const c=catOf(j);counts[c]=(counts[c]||0)+1;}});
   const avail=CATS.filter(([id])=>counts[id]);
-  if(avail.length&&!avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
-  document.getElementById("tabs").innerHTML=avail.map(([id,label])=>
+  if(state.scope!=="pipeline" && avail.length && !avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
+  const pipeN=Object.keys(state.pipeline).filter(id=>jobById(id)).length;
+  const dueN=followUps().length;
+  let html=avail.map(([id,label])=>
     `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span></button>`
   ).join("");
+  const pipeBadge=pipeN?`<span class="tc">${dueN?dueN+" due":pipeN}</span>`:"";
+  html+=`<button class="tab tab-pipe" data-scope="pipeline" role="tab" aria-selected="${state.scope==="pipeline"}">Pipeline${pipeBadge}</button>`;
+  document.getElementById("tabs").innerHTML=html;
 }
-const state={jobs:[],scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,
-  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed"))};
+const state={jobs:[],scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed")),
+  pipeline:loadObj("v_pipeline")};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
-function cacheLocal(){try{localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));}catch(e){}}
+function loadObj(k){try{return JSON.parse(localStorage.getItem(k)||"{}")||{};}catch(e){return {};}}
+function cacheLocal(){try{
+  localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));
+  localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));
+  localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));
+  localStorage.setItem("v_pipeline",JSON.stringify(state.pipeline));
+}catch(e){}}
 
 /* ── Cross-device sync ─────────────────────────────────────────────────────
-   Paste your Cloudflare Worker URL and token below to sync saved / applied /
-   not-relevant marks across devices. Leave url blank to stay device-only.   */
-const SYNC={url:"https://vitrine-sync.thamibenghazi.workers.dev", key:"PASTE_YOUR_SYNC_TOKEN_HERE"};
+   Token is stored ON THIS DEVICE (localStorage), never in this file, so it
+   never lands in the public repo. Open ⚙ Settings to switch sync on. Sync
+   carries saved / applied / not-relevant marks AND the pipeline (the pipeline
+   rides along once your Worker stores & returns a "pipeline" field).         */
+const SYNC_URL_DEFAULT="https://vitrine-sync.thamibenghazi.workers.dev";
+const SYNC={
+  get url(){return localStorage.getItem("v_sync_url")||SYNC_URL_DEFAULT;},
+  get key(){return localStorage.getItem("v_sync_token")||"";}
+};
+function syncOn(){return !!(SYNC.url&&SYNC.key);}
 let lastLocalChange=0, pushTimer=null;
+state.sync=syncOn()?"idle":"off";
 function applyRemote(o){
   if(!o) return;
   state.savedSet=new Set(o.saved||[]);
   state.appliedSet=new Set(o.applied||[]);
   state.dismissedSet=new Set(o.dismissed||[]);
+  if(o.pipeline && typeof o.pipeline==="object") state.pipeline=o.pipeline;   // only adopt if remote carries it
   cacheLocal();
 }
 async function pullRemote(){
-  if(!SYNC.url) return;
+  if(!syncOn()){state.sync="off";return;}
   try{
     const r=await fetch(SYNC.url,{headers:{Authorization:"Bearer "+SYNC.key}});
-    if(!r.ok) return;
+    if(!r.ok){state.sync="error";return;}
     const o=await r.json();
+    state.sync="on";
     if((o.updated||0) >= lastLocalChange){ applyRemote(o); render(); }   // don't clobber a fresh local edit
-  }catch(e){}
+  }catch(e){state.sync="error";}
 }
 async function pushRemote(){
-  if(!SYNC.url) return;
+  if(!syncOn()){state.sync="off";return;}
   try{
-    await fetch(SYNC.url,{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
-      body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet]})});
-  }catch(e){}
+    const r=await fetch(SYNC.url,{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
+      body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet],pipeline:state.pipeline})});
+    state.sync=r.ok?"on":"error";
+  }catch(e){state.sync="error";}
 }
-function persist(){                       // called on every save/applied/dismiss toggle
+function persist(){                       // called on every save/applied/dismiss/pipeline change
   cacheLocal();
   lastLocalChange=Date.now();
-  if(SYNC.url){clearTimeout(pushTimer);pushTimer=setTimeout(pushRemote,800);}
+  if(syncOn()){clearTimeout(pushTimer);pushTimer=setTimeout(pushRemote,800);}
 }
 function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864e5;}
 function isNew(j){return daysSince(j.first_seen)<=7;}
@@ -282,18 +386,21 @@ function linkBtns(j){
   return out.join("");
 }
 function render(){
-  const list=document.getElementById("list");renderTabs();const jobs=visible();
+  renderTabs();
+  if(state.scope==="pipeline"){renderPipeline();return;}
+  document.getElementById("filterbar").style.display="";
+  const list=document.getElementById("list");const jobs=visible();
   const onlyDismissed=state.mDismissed==="only";
   document.getElementById("count").textContent=jobs.length?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
   if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try another tab, search, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
   list.innerHTML=jobs.map(j=>{
-    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id);
+    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id),tracked=isTracked(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
     const tag=j.type==="house"?`<span class="tag house">House</span>`:j.type==="agency"?`<span class="tag agency">Agency</span>`:"";
     return `<li class="job ${j.type}${applied?" applied":""}" data-id="${esc(j.id)}">
       <div class="top">
         <div>
-          <div class="company-row"><span class="company">${esc(j.company||"—")}</span>${tag}</div>
+          <div class="company-row"><span class="company">${esc(j.company||"—")}</span>${tag}${tracked?'<span class="tag tracked">In pipeline</span>':""}</div>
           <div class="title">${esc(j.title)}</div>
           <div class="meta">${meta}</div>
         </div>
@@ -301,6 +408,7 @@ function render(){
       </div>
       <div class="desc"><div class="desc-inner">${esc(j.description||"No description captured — open the role to read the full posting.")}</div></div>
       <div class="actions">${linkBtns(j)}
+        <button class="btn track${tracked?" on":""}" data-act="track">${tracked?"Tracking ✓":"Track"}</button>
         <button class="btn${saved?" on":""}" data-act="save">${saved?"Saved ✓":"Save"}</button>
         <button class="btn${applied?" on":""}" data-act="applied">${applied?"Applied ✓":"Mark applied"}</button>
         <button class="btn dismiss" data-act="dismiss">${dismissed?"↩ Restore":"Not relevant"}</button>
@@ -312,13 +420,275 @@ function render(){
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
+/* ── Pipeline (Memory layer) ─────────────────────────────────────────────── */
+const STAGES=[["spotted","Spotted"],["researching","Finding a contact"],["contacted","Contacted"],["replied","Got a reply"],["intro","Intro made"],["applied","Applied"],["interviewing","Interviewing"],["closed","Closed"]];
+const STAGE_LABEL=Object.fromEntries(STAGES);
+const CSTAT=[["to_contact","To contact"],["contacted","Contacted"],["replied","Replied"],["no_reply","No reply"]];
+const CSTAT_LABEL=Object.fromEntries(CSTAT);
+const CHANNELS=[["linkedin","LinkedIn"],["email","Email"],["referral","Referral"],["other","Other"]];
+const FOLLOWUP_DAYS=5;
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function jobById(id){return state.jobs.find(j=>j.id===id);}
+function isTracked(id){return !!state.pipeline[id];}
+function ensureRecord(id){
+  if(!state.pipeline[id]) state.pipeline[id]={stage:"spotted",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now()};
+  return state.pipeline[id];
+}
+function trackedItems(){
+  return Object.keys(state.pipeline).map(id=>({id,rec:state.pipeline[id],job:jobById(id)}))
+    .filter(x=>x.job).sort((a,b)=>(b.rec.updatedAt||0)-(a.rec.updatedAt||0));
+}
+function followUps(){
+  const out=[];
+  trackedItems().forEach(({id,rec,job})=>{
+    (rec.contacts||[]).forEach((c,ci)=>{
+      if(c.status==="contacted"&&c.date&&daysSince(c.date)>=FOLLOWUP_DAYS)
+        out.push({id,job,rec,ci,contact:c,days:Math.floor(daysSince(c.date)),reason:"reping"});
+    });
+    if(rec.next&&rec.next<=todayStr()&&rec.stage!=="closed") out.push({id,job,rec,ci:-1,reason:"next"});
+  });
+  return out.sort((a,b)=>(b.days||99)-(a.days||99));
+}
+function setStage(id,stage){
+  const rec=ensureRecord(id);rec.stage=stage;rec.updatedAt=Date.now();
+  if(stage==="applied"){state.appliedSet.add(id);if(!rec.appliedOn)rec.appliedOn=todayStr();}
+  persist();
+}
+function contactSummary(rec){
+  const cs=rec.contacts||[];
+  if(!cs.length)return "No contact yet";
+  const replied=cs.filter(c=>c.status==="replied").length, contacted=cs.filter(c=>c.status==="contacted").length;
+  const parts=[`${cs.length} contact${cs.length>1?"s":""}`];
+  if(replied)parts.push(`${replied} replied`); else if(contacted)parts.push(`${contacted} awaiting reply`);
+  return parts.join(" · ");
+}
+function renderPipeline(){
+  document.getElementById("filterbar").style.display="none";
+  syncPanel();
+  const q=state.q.trim().toLowerCase();
+  const match=x=>!q||`${x.job.title} ${x.job.company}`.toLowerCase().includes(q);
+  const items=trackedItems().filter(match), fu=followUps().filter(match);
+  const list=document.getElementById("list");
+  document.getElementById("footer").textContent="The Vitrine · your pipeline lives on your devices";
+  if(!items.length){
+    document.getElementById("count").textContent="";
+    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Open any role and tap <strong>Track</strong> to follow it here — contacts, replies, follow-ups and which CV you sent.</li>`;
+    return;
+  }
+  document.getElementById("count").textContent=`${items.length} role${items.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
+  let html="";
+  if(fu.length){
+    html+=`<div class="section-h due">Follow-ups due <span class="n">${fu.length}</span></div>`;
+    html+=fu.map(f=>{
+      if(f.reason==="reping"){
+        const c=f.contact;
+        return `<div class="prec duecard" data-id="${esc(f.id)}">
+          <div class="pc-co">${esc(f.job.company||"—")}</div>
+          <div class="pc-title">${esc(f.job.title)}</div>
+          <div class="due-line"><b>${esc(c.name||"A contact")}</b> was messaged <b>${f.days} day${f.days!==1?"s":""} ago</b> with no reply.</div>
+          <div class="prec-actions">
+            <button class="mini go" data-fu="reping" data-id="${esc(f.id)}" data-ci="${f.ci}">Re-pinged today</button>
+            <button class="mini" data-fu="replied" data-id="${esc(f.id)}" data-ci="${f.ci}">They replied</button>
+            <button class="mini" data-fu="noreply" data-id="${esc(f.id)}" data-ci="${f.ci}">No reply — stop</button>
+          </div></div>`;
+      }
+      return `<div class="prec duecard next" data-id="${esc(f.id)}">
+        <div class="pc-co">${esc(f.job.company||"—")}</div>
+        <div class="pc-title">${esc(f.job.title)}</div>
+        <div class="due-line">Reminder set for <b>${esc(f.rec.next)}</b>.</div>
+        <div class="prec-actions"><button class="mini go" data-fu="opennext" data-id="${esc(f.id)}">Open</button><button class="mini" data-fu="clearnext" data-id="${esc(f.id)}">Clear reminder</button></div></div>`;
+    }).join("");
+  }
+  STAGES.forEach(([key,label])=>{
+    const inStage=items.filter(x=>(x.rec.stage||"spotted")===key);
+    if(!inStage.length)return;
+    html+=`<div class="section-h">${esc(label)} <span class="n">${inStage.length}</span></div>`;
+    html+=inStage.map(({id,rec,job})=>{
+      const bits=[contactSummary(rec)];
+      if(rec.cv)bits.push("CV: "+esc(rec.cv));
+      if(rec.next)bits.push("Next: "+esc(rec.next));
+      return `<div class="prec" data-id="${esc(id)}">
+        <div class="pc-co">${esc(job.company||"—")}</div>
+        <div class="pc-title">${esc(job.title)}</div>
+        <div class="pc-meta">${bits.map(b=>`<span>${b}</span>`).join("")}</div></div>`;
+    }).join("");
+  });
+  list.innerHTML=html;
+}
+
+/* ── Editor sheet ────────────────────────────────────────────────────────── */
+function openEditor(id){ensureRecord(id);state.editId=id;renderEditor();document.getElementById("overlay").hidden=false;}
+function closeEditor(){document.getElementById("overlay").hidden=true;state.editId=null;render();}
+function renderEditor(){
+  const id=state.editId;const rec=ensureRecord(id);const job=jobById(id)||{};
+  const stages=STAGES.map(([k,l])=>`<button class="stagebtn" data-stage="${k}" aria-pressed="${(rec.stage||"spotted")===k}">${esc(l)}</button>`).join("");
+  const contacts=(rec.contacts||[]).map((c,ci)=>{
+    const chan=CHANNELS.map(([v,l])=>`<option value="${v}"${c.channel===v?" selected":""}>${l}</option>`).join("");
+    const stat=c.status||"to_contact";
+    return `<div class="contact" data-ci="${ci}">
+      <div class="crow">
+        <input class="inp cname" data-f="name" placeholder="Name" value="${esc(c.name||"")}">
+        <select class="inp cchan" data-f="channel">${chan}</select>
+      </div>
+      <div class="crow" style="margin-top:8px"><input class="inp" data-f="role" placeholder="Role @ company (e.g. Digital Dir. @ Cartier)" value="${esc(c.role||"")}"></div>
+      <div class="crow2">
+        <button class="cstat" data-cstat data-s="${stat}">${esc(CSTAT_LABEL[stat])}</button>
+        ${c.date?`<span class="cdate">since ${esc(c.date)}</span>`:""}
+        <button class="cdel" data-cdel title="Remove contact">✕</button>
+      </div></div>`;
+  }).join("");
+  document.getElementById("sheet").innerHTML=`
+    <div class="sheet-h">
+      <div><div class="co">${esc(job.company||"—")}</div><div class="ti">${esc(job.title||"Role")}</div></div>
+      <button class="xclose" data-close title="Close">✕</button>
+    </div>
+    <div class="fld"><label>Stage</label><div class="stagewrap">${stages}</div></div>
+    <div class="fld">
+      <label>People to reach / already reached</label>
+      <div id="contacts">${contacts||`<div class="hint" style="margin-bottom:10px">No one yet. Add the person who could introduce Zineb or refer her.</div>`}</div>
+      <button class="addc" data-addc>+ Add a contact</button>
+      <div class="hint">Tap a contact's status to move it: To contact → Contacted → Replied. “Contacted” stamps today's date and starts the ${FOLLOWUP_DAYS}-day follow-up clock.</div>
+    </div>
+    <div class="fld"><label>CV / resume sent</label><input class="inp" data-f="cv" placeholder="e.g. v3 — luxury e-com PM" value="${esc(rec.cv||"")}"></div>
+    <div class="fld"><label>Next action — remind me on</label><input class="inp" type="date" data-f="next" value="${esc(rec.next||"")}"></div>
+    <div class="fld"><label>Notes</label><textarea class="inp" data-f="note" placeholder="Where she applied, who referred, what to say next…">${esc(rec.note||"")}</textarea></div>
+    <div class="sheet-foot">
+      <button class="untrack" data-untrack>Stop tracking this role</button>
+      <button class="done" data-close>Done</button>
+    </div>`;
+}
+
+/* ── Settings · backup · sync ────────────────────────────────────────────── */
+function backupData(){
+  return {vitrine_backup:1, exported_at:new Date().toISOString(),
+    saved:[...state.savedSet], applied:[...state.appliedSet], dismissed:[...state.dismissedSet], pipeline:state.pipeline};
+}
+function downloadBackup(){
+  const blob=new Blob([JSON.stringify(backupData(),null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="vitrine-backup-"+todayStr()+".json";
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function applyBackup(o){
+  if(!o||typeof o!=="object")throw new Error("bad file");
+  state.savedSet=new Set(o.saved||[]);
+  state.appliedSet=new Set(o.applied||[]);
+  state.dismissedSet=new Set(o.dismissed||[]);
+  state.pipeline=(o.pipeline&&typeof o.pipeline==="object")?o.pipeline:{};
+  persist();render();
+}
+function statusMeta(){
+  return ({off:["","Sync is off — add your token to turn it on"],idle:["busy","Sync on — checking…"],
+    on:["on","Sync is on"],error:["err","Can't reach sync — check the token"]})[state.sync]||["","—"];
+}
+function openSettings(){renderSettings();document.getElementById("setOverlay").hidden=false;}
+function closeSettings(){document.getElementById("setOverlay").hidden=true;}
+function renderSettings(){
+  const m=statusMeta(),cls=m[0],label=m[1];
+  const url=SYNC.url, hasKey=!!SYNC.key;
+  const trackedN=Object.keys(state.pipeline).filter(id=>jobById(id)).length;
+  document.getElementById("setSheet").innerHTML=`
+    <div class="sheet-h">
+      <div><div class="co">The Vitrine</div><div class="ti">Settings</div></div>
+      <button class="xclose" data-sclose title="Close">✕</button>
+    </div>
+    <div class="set-sec">
+      <h3 class="set-h">Backup</h3>
+      <p class="set-sub">Your pipeline and marks live in this browser. Download a copy so a cleared cache can't erase months of contacts and notes. Tracking <b>${trackedN}</b> role${trackedN!==1?"s":""} right now.</p>
+      <button class="set-btn go block" data-backup>Download backup</button>
+      <button class="set-btn block" data-restore>Restore from a backup file…</button>
+    </div>
+    <div class="set-sec">
+      <h3 class="set-h">Sync across devices</h3>
+      <div class="statusrow"><span class="sdot ${cls}"></span><span>${esc(label)}</span></div>
+      <p class="set-sub">Paste the Worker token you set in Cloudflare. It's kept on <b>this device only</b> — never in the public code — so enter it once here and once on the other device.</p>
+      <div class="fld"><label>Worker URL</label><input class="inp" id="syncUrl" value="${esc(url)}"></div>
+      <div class="fld"><label>Token</label><input class="inp" id="syncTok" type="password" placeholder="${hasKey?"•••••••• saved — leave blank to keep":"paste token"}" value=""></div>
+      <button class="set-btn go block" data-savesync>Save &amp; test</button>
+      ${hasKey?`<button class="set-btn block" data-clearsync>Turn sync off (remove token)</button>`:""}
+    </div>`;
+}
+async function saveAndTestSync(){
+  const url=(document.getElementById("syncUrl").value||"").trim();
+  const tok=(document.getElementById("syncTok").value||"").trim();
+  if(url)localStorage.setItem("v_sync_url",url);
+  if(tok)localStorage.setItem("v_sync_token",tok);   // blank leaves an existing token untouched
+  state.sync="idle";renderSettings();
+  await pullRemote();renderSettings();
+  if(state.sync==="on")render();
+}
+
 document.getElementById("list").addEventListener("click",e=>{
+  const fu=e.target.closest("[data-fu]");
+  if(fu){
+    const id=fu.dataset.id, ci=+fu.dataset.ci, act=fu.dataset.fu, rec=ensureRecord(id);
+    if(act==="reping"&&rec.contacts[ci]){rec.contacts[ci].date=todayStr();}
+    else if(act==="replied"&&rec.contacts[ci]){rec.contacts[ci].status="replied";if(rec.stage==="contacted"||rec.stage==="researching"||rec.stage==="spotted")rec.stage="replied";}
+    else if(act==="noreply"&&rec.contacts[ci]){rec.contacts[ci].status="no_reply";}
+    else if(act==="clearnext"){rec.next="";}
+    else if(act==="opennext"){openEditor(id);return;}
+    rec.updatedAt=Date.now();persist();render();return;
+  }
+  const prec=e.target.closest(".prec");
+  if(prec){openEditor(prec.dataset.id);return;}
   const card=e.target.closest(".job");if(!card)return;const id=card.dataset.id;
   if(e.target.closest("[data-stop]"))return;
   const act=e.target.closest("[data-act]");
-  if(act){e.stopPropagation();const a=act.dataset.act;const set=a==="save"?state.savedSet:a==="applied"?state.appliedSet:state.dismissedSet;set.has(id)?set.delete(id):set.add(id);persist();render();return;}
+  if(act){
+    e.stopPropagation();const a=act.dataset.act;
+    if(a==="track"){openEditor(id);return;}
+    const set=a==="save"?state.savedSet:a==="applied"?state.appliedSet:state.dismissedSet;
+    set.has(id)?set.delete(id):set.add(id);persist();render();return;
+  }
   card.classList.toggle("open");
 });
+
+// Editor interactions
+document.getElementById("overlay").addEventListener("click",e=>{
+  if(e.target.id==="overlay"){closeEditor();return;}
+  const id=state.editId;if(id==null)return;const rec=ensureRecord(id);
+  if(e.target.closest("[data-close]")){closeEditor();return;}
+  if(e.target.closest("[data-untrack]")){delete state.pipeline[id];persist();closeEditor();return;}
+  if(e.target.closest("[data-addc]")){rec.contacts=rec.contacts||[];rec.contacts.push({name:"",role:"",channel:"linkedin",status:"to_contact",date:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
+  const del=e.target.closest("[data-cdel]");
+  if(del){const ci=+del.closest(".contact").dataset.ci;rec.contacts.splice(ci,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
+  const cs=e.target.closest("[data-cstat]");
+  if(cs){const ci=+cs.closest(".contact").dataset.ci;const c=rec.contacts[ci];const order=CSTAT.map(x=>x[0]);let i=order.indexOf(c.status||"to_contact");c.status=order[(i+1)%order.length];if(c.status==="contacted"&&!c.date)c.date=todayStr();rec.updatedAt=Date.now();persist();renderEditor();return;}
+  const st=e.target.closest("[data-stage]");
+  if(st){setStage(id,st.dataset.stage);renderEditor();return;}
+});
+document.getElementById("overlay").addEventListener("input",e=>{
+  const id=state.editId;if(id==null)return;const rec=ensureRecord(id);
+  const f=e.target.closest("[data-f]");if(!f)return;const key=f.dataset.f;
+  if(["cv","next","note"].includes(key)){rec[key]=e.target.value;}
+  else{const ci=+e.target.closest(".contact").dataset.ci;rec.contacts[ci][key]=e.target.value;}
+  rec.updatedAt=Date.now();persist();
+});
+
+// Settings interactions
+document.getElementById("settingsBtn").addEventListener("click",openSettings);
+document.getElementById("setOverlay").addEventListener("click",e=>{
+  if(e.target.id==="setOverlay"||e.target.closest("[data-sclose]")){closeSettings();return;}
+  if(e.target.closest("[data-backup]")){downloadBackup();return;}
+  if(e.target.closest("[data-restore]")){document.getElementById("restoreInput").click();return;}
+  if(e.target.closest("[data-savesync]")){saveAndTestSync();return;}
+  if(e.target.closest("[data-clearsync]")){localStorage.removeItem("v_sync_token");state.sync="off";renderSettings();return;}
+});
+document.getElementById("restoreInput").addEventListener("change",e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const o=JSON.parse(rd.result);
+      if(!confirm("Restore this backup? It replaces the marks and pipeline currently on this device."))return;
+      applyBackup(o);closeSettings();
+    }catch(err){alert("That file couldn't be read as a Vitrine backup.");}
+    e.target.value="";
+  };
+  rd.readAsText(f);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!document.getElementById("overlay").hidden)closeEditor();else if(!document.getElementById("setOverlay").hidden)closeSettings();}});
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;

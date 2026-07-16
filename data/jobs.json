@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T09:44:52.189615+00:00",
+  "generated_at": "2026-07-16T10:00:36.312237+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -75,14 +75,14 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 371,
+      "fetched": 372,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 73,
-      "kept": 67,
+      "fetched": 75,
+      "kept": 69,
       "error": false
     },
     {
@@ -105,15 +105,15 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 20,
+      "fetched": 30,
       "kept": 8,
       "error": false
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 188,
-      "used": 62,
+      "left": 184,
+      "used": 66,
       "limit": 250
     }
   },

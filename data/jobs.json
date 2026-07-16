@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T07:04:56.018459+00:00",
+  "generated_at": "2026-07-16T07:38:10.790050+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -112,8 +112,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 196,
-      "used": 54,
+      "left": 192,
+      "used": 58,
       "limit": 250
     }
   },

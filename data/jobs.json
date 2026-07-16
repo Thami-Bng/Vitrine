@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T08:44:20.163795+00:00",
+  "generated_at": "2026-07-16T09:07:16.644270+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -69,7 +69,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 91,
+      "fetched": 92,
       "kept": 0,
       "error": false
     },
@@ -112,8 +112,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 192,
-      "used": 58,
+      "left": 188,
+      "used": 62,
       "limit": 250
     }
   },
@@ -131,7 +131,65 @@
       "performance analyst"
     ],
     "min_salary_max": 9000,
-    "profiles": []
+    "profiles": [],
+    "house_brands": [
+      "amorepacific",
+      "balenciaga",
+      "bottega",
+      "bulgari",
+      "bvlgari",
+      "cartier",
+      "chanel",
+      "charlotte tilbury",
+      "clarins",
+      "dior",
+      "estee lauder",
+      "estée lauder",
+      "gucci",
+      "guerlain",
+      "hermes",
+      "hermès",
+      "kering",
+      "l'oreal",
+      "lancome",
+      "loreal",
+      "lvmh",
+      "net-a-porter",
+      "puig",
+      "richemont",
+      "saint laurent",
+      "sephora",
+      "shiseido",
+      "ynap"
+    ],
+    "agency_terms": [
+      "achieve group",
+      "adecco",
+      "ambition",
+      "charterhouse",
+      "cornerstone global",
+      "gmp recruitment",
+      "good job creations",
+      "hays",
+      "hudson",
+      "jac recruitment",
+      "kelly services",
+      "kerry consulting",
+      "links international",
+      "manpower",
+      "michael page",
+      "morgan mckinley",
+      "pagegroup",
+      "peoplebank",
+      "persolkelly",
+      "randstad",
+      "recruit express",
+      "reeracoen",
+      "robert half",
+      "robert walters",
+      "supreme hr",
+      "the edge partnership"
+    ]
   },
   "jobs": [
     {

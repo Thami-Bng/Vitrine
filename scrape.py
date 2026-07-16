@@ -377,21 +377,27 @@ FINANCE_SIGNALS = ["bank","banking","insurance","insurer","assurance","reinsur",
                    "swiss re","munich re","marsh","aon","willis towers","tokio marine","msig","etiqa"]
 
 USER_CATS = []
-def category_of(company, title, sector, type_):
+def category_of(company, title, sector, type_, desc=""):
     """User-defined categories win when configured; house/agency stay ours."""
     if type_=="house":  return "house"
     if type_=="agency": return "recruiter"
     if USER_CATS:
-        blob=f"{company} {title}".lower()
+        # Two scopes, and they must match the dashboard exactly or a role lands in
+        # one category on the server and another in the browser:
+        #   terms   → the EMPLOYER'S NAME only
+        #   signals → the whole posting: employer, title and description
+        who  = (company or "").lower()
+        blob = f"{company} {title} {desc}".lower()
         for c in USER_CATS:
-            if c.get("locked") or not c.get("terms"): continue
-            if any(str(t).lower() in blob for t in c["terms"]): return c["id"]
+            if c.get("locked"): continue
+            if any(str(t).lower() in who  for t in (c.get("terms")   or [])): return c["id"]
+            if any(str(t).lower() in blob for t in (c.get("signals") or [])): return c["id"]
         if sector=="hospitality":   return "travel"
         if sector=="beauty_luxury": return "beauty_luxury"
         return "other"
-    return _category_builtin(company, title, sector, type_)
+    return _category_builtin(company, title, sector, type_, desc)
 
-def _category_builtin(company, title, sector, type_):
+def _category_builtin(company, title, sector, type_, desc=""):
     """Primary bucket for the UI tabs — each role lands in exactly one.
 
     Company identity is checked BEFORE content signals: a 'TikTok Shop — Beauty'
@@ -508,7 +514,7 @@ def job(id_, title, company, source, links, posted="", description="", salary=""
     company=(company or "").strip()
     ty=type_of(company); se=sector_of(company,title,description)
     return {"id":str(id_), "title":(title or "").strip(), "company":company, "source":source,
-            "type":ty, "sector":se, "category":category_of(company,title,se,ty),
+            "type":ty, "sector":se, "category":category_of(company,title,se,ty,description),
             "posted":posted or "", "posted_date":to_date(posted),
             "salary":salary or "", "salary_max":salary_max,
             "links":links, "url":links.get("primary",""),

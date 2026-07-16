@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T10:54:33.284622+00:00",
+  "generated_at": "2026-07-16T14:46:33.090694+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 452,
-      "kept": 368,
+      "fetched": 453,
+      "kept": 371,
       "error": false
     },
     {
@@ -51,14 +51,14 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 148,
+      "fetched": 149,
       "kept": 7,
       "error": false
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 120,
-      "kept": 6,
+      "fetched": 124,
+      "kept": 7,
       "error": false
     },
     {
@@ -69,20 +69,20 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 92,
+      "fetched": 93,
       "kept": 0,
       "error": false
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 372,
+      "fetched": 376,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 75,
-      "kept": 69,
+      "fetched": 83,
+      "kept": 77,
       "error": false
     },
     {
@@ -112,8 +112,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 184,
-      "used": 66,
+      "left": 180,
+      "used": 70,
       "limit": 250
     }
   },
@@ -523,6 +523,121 @@
   },
   "jobs": [
     {
+      "id": "mcf-9e9a7e1c1ab2beafb6a551a4b2c711d2",
+      "title": "Machine Learning Engineer Graduate (Global E-Commerce, Recommendation) - 2026 Start (PhD)",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$11,250–22,500/mo",
+      "salary_max": 22500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/9e9a7e1c1ab2beafb6a551a4b2c711d2",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/9e9a7e1c1ab2beafb6a551a4b2c711d2"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/9e9a7e1c1ab2beafb6a551a4b2c711d2",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
+      "id": "mcf-2900752eda14f32cfee86b0ddfb977e9",
+      "title": "Machine Learning Engineer Graduate (Global E-Commerce, Platform Governance) - 2026 Start (BS/MS)",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$8,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2900752eda14f32cfee86b0ddfb977e9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2900752eda14f32cfee86b0ddfb977e9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2900752eda14f32cfee86b0ddfb977e9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
+      "id": "mcf-768ae241add7d34afca0722e0dea52af",
+      "title": "Machine Learning Engineer Graduate (Global E-Commerce, Platform Governance) - 2026 Start (PhD)",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$11,250–22,500/mo",
+      "salary_max": 22500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/768ae241add7d34afca0722e0dea52af",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/768ae241add7d34afca0722e0dea52af"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/768ae241add7d34afca0722e0dea52af",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
+      "id": "mcf-d2f7674e963bf2769c55eeb24873a9c5",
+      "title": "Machine Learning Engineer, Global E-Commerce (ETA, Pricing & Conversion)",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$11,250–22,500/mo",
+      "salary_max": 22500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d2f7674e963bf2769c55eeb24873a9c5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d2f7674e963bf2769c55eeb24873a9c5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d2f7674e963bf2769c55eeb24873a9c5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
+      "id": "mcf-2d1006c9bff4afafbc3374a695dbd321",
+      "title": "Machine Learning Engineer (Recommendation) - Global E-Commerce",
+      "company": "BYTEDANCE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$11,250–22,500/mo",
+      "salary_max": 22500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2d1006c9bff4afafbc3374a695dbd321",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2d1006c9bff4afafbc3374a695dbd321"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2d1006c9bff4afafbc3374a695dbd321",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
       "id": "mcf-d1701f70d2c4f9d0d5b71ccb08fd5171",
       "title": "E-COMMERCE RETAIL SALES MANAGER",
       "company": "57 EMPLOYMENT AGENCY PTE. LTD.",
@@ -569,6 +684,29 @@
       "first_seen": "2026-07-16T03:58:06.858708+00:00"
     },
     {
+      "id": "mcf-512904df80c04a27f8348267bd26ea46",
+      "title": "Chief Product Owner, Clearing & Margining",
+      "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$13,333–23,666/mo",
+      "salary_max": 23666,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/512904df80c04a27f8348267bd26ea46",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/512904df80c04a27f8348267bd26ea46"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/512904df80c04a27f8348267bd26ea46",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
+    },
+    {
       "id": "mcf-e68bdb6d1c99ea70ac3aec2f8992e820",
       "title": "Product Owner (Strong Knowledge of Vietnam Payments Ecosystem)",
       "company": "TYCHE CONSULTING PTE. LTD.",
@@ -590,6 +728,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-16T07:04:56.018459+00:00"
+    },
+    {
+      "id": "mcf-3dcd78d1d1790ef7425710113dc0837a",
+      "title": "Product Manager Power Solutions",
+      "company": "ROHDE & SCHWARZ ASIA PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/3dcd78d1d1790ef7425710113dc0837a",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/3dcd78d1d1790ef7425710113dc0837a"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/3dcd78d1d1790ef7425710113dc0837a",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
     },
     {
       "id": "mcf-0c543a8fed686cf5bf75d01eb1d8f17f",
@@ -659,6 +820,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-16T03:58:06.858708+00:00"
+    },
+    {
+      "id": "mcf-b2bfa6c864fd7263c4cf8b86645fb3f9",
+      "title": "UI/UX Designer",
+      "company": "OPTIMUM SOLUTIONS (SINGAPORE) PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$6,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/b2bfa6c864fd7263c4cf8b86645fb3f9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/b2bfa6c864fd7263c4cf8b86645fb3f9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/b2bfa6c864fd7263c4cf8b86645fb3f9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T14:46:33.090694+00:00"
     },
     {
       "id": "mcf-503b40252a0df8d99deb54dd3174ca96",
@@ -2191,29 +2375,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIENoYW5uZWwgTGVhZCwgR3JvY2VyeSBPbmxpbmUgKEh5YnJpZCkiLCJjb21wYW55X25hbWUiOiJjb3JsaXNvbiBw",
-      "title": "E-commerce Channel Lead, Grocery Online (Hybrid)",
-      "company": "corlison private limited",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "4 days ago",
-      "posted_date": "2026-07-12",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Corlison Private Limited in Singapore is looking for a candidate to oversee key e-commerce channels including Redmart and Fairprice Online. You will manage sales strategies, prices, and promotional campaigns, while ensuring alignment with operations and logistics. \n\nThis role offers a flexible work week, regular office hours, and an annual training programme aimed at enhancing your skills. A basic monthly salary of SGD 5,500 to 6,000 is provided along with other benefits. \n\n#J-18808-Ljbffr",
-      "preferred": false,
-      "first_seen": "2026-07-14T04:32:14.041102+00:00"
-    },
-    {
       "id": "eyJqb2JfdGl0bGUiOiJTRUEgR2VuZXJhbCBNYW5hZ2VyOiBPbW5pY2hhbm5lbCBHcm93dGggTGVhZGVyIiwiY29tcGFueV9uYW1lIjoiU0VBUkNIQVNJQSBD",
       "title": "SEA General Manager: Omnichannel Growth Leader",
       "company": "SEARCHASIA CONSULTING PTE. LTD.",
@@ -2323,6 +2484,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIENoYW5uZWwgTGVhZCwgR3JvY2VyeSBPbmxpbmUgKEh5YnJpZCkiLCJjb21wYW55X25hbWUiOiJjb3JsaXNvbiBw",
+      "title": "E-commerce Channel Lead, Grocery Online (Hybrid)",
+      "company": "corlison private limited",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "5 days ago",
+      "posted_date": "2026-07-11",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.expertini.com/job/e-commerce-channel-lead-grocery-online-hybrid-singapore-corlison-private-limited-5178-21632002/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Corlison Private Limited in Singapore is looking for a candidate to oversee key e-commerce channels including Redmart and Fairprice Online. You will manage sales strategies, prices, and promotional campaigns, while ensuring alignment with operations and logistics. \n\nThis role offers a flexible work week, regular office hours, and an annual training programme aimed at enhancing your skills. A basic monthly salary of SGD 5,500 to 6,000 is provided along with other benefits. \n\n#J-18808-Ljbffr",
+      "preferred": false,
+      "first_seen": "2026-07-14T04:32:14.041102+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJBUEFDIERpZ2l0YWwgU3RyYXRlZ3kgTGVhZCAtIEFJLURyaXZlbiwgT21uaWNoYW5uZWwgR3Jvd3RoIiwiY29tcGFueV9uYW1lIjoi",
@@ -4902,29 +5086,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIEdyb3d0aCBNYW5hZ2VyIiwiY29tcGFueV9uYW1lIjoiQ2hlaWwgU2luZ2Fwb3JlIFBURS4gTFRELiIsImh0aWRv",
-      "title": "E-Commerce Growth Manager",
-      "company": "Cheil Singapore PTE. LTD.",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "16 days ago",
-      "posted_date": "2026-06-30",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/advertising/e-commerce-growth-manager-cheil-singapore-e6e12be57420dc3e5b29e795232190e5?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
-      },
-      "url": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Established in 1973 with headquarters in Seoul, South Korea, Cheil Worldwide is one of the world’s leading integrated marketing communications networks, with more than 7,200 employees globally in more than 54 offices in 46 countries.\n\nFor more information, visit us at: www.cheil.com.\n\nWe are inviting candidates for the position of:\n\nE-Commerce Growth Manager\n\nWe are seeking a eCommerce Growth Manager – Future GenUI Experience to drive conversion, customer engagement, and digital growth across our client’s ecommerce platform. This role is ideal for a data-driven growth professional who combines strong analytical thinking with a passion for delivering exceptional digital experiences.\n\nThe successful candidate will own the Conversion Rate Optimization strategy and roadmap, identify optimization opportunities through customer insights and experimentation, and work closely with cross-functional teams and client stakeholders to improve business performance through UX, personalization, and data-driven decision making.\n\nBeyond today's responsibilities, this role offers a unique opportunity to help shape the next evolution of our client’s digital platform. As we embark on the next phase of our transformation towards a Generative UI (GenUI)-enabled experience, the eCommerce Growth Manager will play a key role in defining how AI can create more intelligent, personalized, and adaptive customer journeys.\n\nWe are looking for someone with hands-on exposure to GenAI or AI tools, who is excited to experiment with emerging technologies and translate them into real business impact. This position also provides a clear growth path into a Digital Growth & Strategy role, helping define the future AI and customer experience strategy for our client’s brand.com.\n\nKey Responsibilities:\n\n1. Digital Growth & Conversion Optimization\n\nOwn and drive the Conversion Rate Optimization (CRO) roadmap across digital platforms.Analyze customer journeys, conversion funnels, and behavioral data to identify growth opportunities.Develop hypotheses and execute optimization initiatives to improve conversion, engagement, and revenue.Lead A/B and multivariate testing programs and translate results into actionable recommendations.Monitor and report on key KPIs including traffic quality, conversion rate, average order value, and customer engagement.2. Customer Experience & Journey Optimization\n\nEvaluate end-to-end customer journeys and identify friction points that impact business performance.Partner with UX/UI, content, marketing, and development teams to enhance digital experiences.Champion customer-centric design principles while balancing business objectives.Recommend improvements to navigation, content, personalization, and onsite experiences.3. AI & Future GenUI Innovation\n\nExplore and identify practical applications of Generative AI and emerging technologies to improve customer experiences and operational efficiency.Develop concepts and business cases for future GenUI experiences, including: Personalized customer journeys, AI-assisted recommendations, Conversational experiences, Dynamic and adaptive interfaces and Intelligent content generationStay abreast of AI and digital experience trends and recommend innovative initiatives for future implementation.4. Data Analytics & Insights\n\nLeverage analytics platforms to understand customer behavior and identify optimization opportunities.Translate complex data into meaningful business insights and strategic recommendations.Develop insights and performance reports to communicate progress and business impact of tests and CRO initiatives.Work closely with analytics team to identify opportunities, test hypothesis to drive acquisition, engagement, and conversions.5. Cross-functional Leadership & Strategy\n\nCollaborate with internal stakeholders across Publishing, Ecommerce, Analytics and development teams.Present recommendations and business cases to senior management through compelling storytelling and data-driven narratives.Support the development of long-term digital growth, personalization, and AI strategies.Foster a culture of experimentation, continuous learning, and innovation within the team.Qualifications:\n\nBachelor’s degree in Design, UX, or related field.3–5 years of experience in UX/UI, CRO, or customer experience design, preferably within D2C ecommerce.Strong portfolio showcasing UX thinking, interaction design, experimentation, and data-driven problem solving.Strong understanding of GenUI / AI-driven experience design trends and workflows.Experience working with Adobe Experience Manager (AEM) and component-based CMS ecosystems is highly preferred.Familiarity with analytics and testing tools such as Adobe Analytics, or similar.Exposure to GenAI-enabled design tools.Understanding of responsive design, design systems, accessibility, and modern ecommerce UX patterns.Strong communication, presentation, and stakeholder management skills.Ability to work in fast-paced, agile environments.",
-      "preferred": false,
-      "first_seen": "2026-07-16T07:04:56.018459+00:00"
-    },
-    {
       "id": "mcf-345976eff3b519d014c1d60e0e0bc1db",
       "title": "SAP Reporting and Analytics Product Owner, 1-year fixed term (Mining)",
       "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
@@ -5012,6 +5173,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T03:40:40.311934+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJFLUNvbW1lcmNlIEdyb3d0aCBNYW5hZ2VyIiwiY29tcGFueV9uYW1lIjoiQ2hlaWwgU2luZ2Fwb3JlIFBURS4gTFRELiIsImh0aWRv",
+      "title": "E-Commerce Growth Manager",
+      "company": "Cheil Singapore PTE. LTD.",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "17 days ago",
+      "posted_date": "2026-06-29",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/advertising/e-commerce-growth-manager-cheil-singapore-e6e12be57420dc3e5b29e795232190e5?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+      },
+      "url": "https://sg.linkedin.com/jobs/view/e-commerce-growth-manager-at-cheil-singapore-4434196623?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Established in 1973 with headquarters in Seoul, South Korea, Cheil Worldwide is one of the world’s leading integrated marketing communications networks, with more than 7,200 employees globally in more than 54 offices in 46 countries.\n\nFor more information, visit us at: www.cheil.com.\n\nWe are inviting candidates for the position of:\n\nE-Commerce Growth Manager\n\nWe are seeking a eCommerce Growth Manager – Future GenUI Experience to drive conversion, customer engagement, and digital growth across our client’s ecommerce platform. This role is ideal for a data-driven growth professional who combines strong analytical thinking with a passion for delivering exceptional digital experiences.\n\nThe successful candidate will own the Conversion Rate Optimization strategy and roadmap, identify optimization opportunities through customer insights and experimentation, and work closely with cross-functional teams and client stakeholders to improve business performance through UX, personalization, and data-driven decision making.\n\nBeyond today's responsibilities, this role offers a unique opportunity to help shape the next evolution of our client’s digital platform. As we embark on the next phase of our transformation towards a Generative UI (GenUI)-enabled experience, the eCommerce Growth Manager will play a key role in defining how AI can create more intelligent, personalized, and adaptive customer journeys.\n\nWe are looking for someone with hands-on exposure to GenAI or AI tools, who is excited to experiment with emerging technologies and translate them into real business impact. This position also provides a clear growth path into a Digital Growth & Strategy role, helping define the future AI and customer experience strategy for our client’s brand.com.\n\nKey Responsibilities:\n\n1. Digital Growth & Conversion Optimization\n\nOwn and drive the Conversion Rate Optimization (CRO) roadmap across digital platforms.Analyze customer journeys, conversion funnels, and behavioral data to identify growth opportunities.Develop hypotheses and execute optimization initiatives to improve conversion, engagement, and revenue.Lead A/B and multivariate testing programs and translate results into actionable recommendations.Monitor and report on key KPIs including traffic quality, conversion rate, average order value, and customer engagement.2. Customer Experience & Journey Optimization\n\nEvaluate end-to-end customer journeys and identify friction points that impact business performance.Partner with UX/UI, content, marketing, and development teams to enhance digital experiences.Champion customer-centric design principles while balancing business objectives.Recommend improvements to navigation, content, personalization, and onsite experiences.3. AI & Future GenUI Innovation\n\nExplore and identify practical applications of Generative AI and emerging technologies to improve customer experiences and operational efficiency.Develop concepts and business cases for future GenUI experiences, including: Personalized customer journeys, AI-assisted recommendations, Conversational experiences, Dynamic and adaptive interfaces and Intelligent content generationStay abreast of AI and digital experience trends and recommend innovative initiatives for future implementation.4. Data Analytics & Insights\n\nLeverage analytics platforms to understand customer behavior and identify optimization opportunities.Translate complex data into meaningful business insights and strategic recommendations.Develop insights and performance reports to communicate progress and business impact of tests and CRO initiatives.Work closely with analytics team to identify opportunities, test hypothesis to drive acquisition, engagement, and conversions.5. Cross-functional Leadership & Strategy\n\nCollaborate with internal stakeholders across Publishing, Ecommerce, Analytics and development teams.Present recommendations and business cases to senior management through compelling storytelling and data-driven narratives.Support the development of long-term digital growth, personalization, and AI strategies.Foster a culture of experimentation, continuous learning, and innovation within the team.Qualifications:\n\nBachelor’s degree in Design, UX, or related field.3–5 years of experience in UX/UI, CRO, or customer experience design, preferably within D2C ecommerce.Strong portfolio showcasing UX thinking, interaction design, experimentation, and data-driven problem solving.Strong understanding of GenUI / AI-driven experience design trends and workflows.Experience working with Adobe Experience Manager (AEM) and component-based CMS ecosystems is highly preferred.Familiarity with analytics and testing tools such as Adobe Analytics, or similar.Exposure to GenAI-enabled design tools.Understanding of responsive design, design systems, accessibility, and modern ecommerce UX patterns.Strong communication, presentation, and stakeholder management skills.Ability to work in fast-paced, agile environments.",
+      "preferred": false,
+      "first_seen": "2026-07-16T07:04:56.018459+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE1hbmFnZXIgLSBEaWdpdGFsIFByb2R1Y3RzIiwiY29tcGFueV9uYW1lIjoiTW9uZWUiLCJodGlkb2NpZCI6IkFmMVpJ",

@@ -330,8 +330,18 @@ def is_agency(company):
     c=(company or "").lower(); return any(a in c for a in AGENCIES)
 
 def type_of(company):
-    if is_agency(company): return "agency"
-    if preferred(company): return "house"
+    """Which brands are houses, and which are agencies — editable from Settings.
+    The dashboard is seeded with these exact lists (echoed into jobs.json), so
+    what the user edits is the real rule, not a copy of it."""
+    c=(company or "").lower()
+    agy = CONFIG.get("agency_terms") or []
+    hse = CONFIG.get("house_brands") or []
+    if agy:
+        if any(str(a).lower() in c for a in agy): return "agency"
+    elif is_agency(company): return "agency"
+    if hse:
+        if any(str(b).lower() in c for b in hse): return "house"
+    elif preferred(company): return "house"
     return "other"
 
 def sector_of(company, title, desc):
@@ -860,7 +870,10 @@ def run(dry_run=False):
         except Exception as e: print(f"  ! {label} skipped: {e}", file=sys.stderr)
     OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"quota":QUOTA,
                                "config":{"search":KEYWORDS,"min_salary_max":MIN_SALARY_MAX,
-                                         "profiles":[p.get("name") for p in (CONFIG.get("profiles") or [])]},
+                                         "profiles":[p.get("name") for p in (CONFIG.get("profiles") or [])],
+                                         # The live house/agency rules, so Settings can show and edit the real thing.
+                                         "house_brands":CONFIG.get("house_brands") or sorted(PREFERRED_BRANDS),
+                                         "agency_terms":CONFIG.get("agency_terms") or sorted(AGENCIES)},
                                "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 

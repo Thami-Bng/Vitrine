@@ -100,6 +100,16 @@
   .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
   .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;}
   .empty b{color:var(--ink);font-weight:600;display:block;font-family:"Fraunces",serif;font-size:20px;margin-bottom:6px;}
+  .report{max-width:380px;margin:0 auto;text-align:left;}
+  .rep-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;color:var(--ink);text-align:center;}
+  .rep-p{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 16px;line-height:1.5;}
+  .rep-t{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;}
+  .rep-t td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;color:var(--ink);}
+  .rep-t tr:last-child td{border-bottom:0;}
+  .rep-t .rv{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;width:64px;}
+  .rep-t .rv.accent{color:var(--accent);} .rep-t .rv.ok{color:var(--ok);}
+  .rep-t .rv.ochre{color:var(--ochre);} .rep-t .rv.muted{color:var(--muted);}
+  .report .mini{display:block;margin:14px auto 0;}
   footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:28px;letter-spacing:.02em;}
   .sources{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px;font-size:13px;margin-top:26px;}
   .sources summary{padding:12px 2px;cursor:pointer;color:var(--muted);font-weight:600;list-style:none;}
@@ -126,6 +136,13 @@
   .person{display:flex;flex-direction:column;align-items:center;gap:4px;width:52px;text-decoration:none;}
   .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F1EAE2;border:2px solid #ddd6c9;position:relative;}
   .avatar{overflow:hidden;}
+  .pickgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  @media (min-width:480px){.pickgrid{grid-template-columns:repeat(6,1fr);}}
+  .pk{border:2px solid var(--line);background:var(--card);border-radius:50%;padding:0;cursor:pointer;overflow:hidden;aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:all .12s;}
+  .pk:hover{border-color:var(--accent);}
+  .pk.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+  .pk svg{width:100%;height:100%;display:block;}
+  .av-btn{border:0;background:transparent;padding:0;cursor:pointer;flex:0 0 auto;}
   .av-lg{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;border:2px solid var(--line);background:var(--card);flex:0 0 auto;}
   .av-lg svg{display:block;}
   .prof-card .av-lg{border-color:var(--line);}
@@ -256,6 +273,8 @@
   .prof-name{font-size:15px;font-weight:600;}
   .prof-meta{font-size:12px;color:var(--muted);margin-top:2px;}
   .prof-act{margin-left:auto;display:flex;gap:6px;}
+  .salhint{font-size:13px;color:var(--muted);line-height:1.5;margin:14px 0 18px;}
+  .salhint b{color:var(--ink);}
   .warnbox{border:1px solid var(--ochre);background:var(--ochre-soft);color:#5f4a12;border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.55;margin:0 0 18px;}
   .warnbox b{display:block;color:#4a3a0e;margin-bottom:3px;}
   .cat-card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;margin-bottom:10px;}
@@ -264,6 +283,14 @@
   .cbx input{width:17px;height:17px;accent-color:var(--accent);}
   .an-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:30px 0 2px;}
   .chart{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 10px 8px;margin:12px 0;}
+  .chart.compact{border:0;padding:0;margin:6px 0 0;}
+  .minigrid{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0;}
+  @media (min-width:760px){.minigrid{grid-template-columns:1fr 1fr;}}
+  .mini-c{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 10px;}
+  .mc-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .mc-n{font-size:13px;font-weight:600;color:var(--ink);}
+  .mc-v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .mc-d{font-size:11.5px;color:var(--muted);margin-top:1px;}
   .chart svg{width:100%;height:auto;display:block;overflow:visible;}
   .keys{display:flex;gap:14px;flex-wrap:wrap;padding:8px 4px 2px;}
   .keys .k{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);}
@@ -364,6 +391,10 @@
   <footer id="footer"></footer>
 </div>
 
+<!-- Avatar picker -->
+<div class="overlay" id="pickOverlay" hidden>
+  <div class="sheet" id="pickSheet" role="dialog" aria-modal="true"></div>
+</div>
 <!-- Pipeline editor -->
 <div class="overlay" id="overlay" hidden>
   <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
@@ -387,13 +418,13 @@ function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.t
    rest match on company/title terms you control. Each profile picks which ones
    it wants to see — Zineb has no interest in Banking & Insurance. */
 const DEFAULT_CATS=[
-  {id:"house",label:"Houses",terms:[],locked:true},
+  {id:"house",label:"Houses",terms:[],brands:true},
   {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],locked:true},
   {id:"travel",label:"Travel & Hospitality",terms:["hotel","resort","hospitality","airline","cruise","travel retail","duty free"]},
   {id:"tech",label:"Tech",terms:["software","saas","fintech","platform","tiktok","bytedance","grab","shopee","lazada","sea limited","google","meta","amazon","microsoft","startup","gaming"]},
   {id:"finance",label:"Banking & Insurance",terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
   {id:"consulting",label:"Consulting",terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
-  {id:"recruiter",label:"Recruiters",terms:[],locked:true},
+  {id:"recruiter",label:"Recruiters",terms:[],brands:true},
   {id:"other",label:"Other",terms:[],locked:true},
 ];
 function allCats(){
@@ -477,6 +508,14 @@ function newProfile(name,id){
 function loadCats(){
   try{const c=JSON.parse(localStorage.getItem("v_cats")||"null");if(Array.isArray(c)&&c.length)return c;}catch(e){}
   return JSON.parse(JSON.stringify(DEFAULT_CATS));
+}
+/* Houses and Recruiters are matched on brand names by the scanner. Seed the UI
+   with the real lists it published, so what you edit IS the rule — not a copy. */
+function seedBrandRules(){
+  const cfg=state.scanCfg||{};
+  const h=state.cats.find(c=>c.id==="house"), r=state.cats.find(c=>c.id==="recruiter");
+  if(h&&!(h.terms||[]).length&&Array.isArray(cfg.house_brands))h.terms=cfg.house_brands.slice();
+  if(r&&!(r.terms||[]).length&&Array.isArray(cfg.agency_terms))r.terms=cfg.agency_terms.slice();
 }
 function loadProfiles(){
   try{
@@ -683,13 +722,17 @@ async function boot(){
   state.jobs=data.jobs||[];
   state.scannedAt=new Date(data.generated_at||0).getTime();
   state.quota=data.quota||{};
-  if(data.config){state.config={...state.config,...data.config};}   // what the last scan actually used
+  if(data.config){
+    state.config={...state.config,...data.config};
+    state.scanCfg=data.config;                       // includes the live house/agency brand rules
+  }
   recompile();
   const when=new Date(data.generated_at||Date.now());
   document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   try{const h=await fetch("data/history.json",{cache:"no-store"});if(h.ok)state.history=await h.json();}catch(e){}
   try{const m=await fetch("data/market.json",{cache:"no-store"});if(m.ok)state.market=await m.json();}catch(e){}
   try{const n=await fetch("data/national.json",{cache:"no-store"});if(n.ok)state.national=await n.json();}catch(e){}
+  seedBrandRules();
   renderSources(data.sources);
   render();
   pullRemote();
@@ -768,24 +811,33 @@ function syncPanel(){
   document.getElementById("panel").hidden=!state.panelOpen;
   document.getElementById("filterBtn").setAttribute("aria-expanded",state.panelOpen);
 }
-/* An empty list is not the same as an empty market. Say which. */
+/* An empty list is not the same as an empty market. Say which — as a table.
+   (This used to be a sentence with <b> tags in it, which collided with
+   `.empty b{display:block;font-size:20px}` and exploded across six lines.) */
 function emptyReport(catLabel){
   if(state.mDismissed==="only")
-    return `<b>Nothing set aside</b>Roles you mark \u201cNot relevant\u201d collect here so you can restore them anytime.`;
+    return `<div class="report"><div class="rep-h">Nothing set aside</div>
+      <p class="rep-p">Roles you mark \u201cNot relevant\u201d collect here so you can restore them anytime.</p></div>`;
   const inCat=state.jobs.filter(j=>marketPasses(j,true)&&catOf(j)===state.scope);
   const fresh=inCat.filter(isNew);
   if(!inCat.length)
-    return `<b>Nothing in ${esc(catLabel)} yet</b>No roles here match this profile's search terms and salary floor. The next scan may turn some up.`;
+    return `<div class="report"><div class="rep-h">Nothing in ${esc(catLabel)} yet</div>
+      <p class="rep-p">No roles here match this profile's search terms and salary floor. The next scan may turn some up.</p></div>`;
   const n=x=>inCat.filter(j=>handledState(j)===x).length;
-  const t=n("tracked"),a=n("applied"),d=n("dismissed");
-  const parts=[];
-  if(a)parts.push(`applied to <b>${a}</b>`);
-  if(t)parts.push(`tracked <b>${t}</b>`);
-  if(d)parts.push(`set aside <b>${d}</b>`);
-  const week=fresh.length?`<b>${fresh.length}</b> new this week.`:`No new roles this week.`;
-  return `<b>${esc(catLabel)}: all caught up</b>
-    ${week} In total there ${inCat.length===1?"is":"are"} <b>${inCat.length}</b> role${inCat.length===1?"":"s"} matching this profile${parts.length?` \u2014 you've ${parts.join(", ")}`:""}.
-    <div style="margin-top:12px"><button class="mini" data-showhandled>Show them anyway</button></div>`;
+  const rows=[
+    ["New this week",fresh.length,"accent"],
+    ["Roles in "+esc(catLabel),inCat.length,""],
+    ["Applied",n("applied"),"ok"],
+    ["Tracked",n("tracked"),"ochre"],
+    ["Set aside",n("dismissed"),"muted"],
+  ].filter(r=>r[1]>0||r[0]==="New this week");
+  return `<div class="report">
+    <div class="rep-h">${esc(catLabel)}: all caught up</div>
+    <p class="rep-p">Every role here is handled. Nothing new is waiting for you.</p>
+    <table class="rep-t">${rows.map(([l,v,c])=>
+      `<tr><td>${l}</td><td class="rv ${c}">${v}</td></tr>`).join("")}</table>
+    <button class="mini" data-showhandled>Show them anyway</button>
+  </div>`;
 }
 function linkBtns(j){
   const L=j.links||{};const out=[];
@@ -970,6 +1022,29 @@ function faceSVG(seed,size){
       ${glasses?`<g fill="none" stroke="#3A342E" stroke-width="1.2" opacity=".85"><circle cx="27.4" cy="31" r="4.2"/><circle cx="36.6" cy="31" r="4.2"/><path d="M31.6 31h.8M23.2 30.2l-2.4.6M40.8 30.2l2.4.6"/></g>`:""}
     </g></svg>`;
 }
+/* Pick a face, don't roll dice at it. Twelve seeded variants, chosen not shuffled. */
+function seedVariants(base,n){
+  const out=[];
+  for(let i=0;i<n;i++)out.push(i===0?String(base||"?"):`${base}#${i}`);
+  return out;
+}
+function openPicker(kind,id,ci){
+  state.pick={kind,id,ci};
+  const cur=kind==="profile"
+    ? (state.profiles.find(x=>x.id===id)||{})
+    : (((state.pipeline[id]||{}).contacts||[])[ci]||{});
+  const base=cur.name||"?";
+  const opts=seedVariants(base,12);
+  document.getElementById("pickSheet").innerHTML=`
+    <div class="sheet-h"><div><div class="co">Choose an avatar</div><div class="ti">${esc(base)}</div></div>
+      <button class="xclose" data-pclose>\u2715</button></div>
+    <p class="hint" style="margin:6px 0 14px">Pick a face \u2014 it stays the same on every device.</p>
+    <div class="pickgrid">${opts.map(o=>
+      `<button class="pk ${(cur.seed||base)===o?"on":""}" data-pick="${esc(o)}">${faceSVG(o,58)}</button>`).join("")}</div>
+    ${kind==="profile"?`<button class="set-btn block" data-pickphoto>Use a photo instead\u2026</button>`:""}`;
+  document.getElementById("pickOverlay").hidden=false;
+}
+function closePicker(){document.getElementById("pickOverlay").hidden=true;state.pick=null;}
 function avatarFor(p,size){
   // A real photo wins; otherwise a generated face; the profile's own seed keeps it stable through renames.
   if(p&&p.photo)return `<span class="av-lg" style="width:${size}px;height:${size}px"><img src="${esc(p.photo)}" alt="${esc(p.name||"")}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></span>`;
@@ -982,6 +1057,7 @@ const ICO={
   search:`<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>`,
   sync:`<svg viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 0 1 14.6-5.9M20.5 12a8.5 8.5 0 0 1-14.6 5.9"/><path d="M18 2.5v4h-4M6 21.5v-4h4"/></svg>`,
   save:`<svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14.5l4-4M4 17v3h16v-3"/></svg>`,
+  coin:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.6-.8-1.6-1.2-2.7-1.2-1.6 0-2.6.8-2.6 1.9 0 2.6 5.4 1.3 5.4 4 0 1.2-1.1 2.1-2.8 2.1-1.2 0-2.2-.4-2.8-1.3M12 6.4v11.2"/></svg>`,
 };
 function menuItem(page,ico,title,sub){
   return `<button data-go="${page}"><span class="mi-ico">${ico}</span><span class="mi-b"><span class="mi-t">${title}</span><span class="mi-s">${sub}</span></span><span class="mi-x">\u203a</span></button>`;
@@ -995,7 +1071,7 @@ function personIcons(rec){
     const days=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
     const tag=c.url?"a":"span", href=c.url?` href="${esc(c.url)}" target="_blank" rel="noopener" data-stop`:"";
     return `<${tag} class="person ${st}"${href} title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
-      <span class="avatar">${faceSVG(c.name,44)}<span class="dot2"></span></span>
+      <span class="avatar">${faceSVG(c.seed||c.name,44)}<span class="dot2"></span></span>
       <span class="nm">${esc(first)}</span></${tag}>`;
   };
   return `<span class="people">${cs.map(one).join("")}</span>`;
@@ -1121,7 +1197,9 @@ function renderEditor(){
     const chan=CHANNELS.map(([v,l])=>`<option value="${v}"${c.channel===v?" selected":""}>${l}</option>`).join("");
     const stat=c.status||"to_contact";
     return `<div class="contact" data-ci="${ci}">
-      <div class="crow">
+      <div class="crow" style="align-items:center">
+        <button class="av-btn" data-cpick="${ci}" title="Choose this person's avatar">
+          <span class="av-lg" style="width:40px;height:40px">${faceSVG(c.seed||c.name||"?",40)}</span></button>
         <input class="inp cname" data-f="name" placeholder="Name" value="${esc(c.name||"")}">
         <select class="inp cchan" data-f="channel">${chan}</select>
       </div>
@@ -1190,7 +1268,9 @@ async function pushConfig(){
   try{
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{method:"POST",
       headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
-      body:JSON.stringify({profiles:state.profiles,categories:state.cats})});
+      body:JSON.stringify({profiles:state.profiles,categories:state.cats,
+        house_brands:(state.cats.find(c=>c.id==="house")||{}).terms||[],
+        agency_terms:(state.cats.find(c=>c.id==="recruiter")||{}).terms||[]})});
     if(!r.ok)return false;
     const c=await r.json();
     if(Array.isArray(c.profiles)&&c.profiles.length){state.profiles=c.profiles;saveProfiles();loadProfileData();}
@@ -1268,6 +1348,7 @@ function renderPage(){
         ${menuItem("analytics",ICO.chart,"Analytics",`Read the market \u00b7 track ${esc(P.name)}'s progress`)}
         ${menuItem("cats",ICO.tag,"Categories",`Define the tabs \u00b7 hide ones ${esc(P.name)} doesn't want`)}
         ${menuItem("terms",ICO.search,"Search terms",`What the scan looks for, for ${esc(P.name)}`)}
+        ${menuItem("salary",ICO.coin,"Salary floor",`Currently S$${(P.min_salary_max||0).toLocaleString()}/month`)}
         ${menuItem("sync",ICO.sync,"Sync across devices",esc(m[1]))}
         ${menuItem("backup",ICO.save,"Backup","Download or restore everything")}
       </div>`;
@@ -1291,9 +1372,12 @@ function renderPage(){
             </div>
           </div>
           ${c.locked
-            ? `<div class="hint">Decided by the scanner \u2014 it knows which brands are houses and which are agencies. ${c.id==="other"?"Anything that matches nothing else lands here.":""}</div>`
-            : `<div class="tchips">${(c.terms||[]).map((t,ti)=>`<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-i="${ti}">\u00d7</button></span>`).join("")||`<span class="hint">No terms \u2014 nothing will match.</span>`}</div>
-               <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" placeholder="add a company or title term, then press Enter">`}
+            ? `<div class="hint">${c.id==="other"
+                 ? "The catch-all: anything matching no other category lands here. It has no rules of its own."
+                 : "Matched on the scanner's luxury/beauty brand list and description signals \u2014 broader than a name list, so it isn't editable here."}</div>`
+            : `${c.brands?`<div class="hint" style="margin:0 0 8px">Matched on the company name. This is the live list the scanner uses \u2014 edit it and the next scan follows.</div>`:""}
+               <div class="tchips">${(c.terms||[]).map((t,ti)=>`<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-i="${ti}">\u00d7</button></span>`).join("")||`<span class="hint">No terms \u2014 nothing will match.</span>`}</div>
+               <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" placeholder="${c.brands?"add a brand name":"add a company or title term"}, then press Enter">`}
         </div>`).join("")
       + `<button class="set-btn block" data-addcat>+ Add a category</button>
          <button class="set-btn go block" data-savecfg>Save categories</button>`;
@@ -1310,9 +1394,8 @@ function renderPage(){
           <div style="min-width:0"><div class="prof-name">${esc(p.name)}${on?' <span style="color:var(--accent);font-size:11px">\u00b7 active</span>':""}</div>
           <div class="prof-meta">${(p.include||[]).length} keep terms \u00b7 floor S$${(p.min_salary_max||0).toLocaleString()}/mo \u00b7 ${n} tracked</div>
           <div class="prof-meta" style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
-            <button class="mini" data-photo="${esc(p.id)}">${p.photo?"Change photo":"Add photo"}</button>
-            ${p.photo?`<button class="mini" data-unphoto="${esc(p.id)}">Remove photo</button>`
-                     :`<button class="mini" data-shuffle="${esc(p.id)}">Shuffle avatar</button>`}
+            ${p.photo?`<button class="mini" data-photo="${esc(p.id)}">Change photo</button><button class="mini" data-unphoto="${esc(p.id)}">Remove photo</button>`
+                     :`<button class="mini" data-choose="${esc(p.id)}">Choose avatar</button><button class="mini" data-photo="${esc(p.id)}">Use a photo</button>`}
           </div></div>
           <div class="prof-act">
             ${on?"":`<button class="mini go" data-switch="${esc(p.id)}">Use</button>`}
@@ -1330,12 +1413,20 @@ function renderPage(){
       + termFld("search","Search for (asked of each job site)")
       + termFld("include","Keep titles containing")
       + termFld("exclude","Drop titles containing")
-      + `<div class="fld"><label>Minimum salary (upper band, S$/month)</label>
-          <input class="inp" id="salFloor" type="number" min="0" step="500" value="${P.min_salary_max||0}">
-          <div class="hint">Roles whose published upper band is below this are hidden. Roles with no salary listed are always kept.</div></div>
-        <p class="hint"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
+      + `<p class="hint"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
         <button class="set-btn go block" data-savecfg>Save terms</button>
         <a class="set-btn block" style="display:block;text-align:center;text-decoration:none" href="https://github.com/Thami-Bng/Vitrine/actions" target="_blank" rel="noopener">Run a scan now \u2197</a>`;
+    return;
+  }
+  if(state.page==="salary"){
+    el.innerHTML=pgTop(`Salary floor \u2014 ${P.name}`,
+      `Roles whose <b>published upper band</b> falls below this are hidden. Roles with no salary listed are always kept \u2014 most house roles don't publish one, and they're the ones worth seeing.`)
+      + changeWarning()
+      + `<div class="fld"><label>Minimum (S$ per month)</label>
+          <input class="inp" id="salFloor" type="number" min="0" step="500" value="${P.min_salary_max||0}"></div>
+         <div class="salhint" id="salPreview"></div>
+         <button class="set-btn go block" data-savecfg>Save salary floor</button>`;
+    updateSalPreview();
     return;
   }
   if(state.page==="sync"){
@@ -1395,7 +1486,7 @@ function cumulative(dates,days){
 }
 function lineChart(series,opts){
   opts=opts||{};
-  const w=640,h=190,pad={l:34,r:12,t:12,b:22};
+  const w=640,h=opts.compact?120:190,pad={l:34,r:12,t:12,b:opts.compact?18:22};
   const all=series.flatMap(s=>s.pts.map(p=>p.v));
   const max=Math.max(1,...all), n=Math.max(2,series[0].pts.length);
   const X=i=>pad.l+i*(w-pad.l-pad.r)/(n-1);
@@ -1416,6 +1507,8 @@ function lineChart(series,opts){
   const first=series[0].pts[0], last=series[0].pts[series[0].pts.length-1];
   const labels=`<text x="${pad.l}" y="${h-6}" font-size="10" fill="var(--muted)">${first?first.d.slice(5):""}</text>
                 <text x="${w-pad.r}" y="${h-6}" font-size="10" fill="var(--muted)" text-anchor="end">${last?last.d.slice(5):""}</text>`;
+  if(opts.compact)
+    return `<div class="chart compact"><svg viewBox="0 0 ${w} ${h}">${grid}${marks}${paths}${labels}</svg></div>`;
   let key=series.map(s=>`<span class="k"><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join("");
   if((opts.marks||[]).length)key+=`<span class="k"><i style="background:var(--ochre)"></i>filters changed</span>`;
   return `<div class="chart"><svg viewBox="0 0 ${w} ${h}">${grid}${marks}${paths}${labels}</svg><div class="keys">${key}</div></div>`;
@@ -1431,6 +1524,21 @@ function barChart(rows,color){
   }).join("");
   const grid=[0,.5,1].map(f=>`<line x1="${pad.l}" x2="${w-pad.r}" y1="${(h-pad.b-(h-pad.t-pad.b)*f).toFixed(1)}" y2="${(h-pad.b-(h-pad.t-pad.b)*f).toFixed(1)}" stroke="var(--line)"/><text x="4" y="${(h-pad.b-(h-pad.t-pad.b)*f+4).toFixed(1)}" font-size="10" fill="var(--muted)">${Math.round(max*f)}</text>`).join("");
   return `<div class="chart"><svg viewBox="0 0 ${w} ${h}">${grid}${bars}</svg></div>`;
+}
+/* Show the cost of the floor before it's committed: how many roles it hides. */
+function updateSalPreview(){
+  const el=document.getElementById("salPreview");if(!el)return;
+  const v=Math.max(0,parseInt((document.getElementById("salFloor")||{}).value||"0",10)||0);
+  const withSal=state.jobs.filter(j=>relevantClient(j)&&j.salary_max);
+  const kept=withSal.filter(j=>j.salary_max>=v).length;
+  const hidden=withSal.length-kept;
+  const noSal=state.jobs.filter(j=>relevantClient(j)&&!j.salary_max).length;
+  el.innerHTML=`At <b>S$${v.toLocaleString()}/month</b>, of the roles matching ${esc(activeProfile().name)}'s terms right now:
+    <table class="rep-t" style="margin-top:10px">
+      <tr><td>Hidden by this floor</td><td class="rv muted">${hidden}</td></tr>
+      <tr><td>Kept (band at or above)</td><td class="rv ok">${kept}</td></tr>
+      <tr><td>Kept (no salary published)</td><td class="rv">${noSal}</td></tr>
+    </table>`;
 }
 function changeWarning(){
   const d=pendingChange();
@@ -1451,12 +1559,27 @@ function renderAnalytics(){
   const fmax=Math.max(1,...funnel.map(f=>f[1]));
 
   // Progress over time
+  // Separate charts, not one. Three roles tracked and forty applications on a
+  // shared axis flattens the smaller line into the baseline — which is exactly
+  // the number you'd most want to see move.
   const days=30;
-  const prog=items.length?lineChart([
+  const series=[
     {name:"Roles tracked",color:"#7B1E3B",pts:cumulative(ev.spotted,days)},
     {name:"People contacted",color:"#8A6A1E",pts:cumulative(ev.contacted,days)},
     {name:"Applications",color:"#3f8f5f",pts:cumulative(ev.applied,days)},
-  ],{marks}):`<div class="note">Nothing tracked yet — the chart fills in as ${esc(P.name)} tracks roles and logs contacts.</div>`;
+    {name:"Interviews",color:"#4A4E8C",pts:cumulative(ev.interview,days)},
+  ];
+  const prog=items.length
+    ? `<div class="minigrid">`+series.map(sr=>{
+        const now=sr.pts[sr.pts.length-1].v, then=sr.pts[0].v, delta=now-then;
+        return `<div class="mini-c">
+          <div class="mc-h"><span class="mc-n">${esc(sr.name)}</span>
+            <span class="mc-v" style="color:${sr.color}">${now}</span></div>
+          <div class="mc-d">${delta>0?`+${delta} in 30 days`:`no change in 30 days`}</div>
+          ${lineChart([sr],{marks,compact:true})}
+        </div>`;
+      }).join("")+`</div>`
+    : `<div class="note">Nothing tracked yet — these fill in as ${esc(P.name)} tracks roles, logs contacts and applies.</div>`;
 
   // Our market: postings per week from posted_date (a 30-day backward window)
   const wk={};
@@ -1610,6 +1733,8 @@ document.getElementById("overlay").addEventListener("click",e=>{
   if(ivd){const i=+ivd.closest("[data-ivi]").dataset.ivi;rec.interviews.splice(i,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
   const del=e.target.closest("[data-cdel]");
   if(del){const ci=+del.closest(".contact").dataset.ci;rec.contacts.splice(ci,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
+  const cp=e.target.closest("[data-cpick]");
+  if(cp){openPicker("contact",id,+cp.dataset.cpick);return;}
   const cs=e.target.closest("[data-cstat]");
   if(cs){const ci=+cs.closest(".contact").dataset.ci;const c=rec.contacts[ci];const order=CSTAT.map(x=>x[0]);let i=order.indexOf(c.status||"to_contact");c.status=order[(i+1)%order.length];if(c.status==="contacted"&&!c.date)c.date=todayStr();rec.updatedAt=Date.now();persist();renderEditor();return;}
   const st=e.target.closest("[data-stage]");
@@ -1691,9 +1816,8 @@ document.getElementById("page").addEventListener("click",e=>{
   if(ph){state.photoFor=ph.dataset.photo;document.getElementById("photoInput").click();return;}
   const uph=e.target.closest("[data-unphoto]");
   if(uph){const p=state.profiles.find(x=>x.id===uph.dataset.unphoto);if(p){delete p.photo;saveProfiles();pushConfig();renderPage();}return;}
-  const shf=e.target.closest("[data-shuffle]");
-  if(shf){const p=state.profiles.find(x=>x.id===shf.dataset.shuffle);
-    if(p){p.seed=(p.name||"")+"#"+Math.random().toString(36).slice(2,7);saveProfiles();pushConfig();renderPage();}return;}
+  const chs=e.target.closest("[data-choose]");
+  if(chs){openPicker("profile",chs.dataset.choose);return;}
   const sw=e.target.closest("[data-switch]");
   if(sw){switchProfile(sw.dataset.switch);return;}
   if(e.target.closest("[data-addprof]")){
@@ -1716,6 +1840,17 @@ document.getElementById("page").addEventListener("click",e=>{
     saveProfiles();loadProfileData();pushConfig();renderPage();return;
   }
 });
+document.getElementById("page").addEventListener("input",e=>{
+  if(e.target.id==="salFloor"){
+    activeProfile().min_salary_max=Math.max(0,parseInt(e.target.value||"0",10)||0);
+    state.config.min_salary_max=activeProfile().min_salary_max;
+    updateSalPreview();
+    const w=document.querySelector(".warnbox"),d=pendingChange();
+    if(d&&!w){const box=document.createElement("div");box.innerHTML=changeWarning();
+      e.target.closest(".fld").parentNode.insertBefore(box.firstChild,e.target.closest(".fld"));}
+    else if(!d&&w)w.remove();
+  }
+});
 document.getElementById("page").addEventListener("keydown",e=>{
   const ca=e.target.closest("[data-cataddterm]");
   if(ca && e.key==="Enter"){
@@ -1729,6 +1864,26 @@ document.getElementById("page").addEventListener("keydown",e=>{
     e.preventDefault();
     const k=add.dataset.addterm, v=(add.value||"").trim().toLowerCase(), P=activeProfile();
     if(v && !(P[k]||[]).includes(v)){P[k]=[...(P[k]||[]),v];state.config[k]=P[k];saveProfiles();recompile();renderPage();}
+  }
+});
+document.getElementById("pickOverlay").addEventListener("click",e=>{
+  if(e.target.id==="pickOverlay"||e.target.closest("[data-pclose]")){closePicker();return;}
+  if(e.target.closest("[data-pickphoto]")){const id=state.pick&&state.pick.id;closePicker();
+    if(id){state.photoFor=id;document.getElementById("photoInput").click();}return;}
+  const pk=e.target.closest("[data-pick]");
+  if(pk&&state.pick){
+    const seed=pk.dataset.pick, {kind,id,ci}=state.pick;
+    if(kind==="profile"){
+      const p=state.profiles.find(x=>x.id===id);
+      if(p){p.seed=seed;delete p.photo;saveProfiles();pushConfig();}
+    }else{
+      const rec=state.pipeline[id];
+      if(rec&&rec.contacts&&rec.contacts[ci]){rec.contacts[ci].seed=seed;rec.updatedAt=Date.now();persist();}
+    }
+    closePicker();
+    if(state.page)renderPage(); else render();
+    if(state.editId!=null&&!document.getElementById("overlay").hidden)renderEditor();
+    return;
   }
 });
 document.getElementById("photoInput").addEventListener("change",async e=>{
@@ -1754,7 +1909,9 @@ document.getElementById("restoreInput").addEventListener("change",e=>{
   };
   rd.readAsText(f);
 });
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!document.getElementById("overlay").hidden)closeEditor();else if(state.page)go(state.page==="menu"?null:"menu");}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){
+  if(!document.getElementById("pickOverlay").hidden)closePicker();
+  else if(!document.getElementById("overlay").hidden)closeEditor();else if(state.page)go(state.page==="menu"?null:"menu");}});
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;

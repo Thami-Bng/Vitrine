@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T09:33:30.387740+00:00",
+  "generated_at": "2026-07-16T09:44:52.189615+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -69,13 +69,13 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 91,
+      "fetched": 92,
       "kept": 0,
       "error": false
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 372,
+      "fetched": 371,
       "kept": 0,
       "error": false
     },
@@ -105,7 +105,7 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 30,
+      "fetched": 20,
       "kept": 8,
       "error": false
     }

@@ -40,6 +40,22 @@
            background:var(--accent);border-radius:3px 3px 0 0;}
   .nbadge{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ECE8E1;color:var(--muted);}
   .nbadge.due{background:var(--accent);color:#fff;}
+  .bell{position:relative;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);
+        color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:all .15s;}
+  .bell:hover{border-color:var(--accent);color:var(--accent);}
+  .bell svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .bdot{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;
+        background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .note-row{display:flex;gap:12px;align-items:flex-start;padding:13px 2px;border-bottom:1px solid var(--line);cursor:pointer;}
+  .note-row:last-child{border-bottom:0;}
+  .note-row:hover{background:var(--paper);}
+  .nr-ico{flex:0 0 30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .nr-ico.due{background:var(--accent-soft);color:var(--accent);}
+  .nr-ico.iv{background:#E7E9F5;color:#4A4E8C;}
+  .nr-ico.rem{background:var(--ochre-soft);color:var(--ochre);}
+  .nr-b{flex:1;min-width:0;}
+  .nr-t{font-size:13.5px;font-weight:600;color:var(--ink);}
+  .nr-s{font-size:12px;color:var(--muted);margin-top:2px;}
   .bar-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto;}
   .bar-meta{font-size:12px;color:var(--muted);white-space:nowrap;}
   .bar-meta b{color:var(--ink);font-weight:600;}
@@ -235,6 +251,9 @@
   .mini.go{background:var(--accent);border-color:var(--accent);color:#fff;}
 
   /* Sheets (editor + settings) */
+  /* The picker is opened FROM the editor, so it must sit above it. Both were
+     z-index:40, and the editor comes later in the DOM — so it always won. */
+  #pickOverlay{z-index:60;} #bellOverlay{z-index:55;}
   .overlay{position:fixed;inset:0;z-index:40;background:rgba(26,23,20,.42);display:flex;align-items:flex-end;justify-content:center;padding:0;}
   .overlay[hidden]{display:none;}
   .sheet{background:var(--paper);width:100%;max-width:var(--maxw);max-height:92vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -8px 40px rgba(0,0,0,.18);}
@@ -306,6 +325,11 @@
   .cat-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
   .cbx{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;cursor:pointer;}
   .cbx input{width:17px;height:17px;accent-color:var(--accent);}
+  .impact{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:14px 16px;margin:14px 0 4px;}
+  .impact .rep-t{background:var(--paper);}
+  .imp-h{font-family:"Fraunces",serif;font-size:15px;font-weight:600;margin-bottom:10px;}
+  .imp-p{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0;}
+  .imp-p b{color:var(--accent);}
   .an-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:30px 0 2px;}
   .chart{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 10px 8px;margin:12px 0;}
   .chart.compact{border:0;padding:0;margin:6px 0 0;}
@@ -375,6 +399,10 @@
     <nav class="nav" id="modebar" role="tablist"></nav>
     <div class="bar-right">
       <span class="bar-meta" id="byline"></span>
+      <button class="bell" id="bellBtn" title="Notifications" aria-label="Notifications">
+        <svg viewBox="0 0 24 24"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-2.2 6.2-.3.3-.1.8.3.8h14.8c.4 0 .6-.5.3-.8-.7-.7-2.2-2.2-2.2-6.2A5.5 5.5 0 0 0 12 3Z"/><path d="M9.7 18.6a2.4 2.4 0 0 0 4.6 0"/></svg>
+        <span class="bdot" id="bellDot" hidden></span>
+      </button>
       <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
       <button class="whoami" id="whoBtn" title="Switch profile" aria-label="Active profile"></button>
     </div>
@@ -426,6 +454,9 @@
 </div>
 
 <!-- Avatar picker -->
+<div class="overlay" id="bellOverlay" hidden>
+  <div class="sheet" id="bellSheet" role="dialog" aria-modal="true"></div>
+</div>
 <div class="overlay" id="pickOverlay" hidden>
   <div class="sheet" id="pickSheet" role="dialog" aria-modal="true"></div>
 </div>
@@ -452,7 +483,7 @@ function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.t
    rest match on company/title terms you control. Each profile picks which ones
    it wants to see — Zineb has no interest in Banking & Insurance. */
 const DEFAULT_CATS=[
-  {id:"house",label:"Houses",terms:[],signals:[],brands:true},
+  {id:"house",label:"Houses",terms:[],brands:true},
   {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],signals:[],brands:true},
   {id:"travel",label:"Travel & Hospitality",terms:[],signals:[],brands:true},
   {id:"tech",label:"Tech",signals:[],
@@ -461,7 +492,7 @@ const DEFAULT_CATS=[
    terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
   {id:"consulting",label:"Consulting",signals:[],
    terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
-  {id:"recruiter",label:"Recruiters",terms:[],signals:[],brands:true},
+  {id:"recruiter",label:"Recruiters",terms:[],brands:true},
   {id:"other",label:"Other",terms:[],locked:true},
 ];
 function allCats(){
@@ -514,12 +545,55 @@ function renderTabs(){
 }
 // Browse vs Pipeline is a MODE, not a category — a different surface, so it gets
 // its own switch instead of competing with Houses / Tech / etc.
+/* Notifications: only things she can act on TODAY. A bell that cries wolf gets
+   ignored, and then the one that matters gets ignored with it — so no "12 new
+   roles" chatter here; that's what the Browse tab is for. */
+function notifications(){
+  const out=[];
+  followUps().forEach(f=>{
+    if(f.reason==="reping")out.push({kind:"due",id:f.id,
+      t:`Follow up with ${(f.contact.name||"your contact").split(/\s+/)[0]}`,
+      s:`${f.job.company} \u00b7 messaged ${f.days} day${f.days===1?"":"s"} ago, no reply`});
+    else out.push({kind:"rem",id:f.id,t:`Reminder: ${f.job.title}`,s:`${f.job.company} \u00b7 you set this for ${f.rec.next}`});
+  });
+  trackedItems().forEach(({id,rec,job})=>{
+    (rec.interviews||[]).forEach(i=>{
+      if(!i||!i.date)return;
+      const d=Math.ceil((new Date(i.date)-new Date(todayStr()))/864e5);
+      if(d<0||d>7)return;
+      out.push({kind:"iv",id,t:`Interview ${d===0?"today":d===1?"tomorrow":`in ${d} days`}${i.label?` \u2014 ${i.label}`:""}`,
+                s:`${job.company} \u00b7 ${job.title}`});
+    });
+  });
+  return out;
+}
+function renderBell(){
+  const n=notifications().length, dot=document.getElementById("bellDot");
+  if(!dot)return;
+  dot.hidden=!n; dot.textContent=n>9?"9+":String(n);
+}
+function openBell(){
+  const items=notifications();
+  const ico={due:"\u25cf",iv:"\u25c6",rem:"\u25b2"};
+  document.getElementById("bellSheet").innerHTML=`
+    <div class="sheet-h"><div><div class="co">The Vitrine</div><div class="ti">Needs you${items.length?` \u00b7 ${items.length}`:""}</div></div>
+      <button class="xclose" data-bclose>\u2715</button></div>
+    ${items.length
+      ? `<p class="hint" style="margin:6px 0 6px">Only things you can act on today.</p>`
+        + items.map(i=>`<div class="note-row" data-noteid="${esc(i.id)}">
+            <span class="nr-ico ${i.kind}">${ico[i.kind]}</span>
+            <span class="nr-b"><span class="nr-t">${esc(i.t)}</span><span class="nr-s">${esc(i.s)}</span></span></div>`).join("")
+      : `<div class="note" style="margin-top:14px"><b>Nothing needs you right now.</b> Follow-ups appear here ${FOLLOWUP_DAYS} days after you message someone with no reply, along with reminders you set and interviews in the next week.</div>`}`;
+  document.getElementById("bellOverlay").hidden=false;
+}
 function renderModebar(){
   const dueN=followUps().length, pipeN=trackedItems().length;
-  const badge=dueN?`<span class="nbadge due">${dueN} due</span>`:(pipeN?`<span class="nbadge">${pipeN}</span>`:"");
+  // The nav shows how much is tracked; anything URGENT lives in the bell now.
+  const badge=pipeN?`<span class="nbadge">${pipeN}</span>`:"";
   document.getElementById("modebar").innerHTML=`
     <button class="navlink" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"&&!state.page}">Browse roles</button>
-    <button class="navlink" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"&&!state.page}">Pipeline${badge}</button>`;
+    <button class="navlink" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"&&!state.page}">Pipeline${badge}</button>
+    <button class="navlink" data-mode="analytics" role="tab" aria-selected="${state.mode==="analytics"&&!state.page}">Analytics</button>`;
 }
 /* ── Profiles ──────────────────────────────────────────────────────────────
    Each profile is a person: their own search terms, salary floor, pipeline and
@@ -547,7 +621,7 @@ function newProfile(name,id){
 }
 /* The scanner's real matching rules, shipped with the page.
    Source of truth is scrape.py — it publishes its live lists into jobs.json and
-   those win (seedBrandRules below). These copies exist so the rules are never
+   those win (seedRules below). These copies exist so the rules are never
    shown as EMPTY before the first scan of a new version: a blank list would say
    "nothing matches" while the scanner was quietly still using all 505 terms, and
    saving from that screen would have wiped them. */
@@ -638,7 +712,7 @@ const RULE_DEFAULTS={
    Nothing needs clearing; a stale copy fixes itself on load. */
 function repairCats(list){
   const defs=JSON.parse(JSON.stringify(DEFAULT_CATS));
-  if(!Array.isArray(list)||!list.length)return defs;
+  if(!Array.isArray(list)||!list.length)return seedRules(defs);   // the defaults need seeding too
   const merged=list.filter(c=>c&&c.id).map(c=>{
     const d=defs.find(x=>x.id===c.id);
     if(!d)return {id:c.id,label:c.label||"Category",
@@ -655,31 +729,42 @@ function repairCats(list){
   });
   defs.forEach(d=>{ if(!merged.some(c=>c.id===d.id))merged.push(d); });   // added in a later version
   const other=merged.filter(c=>c.id==="other");
-  return merged.filter(c=>c.id!=="other").concat(other);                  // catch-all last
+  const ordered=merged.filter(c=>c.id!=="other").concat(other);           // catch-all last
+  return seedRules(ordered);        // ← seeding lives HERE, so no caller can forget it
 }
 function loadCats(){
   let stored=null;
   try{stored=JSON.parse(localStorage.getItem("v_cats")||"null");}catch(e){}
   return repairCats(stored);
 }
-/* Houses and Recruiters are matched on brand names by the scanner. Seed the UI
-   with the real lists it published, so what you edit IS the rule — not a copy. */
-function seedBrandRules(){
-  // The scanner's published lists win; the shipped defaults are the safety net.
+/* Which shipped/published list backs each category's two rules. */
+const RULE_MAP={
+  house:        {terms:"house_brands"},
+  recruiter:    {terms:"agency_terms"},
+  beauty_luxury:{terms:"luxury_brands", signals:"luxury_signals"},
+  travel:       {terms:"travel_brands", signals:"travel_signals"},
+  tech:         {signals:"tech_signals"},
+  finance:      {signals:"finance_signals"},
+  consulting:   {signals:"consult_signals"},
+};
+/* Fill any rule that's empty. Precedence: what the scanner published > the lists
+   shipped with this page > the category's own defaults. An empty list means "the
+   scanner falls back to its built-ins", so showing those built-ins IS the truth —
+   and it's why this runs on every source rather than only at boot. */
+function seedRules(cats){
   const live=state.scanCfg||{};
-  const pick=k=>Array.isArray(live[k])&&live[k].length?live[k]:(RULE_DEFAULTS[k]||[]);
-  const seed=(id,tKey,sKey)=>{
-    const c=state.cats.find(x=>x.id===id); if(!c)return;
-    if(!(c.terms||[]).length && tKey)c.terms=pick(tKey).slice();
-    if(c.signals!==undefined && !(c.signals||[]).length && sKey)c.signals=pick(sKey).slice();
-  };
-  seed("house","house_brands");
-  seed("recruiter","agency_terms");
-  seed("beauty_luxury","luxury_brands","luxury_signals");
-  seed("travel","travel_brands","travel_signals");
-  seed("tech",null,"tech_signals");
-  seed("finance",null,"finance_signals");
-  seed("consulting",null,"consult_signals");
+  const pick=k=>(Array.isArray(live[k])&&live[k].length) ? live[k]
+              : (Array.isArray(RULE_DEFAULTS[k])&&RULE_DEFAULTS[k].length ? RULE_DEFAULTS[k] : null);
+  const defs=DEFAULT_CATS;
+  cats.forEach(c=>{
+    const m=RULE_MAP[c.id]||{}, d=defs.find(x=>x.id===c.id);
+    if(c.locked)return;
+    if(!(c.terms||[]).length)
+      c.terms=(m.terms&&pick(m.terms))||((d&&d.terms&&d.terms.length)?d.terms.slice():[]);
+    if(c.signals!==undefined && !(c.signals||[]).length)
+      c.signals=(m.signals&&pick(m.signals))||((d&&d.signals&&d.signals.length)?d.signals.slice():[]);
+  });
+  return cats;
 }
 function loadProfiles(){
   try{
@@ -688,7 +773,7 @@ function loadProfiles(){
   }catch(e){}
   return [newProfile("Zineb","zineb")];
 }
-const state={jobs:[],history:[],market:null,national:[],cats:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+const state={jobs:[],history:[],market:null,national:[],cats:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"all",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
   savedSet:new Set(),appliedSet:new Set(),dismissedSet:new Set(),pipeline:{},dismissedAt:{}};
 /* Records made before we started stamping dates have no createdAt, so every
    chart drawn from them read zero while the funnel (which counts state, not
@@ -925,7 +1010,7 @@ async function boot(){
   try{const h=await fetch("data/history.json",{cache:"no-store"});if(h.ok)state.history=await h.json();}catch(e){}
   try{const m=await fetch("data/market.json",{cache:"no-store"});if(m.ok)state.market=await m.json();}catch(e){}
   try{const n=await fetch("data/national.json",{cache:"no-store"});if(n.ok)state.national=await n.json();}catch(e){}
-  seedBrandRules();
+  state.cats=repairCats(state.cats);   // scanCfg is known now — let its published rules win
   renderSources(data.sources);
   render();
   pullRemote();
@@ -1050,13 +1135,17 @@ function renderWho(){
   el.title=more?`Working as ${P.name} \u2014 tap to switch`:`Working as ${P.name}`;
 }
 function render(){
-  renderWho();
+  renderWho();renderBell();
   const pg=document.getElementById("page"), ctl=document.querySelector(".controls"), lst=document.getElementById("list");
   const srcs=document.getElementById("sources");
   renderModebar();
   if(state.page){
     ctl.style.display="none";lst.style.display="none";if(srcs)srcs.style.display="none";
     pg.hidden=false;renderPage();return;
+  }
+  if(state.mode==="analytics"){          // a place you go, not a setting
+    ctl.style.display="none";lst.style.display="none";if(srcs)srcs.style.display="none";
+    pg.hidden=false;renderAnalytics();return;
   }
   pg.hidden=true;ctl.style.display="";lst.style.display="";
   const inPipe=state.mode==="pipeline";
@@ -1118,7 +1207,7 @@ function ensureRecord(id){
   const r=state.pipeline[id];
   if(!r || r.deleted){
     const j=jobById(id)||{};
-    state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],note:"",next:"",createdAt:Date.now(),updatedAt:Date.now(),
+    state.pipeline[id]={stage:"spotted",cat:(j&&j.id)?catOfRaw(j):"other",cv:"",contacts:[],note:"",next:"",createdAt:Date.now(),updatedAt:Date.now(),
       // Snapshot the essentials: a role that disappears from the feed must not
       // vanish from the pipeline — we still show it, flagged as no longer posted.
       snap:{title:j.title||"",company:j.company||"",url:(j.links&&(j.links.careers||j.links.primary))||""}};
@@ -1262,10 +1351,11 @@ function personIcons(rec){
     const st=c.status||"to_contact";
     const first=(c.name||"").trim().split(/\s+/)[0];
     const days=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
-    const tag=c.url?"a":"span", href=c.url?` href="${esc(c.url)}" target="_blank" rel="noopener" data-stop`:"";
-    return `<${tag} class="person ${st}"${href} title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
+    // Never a link. Tapping a face opens the role, where the profile link lives —
+    // an avatar that fires you off to LinkedIn is a trapdoor, not a control.
+    return `<span class="person ${st}" title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
       <span class="avatar">${faceSVG(c.seed||c.name,44)}<span class="dot2"></span></span>
-      <span class="nm">${esc(first)}</span></${tag}>`;
+      <span class="nm">${esc(first)}</span></span>`;
   };
   return `<span class="people">${cs.map(one).join("")}</span>`;
 }
@@ -1277,7 +1367,13 @@ function contactLine(rec){
     return `${esc(c.name)}${d}`;
   }).join(" · ");
 }
-function bucketOf(rec){return rec.prio||"high";}
+/* Grouped by category, not by an invented priority. A role's category comes from
+   the live posting; once it leaves the feed we use the one recorded when it was
+   tracked, so it doesn't silently drift into "Other". */
+function bucketOf(rec,id){
+  const j=jobById(id);
+  return j?catOf(j):(rec.cat||"other");
+}
 function precCard(x){
   const {id,rec,job,live}=x;
   const bits=[contactLine(rec)];
@@ -1287,7 +1383,6 @@ function precCard(x){
             :live?`<span class="flag live"><i></i>Live</span>`
             :`<span class="flag gone"><i></i>No longer posted</span>`;
   const age=rec.appliedOn?`<span class="agetag">Applied ${esc(weeksAgo(rec.appliedOn))}</span>`:"";
-  const pr=bucketOf(rec), idx=PRIOS.findIndex(x=>x[0]===pr);
   const ivs=(rec.interviews||[]).filter(i=>i&&(i.label||i.date));
   const nextIv=ivs.filter(i=>i.date&&i.date>=todayStr()).sort((a,b)=>a.date.localeCompare(b.date))[0];
   const ivTag=nextIv?`<span class="iv">Interview ${esc(nextIv.label||"")} ${esc(nextIv.date)}</span>`
@@ -1303,12 +1398,34 @@ function precCard(x){
     <div class="prec-right">${personIcons(rec)}</div>
     </div>
     <div class="prec-actions" style="margin-top:10px">
-      <span class="prio">
-        <button data-prio="up" data-id="${esc(id)}" ${idx<=0?"disabled":""} title="Raise priority">▲</button>
-        <button data-prio="down" data-id="${esc(id)}" ${idx>=PRIOS.length-1?"disabled":""} title="Lower priority">▼</button>
-      </span>
-      <span class="stage-note" style="font-size:11.5px;color:var(--muted);align-self:center">${esc(STAGE_LABEL[rec.stage||"spotted"])} · ${esc(PRIO_LABEL[pr])}</span>
+      <span class="stage-note" style="font-size:11.5px;color:var(--muted)">${esc(STAGE_LABEL[rec.stage||"spotted"])}</span>
     </div>
+  </div>`;
+}
+/* Applied warm vs applied cold. The premise of the whole tool is that the first
+   works better — so show whether it's true for HER, honestly. With small numbers
+   her own data can't prove anything, and the copy says so rather than dressing
+   four data points up as a finding. */
+function contactImpact(items){
+  const applied=items.filter(x=>x.rec.appliedOn||state.appliedSet.has(x.id));
+  if(!applied.length)return "";
+  const isWarm=x=>(x.rec.contacts||[]).some(isReached);
+  const iv=x=>x.rec.stage==="interviewing"||(x.rec.interviews||[]).some(i=>i&&(i.date||i.label));
+  const warm=applied.filter(isWarm), cold=applied.filter(x=>!isWarm(x));
+  const warmIv=warm.filter(iv).length, coldIv=cold.filter(iv).length;
+  const pct=(a,b)=>b?Math.round(a/b*100)+"%":"\u2014";
+  const line=(applied.length<8)
+    ? `Too few applications yet to read anything into these numbers.`
+    : (warm.length&&cold.length
+        ? `So far: <b>${pct(warmIv,warm.length)}</b> of ${esc(activeProfile().name)}'s warm applications reached an interview, against <b>${pct(coldIv,cold.length)}</b> of the cold ones.`
+        : `Not enough of both kinds yet to compare.`);
+  return `<div class="impact">
+    <div class="imp-h">Applying warm vs applying cold</div>
+    <table class="rep-t">
+      <tr><td>Applied after contacting someone</td><td class="rv ok">${warm.length}</td><td class="rv">${warmIv} interview${warmIv===1?"":"s"}</td></tr>
+      <tr><td>Applied with no contact</td><td class="rv muted">${cold.length}</td><td class="rv">${coldIv} interview${coldIv===1?"":"s"}</td></tr>
+    </table>
+    <p class="imp-p">${line} Referred and warm applications are widely found to convert far better than cold ones \u2014 which is the whole reason this tool tracks people, not just postings.</p>
   </div>`;
 }
 function renderPipeline(){
@@ -1325,7 +1442,10 @@ function renderPipeline(){
     list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.<div style="margin-top:14px"><button class="mini go" data-addmanual>+ Add a role that isn't listed</button></div></li>`;
     return;
   }
-  const counts={};PRIOS.forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec)===k).length);
+  const buckets=[["all","All"],...activeCats()];
+  const counts={all:all.length};
+  activeCats().forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec,x.id)===k).length);
+  if(!buckets.some(b=>b[0]===state.bucket))state.bucket="all";
   document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
   let html=`<div style="grid-column:1/-1"><button class="mini" data-addmanual style="margin-top:10px">+ Add a role that isn't listed</button></div>`;
   // Follow-ups cut across every bucket — urgency shouldn't hide behind a tab.
@@ -1351,11 +1471,13 @@ function renderPipeline(){
         <div class="prec-actions"><button class="mini go" data-fu="opennext" data-id="${esc(f.id)}">Open</button><button class="mini" data-fu="clearnext" data-id="${esc(f.id)}">Clear reminder</button></div></div>`;
     }).join("");
   }
-  html+=`<div class="bucketbar">`+PRIOS.map(([k,l])=>
-    `<button class="bk" data-bucket="${k}" aria-selected="${state.bucket===k}">${l}<span class="tc">${counts[k]}</span></button>`).join("")+`</div>`;
-  const inB=all.filter(x=>bucketOf(x.rec)===state.bucket);
+  html+=contactImpact(all);
+  html+=`<div class="bucketbar">`+buckets.map(([k,l])=>
+    `<button class="bk" data-bucket="${k}" aria-selected="${state.bucket===k}">${esc(l)}<span class="tc">${counts[k]||0}</span></button>`).join("")+`</div>`;
+  const inB=state.bucket==="all"?all:all.filter(x=>bucketOf(x.rec,x.id)===state.bucket);
   if(!inB.length){
-    html+=`<li class="empty"><b>Nothing in ${esc(PRIO_LABEL[state.bucket])}</b>Use ▲ / ▼ on a role to move it between priorities.</li>`;
+    const bl=(buckets.find(b=>b[0]===state.bucket)||["","this category"])[1];
+    html+=`<li class="empty"><b>Nothing tracked in ${esc(bl)}</b>Roles you track from that tab appear here.</li>`;
   }else{
     STAGES.forEach(([key,label])=>{
       const inStage=inB.filter(x=>(x.rec.stage||"spotted")===key);
@@ -1373,11 +1495,16 @@ function addManualRole(){
   const company=prompt("Company?");if(company===null)return;
   const title=prompt("Role title?");if(title===null)return;
   const url=prompt("Link (optional) — paste or leave blank")||"";
+  // A hand-added role has no posting to classify, so ask which category it's in.
+  const cats=activeCats();
+  const pick=prompt("Which category?\n\n"+cats.map((c,i)=>`${i+1}. ${c[1]}`).join("\n")+"\n\nType a number:","1");
+  if(pick===null)return;
+  const ci=Math.max(0,Math.min(cats.length-1,(parseInt(pick,10)||1)-1));
   const id="man-"+Date.now().toString(36);
-  state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],interviews:[],note:"",next:"",
+  state.pipeline[id]={stage:"spotted",cat:cats[ci][0],cv:"",contacts:[],interviews:[],note:"",next:"",
     manual:true,createdAt:Date.now(),updatedAt:Date.now(),
     snap:{title:(title||"Untitled role").trim(),company:(company||"—").trim(),url:url.trim()}};
-  persist();state.mode="pipeline";render();openEditor(id);
+  persist();state.mode="pipeline";state.bucket=cats[ci][0];render();openEditor(id);
 }
 
 /* ── Editor sheet ────────────────────────────────────────────────────────── */
@@ -1541,8 +1668,11 @@ function ruleGroup(c,key,label,help){
     <div class="hint" style="margin:0 0 8px">${help}</div>
     <div class="tchips">${list.map((t,i)=>
       `<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-key="${key}" data-i="${i}">\u00d7</button></span>`
-    ).join("")||`<span class="hint">Empty \u2014 the scanner falls back to its built-in list for this rule, so nothing is lost. Add a term to take control of it.</span>`}</div>
+    ).join("")||`<span class="hint">${(RULE_MAP[c.id]||{})[key]
+        ? "Empty \u2014 the scanner falls back to its built-in list for this rule, so nothing is lost. Add a term to take control of it."
+        : "Empty \u2014 nothing matches on this rule yet. Add a term to start using it."}</span>`}</div>
     <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="${key==="terms"?"add a word from the employer's name":"add a word from the title or description"}, then press Enter">
+    <div class="hint">Case doesn't matter \u2014 <b>Google</b>, <b>google</b> and <b>GOOGLE</b> all match. Terms are kept in lower case so the list stays tidy.</div>
   </div>`;
 }
 function renderPage(){
@@ -1556,7 +1686,6 @@ function renderPage(){
         <div><div class="wt">${esc(P.name)}</div><div class="ws">${trackedItems().length} role${trackedItems().length===1?"":"s"} tracked \u00b7 ${state.profiles.length} profile${state.profiles.length>1?"s":""}</div></div></div>
       <div class="menu">
         ${menuItem("profiles",ICO.people,"Profiles",`Switch, rename, or add someone`)}
-        ${menuItem("analytics",ICO.chart,"Analytics",`Read the market \u00b7 track ${esc(P.name)}'s progress`)}
         ${menuItem("cats",ICO.tag,"Categories",`Define the tabs \u00b7 hide ones ${esc(P.name)} doesn't want`)}
         ${menuItem("terms",ICO.search,"Search terms",`What the scan looks for, for ${esc(P.name)}`)}
         ${menuItem("salary",ICO.coin,"Salary floor",`Currently S$${(P.min_salary_max||0).toLocaleString()}/month`)}
@@ -1565,7 +1694,6 @@ function renderPage(){
       </div>`;
     return;
   }
-  if(state.page==="analytics"){renderAnalytics();return;}
   if(state.page==="cats"){
     const hidden=new Set(P.hidden_cats||[]);
     el.innerHTML=pgTop("Categories",
@@ -1584,10 +1712,13 @@ function renderPage(){
           </div>
           ${c.locked
             ? `<div class="hint">The catch-all: anything matching no other category lands here. It has no rules of its own.</div>`
-            : ruleGroup(c,"terms","In the employer's name",
+            : (c.signals===undefined?`<div class="hint" style="margin:0 0 10px">Decided by the employer's name alone \u2014 a house is a house whoever writes the advert, so there's no title/description rule here.</div>`:"")
+              + ruleGroup(c,"terms","In the employer's name",
                 "Only the company field. <b>tiktok</b> catches TikTok Pte Ltd; <b>software</b> catches Acme Software. A role that merely <i>mentions</i> the word elsewhere is not caught.")
-              + ruleGroup(c,"signals","In the job title or description",
-                "The whole posting \u2014 title and full text. Catches roles whose employer isn't a known name (<b>gaming</b> finds \u201cSenior PM, Gaming\u201d anywhere). Broader, so it catches more \u2014 and more by accident.")}
+              + (c.signals!==undefined
+                 ? ruleGroup(c,"signals","In the job title or description",
+                     "The whole posting \u2014 title and full text. Catches roles whose employer isn't a known name (<b>gaming</b> finds \u201cSenior PM, Gaming\u201d anywhere). Broader, so it catches more \u2014 and more by accident.")
+                 : "")}
         </div>`).join("")
       + `<button class="set-btn block" data-addcat>+ Add a category</button>
          <button class="set-btn go block" data-savecfg>Save categories</button>`;
@@ -1620,6 +1751,7 @@ function renderPage(){
     el.innerHTML=pgTop(`Search terms \u2014 ${P.name}`,
       `What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan \u2014 the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan \u2014 run one to fetch new roles.</b>`:""}`)
       + changeWarning()
+      + `<p class="hint" style="margin:0 0 4px">Case doesn't matter \u2014 <b>E-Commerce</b> and <b>e-commerce</b> find the same roles.</p>`
       + termFld("search","Search for (asked of each job site)")
       + termFld("include","Keep titles containing")
       + termFld("exclude","Drop titles containing")
@@ -1886,7 +2018,7 @@ function renderAnalytics(){
   }
 
   const el=document.getElementById("page");
-  el.innerHTML=pgTop(`Analytics — ${P.name}`,"")
+  el.innerHTML=`<h2 class="pg-h" style="margin-top:20px">Analytics — ${esc(P.name)}</h2>`
     + `<h3 class="an-h">Progress</h3>
        <p class="pg-sub">What ${esc(P.name)} has actually done — straight from her own pipeline.${approxNote}</p>
        <div class="funnel">${funnel.map(([l,v])=>`
@@ -1936,13 +2068,6 @@ document.getElementById("list").addEventListener("click",e=>{
   if(e.target.closest("[data-addmanual]")){addManualRole();return;}
   const bk=e.target.closest("[data-bucket]");
   if(bk){state.bucket=bk.dataset.bucket;render();return;}
-  const pr=e.target.closest("[data-prio]");
-  if(pr){
-    const rec=ensureRecord(pr.dataset.id);
-    const i=PRIOS.findIndex(x=>x[0]===(rec.prio||"high"));
-    const ni=pr.dataset.prio==="up"?Math.max(0,i-1):Math.min(PRIOS.length-1,i+1);
-    rec.prio=PRIOS[ni][0];rec.updatedAt=Date.now();persist();render();return;
-  }
   const prec=e.target.closest(".prec");
   if(prec){openEditor(prec.dataset.id);return;}
   const card=e.target.closest(".job");if(!card)return;const id=card.dataset.id;
@@ -2012,7 +2137,8 @@ document.getElementById("whoBtn").addEventListener("click",()=>{
 });
 document.getElementById("page").addEventListener("click",e=>{
   const ac=e.target.closest("[data-ancat]");
-  if(ac){state.anCat=ac.dataset.ancat;renderPage();return;}
+  // render() dispatches — analytics is a MODE now, so renderPage() would wipe it.
+  if(ac){state.anCat=ac.dataset.ancat;render();return;}
   const g=e.target.closest("[data-go]");
   if(g){go(g.dataset.go||null);return;}
   if(e.target.closest("[data-backup]")){downloadBackup();return;}
@@ -2169,6 +2295,7 @@ document.getElementById("restoreInput").addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){
   if(!document.getElementById("pickOverlay").hidden)closePicker();
+  else if(!document.getElementById("bellOverlay").hidden)document.getElementById("bellOverlay").hidden=true;
   else if(!document.getElementById("overlay").hidden)closeEditor();else if(state.page)go(state.page==="menu"?null:"menu");}});
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
@@ -2180,6 +2307,12 @@ document.getElementById("modebar").addEventListener("click",e=>{
   state.mode=m.dataset.mode;state.page=null;render();      // nav always returns you to the roles
 });
 document.getElementById("brandBtn").addEventListener("click",()=>{state.page=null;state.mode="browse";render();});
+document.getElementById("bellBtn").addEventListener("click",openBell);
+document.getElementById("bellOverlay").addEventListener("click",e=>{
+  if(e.target.id==="bellOverlay"||e.target.closest("[data-bclose]")){document.getElementById("bellOverlay").hidden=true;return;}
+  const row=e.target.closest("[data-noteid]");
+  if(row){document.getElementById("bellOverlay").hidden=true;state.page=null;state.mode="pipeline";render();openEditor(row.dataset.noteid);}
+});
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});
 document.getElementById("resetFilters").addEventListener("click",()=>{

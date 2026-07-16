@@ -390,6 +390,10 @@ def category_of(company, title, sector, type_, desc=""):
         blob = f"{company} {title} {desc}".lower()
         for c in USER_CATS:
             if c.get("locked"): continue
+            # Houses and Recruiters are settled by type_of() on the employer's
+            # name above. Letting them also match on description would turn any
+            # company that says "luxury maison" into a house.
+            if c.get("id") in ("house", "agency", "recruiter"): continue
             if any(str(t).lower() in who  for t in (c.get("terms")   or [])): return c["id"]
             if any(str(t).lower() in blob for t in (c.get("signals") or [])): return c["id"]
         if sector=="hospitality":   return "travel"

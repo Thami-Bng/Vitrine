@@ -545,6 +545,89 @@ function newProfile(name,id){
           search:[...DEFAULT_TERMS.search],include:[...DEFAULT_TERMS.include],
           exclude:[...DEFAULT_TERMS.exclude],min_salary_max:DEFAULT_TERMS.min_salary_max};
 }
+/* The scanner's real matching rules, shipped with the page.
+   Source of truth is scrape.py — it publishes its live lists into jobs.json and
+   those win (seedBrandRules below). These copies exist so the rules are never
+   shown as EMPTY before the first scan of a new version: a blank list would say
+   "nothing matches" while the scanner was quietly still using all 505 terms, and
+   saving from that screen would have wiped them. */
+const RULE_DEFAULTS={
+  house_brands: [
+    "amorepacific","balenciaga","bottega","bulgari","bvlgari","cartier","chanel","charlotte tilbury",
+    "clarins","dior","estee lauder","estée lauder","gucci","guerlain","hermes","hermès","kering","l'oreal",
+    "lancome","loreal","lvmh","net-a-porter","puig","richemont","saint laurent","sephora","shiseido","ynap"],
+  agency_terms: [
+    "achieve group","adecco","ambition","charterhouse","cornerstone global","gmp recruitment",
+    "good job creations","hays","hudson","jac recruitment","kelly services","kerry consulting",
+    "links international","manpower","michael page","morgan mckinley","pagegroup","peoplebank",
+    "persolkelly","randstad","recruit express","reeracoen","robert half","robert walters","supreme hr",
+    "the edge partnership"],
+  luxury_brands: [
+    "24s","aesop","alaia","alaïa","armani beauty","audemars","aveda","avon","bally","beiersdorf",
+    "benefit cosmetics","berluti","bluebell","bobbi brown","boucheron","breitling","brioni",
+    "brunello cucinelli","buccellati","bucherer","bulgari","bumble and bumble","burberry","bvlgari",
+    "byredo","capri","celine","cerave","charlotte tilbury","chaumet","chloe","chloé","chopard",
+    "cle de peau","clinique","club 21","club21","clé de peau","coach","cortina watch","cosrx","coty",
+    "creed","de beers","deciem","decorte","decorté","delvaux","dfs","dior beaut","diptyque","dom perignon",
+    "dom pérignon","drunk elephant","dunhill","escential","escentials","farfetch","fendi","fenty",
+    "ferragamo","fj benjamin","fresh","garnier","givenchy","glamglow","glossier","goyard","graff",
+    "guerlain","harry winston","hennessy","hour glass","hourglass","hublot","innisfree","ipsa","iwc",
+    "jaeger","jimmy choo","jo malone","kanebo","kate spade","kenvue","kenzo","kerastase","kiehl","kilian",
+    "kose","krug","kérastase","l'occitane","la mer","la prairie","la roche","laneige","laura mercier",
+    "loccitane","loewe","longchamp","loro piana","louis vuitton","luxola","mac cosmetics",
+    "make up for ever","marc jacobs","matchesfashion","maybelline","michael kors","miu miu","moda operandi",
+    "moet","molton brown","moncler","montblanc","moët","mytheresa","nars","natura","net-a-porter","nivea",
+    "nyx","occitane","off-white","olay","omega","on pedder","panerai","patek","paula's choice","pedder",
+    "penhaligon","pernod","pernod ricard","piaget","pomellato","prada","prada beauty","qeelin",
+    "ralph lauren","rare beauty","redken","richard mille","rimowa","rituals","rolex","rsh","sa sa","sasa",
+    "shu uemura","sk ii","sk-ii","ssense","sulwhasoo","swatch","tag heuer","tangs beauty","tapestry",
+    "tatcha","the body shop","the ordinary","thom browne","tiffany","tod's","tods","too faced",
+    "urban decay","vacheron","valentino","valiram","van cleef","versace","veuve clicquot","vichy","wella",
+    "ysl beaut","zegna"],
+  luxury_signals: [
+    "atelier","beaute","beauty","beauté","cosmetic","couture","fashion house","fragrance","hair care",
+    "haircare","high-end","jewellery","jewelry","leather goods","luxasia","luxe","luxury","luxury goods",
+    "luxury retail","maison","make-up","makeup","parfum","perfume","perfumery","prestige","pret-a-porter",
+    "prêt-à-porter","ready-to-wear","skin care","skincare","watches","watchmaking"],
+  travel_brands: [
+    "accor","agoda","airbnb","aman","aman resorts","anantara","andaz","angsana","auberge","avolta",
+    "banyan tree","belmond","booking holdings","booking.com","bulgari hotel","capella","cathay","changi",
+    "cheval blanc","como hotel","como hotels","conrad","corinthia","crystal cruises","cunard","dfs","dhawa",
+    "dorchester","dufry","dusit","duty free","edition hotel","emirates","expedia","fairmont","four seasons",
+    "heinemann","hilton","hyatt","jewel changi","jumeirah","kempinski","king power","klook",
+    "lagardere travel","lagardère travel","langham","le meridien","le méridien","lotte duty free",
+    "mandarin oriental","marina bay sands","millennium hotel","montage","oberoi","oceania cruises",
+    "one&only","oneandonly","orient express","pan pacific","park hyatt","parkroyal","peninsula hotel",
+    "ponant","pullman","qatar airways","raffles","regent","regent seven seas","resorts world",
+    "ritz carlton","ritz-carlton","rosewood","sats","scoot","seabourn","shangri la","shangri-la","sheraton",
+    "silversea","singapore airlines","six senses","sofitel","soho house","st regis","st. regis",
+    "standard hotel","taj hotel","the peninsula","the shilla","traveloka","trip.com","w hotels","waldorf",
+    "westin"],
+  travel_signals: [
+    "airline","airport","aviation","concierge","cruise","duty free","duty-free","hospitality","hotel",
+    "members club","members' club","private club","resort","spa resort","travel retail"],
+  tech_signals: [
+    "adobe","advance intelligence","amazon","anthropic","artificial intelligence","atlassian","b2b saas",
+    "binance","blockchain","bytedance","canva","carousell","circles.life","cloud","coda payments",
+    "coinbase","crypto","cybersecurity","data science","developer","digital agency","e-wallet","engineer",
+    "fintech","gaming","gojek","google","goto","grab","lazada","machine learning","meta","microsoft",
+    "ninja van","ninjavan","nium","openai","platform","propertyguru","razer","revolut","saas","salesforce",
+    "sea limited","sea ltd","semiconductor","shopee","software","startup","stripe","super app",
+    "technology company","thunes","tik tok","tiktok","wise"],
+  finance_signals: [
+    "aia","allianz","aon","asset management","assurance","axa","bank","banking","barclays","bnp paribas",
+    "brokerage","capital markets","chubb","cimb","citibank","citigroup","credit suisse","dbs",
+    "deutsche bank","etiqa","goldman sachs","great eastern","hsbc","income insurance","insurance","insurer",
+    "j.p. morgan","jpmorgan","manulife","marsh","maybank","morgan stanley","msig","munich re","ntuc income",
+    "ocbc","private bank","prudential","reinsur","securities","stanchart","standard chartered","swiss re",
+    "tokio marine","uob","wealth management","willis towers","zurich"],
+  consult_signals: [
+    "accenture","advisory","bain","bcg","boston consulting","capgemini","cognizant","consultancy",
+    "consulting","deloitte","ernst & young","infosys","kearney","kpmg","l.e.k","management consult",
+    "mckinsey","oliver wyman","pricewaterhouse","publicis sapient","pwc","roland berger","slalom",
+    "strategy&","tata consultancy","thoughtworks","wipro"],
+};
+
 /* Categories arrive from three places — this device's cache, the Cloudflare
    config, and the built-in defaults — and the first two can be carrying an
    older SHAPE than the current code (that's how Houses came to describe itself
@@ -582,16 +665,21 @@ function loadCats(){
 /* Houses and Recruiters are matched on brand names by the scanner. Seed the UI
    with the real lists it published, so what you edit IS the rule — not a copy. */
 function seedBrandRules(){
-  const cfg=state.scanCfg||{};
+  // The scanner's published lists win; the shipped defaults are the safety net.
+  const live=state.scanCfg||{};
+  const pick=k=>Array.isArray(live[k])&&live[k].length?live[k]:(RULE_DEFAULTS[k]||[]);
   const seed=(id,tKey,sKey)=>{
     const c=state.cats.find(x=>x.id===id); if(!c)return;
-    if(!(c.terms||[]).length&&Array.isArray(cfg[tKey]))c.terms=cfg[tKey].slice();
-    if(sKey&&!(c.signals||[]).length&&Array.isArray(cfg[sKey]))c.signals=cfg[sKey].slice();
+    if(!(c.terms||[]).length && tKey)c.terms=pick(tKey).slice();
+    if(c.signals!==undefined && !(c.signals||[]).length && sKey)c.signals=pick(sKey).slice();
   };
   seed("house","house_brands");
   seed("recruiter","agency_terms");
   seed("beauty_luxury","luxury_brands","luxury_signals");
   seed("travel","travel_brands","travel_signals");
+  seed("tech",null,"tech_signals");
+  seed("finance",null,"finance_signals");
+  seed("consulting",null,"consult_signals");
 }
 function loadProfiles(){
   try{
@@ -1453,7 +1541,7 @@ function ruleGroup(c,key,label,help){
     <div class="hint" style="margin:0 0 8px">${help}</div>
     <div class="tchips">${list.map((t,i)=>
       `<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-key="${key}" data-i="${i}">\u00d7</button></span>`
-    ).join("")||`<span class="hint">Empty \u2014 nothing matches on this rule.</span>`}</div>
+    ).join("")||`<span class="hint">Empty \u2014 the scanner falls back to its built-in list for this rule, so nothing is lost. Add a term to take control of it.</span>`}</div>
     <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="${key==="terms"?"add a word from the employer's name":"add a word from the title or description"}, then press Enter">
   </div>`;
 }

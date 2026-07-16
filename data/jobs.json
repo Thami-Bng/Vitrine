@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15T10:44:57.779796+00:00",
+  "generated_at": "2026-07-16T03:58:06.858708+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 452,
-      "kept": 372,
+      "kept": 367,
       "error": false
     },
     {
@@ -51,14 +51,14 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 146,
+      "fetched": 147,
       "kept": 7,
       "error": false
     },
     {
       "label": "Workday · Chanel",
       "fetched": 121,
-      "kept": 8,
+      "kept": 7,
       "error": false
     },
     {
@@ -75,14 +75,14 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 375,
+      "fetched": 369,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 74,
-      "kept": 67,
+      "fetched": 73,
+      "kept": 66,
       "error": false
     },
     {
@@ -105,12 +105,104 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 18,
-      "kept": 0,
+      "fetched": 40,
+      "kept": 1,
       "error": false
     }
   ],
   "jobs": [
+    {
+      "id": "mcf-5c94511481327fae3f961966e31c0e5f",
+      "title": "DC13470977 - Backend Software Engineer | Large-Scale Distributed Systems / E-Commerce Platform",
+      "company": "ROBERT HALF INTERNATIONAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$12,000–15,000/mo",
+      "salary_max": 15000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5c94511481327fae3f961966e31c0e5f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5c94511481327fae3f961966e31c0e5f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5c94511481327fae3f961966e31c0e5f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T03:58:06.858708+00:00"
+    },
+    {
+      "id": "mcf-f8a9b45d338654b05e80a0c6379f9e0a",
+      "title": "Product Manager (Macro)",
+      "company": "AMBITION GROUP SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$16,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f8a9b45d338654b05e80a0c6379f9e0a",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f8a9b45d338654b05e80a0c6379f9e0a"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f8a9b45d338654b05e80a0c6379f9e0a",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T03:58:06.858708+00:00"
+    },
+    {
+      "id": "mcf-503b40252a0df8d99deb54dd3174ca96",
+      "title": "IT Business Analyst",
+      "company": "NOVEXX PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$8,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/503b40252a0df8d99deb54dd3174ca96",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/503b40252a0df8d99deb54dd3174ca96"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/503b40252a0df8d99deb54dd3174ca96",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T03:58:06.858708+00:00"
+    },
+    {
+      "id": "mcf-41338ee296c1e2797a5310b68eb015c6",
+      "title": "Business Analyst",
+      "company": "UNITED OVERSEAS INSURANCE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$5,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/41338ee296c1e2797a5310b68eb015c6",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/41338ee296c1e2797a5310b68eb015c6"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/41338ee296c1e2797a5310b68eb015c6",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T03:58:06.858708+00:00"
+    },
     {
       "id": "mcf-330f7cc0e6109befa6ff9b557b28e05e",
       "title": "Staff Product Manager",
@@ -156,6 +248,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-d35995d7e2498047904ccaf594c6b635",
+      "title": "Product Manager, Agentic Safety - Singapore",
+      "company": "GOOGLE ASIA PACIFIC PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$15,500–31,000/mo",
+      "salary_max": 31000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-15T05:30:25.897530+00:00"
     },
     {
       "id": "mcf-e8e961b2bbe1d8e479867d2cb1ac7047",
@@ -271,29 +386,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T10:44:57.779796+00:00"
-    },
-    {
-      "id": "mcf-d35995d7e2498047904ccaf594c6b635",
-      "title": "Product Manager, Agentic Safety - Singapore",
-      "company": "GOOGLE ASIA PACIFIC PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-15",
-      "posted_date": "2026-07-15",
-      "salary": "S$15,500–31,000/mo",
-      "salary_max": 31000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/d35995d7e2498047904ccaf594c6b635",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-15T05:30:25.897530+00:00"
     },
     {
       "id": "mcf-36e4d2dc8fdb8c9f63e9cb4af6a483ac",
@@ -2270,6 +2362,29 @@
       "description": "Product Manager - Trading Experience\r\n\r\nWho We Are \r\n\r\nAxi is a leading global provider of margin and deliverable Foreign Exchange, Contracts for Difference (CFDs), and Financial Spread betting. Our business has evolved into a world-class, multifaceted brokerage with offices in six regions. With heavy investment in the latest trading technology, Axi seeks to offer the most comprehensive end-to-end trading experience available, servicing traders of all levels from beginners to institutional-level clients. \r\nLet's talk about the cool stuff you will do at Axi! \r\n\r\nAs a Product Manager - Trading Experience, you will own and enhance key product experiences across Axi's app and web trading platforms, with a focus on how traders discover opportunities, place trades, manage positions, monitor performance, and interact with the broader trading lifecycle. \r\n\r\nThis is a high-impact product role for someone who understands, or has a strong passion for, trading products and trader behaviour. You will work closely with engineering, design, data, trading, risk, middle office, eFX, operations, compliance, and commercial teams to build product experiences that are fast, intuitive, reliable, and aligned to what traders need. \r\n\r\nYou will shape product capabilities across trading journeys, order placement, position management, watchlists, charts, alerts, trade history, account visibility, execution experience, platform performance, and trader engagement. You will also work closely with internal teams to ensure the front-end trading experience is supported by robust middle office, execution, reconciliation, risk, and operational processes. \r\n\r\nThis role is well suited to a Product Manager who has worked on trading platforms, brokerage products, fintech platforms, investment apps, FX/CFD products, or other complex financial products. We are also open to strong Product Managers from adjacent digital product environments who have a genuine personal interest in trading and can demonstrate strong understanding of trader needs, trading behaviour, and platform expectations. \r\nYour EDGE Assignment / You Will \r\n\r\n• Define, own, and continuously refine the product vision, strategy, and roadmap for Axi's app and web trading experience, ensuring alignment with company priorities, client needs, trading performance, and commercial objectives. \r\n• Build and improve trader-facing product experiences, including market discovery, watchlists, charts, order tickets, trade execution flows, open positions, order management, trade history, alerts, account metrics, margin visibility, and portfolio performance. \r\n• Understand what traders need from a digital trading experience, including speed, stability, transparency, confidence, ease of use, execution clarity, pricing accuracy, and access to relevant trading information. \r\n• Partner closely with engineering, design, data, trading, eFX, middle office, risk, operations, compliance, support, and commercial stakeholders to deliver trading product initiatives end-to-end. \r\n• Work with middle office and operational teams to understand trade lifecycle processes, including trade capture, validation, reconciliation, exposure monitoring, reporting, and issue resolution. \r\n• Collaborate with eFX and trading teams to understand execution-related considerations such as pricing, liquidity, latency, slippage, order routing, rejected trades, trade flow, and platform performance. \r\n• Translate trader needs, business requirements, technical constraints, and operational considerations into clear product requirements, priorities, user stories, workflows, and well-managed backlogs for engineering teams. \r\n• Use data, client feedback, trading behaviour, support insights, funnel metrics, platform analytics, and qualitative research to identify friction points and prioritise product improvements. \r\n• Lead the development and rollout of new features, capabilities, and product improvements that improve the trading experience across app and web platforms. \r\n• Monitor product performance through adoption, engagement, conversion, execution-related metrics, trade activity, client feedback, incident trends, and operational impact. \r\n• Ensure product capabilities meet relevant regulatory, compliance, risk, and operational requirements, especially where trading, execution, leverage, margin, risk warnings, promotions, and client communications are involved. \r\n• Communicate clearly and proactively with stakeholders on roadmap progress, product priorities, trade-offs, delivery risks, client impact, and business outcomes. \r\n• Balance trader experience, commercial impact, regulatory expectations, technical feasibility, operational resilience, and delivery constraints to make sound product decisions. Are you the one? \r\n\r\n• You have 7+ years of total work experience, with most of that experience in product management, ideally across trading platforms, fintech, brokerage, investing, FX, CFDs, wealth, payments, or similarly complex digital products. \r\n• You have experience building or improving app and/or web product experiences used by customers in high-intent, high-frequency, or financially sensitive environments. \r\n• You understand, or have a strong personal interest in, trading products and trader behaviour, including what traders expect from a platform before, during, and after placing a trade. \r\n• You have knowledge of trading platform experiences such as market search, watchlists, charts, order placement, open positions, order history, account balances, margin usage, P&L, alerts, deposits, withdrawals, and client reporting. \r\n• You have a proven track record of owning and delivering successful software products, features, or customer experiences across web and/or mobile platforms. \r\n• You are comfortable working across the full product development lifecycle, from discovery and problem definition through to delivery, launch, measurement, and continuous improvement. \r\n• You have strong product sense, with the ability to define strategy while also driving execution at the detail level. \r\n• You can translate complex trading, operational, technical, and commercial requirements into simple, scalable, and user-friendly product experiences. \r\n• You are confident using customer insights, product analytics, trading data, stakeholder input, market research, competitor analysis, and user feedback to inform decisions and improve outcomes. \r\n• You communicate well with both technical and non-technical stakeholders and can influence cross-functional teams across product, engineering, trading, operations, risk, and compliance. \r\n• You have strong prioritisation skills and can manage multiple complex initiatives while making clear trade-offs. \r\n• You have strong ownership, sound judgement, and a bias towards action.",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJFLUJ1c2luZXNzIE1hbmFnZXIsIFNFQUEgKDEyLW1vbnRoIEZpeGVkIFRlcm0pIiwiY29tcGFueV9uYW1lIjoiQ0hBTkVMIEFTSUEg",
+      "title": "E-Business Manager, SEAA (12-month Fixed Term)",
+      "company": "CHANEL ASIA PACIFIC PTE LIMITED",
+      "source": "Google Jobs",
+      "type": "house",
+      "sector": "hospitality",
+      "category": "house",
+      "posted": "7 days ago",
+      "posted_date": "2026-07-09",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "https://sg.linkedin.com/jobs/view/e-business-manager-seaa-12-month-fixed-term-at-chanel-4426910886?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/advertising/e-business-manager-seaa-chanel-asia-pacific-e6bbde1da0d6118cc8141aad354f1957?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+      },
+      "url": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Why this Mission? \n\nAt CHANEL, we strive to create an environment where people can perform at their best, feel fulfilled, and confident in their work. As a privately-owned company, we deeply value humanity, uniqueness, and the opportunity for each individual to bring their full selves to work. \n\nWithin this context, the SEAA Fragrance & Beauty (FBP) division seeks a Senior eBusiness professional for a 12-month maternity cover. This role is performance focused, with a key eye for elevating brand positioning & driving commercial achievement. You will champion CHANEL’s eBusiness vision in the region while actively monitoring and reporting on business performance, strategizing AB Testing and merchandising campaigns, and playing a pivotal part in enhancing the client experience. \n\nYou will help to lead core eBusiness projects including the launch of new online channels, (eShops, eRetail & eTravel Retail), partnering with markets to provide insight and leadership based on your significant eBusiness experience. \n\nImpact You can create in this role:\n\nDigital Campaign & eMerchandising \n\nDrive and enhance digital campaign planning, ensuring global calendars are adapted for local relevance, in line with regional priorities. Based on your experience, enrich business performance with best-in-class eMerchandising practices, including product recommendations, on-site search, menu/category optimization, and proposals to grow the online business. Take an experienced eye to online client journeys from traffic to conversion, and constantly enrich the customer experience based on insights and intuition. Performance & Analytics \n\nIndependently utilize data and analytics to generate actionable business insights and drive continuous optimization. Define and align key KPIs across client, brand, sales, and profitability dimensions with all stakeholders. Identify gaps in data, recommend solutions and tools, and drive adoption of improved reporting frameworks. AB Testing & Personalization \n\nLead the regional AB testing program based on market needs and ensure rigorous documentation and reporting. Collaborate with global and regional teams to embed testing and personalization into the client journey, leveraging cross-functional expertise (Tech, CRM, Marketing, Design). Project Management & Collaboration \n\nLead projects related to campaigns and new initiatives (e.g., gift finder, try-before-you-commit). Manage multiple projects simultaneously, ensuring all requests are recognized, prioritized, and delivered for optimal business impact. Proactively propose and drive new ideas to enhance the client experience and brand equity. eBusiness Excellence \n\nBring an entrepreneurial mindset, considering evolving online behaviors and market trends. Act as a key advocate for eBusiness, partnering with stakeholders to support the strategy of doubling .com revenue by 2028. You are energized by:\n\nBeing a strategic voice in shaping the digital future of CHANEL’s Fragrance & Beauty divisionPartnering with passionate, diverse, and talented colleagues across the regionDriving meaningful change and innovation in an inclusive, human-centric cultureGrowing personally, feeling empowered, and making a lasting impactWhat you will bring: \n\nAt least 8 years’ experience in eBusiness, ideally with a luxury or premium fragrance/beauty brand. Strong knowledge of performance marketing & media (highly desirable). Strong expertise in Google Analytics (preferred). Deep understanding of the balance between brand positioning and client experience for premium clientele. Demonstrated ability to work in a matrixed, multicultural environment with diverse stakeholders. Data-driven, analytical, and commercially focused. Strategic thinker with an innovative approach to online business. Comprehensive understanding of eCommerce & retail: e-merchandising, CRM, promotions, media, stock management, last mile delivery, invoicing, etc. Excellent English communication skills, written and spoken. Motivated, proactive, and results-driven; able to work independently with sound judgment. Flexible, positive, and adaptable in a fast-paced setting. Empathetic communicator, skilled at building strong relationships across APAC markets. Strong project management and multitasking skills; able to manage ambiguity and competing priorities. At Chanel, we are focused on creating an inclusive culture that nurtures personal growth, contributing to collective progress. We believe the uniqueness of each individual increases the diversity, complementarity, and effectiveness of our teams. We strongly encourage your application, as we value the perspective, experience, and potential you could bring to Chanel.",
+      "preferred": true,
+      "first_seen": "2026-07-16T03:58:06.858708+00:00"
     },
     {
       "id": "mcf-19bbee5913685199db14201a71bb1f1e",

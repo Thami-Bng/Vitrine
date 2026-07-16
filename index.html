@@ -124,8 +124,11 @@
      the point of the whole tool, so they shouldn't be a 14px afterthought. */
   .people{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .person{display:flex;flex-direction:column;align-items:center;gap:4px;width:52px;text-decoration:none;}
-  .avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--card);border:2px solid #ddd6c9;position:relative;}
-  .avatar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F1EAE2;border:2px solid #ddd6c9;position:relative;}
+  .avatar{overflow:hidden;}
+  .avatar .face{width:100%;height:100%;display:block;}
+  .face .sk{fill:var(--sk);} .face .hr{fill:var(--hr);} .face .bd{fill:var(--ac);}
+  .face .ey{fill:var(--hr);} .face .mo{fill:none;stroke:var(--hr);stroke-width:1.1;stroke-linecap:round;}
   .person .nm{font-size:10.5px;font-weight:600;color:var(--muted);max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;}
   .avatar .dot2{position:absolute;right:-1px;bottom:-1px;width:13px;height:13px;border-radius:50%;border:2px solid var(--card);background:#c9c2b6;}
   .person.todo .avatar{color:#a89f92;border-color:#ddd6c9;}
@@ -168,7 +171,7 @@
   .tag.tracked{color:var(--ink);background:#ECE8E1;}
   .btn.track.on{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-  .gear{position:absolute;top:22px;right:0;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+  .gear{position:absolute;top:22px;left:0;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
   .gear span{display:block;width:17px;height:2px;background:currentColor;border-radius:2px;}
   .gear:hover{color:var(--accent);border-color:var(--accent);}
 
@@ -223,6 +226,26 @@
   .sheet-foot .untrack{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline;}
   .sheet-foot .done{margin-left:auto;background:var(--accent);border:1px solid var(--accent);color:#fff;font:inherit;font-size:13.5px;font-weight:600;border-radius:999px;padding:10px 22px;cursor:pointer;}
   .hint{font-size:11.5px;color:var(--muted);margin-top:6px;}
+  /* Settings are PAGES you navigate to, not popups that hover over the list. */
+  .pg-top{display:flex;align-items:center;gap:12px;padding:14px 0 4px;}
+  .back{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;}
+  .back:hover{border-color:var(--accent);color:var(--accent);}
+  .pg-h{font-family:"Fraunces",serif;font-size:26px;font-weight:500;margin:10px 0 4px;}
+  .pg-sub{font-size:13.5px;color:var(--muted);margin:0 0 20px;line-height:1.5;max-width:60ch;}
+  .menu{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;}
+  .menu button{display:flex;width:100%;align-items:center;gap:12px;padding:16px 16px;border:0;border-bottom:1px solid var(--line);background:transparent;font:inherit;text-align:left;cursor:pointer;color:var(--ink);}
+  .menu button:last-child{border-bottom:0;}
+  .menu button:hover{background:var(--paper);}
+  .menu .mi-t{font-size:15px;font-weight:600;}
+  .menu .mi-s{font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .menu .mi-x{margin-left:auto;color:var(--muted);font-size:16px;}
+  .menu .mi-b{flex:1;min-width:0;}
+  .prof-card{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:13px 14px;margin-bottom:10px;}
+  .prof-card.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;}
+  .prof-name{font-size:15px;font-weight:600;}
+  .prof-meta{font-size:12px;color:var(--muted);margin-top:2px;}
+  .prof-act{margin-left:auto;display:flex;gap:6px;}
+  .whoami{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);color:var(--accent);border:1px solid #e7cdd5;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;}
   /* Settings opens as a full page, not a peeking sheet — it's a place you go. */
   .overlay.page{align-items:stretch;}
   .pagesheet{max-height:100vh;height:100vh;border-radius:0;max-width:100%;padding-top:26px;}
@@ -292,6 +315,7 @@
     <div class="count" id="count"></div>
   </div>
 
+  <div id="page" hidden></div>
   <ul id="list"></ul>
   <details class="sources" id="sources" style="display:none"></details>
   <footer id="footer"></footer>
@@ -301,10 +325,7 @@
 <div class="overlay" id="overlay" hidden>
   <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 </div>
-<!-- Settings · backup · sync -->
-<div class="overlay page" id="setOverlay" hidden>
-  <div class="sheet pagesheet" id="setSheet" role="dialog" aria-modal="true"></div>
-</div>
+
 <input type="file" id="restoreInput" accept="application/json,.json" hidden>
 
 <script>
@@ -351,16 +372,81 @@ function renderModebar(){
     <button class="mode" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"}">Browse roles</button>
     <button class="mode" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"}">Pipeline${badge}</button>`;
 }
-const state={jobs:[],config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
-  savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed")),
-  pipeline:loadObj("v_pipeline")};
+/* ── Profiles ──────────────────────────────────────────────────────────────
+   Each profile is a person: their own search terms, salary floor, pipeline and
+   marks. ONE scan still serves everyone — it fetches the union of what every
+   profile asks for, and each profile filters its own view here. That keeps the
+   SerpApi budget (240/250 a month) intact no matter how many profiles exist. */
+const DEFAULT_TERMS={
+  search:["ecommerce","e-commerce","product owner","product manager","digital project manager",
+          "omnichannel","digital consultant","ui ux","business analyst","performance analyst"],
+  include:["product owner","digital project manager","ecommerce","e-commerce","ecomm","e-comm",
+           "ebusiness","e-business","omnichannel","omni-channel","digital consultant",
+           "product manager","product management","ui ux","ui/ux","uiux","ux ui","ux/ui",
+           "business analyst","performance analyst"],
+  exclude:["controller","controlling","treasury","finance","accountant","tax","audit*","payroll",
+           "clienteling","intern","internship","apprentice","working student","fresh graduate",
+           "beauty advisor","client advisor","sales associate","retail associate","store manager",
+           "boutique manager","counter","cashier","supply chain","logistics","warehouse",
+           "customer service","service assistant","call cent*","receptionist","data entry","telesales"],
+  min_salary_max:9000
+};
+function newProfile(name,id){
+  return {id:id||("p"+Date.now().toString(36)),name:name||"New profile",
+          search:[...DEFAULT_TERMS.search],include:[...DEFAULT_TERMS.include],
+          exclude:[...DEFAULT_TERMS.exclude],min_salary_max:DEFAULT_TERMS.min_salary_max};
+}
+function loadProfiles(){
+  try{
+    const p=JSON.parse(localStorage.getItem("v_profiles")||"null");
+    if(Array.isArray(p)&&p.length)return p;
+  }catch(e){}
+  return [newProfile("Zineb","zineb")];
+}
+const state={jobs:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+  savedSet:new Set(),appliedSet:new Set(),dismissedSet:new Set(),pipeline:{}};
+function loadProfileData(){
+  state.savedSet=new Set(load(pk("v_saved")));
+  state.appliedSet=new Set(load(pk("v_applied")));
+  state.dismissedSet=new Set(load(pk("v_dismissed")));
+  state.pipeline=loadObj(pk("v_pipeline"));
+  const p=activeProfile();
+  state.config={search:p.search,include:p.include,exclude:p.exclude,min_salary_max:p.min_salary_max};
+  recompile();
+}
+function activeProfile(){
+  return state.profiles.find(p=>p.id===state.pid) || state.profiles[0] || newProfile("Zineb","zineb");
+}
+function saveProfiles(){
+  try{localStorage.setItem("v_profiles",JSON.stringify(state.profiles));localStorage.setItem("v_pid",state.pid);}catch(e){}
+}
+function switchProfile(pid){
+  if(!state.profiles.some(p=>p.id===pid))return;
+  state.pid=pid;saveProfiles();loadProfileData();
+  state.page=null;state.mode="browse";firstPull=true;lastLocalChange=0;
+  render();pullRemote();
+}
+/* Storage is namespaced per profile: v_pipeline:zineb, v_pipeline:p1x… */
+function pk(base){return base+":"+state.pid;}
+function migrateLegacy(){
+  // Everything before profiles existed belongs to Zineb. Move it once, keep the
+  // originals untouched so an older tab can't be broken by this upgrade.
+  if(localStorage.getItem("v_migrated"))return;
+  try{
+    ["v_saved","v_applied","v_dismissed","v_pipeline"].forEach(k=>{
+      const old=localStorage.getItem(k);
+      if(old!==null && localStorage.getItem(k+":zineb")===null) localStorage.setItem(k+":zineb",old);
+    });
+    localStorage.setItem("v_migrated","1");
+  }catch(e){}
+}
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
 function loadObj(k){try{return JSON.parse(localStorage.getItem(k)||"{}")||{};}catch(e){return {};}}
 function cacheLocal(){try{
-  localStorage.setItem("v_saved",JSON.stringify([...state.savedSet]));
-  localStorage.setItem("v_applied",JSON.stringify([...state.appliedSet]));
-  localStorage.setItem("v_dismissed",JSON.stringify([...state.dismissedSet]));
-  localStorage.setItem("v_pipeline",JSON.stringify(state.pipeline));
+  localStorage.setItem(pk("v_saved"),JSON.stringify([...state.savedSet]));
+  localStorage.setItem(pk("v_applied"),JSON.stringify([...state.appliedSet]));
+  localStorage.setItem(pk("v_dismissed"),JSON.stringify([...state.dismissedSet]));
+  localStorage.setItem(pk("v_pipeline"),JSON.stringify(state.pipeline));
 }catch(e){}}
 
 /* ── Cross-device sync ─────────────────────────────────────────────────────
@@ -411,7 +497,7 @@ function applyRemote(o, adoptMarks){
 async function pullRemote(){
   if(!syncOn()){state.sync="off";return;}
   try{
-    const r=await fetch(SYNC.url,{headers:{Authorization:"Bearer "+SYNC.key}});
+    const r=await fetch(SYNC.url+"?profile="+encodeURIComponent(state.pid),{headers:{Authorization:"Bearer "+SYNC.key}});
     if(!r.ok){state.sync="error";return;}
     const o=await r.json();
     state.sync="on";
@@ -425,7 +511,7 @@ async function pullRemote(){
 async function pushRemote(){
   if(!syncOn()){state.sync="off";return;}
   try{
-    const r=await fetch(SYNC.url,{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
+    const r=await fetch(SYNC.url+"?profile="+encodeURIComponent(state.pid),{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
       body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet],pipeline:state.pipeline})});
     state.sync=r.ok?"on":"error";
   }catch(e){state.sync="error";}
@@ -480,6 +566,7 @@ function weeksAgo(d){
 }
 
 async function boot(){
+  migrateLegacy();loadProfileData();
   let data=SAMPLE;
   try{const r=await fetch("data/jobs.json",{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.jobs&&d.jobs.length)data=d;}}catch(e){}
   state.jobs=data.jobs||[];
@@ -521,6 +608,8 @@ function passes(j,ignoreScope){
   const q=state.q.trim().toLowerCase();
   if(!ignoreScope && !q && catOf(j)!==state.scope)return false;
   if(!relevantClient(j))return false;
+  const floor=state.config.min_salary_max||0;
+  if(floor && j.salary_max && j.salary_max<floor)return false;   // this profile's own salary floor
   if(state.mApplied!=="only" && isTracked(j.id))return false;
   if(state.onlyNew&&!isNew(j))return false;
   if(state.mAgencies==="hide"&&j.type==="agency")return false;
@@ -559,7 +648,15 @@ function linkBtns(j){
   if(!out.length)out.push(`<span class="btn" style="opacity:.5">No link</span>`);
   return out.join("");
 }
+function go(page){state.page=page;render();window.scrollTo(0,0);}
 function render(){
+  const pg=document.getElementById("page"), ctl=document.querySelector(".controls"), lst=document.getElementById("list");
+  const srcs=document.getElementById("sources");
+  if(state.page){
+    ctl.style.display="none";lst.style.display="none";if(srcs)srcs.style.display="none";
+    pg.hidden=false;renderPage();return;
+  }
+  pg.hidden=true;ctl.style.display="";lst.style.display="";
   renderModebar();
   const inPipe=state.mode==="pipeline";
   document.getElementById("tabs").style.display=inPipe?"none":"";      // categories are a Browse concern
@@ -661,7 +758,26 @@ function contactSummary(rec){
   if(replied)parts.push(`${replied} replied`); else if(contacted)parts.push(`${contacted} awaiting reply`);
   return parts.join(" · ");
 }
-const FACE=`<svg viewBox="0 0 24 24"><path d="M12 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8Z"/><path d="M7.6 7.2c1.6.9 5.1 1.5 8.6.2"/><path d="M3.9 20.4c0-3.7 3.6-6.2 8.1-6.2s8.1 2.5 8.1 6.2"/></svg>`;
+/* Four faces and six palettes, picked deterministically from the name — so
+   Isabelle always looks like Isabelle, and a row of contacts looks like people
+   rather than a row of identical grey blobs. */
+const FACES=[
+  // short hair
+  `<circle class="sk" cx="16" cy="15" r="7"/><path class="hr" d="M8.6 13.2C9 8.6 12.2 6 16 6s7 2.6 7.4 7.2c-1.2-1.6-3-2.4-3-2.4S18.8 12.6 16 12.6s-4.4-1.8-4.4-1.8-1.8.8-3 2.4Z"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.4" cy="15.4" r="1"/><circle class="ey" cx="18.6" cy="15.4" r="1"/><path class="mo" d="M13.8 18.4c1.3 1.2 3.1 1.2 4.4 0"/>`,
+  // long hair
+  `<path class="hr" d="M7.6 22c-1-2-1.2-4.6-1.2-7C6.4 9 10.6 5.4 16 5.4S25.6 9 25.6 15c0 2.4-.2 5-1.2 7 .6-6-1-8.6-1-8.6s-3 1.6-7.4 1.6-7.4-1.6-7.4-1.6-1.6 2.6-1 8.6Z"/><circle class="sk" cx="16" cy="15.6" r="6.6"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.5" cy="15.8" r="1"/><circle class="ey" cx="18.5" cy="15.8" r="1"/><path class="mo" d="M13.9 18.8c1.3 1.2 2.9 1.2 4.2 0"/>`,
+  // curly
+  `<circle class="hr" cx="10.6" cy="11.4" r="3.1"/><circle class="hr" cx="16" cy="8.8" r="3.4"/><circle class="hr" cx="21.4" cy="11.4" r="3.1"/><circle class="sk" cx="16" cy="16" r="6.5"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.6" cy="16.2" r="1"/><circle class="ey" cx="18.4" cy="16.2" r="1"/><path class="mo" d="M14 19.2c1.2 1.1 2.8 1.1 4 0"/>`,
+  // bearded / glasses
+  `<circle class="sk" cx="16" cy="15.4" r="6.8"/><path class="hr" d="M9.4 13.6C10.2 9 12.7 6.6 16 6.6s5.8 2.4 6.6 7c-1.6-2-3.8-2.8-6.6-2.8s-5 .8-6.6 2.8Z"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.4" cy="15.2" r="2.3" fill="none" stroke="currentColor" stroke-width="1"/><circle class="ey" cx="18.6" cy="15.2" r="2.3" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15.7 15.2h.6" stroke="currentColor" stroke-width="1"/><path class="mo" d="M13.6 19c1.4 1.4 3.4 1.4 4.8 0"/>`
+];
+const PALETTES=[["#E8B4A0","#3B2A24","#7B1E3B"],["#F0C9A8","#5C3A21","#2F5D50"],["#C68863","#241A16","#8A6A1E"],["#F2D2B6","#8A5A2B","#4A4E8C"],["#D9A17A","#33231C","#1F6F5C"],["#EFC3A6","#6B3F2A","#9B3B4E"]];
+function hashOf(str){let h=0;for(let i=0;i<(str||"").length;i++)h=((h<<5)-h+str.charCodeAt(i))|0;return Math.abs(h);}
+function faceFor(name){
+  const h=hashOf((name||"?").toLowerCase());
+  const f=FACES[h%FACES.length], p=PALETTES[(h>>3)%PALETTES.length];
+  return `<svg viewBox="0 0 32 32" class="face" style="--sk:${p[0]};--hr:${p[1]};--ac:${p[2]}">${f}</svg>`;
+}
 function personIcons(rec){
   const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
   if(!cs.length)return "";
@@ -671,7 +787,7 @@ function personIcons(rec){
     const days=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
     const tag=c.url?"a":"span", href=c.url?` href="${esc(c.url)}" target="_blank" rel="noopener" data-stop`:"";
     return `<${tag} class="person ${st}"${href} title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
-      <span class="avatar">${FACE}<span class="dot2"></span></span>
+      <span class="avatar">${faceFor(c.name)}<span class="dot2"></span></span>
       <span class="nm">${esc(first)}</span></${tag}>`;
   };
   return `<span class="people">${cs.map(one).join("")}</span>`;
@@ -851,10 +967,12 @@ async function pullConfig(){
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{headers:{Authorization:"Bearer "+SYNC.key}});
     if(!r.ok)return;
     const c=await r.json();
-    if(c && (c.include||c.search||c.exclude)){
-      state.config={...state.config,...c};
-      state.cfgDirty=(c.updated||0)>state.scannedAt;   // edited since the last scan?
-      recompile();render();
+    if(c && Array.isArray(c.profiles) && c.profiles.length){
+      state.profiles=c.profiles;
+      if(!state.profiles.some(p=>p.id===state.pid))state.pid=state.profiles[0].id;
+      saveProfiles();loadProfileData();
+      state.cfgDirty=(c.updated||0)>state.scannedAt;   // terms edited since the last scan?
+      render();
     }
   }catch(e){}
 }
@@ -863,11 +981,11 @@ async function pushConfig(){
   try{
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{method:"POST",
       headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
-      body:JSON.stringify({search:state.config.search,include:state.config.include,
-                           exclude:state.config.exclude,min_salary_max:state.config.min_salary_max})});
+      body:JSON.stringify({profiles:state.profiles})});
     if(!r.ok)return false;
-    const c=await r.json(); state.config={...state.config,...c};
-    state.cfgDirty=true; recompile(); render(); return true;
+    const c=await r.json();
+    if(Array.isArray(c.profiles)&&c.profiles.length){state.profiles=c.profiles;saveProfiles();loadProfileData();}
+    state.cfgDirty=true; render(); return true;
   }catch(e){return false;}
 }
 
@@ -892,7 +1010,7 @@ function applyBackup(o){
   persist();render();
 }
 function termFld(key,label){
-  const list=state.config[key]||[];
+  const list=activeProfile()[key]||[];
   const chips=list.map((t,i)=>`<span class="tchip">${esc(t)}<button data-delterm="${key}" data-i="${i}" title="Remove">×</button></span>`).join("")
     || `<span class="hint">None — the defaults will be used.</span>`;
   return `<div class="fld"><label>${esc(label)} <span style="text-transform:none;letter-spacing:0;font-weight:500">· ${list.length}</span></label>
@@ -901,56 +1019,90 @@ function termFld(key,label){
       <input class="inp" data-addterm="${key}" placeholder="add a term, then press Enter">
     </div></div>`;
 }
+function pgTop(title,sub,back){
+  return `<div class="pg-top"><button class="back" data-go="${back===undefined?"menu":back}">‹ Back</button></div>
+    <h2 class="pg-h">${esc(title)}</h2>${sub?`<p class="pg-sub">${sub}</p>`:""}`;
+}
+function renderPage(){
+  const el=document.getElementById("page");
+  const P=activeProfile();
+  if(state.page==="menu"){
+    const m=statusMeta();
+    el.innerHTML=`<div class="pg-top"><button class="back" data-go="">\u2039 Back to roles</button></div>
+      <h2 class="pg-h">Menu</h2>
+      <p class="pg-sub">You're working as <b>${esc(P.name)}</b>.</p>
+      <div class="menu">
+        <button data-go="profiles"><span class="mi-b"><span class="mi-t">Profiles</span><span class="mi-s">${state.profiles.length} profile${state.profiles.length>1?"s":""} \u00b7 switch or add someone</span></span><span class="mi-x">\u203a</span></button>
+        <button data-go="terms"><span class="mi-b"><span class="mi-t">Search terms</span><span class="mi-s">What the scan looks for, for ${esc(P.name)}</span></span><span class="mi-x">\u203a</span></button>
+        <button data-go="sync"><span class="mi-b"><span class="mi-t">Sync across devices</span><span class="mi-s">${esc(m[1])}</span></span><span class="mi-x">\u203a</span></button>
+        <button data-go="backup"><span class="mi-b"><span class="mi-t">Backup</span><span class="mi-s">Download or restore everything</span></span><span class="mi-x">\u203a</span></button>
+      </div>`;
+    return;
+  }
+  if(state.page==="profiles"){
+    el.innerHTML=pgTop("Profiles",
+      "Each profile has its own search terms, salary floor, pipeline and contacts. One scan serves everyone \u2014 it fetches the union of what every profile asks for, so adding a profile costs no extra API quota.")
+      + state.profiles.map(p=>{
+        const on=p.id===state.pid;
+        const n=Object.keys(loadObj("v_pipeline:"+p.id)).length;
+        return `<div class="prof-card ${on?"on":""}">
+          <div><div class="prof-name">${esc(p.name)}${on?' <span style="color:var(--accent);font-size:11px">\u00b7 active</span>':""}</div>
+          <div class="prof-meta">${(p.include||[]).length} keep terms \u00b7 floor S$${(p.min_salary_max||0).toLocaleString()}/mo \u00b7 ${n} tracked</div></div>
+          <div class="prof-act">
+            ${on?"":`<button class="mini go" data-switch="${esc(p.id)}">Use</button>`}
+            <button class="mini" data-renprof="${esc(p.id)}">Rename</button>
+            ${state.profiles.length>1?`<button class="mini" data-delprof="${esc(p.id)}">Delete</button>`:""}
+          </div></div>`;
+      }).join("")
+      + `<button class="set-btn go block" data-addprof>+ Add a profile</button>`;
+    return;
+  }
+  if(state.page==="terms"){
+    el.innerHTML=pgTop(`Search terms \u2014 ${P.name}`,
+      `What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan \u2014 the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan \u2014 run one to fetch new roles.</b>`:""}`)
+      + termFld("search","Search for (asked of each job site)")
+      + termFld("include","Keep titles containing")
+      + termFld("exclude","Drop titles containing")
+      + `<div class="fld"><label>Minimum salary (upper band, S$/month)</label>
+          <input class="inp" id="salFloor" type="number" min="0" step="500" value="${P.min_salary_max||0}">
+          <div class="hint">Roles whose published upper band is below this are hidden. Roles with no salary listed are always kept.</div></div>
+        <p class="hint"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
+        <button class="set-btn go block" data-savecfg>Save terms</button>
+        <a class="set-btn block" style="display:block;text-align:center;text-decoration:none" href="https://github.com/Thami-Bng/Vitrine/actions" target="_blank" rel="noopener">Run a scan now \u2197</a>`;
+    return;
+  }
+  if(state.page==="sync"){
+    const m=statusMeta(),hasKey=!!SYNC.key;
+    el.innerHTML=pgTop("Sync across devices","")
+      + `<div class="statusrow"><span class="sdot ${m[0]}"></span><span>${esc(m[1])}</span></div>
+         <p class="pg-sub">Paste the Worker token you set in Cloudflare. It's kept on <b>this device only</b> \u2014 never in the public code \u2014 so enter it once here and once on each other device.</p>
+         <div class="fld"><label>Worker URL</label><input class="inp" id="syncUrl" value="${esc(SYNC.url)}"></div>
+         <div class="fld"><label>Token</label><input class="inp" id="syncTok" type="password" placeholder="${hasKey?"\u2022\u2022\u2022\u2022 saved \u2014 leave blank to keep":"paste token"}" value=""></div>
+         <button class="set-btn go block" data-savesync>Save &amp; test</button>
+         ${hasKey?`<button class="set-btn block" data-clearsync>Turn sync off (remove token)</button>`:""}`;
+    return;
+  }
+  if(state.page==="backup"){
+    const n=trackedItems().length;
+    el.innerHTML=pgTop("Backup","")
+      + `<p class="pg-sub">Everything lives in this browser. Download a copy so a cleared cache can't erase months of contacts and notes. <b>${n}</b> role${n!==1?"s":""} tracked for ${esc(P.name)} right now.</p>
+         <button class="set-btn go block" data-backup>Download backup</button>
+         <button class="set-btn block" data-restore>Restore from a backup file\u2026</button>`;
+    return;
+  }
+  el.innerHTML="";
+}
 function statusMeta(){
   return ({off:["","Sync is off — add your token to turn it on"],idle:["busy","Sync on — checking…"],
     on:["on","Sync is on"],error:["err","Can't reach sync — check the token"]})[state.sync]||["","—"];
-}
-function openSettings(){renderSettings();document.getElementById("setOverlay").hidden=false;}
-function closeSettings(){document.getElementById("setOverlay").hidden=true;}
-function renderSettings(){
-  const m=statusMeta(),cls=m[0],label=m[1];
-  const url=SYNC.url, hasKey=!!SYNC.key;
-  const trackedN=trackedItems().length;
-  document.getElementById("setSheet").innerHTML=`
-    <div class="sheet-h">
-      <div><div class="co">The Vitrine</div><div class="ti">Settings</div></div>
-      <button class="xclose" data-sclose title="Close">✕</button>
-    </div>
-    <div class="set-sec">
-      <h3 class="set-h">Backup</h3>
-      <p class="set-sub">Your pipeline and marks live in this browser. Download a copy so a cleared cache can't erase months of contacts and notes. Tracking <b>${trackedN}</b> role${trackedN!==1?"s":""} right now.</p>
-      <button class="set-btn go block" data-backup>Download backup</button>
-      <button class="set-btn block" data-restore>Restore from a backup file…</button>
-    </div>
-    <div class="set-sec">
-      <h3 class="set-h">Search terms</h3>
-      <p class="set-sub">What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan — the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan — run one to fetch new roles.</b>`:""}</p>
-      ${termFld("search","Search for (asked of each job site)")}
-      ${termFld("include","Keep titles containing")}
-      ${termFld("exclude","Drop titles containing")}
-      <p class="hint" style="margin-top:10px"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
-      <button class="set-btn go block" data-savecfg>Save terms</button>
-      <a class="set-btn block" style="display:block;text-align:center;text-decoration:none" href="https://github.com/Thami-Bng/Vitrine/actions" target="_blank" rel="noopener">Run a scan now ↗</a>
-    </div>
-
-    <div class="set-sec">
-      <h3 class="set-h">Sync across devices</h3>
-      <div class="statusrow"><span class="sdot ${cls}"></span><span>${esc(label)}</span></div>
-      <p class="set-sub">Paste the Worker token you set in Cloudflare. It's kept on <b>this device only</b> — never in the public code — so enter it once here and once on the other device.</p>
-      <div class="fld"><label>Worker URL</label><input class="inp" id="syncUrl" value="${esc(url)}"></div>
-      <div class="fld"><label>Token</label><input class="inp" id="syncTok" type="password" placeholder="${hasKey?"•••••••• saved — leave blank to keep":"paste token"}" value=""></div>
-      <button class="set-btn go block" data-savesync>Save &amp; test</button>
-      ${hasKey?`<button class="set-btn block" data-clearsync>Turn sync off (remove token)</button>`:""}
-    </div>`;
 }
 async function saveAndTestSync(){
   const url=(document.getElementById("syncUrl").value||"").trim();
   const tok=(document.getElementById("syncTok").value||"").trim();
   if(url)localStorage.setItem("v_sync_url",url);
   if(tok)localStorage.setItem("v_sync_token",tok);   // blank leaves an existing token untouched
-  state.sync="idle";renderSettings();
-  await pullRemote();renderSettings();
-  if(state.sync==="on")render();
+  state.sync="idle";renderPage();
+  await pullRemote();await pullConfig();renderPage();
 }
 
 document.getElementById("list").addEventListener("click",e=>{
@@ -1026,31 +1178,56 @@ document.getElementById("overlay").addEventListener("input",e=>{
 });
 
 // Settings interactions
-document.getElementById("settingsBtn").addEventListener("click",openSettings);
-document.getElementById("setOverlay").addEventListener("click",e=>{
-  if(e.target.id==="setOverlay"||e.target.closest("[data-sclose]")){closeSettings();return;}
+document.getElementById("settingsBtn").addEventListener("click",()=>go("menu"));
+document.getElementById("page").addEventListener("click",e=>{
+  const g=e.target.closest("[data-go]");
+  if(g){go(g.dataset.go||null);return;}
   if(e.target.closest("[data-backup]")){downloadBackup();return;}
   if(e.target.closest("[data-restore]")){document.getElementById("restoreInput").click();return;}
+  if(e.target.closest("[data-savesync]")){saveAndTestSync();return;}
+  if(e.target.closest("[data-clearsync]")){localStorage.removeItem("v_sync_token");state.sync="off";renderPage();return;}
   const del=e.target.closest("[data-delterm]");
   if(del){
-    const k=del.dataset.delterm;
-    state.config[k]=(state.config[k]||[]).filter((_,i)=>i!==+del.dataset.i);
-    recompile();renderSettings();render();return;
+    const k=del.dataset.delterm, P=activeProfile();
+    P[k]=(P[k]||[]).filter((_,i)=>i!==+del.dataset.i);
+    state.config[k]=P[k];saveProfiles();recompile();renderPage();return;
   }
   if(e.target.closest("[data-savecfg]")){
-    const b=e.target.closest("[data-savecfg]");const t=b.textContent;b.textContent="Saving…";
-    pushConfig().then(ok=>{b.textContent=ok?"Saved ✓":"Couldn't save";setTimeout(()=>{b.textContent=t;renderSettings();},1400);});
+    const b=e.target.closest("[data-savecfg]"),t=b.textContent;
+    const sf=document.getElementById("salFloor");
+    if(sf){activeProfile().min_salary_max=Math.max(0,parseInt(sf.value||"0",10)||0);state.config.min_salary_max=activeProfile().min_salary_max;saveProfiles();}
+    b.textContent="Saving\u2026";
+    pushConfig().then(ok=>{b.textContent=ok?"Saved \u2713":"Saved on this device";setTimeout(()=>renderPage(),1400);});
     return;
   }
-  if(e.target.closest("[data-savesync]")){saveAndTestSync();return;}
-  if(e.target.closest("[data-clearsync]")){localStorage.removeItem("v_sync_token");state.sync="off";renderSettings();return;}
+  const sw=e.target.closest("[data-switch]");
+  if(sw){switchProfile(sw.dataset.switch);return;}
+  if(e.target.closest("[data-addprof]")){
+    const n=prompt("Name for this profile? (e.g. Thami)");if(!n)return;
+    const p=newProfile(n.trim());state.profiles.push(p);state.pid=p.id;saveProfiles();loadProfileData();
+    pushConfig();go("terms");return;
+  }
+  const rn=e.target.closest("[data-renprof]");
+  if(rn){
+    const p=state.profiles.find(x=>x.id===rn.dataset.renprof);if(!p)return;
+    const n=prompt("Rename profile",p.name);if(!n)return;
+    p.name=n.trim();saveProfiles();pushConfig();renderPage();return;
+  }
+  const dp=e.target.closest("[data-delprof]");
+  if(dp){
+    const p=state.profiles.find(x=>x.id===dp.dataset.delprof);if(!p)return;
+    if(!confirm(`Delete the profile "${p.name}"? Its pipeline and contacts stay on this device but will no longer be shown.`))return;
+    state.profiles=state.profiles.filter(x=>x.id!==p.id);
+    if(state.pid===p.id)state.pid=state.profiles[0].id;
+    saveProfiles();loadProfileData();pushConfig();renderPage();return;
+  }
 });
-document.getElementById("setOverlay").addEventListener("keydown",e=>{
+document.getElementById("page").addEventListener("keydown",e=>{
   const add=e.target.closest("[data-addterm]");
   if(add && e.key==="Enter"){
     e.preventDefault();
-    const k=add.dataset.addterm, v=(add.value||"").trim().toLowerCase();
-    if(v && !(state.config[k]||[]).includes(v)){state.config[k]=[...(state.config[k]||[]),v];recompile();renderSettings();render();}
+    const k=add.dataset.addterm, v=(add.value||"").trim().toLowerCase(), P=activeProfile();
+    if(v && !(P[k]||[]).includes(v)){P[k]=[...(P[k]||[]),v];state.config[k]=P[k];saveProfiles();recompile();renderPage();}
   }
 });
 document.getElementById("restoreInput").addEventListener("change",e=>{
@@ -1060,13 +1237,13 @@ document.getElementById("restoreInput").addEventListener("change",e=>{
     try{
       const o=JSON.parse(rd.result);
       if(!confirm("Restore this backup? It replaces the marks and pipeline currently on this device."))return;
-      applyBackup(o);closeSettings();
+      applyBackup(o);go(null);
     }catch(err){alert("That file couldn't be read as a Vitrine backup.");}
     e.target.value="";
   };
   rd.readAsText(f);
 });
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!document.getElementById("overlay").hidden)closeEditor();else if(!document.getElementById("setOverlay").hidden)closeSettings();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!document.getElementById("overlay").hidden)closeEditor();else if(state.page)go(state.page==="menu"?null:"menu");}});
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;

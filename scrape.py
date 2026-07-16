@@ -278,14 +278,42 @@ INCLUDE = compile_terms(DEFAULT_INCLUDE, DEFAULT_INCLUDE)
 EXCLUDE = compile_terms(DEFAULT_EXCLUDE, DEFAULT_EXCLUDE)
 
 def apply_config(cfg):
-    """Point the module-level knobs at whatever the user configured."""
+    """Point the module-level knobs at whatever the profiles asked for.
+
+    ONE scan serves every profile. That matters: SerpApi's free tier is 250
+    queries a month and we already budget 240, so a scan per profile would blow
+    it. Instead we fetch the UNION of what everyone wants and let each profile
+    filter its own view in the dashboard:
+      • search / include → union      (fetch anything any profile might want)
+      • exclude          → intersection (only drop what EVERY profile rejects)
+      • salary floor     → the lowest  (the least restrictive wins)
+    """
     global CONFIG, INCLUDE, EXCLUDE, KEYWORDS, MIN_SALARY_MAX
     CONFIG = cfg or {}
-    INCLUDE = compile_terms(CONFIG.get("include"), DEFAULT_INCLUDE)
-    EXCLUDE = compile_terms(CONFIG.get("exclude"), DEFAULT_EXCLUDE)
-    KEYWORDS = [k for k in (CONFIG.get("search") or []) if k.strip()] or DEFAULT_SEARCH
-    v = CONFIG.get("min_salary_max")
-    if isinstance(v, (int, float)) and v >= 0: MIN_SALARY_MAX = int(v)
+    profiles = CONFIG.get("profiles") or []
+    if not isinstance(profiles, list) or not profiles:
+        profiles = [{"name": "default", "search": DEFAULT_SEARCH, "include": DEFAULT_INCLUDE,
+                     "exclude": DEFAULT_EXCLUDE, "min_salary_max": 9000}]
+
+    def union(field, fallback):
+        out = []
+        for p in profiles:
+            for t in (p.get(field) or []):
+                t = (t or "").strip().lower()
+                if t and t not in out: out.append(t)
+        return out or list(fallback)
+
+    excl_sets = [set((p.get("exclude") or [])) for p in profiles]
+    excl_sets = [e for e in excl_sets if e]
+    common_excl = sorted(set.intersection(*excl_sets)) if excl_sets else list(DEFAULT_EXCLUDE)
+
+    KEYWORDS = union("search", DEFAULT_SEARCH)
+    INCLUDE  = compile_terms(union("include", DEFAULT_INCLUDE), DEFAULT_INCLUDE)
+    EXCLUDE  = compile_terms(common_excl, DEFAULT_EXCLUDE)
+    floors = [int(p.get("min_salary_max") or 0) for p in profiles]
+    MIN_SALARY_MAX = min(floors) if floors else 9000
+    print(f"  · {len(profiles)} profile(s): {len(KEYWORDS)} search terms, "
+          f"{len(common_excl)} shared exclusions, floor S${MIN_SALARY_MAX:,}")
 
 GOOD_LINK = ("smartrecruiters","myworkdayjobs","eightfold","avature","successfactors","taleo","icims",
              "workday","lever.co","greenhouse","careers.","jobs.","/careers")
@@ -812,9 +840,8 @@ def run(dry_run=False):
     OUT.parent.mkdir(parents=True,exist_ok=True)
     write_history(jobs, now)
     OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"quota":QUOTA,
-                               "config":{"search":KEYWORDS,"include":CONFIG.get("include") or DEFAULT_INCLUDE,
-                                         "exclude":CONFIG.get("exclude") or DEFAULT_EXCLUDE,
-                                         "min_salary_max":MIN_SALARY_MAX},
+                               "config":{"search":KEYWORDS,"min_salary_max":MIN_SALARY_MAX,
+                                         "profiles":[p.get("name") for p in (CONFIG.get("profiles") or [])]},
                                "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 

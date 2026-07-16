@@ -40,22 +40,51 @@
            background:var(--accent);border-radius:3px 3px 0 0;}
   .nbadge{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ECE8E1;color:var(--muted);}
   .nbadge.due{background:var(--accent);color:#fff;}
+  /* Menus that hang under their button, over the page — not full-screen takeovers. */
+  .menuwrap,.bellwrap{position:relative;flex:0 0 auto;display:flex;}
+  .dropdown{position:absolute;top:calc(100% + 8px);z-index:70;background:var(--card);border:1px solid var(--line);
+            border-radius:14px;box-shadow:0 12px 34px rgba(26,23,20,.16);min-width:250px;overflow:hidden;}
+  .menuwrap .dropdown{left:0;}
+  .bellwrap .dropdown{right:0;}
+  .dropdown.wide{width:min(380px,92vw);}
+  .dd-h{padding:11px 14px;border-bottom:1px solid var(--line);font-size:11px;font-weight:700;
+        letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+  .dd-list{max-height:min(60vh,420px);overflow-y:auto;}
+  .dd-f{padding:10px 14px;border-top:1px solid var(--line);text-align:center;}
+  .dd-f button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;}
+  .dd-empty{padding:20px 16px;font-size:12.5px;color:var(--muted);line-height:1.5;}
+  .dd-item{display:flex;width:100%;align-items:center;gap:11px;padding:12px 14px;border:0;border-bottom:1px solid var(--line);
+           background:transparent;font:inherit;text-align:left;cursor:pointer;color:var(--ink);}
+  .dd-item:last-child{border-bottom:0;}
+  .dd-item:hover{background:var(--paper);}
+  .dd-item .mi-ico{flex:0 0 30px;height:30px;border-radius:8px;}
+  .dd-item .mi-ico svg{width:16px;height:16px;}
+  .dropdown .mi-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+  .dropdown .mi-t{display:block;font-size:14px;font-weight:600;line-height:1.25;}
+  .dropdown .mi-s{display:block;font-size:11.5px;color:var(--muted);line-height:1.35;}
+  .dropdown .mi-x{margin-left:auto;color:#bdb5a8;font-size:16px;flex:0 0 auto;}
   .bell{position:relative;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);
         color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:all .15s;}
   .bell:hover{border-color:var(--accent);color:var(--accent);}
   .bell svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
   .bdot{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;
         background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
-  .note-row{display:flex;gap:12px;align-items:flex-start;padding:13px 2px;border-bottom:1px solid var(--line);cursor:pointer;}
+  .note-row{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer;}
   .note-row:last-child{border-bottom:0;}
   .note-row:hover{background:var(--paper);}
   .nr-ico{flex:0 0 30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;}
   .nr-ico.due{background:var(--accent-soft);color:var(--accent);}
   .nr-ico.iv{background:#E7E9F5;color:#4A4E8C;}
   .nr-ico.rem{background:var(--ochre-soft);color:var(--ochre);}
+  .nr-ico.stale{background:#ECE8E1;color:var(--muted);}
   .nr-b{flex:1;min-width:0;}
   .nr-t{font-size:13.5px;font-weight:600;color:var(--ink);}
   .nr-s{font-size:12px;color:var(--muted);margin-top:2px;}
+  .nr-w{font-size:11px;color:#b0a89a;margin-top:3px;}
+  .flagline{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;line-height:1.5;margin-top:11px;}
+  .flagline .fl{flex:0 0 auto;width:9px;height:9px;border-radius:50%;margin-top:4px;}
+  .flagline .fl.warn{background:var(--ochre);} .flagline .fl.ok{background:var(--ok);}
+  .flagline b{color:var(--ink);}
   .bar-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto;}
   .bar-meta{font-size:12px;color:var(--muted);white-space:nowrap;}
   .bar-meta b{color:var(--ink);font-weight:600;}
@@ -386,6 +415,10 @@
 <body>
 <div class="wrap">
   <header class="appbar">
+    <div class="menuwrap">
+      <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="dropdown" id="menuDrop" hidden></div>
+    </div>
     <button class="brand" id="brandBtn" title="The Vitrine">
       <span class="logo" aria-hidden="true">
         <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#7B1E3B"/>
@@ -399,11 +432,13 @@
     <nav class="nav" id="modebar" role="tablist"></nav>
     <div class="bar-right">
       <span class="bar-meta" id="byline"></span>
-      <button class="bell" id="bellBtn" title="Notifications" aria-label="Notifications">
-        <svg viewBox="0 0 24 24"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-2.2 6.2-.3.3-.1.8.3.8h14.8c.4 0 .6-.5.3-.8-.7-.7-2.2-2.2-2.2-6.2A5.5 5.5 0 0 0 12 3Z"/><path d="M9.7 18.6a2.4 2.4 0 0 0 4.6 0"/></svg>
-        <span class="bdot" id="bellDot" hidden></span>
-      </button>
-      <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
+      <div class="bellwrap">
+        <button class="bell" id="bellBtn" title="Notifications" aria-label="Notifications" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path d="M12 3a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-2.2 6.2-.3.3-.1.8.3.8h14.8c.4 0 .6-.5.3-.8-.7-.7-2.2-2.2-2.2-6.2A5.5 5.5 0 0 0 12 3Z"/><path d="M9.7 18.6a2.4 2.4 0 0 0 4.6 0"/></svg>
+          <span class="bdot" id="bellDot" hidden></span>
+        </button>
+        <div class="dropdown wide" id="bellDrop" hidden></div>
+      </div>
       <button class="whoami" id="whoBtn" title="Switch profile" aria-label="Active profile"></button>
     </div>
   </header>
@@ -454,9 +489,6 @@
 </div>
 
 <!-- Avatar picker -->
-<div class="overlay" id="bellOverlay" hidden>
-  <div class="sheet" id="bellSheet" role="dialog" aria-modal="true"></div>
-</div>
 <div class="overlay" id="pickOverlay" hidden>
   <div class="sheet" id="pickSheet" role="dialog" aria-modal="true"></div>
 </div>
@@ -512,13 +544,13 @@ function catOf(j){
 function catOfRaw(j){
   // The scraper's verdict wins for house/recruiter — it knows the brand lists.
   if(j.category==="house"||j.category==="recruiter")return j.category;
-  const who=(j.company||"").toLowerCase();
-  const blob=`${j.company||""} ${j.title||""} ${j.description||""}`.toLowerCase();
+  const who=j.company||"";
+  const blob=`${j.company||""} ${j.title||""} ${j.description||""}`;
   for(const c of allCats()){
     if(c.locked)continue;
-    // Brands match the employer's name; signals match anywhere in the posting.
-    if((c.terms||[]).some(t=>who.includes(String(t).toLowerCase())))return c.id;
-    if((c.signals||[]).some(t=>blob.includes(String(t).toLowerCase())))return c.id;
+    // Employer-name rules read the company field; posting rules read everything.
+    if(termHits(c.terms,who))return c.id;
+    if(termHits(c.signals,blob))return c.id;
   }
   if(j.category)return j.category;
   if(j.type==="house")return "house";
@@ -545,51 +577,98 @@ function renderTabs(){
 }
 // Browse vs Pipeline is a MODE, not a category — a different surface, so it gets
 // its own switch instead of competing with Houses / Tech / etc.
-/* Notifications: only things she can act on TODAY. A bell that cries wolf gets
-   ignored, and then the one that matters gets ignored with it — so no "12 new
-   roles" chatter here; that's what the Browse tab is for. */
+/* Notifications: only things she can act on. Each carries the day it became
+   actionable, so the dropdown can show the last week and "All" the last month —
+   a bell that lists everything forever is a bell nobody reads. */
+const NOTE_WINDOW_DAYS=7, NOTE_ALL_DAYS=28, STALE_DAYS=3;
 function notifications(){
   const out=[];
+  const add=o=>out.push(o);
   followUps().forEach(f=>{
-    if(f.reason==="reping")out.push({kind:"due",id:f.id,
-      t:`Follow up with ${(f.contact.name||"your contact").split(/\s+/)[0]}`,
-      s:`${f.job.company} \u00b7 messaged ${f.days} day${f.days===1?"":"s"} ago, no reply`});
-    else out.push({kind:"rem",id:f.id,t:`Reminder: ${f.job.title}`,s:`${f.job.company} \u00b7 you set this for ${f.rec.next}`});
+    if(f.reason==="reping"){
+      const since=new Date(new Date(f.contact.date).getTime()+FOLLOWUP_DAYS*864e5).toISOString().slice(0,10);
+      add({kind:"due",id:f.id,d:since,
+        t:`Follow up with ${(f.contact.name||"your contact").split(/\s+/)[0]}`,
+        s:`${f.job.company} \u00b7 messaged ${f.days} days ago, no reply`});
+    }else{
+      add({kind:"rem",id:f.id,d:f.rec.next,t:`Reminder: ${f.job.title}`,s:`${f.job.company} \u00b7 you set this for ${f.rec.next}`});
+    }
   });
   trackedItems().forEach(({id,rec,job})=>{
     (rec.interviews||[]).forEach(i=>{
       if(!i||!i.date)return;
-      const d=Math.ceil((new Date(i.date)-new Date(todayStr()))/864e5);
-      if(d<0||d>7)return;
-      out.push({kind:"iv",id,t:`Interview ${d===0?"today":d===1?"tomorrow":`in ${d} days`}${i.label?` \u2014 ${i.label}`:""}`,
-                s:`${job.company} \u00b7 ${job.title}`});
+      const days=Math.ceil((new Date(i.date)-new Date(todayStr()))/864e5);
+      if(days<0||days>7)return;
+      add({kind:"iv",id,d:todayStr(),t:`Interview ${days===0?"today":days===1?"tomorrow":`in ${days} days`}${i.label?` \u2014 ${i.label}`:""}`,
+           s:`${job.company} \u00b7 ${job.title}`});
     });
+    // Tracked, but nothing has happened to it — the quiet way a good lead dies.
+    if((rec.stage||"spotted")==="spotted" && rec.createdAt){
+      const age=Math.floor(daysSince(rec.createdAt));
+      if(age>=STALE_DAYS){
+        const since=new Date(rec.createdAt+STALE_DAYS*864e5).toISOString().slice(0,10);
+        add({kind:"stale",id,d:since,t:`Still untouched: ${job.title}`,
+             s:`${job.company} \u00b7 spotted ${age} days ago, no contact or application yet`});
+      }
+    }
   });
-  return out;
+  return out.filter(n=>n.d).sort((a,b)=>b.d.localeCompare(a.d));
+}
+function notesWithin(days){
+  const cut=new Date(Date.now()-days*864e5).toISOString().slice(0,10);
+  return notifications().filter(n=>n.d>=cut);
 }
 function renderBell(){
-  const n=notifications().length, dot=document.getElementById("bellDot");
-  if(!dot)return;
+  const dot=document.getElementById("bellDot"); if(!dot)return;
+  const n=notesWithin(NOTE_WINDOW_DAYS).length;
   dot.hidden=!n; dot.textContent=n>9?"9+":String(n);
 }
-function openBell(){
-  const items=notifications();
-  const ico={due:"\u25cf",iv:"\u25c6",rem:"\u25b2"};
-  document.getElementById("bellSheet").innerHTML=`
-    <div class="sheet-h"><div><div class="co">The Vitrine</div><div class="ti">Needs you${items.length?` \u00b7 ${items.length}`:""}</div></div>
-      <button class="xclose" data-bclose>\u2715</button></div>
-    ${items.length
-      ? `<p class="hint" style="margin:6px 0 6px">Only things you can act on today.</p>`
-        + items.map(i=>`<div class="note-row" data-noteid="${esc(i.id)}">
-            <span class="nr-ico ${i.kind}">${ico[i.kind]}</span>
-            <span class="nr-b"><span class="nr-t">${esc(i.t)}</span><span class="nr-s">${esc(i.s)}</span></span></div>`).join("")
-      : `<div class="note" style="margin-top:14px"><b>Nothing needs you right now.</b> Follow-ups appear here ${FOLLOWUP_DAYS} days after you message someone with no reply, along with reminders you set and interviews in the next week.</div>`}`;
-  document.getElementById("bellOverlay").hidden=false;
+const NOTE_ICO={due:"\u25cf",iv:"\u25c6",rem:"\u25b2",stale:"\u25cb"};
+function renderBellDrop(){
+  const all=state.notesAll===true;
+  const items=notesWithin(all?NOTE_ALL_DAYS:NOTE_WINDOW_DAYS);
+  const older=notesWithin(NOTE_ALL_DAYS).length-notesWithin(NOTE_WINDOW_DAYS).length;
+  document.getElementById("bellDrop").innerHTML=`
+    <div class="dd-h"><span>${all?"Last 4 weeks":"Last 7 days"}</span><span>${items.length}</span></div>
+    <div class="dd-list">${items.length
+      ? items.map(i=>`<div class="note-row" data-noteid="${esc(i.id)}">
+          <span class="nr-ico ${i.kind}">${NOTE_ICO[i.kind]}</span>
+          <span class="nr-b"><span class="nr-t">${esc(i.t)}</span><span class="nr-s">${esc(i.s)}</span>
+            <span class="nr-w">${esc(whenWord(i.d))}</span></span></div>`).join("")
+      : `<div class="dd-empty">Nothing needs you${all?" in the last 4 weeks":" this week"}. Follow-ups appear ${FOLLOWUP_DAYS} days after you message someone with no reply, along with reminders, interviews within a week, and roles sitting untouched for ${STALE_DAYS} days.</div>`}</div>
+    ${(!all&&older)?`<div class="dd-f"><button data-notesall>See all notifications (${older} older)</button></div>`
+      :(all?`<div class="dd-f"><button data-notesrecent>Show only the last 7 days</button></div>`:"")}`;
+}
+function whenWord(d){
+  const n=Math.floor(daysSince(d));
+  if(n<=0)return "today"; if(n===1)return "yesterday";
+  if(n<7)return `${n} days ago`;
+  const w=Math.floor(n/7); return w===1?"1 week ago":`${w} weeks ago`;
+}
+function toggleDrop(id,render){
+  const el=document.getElementById(id), open=el.hidden;
+  closeDrops();
+  if(open){ if(render)render(); el.hidden=false; }
+}
+function closeDrops(){
+  ["menuDrop","bellDrop"].forEach(i=>{const e=document.getElementById(i); if(e)e.hidden=true;});
+  const b=document.getElementById("bellBtn"), g=document.getElementById("settingsBtn");
+  if(b)b.setAttribute("aria-expanded","false");
+  if(g)g.setAttribute("aria-expanded","false");
+}
+function renderMenuDrop(){
+  const P=activeProfile(), m=statusMeta();
+  document.getElementById("menuDrop").innerHTML=`
+    <div class="dd-h"><span>${esc(P.name)}</span></div>
+    ${menuItem("profiles",ICO.people,"Profiles","Switch, rename, or add someone")}
+    ${menuItem("cats",ICO.tag,"Categories","Define the tabs and their rules")}
+    ${menuItem("terms",ICO.search,"Search terms","What the scan looks for")}
+    ${menuItem("salary",ICO.coin,"Salary floor",`S$${(P.min_salary_max||0).toLocaleString()}/month`)}
+    ${menuItem("sync",ICO.sync,"Sync across devices",esc(m[1]))}
+    ${menuItem("backup",ICO.save,"Backup","Download or restore everything")}`;
 }
 function renderModebar(){
-  const dueN=followUps().length, pipeN=trackedItems().length;
-  // The nav shows how much is tracked; anything URGENT lives in the bell now.
-  const badge=pipeN?`<span class="nbadge">${pipeN}</span>`:"";
+  const badge="";     // counts belong in the page, not the navigation
   document.getElementById("modebar").innerHTML=`
     <button class="navlink" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"&&!state.page}">Browse roles</button>
     <button class="navlink" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"&&!state.page}">Pipeline${badge}</button>
@@ -959,15 +1038,40 @@ function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864
    • ADDING a term can't conjure roles we never asked for → needs a scan to run.
    The panel says so, so the filter never pretends to be a search. */
 let cfgInc=null, cfgExc=null;
+/* Accents are noise: "estee" should find Estée Lauder, "loreal" should find
+   L'Oréal. So every term AND every piece of text is folded to plain ASCII before
+   matching — the same way case is folded. Nobody should have to hunt for é. */
+function fold(x){
+  return String(x==null?"":x).toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")   // strip diacritics
+    .replace(/[\u2018\u2019\u02bc]/g,"'");            // curly apostrophes → plain
+}
 function termRe(t){
-  t=(t||"").trim().toLowerCase(); if(!t)return null;
+  t=fold(t).trim(); if(!t)return null;
   const esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
   if(t.endsWith("*")){const c=esc(t.slice(0,-1));return c?`\\b${c}\\w*`:null;}
   return `\\b${esc(t)}\\b`;
 }
+/* A term may be a phrase ("product owner") or a set of words that must ALL
+   appear, in any order, joined with +:  "luxury + product" finds
+   "Head of Product (Luxury)" as well as "Luxury Product Lead". */
+function parseTerm(t){
+  const parts=fold(t).split("+").map(x=>x.trim()).filter(Boolean);
+  if(!parts.length)return null;
+  const res=parts.map(p=>{const r=termRe(p);return r?new RegExp(r,"i"):null;}).filter(Boolean);
+  return res.length?res:null;
+}
 function compileTerms(list){
-  const p=(list||[]).map(termRe).filter(Boolean);
-  return p.length?new RegExp(p.join("|"),"i"):null;
+  const specs=(list||[]).map(parseTerm).filter(Boolean);
+  if(!specs.length)return null;
+  // any term may match; a "+" term matches only if all its words are present
+  return {test:text=>{const f=fold(text);return specs.some(sp=>sp.every(re=>re.test(f)));}};
+}
+/* Does any rule in `list` hit `text`? Same rules as the scraper: folded, and
+   "+" means all-of, in any order. */
+function termHits(list,text){
+  const m=compileTerms(list);
+  return m?m.test(text):false;
 }
 function recompile(){
   cfgInc=compileTerms(state.config.include);
@@ -1006,7 +1110,7 @@ async function boot(){
   }
   recompile();
   const when=new Date(data.generated_at||Date.now());
-  document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles \u00b7 ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  document.getElementById("byline").innerHTML=when.toLocaleDateString(undefined,{day:"numeric",month:"short"});
   try{const h=await fetch("data/history.json",{cache:"no-store"});if(h.ok)state.history=await h.json();}catch(e){}
   try{const m=await fetch("data/market.json",{cache:"no-store"});if(m.ok)state.market=await m.json();}catch(e){}
   try{const n=await fetch("data/national.json",{cache:"no-store"});if(n.ok)state.national=await n.json();}catch(e){}
@@ -1135,7 +1239,7 @@ function renderWho(){
   el.title=more?`Working as ${P.name} \u2014 tap to switch`:`Working as ${P.name}`;
 }
 function render(){
-  renderWho();renderBell();
+  renderWho();renderBell();closeDrops();
   const pg=document.getElementById("page"), ctl=document.querySelector(".controls"), lst=document.getElementById("list");
   const srcs=document.getElementById("sources");
   renderModebar();
@@ -1342,7 +1446,7 @@ const ICO={
   coin:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.6-.8-1.6-1.2-2.7-1.2-1.6 0-2.6.8-2.6 1.9 0 2.6 5.4 1.3 5.4 4 0 1.2-1.1 2.1-2.8 2.1-1.2 0-2.2-.4-2.8-1.3M12 6.4v11.2"/></svg>`,
 };
 function menuItem(page,ico,title,sub){
-  return `<button data-go="${page}"><span class="mi-ico">${ico}</span><span class="mi-b"><span class="mi-t">${title}</span><span class="mi-s">${sub}</span></span><span class="mi-x">\u203a</span></button>`;
+  return `<button class="dd-item" data-go="${page}"><span class="mi-ico">${ico}</span><span class="mi-b"><span class="mi-t">${title}</span><span class="mi-s">${sub}</span></span><span class="mi-x">\u203a</span></button>`;
 }
 function personIcons(rec){
   const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
@@ -1408,24 +1512,28 @@ function precCard(x){
    four data points up as a finding. */
 function contactImpact(items){
   const applied=items.filter(x=>x.rec.appliedOn||state.appliedSet.has(x.id));
-  if(!applied.length)return "";
   const isWarm=x=>(x.rec.contacts||[]).some(isReached);
   const iv=x=>x.rec.stage==="interviewing"||(x.rec.interviews||[]).some(i=>i&&(i.date||i.label));
   const warm=applied.filter(isWarm), cold=applied.filter(x=>!isWarm(x));
   const warmIv=warm.filter(iv).length, coldIv=cold.filter(iv).length;
-  const pct=(a,b)=>b?Math.round(a/b*100)+"%":"\u2014";
-  const line=(applied.length<8)
-    ? `Too few applications yet to read anything into these numbers.`
-    : (warm.length&&cold.length
-        ? `So far: <b>${pct(warmIv,warm.length)}</b> of ${esc(activeProfile().name)}'s warm applications reached an interview, against <b>${pct(coldIv,cold.length)}</b> of the cold ones.`
-        : `Not enough of both kinds yet to compare.`);
+  const people=items.flatMap(x=>(x.rec.contacts||[]).filter(c=>(c.name||"").trim()));
+  const reached=people.filter(isReached).length;
+  const ratio=applied.length?warm.length/applied.length:0, good=ratio>=0.5;
+  const flag=!applied.length?"":`<div class="flagline">
+      <span class="fl ${good?"ok":"warn"}"></span>
+      <span>${good
+        ? `<b>${Math.round(ratio*100)}% of applications went out warm.</b> Keep that up \u2014 it's the half of a search that actually moves.`
+        : `<b>Only ${Math.round(ratio*100)}% of applications went out with a contact.</b> Consider contacting more people \u2014 a warm introduction is worth more than another cold application.`}</span></div>`;
   return `<div class="impact">
-    <div class="imp-h">Applying warm vs applying cold</div>
+    <div class="imp-h">Where things stand</div>
     <table class="rep-t">
-      <tr><td>Applied after contacting someone</td><td class="rv ok">${warm.length}</td><td class="rv">${warmIv} interview${warmIv===1?"":"s"}</td></tr>
-      <tr><td>Applied with no contact</td><td class="rv muted">${cold.length}</td><td class="rv">${coldIv} interview${coldIv===1?"":"s"}</td></tr>
+      <tr><td>Roles tracked</td><td class="rv">${items.length}</td><td class="rv muted"></td></tr>
+      <tr><td>People contacted</td><td class="rv ochre">${reached}</td><td class="rv muted"></td></tr>
+      <tr><td>Applied after contacting someone</td><td class="rv ok">${warm.length}</td><td class="rv muted">${warmIv} interview${warmIv===1?"":"s"}</td></tr>
+      <tr><td>Applied with no contact</td><td class="rv muted">${cold.length}</td><td class="rv muted">${coldIv} interview${coldIv===1?"":"s"}</td></tr>
+      <tr><td><b>Total applications</b></td><td class="rv"><b>${applied.length}</b></td><td class="rv muted">${warmIv+coldIv} interview${(warmIv+coldIv)===1?"":"s"}</td></tr>
     </table>
-    <p class="imp-p">${line} Referred and warm applications are widely found to convert far better than cold ones \u2014 which is the whole reason this tool tracks people, not just postings.</p>
+    ${flag}
   </div>`;
 }
 function renderPipeline(){
@@ -1447,7 +1555,8 @@ function renderPipeline(){
   activeCats().forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec,x.id)===k).length);
   if(!buckets.some(b=>b[0]===state.bucket))state.bucket="all";
   document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
-  let html=`<div style="grid-column:1/-1"><button class="mini" data-addmanual style="margin-top:10px">+ Add a role that isn't listed</button></div>`;
+  let html=`<div style="grid-column:1/-1">${contactImpact(all)}
+    <button class="mini" data-addmanual style="margin-top:10px">+ Add a role that isn't listed</button></div>`;
   // Follow-ups cut across every bucket — urgency shouldn't hide behind a tab.
   if(fu.length){
     html+=`<div class="section-h due">Follow-ups due <span class="n">${fu.length}</span></div>`;
@@ -1471,7 +1580,6 @@ function renderPipeline(){
         <div class="prec-actions"><button class="mini go" data-fu="opennext" data-id="${esc(f.id)}">Open</button><button class="mini" data-fu="clearnext" data-id="${esc(f.id)}">Clear reminder</button></div></div>`;
     }).join("");
   }
-  html+=contactImpact(all);
   html+=`<div class="bucketbar">`+buckets.map(([k,l])=>
     `<button class="bk" data-bucket="${k}" aria-selected="${state.bucket===k}">${esc(l)}<span class="tc">${counts[k]||0}</span></button>`).join("")+`</div>`;
   const inB=state.bucket==="all"?all:all.filter(x=>bucketOf(x.rec,x.id)===state.bucket);
@@ -1479,7 +1587,10 @@ function renderPipeline(){
     const bl=(buckets.find(b=>b[0]===state.bucket)||["","this category"])[1];
     html+=`<li class="empty"><b>Nothing tracked in ${esc(bl)}</b>Roles you track from that tab appear here.</li>`;
   }else{
-    STAGES.forEach(([key,label])=>{
+    // Ordered by how alive a role is: an interview outranks an application,
+    // an application outranks a lead, and closed sinks to the bottom.
+    const STAGE_ORDER=["interviewing","applied","intro","replied","contacted","researching","spotted","closed"];
+    STAGE_ORDER.map(k=>[k,STAGE_LABEL[k]]).forEach(([key,label])=>{
       const inStage=inB.filter(x=>(x.rec.stage||"spotted")===key);
       if(!inStage.length)return;
       html+=`<div class="section-h">${esc(label)} <span class="n">${inStage.length}</span></div>`;
@@ -1657,7 +1768,7 @@ function termFld(key,label){
     </div></div>`;
 }
 function pgTop(title,sub,back){
-  return `<div class="pg-top"><button class="back" data-go="${back===undefined?"menu":back}">‹ Back</button></div>
+  return `<div class="pg-top"><button class="back" data-go="${back===undefined?"":back}">‹ Back to roles</button></div>
     <h2 class="pg-h">${esc(title)}</h2>${sub?`<p class="pg-sub">${sub}</p>`:""}`;
 }
 /* Two kinds of rule, shown separately because they behave differently. */
@@ -1672,52 +1783,36 @@ function ruleGroup(c,key,label,help){
         ? "Empty \u2014 the scanner falls back to its built-in list for this rule, so nothing is lost. Add a term to take control of it."
         : "Empty \u2014 nothing matches on this rule yet. Add a term to start using it."}</span>`}</div>
     <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="${key==="terms"?"add a word from the employer's name":"add a word from the title or description"}, then press Enter">
-    <div class="hint">Case doesn't matter \u2014 <b>Google</b>, <b>google</b> and <b>GOOGLE</b> all match. Terms are kept in lower case so the list stays tidy.</div>
+    <div class="hint">Case and accents don't matter \u2014 <b>estee</b> finds Est\u00e9e Lauder, <b>Google</b> finds google. Use <b>+</b> for words that must all appear, in any order: <b>luxury + product</b> catches \u201cHead of Product (Luxury)\u201d. A trailing <b>*</b> matches prefixes: <b>audit*</b> catches auditor.</div>
   </div>`;
 }
 function renderPage(){
   const el=document.getElementById("page");
   const P=activeProfile();
-  if(state.page==="menu"){
-    const m=statusMeta();
-    el.innerHTML=`<div class="pg-top"><button class="back" data-go="">\u2039 Back to roles</button></div>
-      <h2 class="pg-h">Menu</h2>
-      <div class="whoami-row">${avatarFor(P,44)}
-        <div><div class="wt">${esc(P.name)}</div><div class="ws">${trackedItems().length} role${trackedItems().length===1?"":"s"} tracked \u00b7 ${state.profiles.length} profile${state.profiles.length>1?"s":""}</div></div></div>
-      <div class="menu">
-        ${menuItem("profiles",ICO.people,"Profiles",`Switch, rename, or add someone`)}
-        ${menuItem("cats",ICO.tag,"Categories",`Define the tabs \u00b7 hide ones ${esc(P.name)} doesn't want`)}
-        ${menuItem("terms",ICO.search,"Search terms",`What the scan looks for, for ${esc(P.name)}`)}
-        ${menuItem("salary",ICO.coin,"Salary floor",`Currently S$${(P.min_salary_max||0).toLocaleString()}/month`)}
-        ${menuItem("sync",ICO.sync,"Sync across devices",esc(m[1]))}
-        ${menuItem("backup",ICO.save,"Backup","Download or restore everything")}
-      </div>`;
-    return;
-  }
   if(state.page==="cats"){
     const hidden=new Set(P.hidden_cats||[]);
     el.innerHTML=pgTop("Categories",
-      `Which tabs exist, and what lands in each. Every category has two rules: one looks <b>only at the employer's name</b>, the other looks at the <b>whole posting</b> \u2014 title and description. A role lands in the <b>first</b> category that matches, so order decides ties (use \u25b2\u25bc). These are the scanner's live rules: edit them and the next scan follows. Untick anything ${esc(P.name)} doesn't want \u2014 that's per profile.`)
+      `Which tabs exist, and what lands in each. Every category has two rules: one looks <b>only at the employer's name</b>, the other looks at the <b>whole posting</b> — title and description. A role lands in the <b>first</b> category that matches, so order decides ties (use ▲▼). These are the scanner's live rules: edit them and the next scan follows. Untick anything ${esc(P.name)} doesn't want — that's per profile.`)
       + changeWarning()
       + allCats().map((c,i)=>`
         <div class="cat-card">
           <div class="cat-head">
             <label class="cbx"><input type="checkbox" data-cattog="${esc(c.id)}" ${hidden.has(c.id)?"":"checked"}><span>${esc(c.label)}</span></label>
             <div class="prof-act">
-              ${i>0?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="up" title="Higher priority when matching">\u25b2</button>`:""}
-              ${i<allCats().length-1?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="down">\u25bc</button>`:""}
+              ${i>0?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="up" title="Higher priority when matching">▲</button>`:""}
+              ${i<allCats().length-1?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="down">▼</button>`:""}
               <button class="mini" data-catren="${esc(c.id)}">Rename</button>
               ${c.locked?"":`<button class="mini" data-catdel="${esc(c.id)}">Delete</button>`}
             </div>
           </div>
           ${c.locked
             ? `<div class="hint">The catch-all: anything matching no other category lands here. It has no rules of its own.</div>`
-            : (c.signals===undefined?`<div class="hint" style="margin:0 0 10px">Decided by the employer's name alone \u2014 a house is a house whoever writes the advert, so there's no title/description rule here.</div>`:"")
+            : (c.signals===undefined?`<div class="hint" style="margin:0 0 10px">Decided by the employer's name alone — a house is a house whoever writes the advert, so there's no title/description rule here.</div>`:"")
               + ruleGroup(c,"terms","In the employer's name",
-                "Only the company field. <b>tiktok</b> catches TikTok Pte Ltd; <b>software</b> catches Acme Software. A role that merely <i>mentions</i> the word elsewhere is not caught.")
+                  "Only the company field. <b>tiktok</b> catches TikTok Pte Ltd; <b>software</b> catches Acme Software. A role that merely <i>mentions</i> the word elsewhere is not caught.")
               + (c.signals!==undefined
                  ? ruleGroup(c,"signals","In the job title or description",
-                     "The whole posting \u2014 title and full text. Catches roles whose employer isn't a known name (<b>gaming</b> finds \u201cSenior PM, Gaming\u201d anywhere). Broader, so it catches more \u2014 and more by accident.")
+                     "The whole posting — title and full text. Catches roles whose employer isn't a known name (<b>gaming</b> finds “Senior PM, Gaming” anywhere). Broader, so it catches more — and more by accident.")
                  : "")}
         </div>`).join("")
       + `<button class="set-btn block" data-addcat>+ Add a category</button>
@@ -1751,11 +1846,11 @@ function renderPage(){
     el.innerHTML=pgTop(`Search terms \u2014 ${P.name}`,
       `What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan \u2014 the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan \u2014 run one to fetch new roles.</b>`:""}`)
       + changeWarning()
-      + `<p class="hint" style="margin:0 0 4px">Case doesn't matter \u2014 <b>E-Commerce</b> and <b>e-commerce</b> find the same roles.</p>`
+      + `<p class="hint" style="margin:0 0 4px">Case and accents don't matter \u2014 <b>estee lauder</b> finds Est\u00e9e Lauder, <b>loreal</b> finds L'Or\u00e9al. Use <b>+</b> when two words must both appear, in any order: <b>luxury + product</b> finds \u201cHead of Product (Luxury)\u201d.</p>`
       + termFld("search","Search for (asked of each job site)")
       + termFld("include","Keep titles containing")
       + termFld("exclude","Drop titles containing")
-      + `<p class="hint"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
+      + `<p class="hint"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing". <b>luxury + product</b> needs both words, in any order.</p>
         <button class="set-btn go block" data-savecfg>Save terms</button>
         <a class="set-btn block" style="display:block;text-align:center;text-decoration:none" href="https://github.com/Thami-Bng/Vitrine/actions" target="_blank" rel="noopener">Run a scan now \u2197</a>`;
     return;
@@ -1801,7 +1896,14 @@ function renderPage(){
       Quarterly, whole-economy. The only way to see seasonality today.          */
 function dayKey(t){return new Date(t).toISOString().slice(0,10);}
 const REACHED=["contacted","replied","no_reply"];
-function isReached(c){return REACHED.includes(c&&c.status);}
+/* A person counts as reached if you marked them so — OR if any date got recorded
+   against them. Requiring the status chip meant someone Zineb had actually
+   messaged sat invisible on "To contact", and the warm/cold table read zero. */
+function isReached(c){
+  if(!c)return false;
+  if(REACHED.includes(c.status))return true;
+  return !!c.date;
+}
 function eventsOf(){
   /* Dated events from the pipeline. Where an event certainly happened but has no
      date of its own (a contact marked Replied straight from the follow-up card,
@@ -2130,7 +2232,19 @@ document.getElementById("overlay").addEventListener("input",e=>{
 });
 
 // Settings interactions
-document.getElementById("settingsBtn").addEventListener("click",()=>go("menu"));
+document.getElementById("settingsBtn").addEventListener("click",e=>{
+  e.stopPropagation();
+  const willOpen=document.getElementById("menuDrop").hidden;
+  toggleDrop("menuDrop",renderMenuDrop);
+  document.getElementById("settingsBtn").setAttribute("aria-expanded",String(willOpen));
+});
+document.getElementById("menuDrop").addEventListener("click",e=>{
+  e.stopPropagation();
+  const g=e.target.closest("[data-go]");
+  if(g){closeDrops();go(g.dataset.go||null);}
+});
+// Click anywhere else — or the button again — and the menu goes away.
+document.addEventListener("click",closeDrops);
 document.getElementById("whoBtn").addEventListener("click",()=>{
   // One profile: nothing to switch between, so go where you'd manage it anyway.
   go("profiles");
@@ -2296,7 +2410,9 @@ document.getElementById("restoreInput").addEventListener("change",e=>{
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){
   if(!document.getElementById("pickOverlay").hidden)closePicker();
   else if(!document.getElementById("bellOverlay").hidden)document.getElementById("bellOverlay").hidden=true;
-  else if(!document.getElementById("overlay").hidden)closeEditor();else if(state.page)go(state.page==="menu"?null:"menu");}});
+  else if(!document.getElementById("overlay").hidden)closeEditor();
+  else if(!document.getElementById("menuDrop").hidden||!document.getElementById("bellDrop").hidden)closeDrops();
+  else if(state.page)go(null);}});
 document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value;render();});
 document.getElementById("tabs").addEventListener("click",e=>{
   const t=e.target.closest(".tab");if(!t)return;
@@ -2307,11 +2423,18 @@ document.getElementById("modebar").addEventListener("click",e=>{
   state.mode=m.dataset.mode;state.page=null;render();      // nav always returns you to the roles
 });
 document.getElementById("brandBtn").addEventListener("click",()=>{state.page=null;state.mode="browse";render();});
-document.getElementById("bellBtn").addEventListener("click",openBell);
-document.getElementById("bellOverlay").addEventListener("click",e=>{
-  if(e.target.id==="bellOverlay"||e.target.closest("[data-bclose]")){document.getElementById("bellOverlay").hidden=true;return;}
+document.getElementById("bellBtn").addEventListener("click",e=>{
+  e.stopPropagation();
+  const willOpen=document.getElementById("bellDrop").hidden;
+  toggleDrop("bellDrop",()=>{state.notesAll=false;renderBellDrop();});
+  document.getElementById("bellBtn").setAttribute("aria-expanded",String(willOpen));
+});
+document.getElementById("bellDrop").addEventListener("click",e=>{
+  e.stopPropagation();
+  if(e.target.closest("[data-notesall]")){state.notesAll=true;renderBellDrop();return;}
+  if(e.target.closest("[data-notesrecent]")){state.notesAll=false;renderBellDrop();return;}
   const row=e.target.closest("[data-noteid]");
-  if(row){document.getElementById("bellOverlay").hidden=true;state.page=null;state.mode="pipeline";render();openEditor(row.dataset.noteid);}
+  if(row){closeDrops();state.page=null;state.mode="pipeline";render();openEditor(row.dataset.noteid);}
 });
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});

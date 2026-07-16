@@ -16,7 +16,7 @@ Env:    SERPAPI_KEY (optional)
 """
 
 from __future__ import annotations
-import argparse, html, json, os, re, sys, time
+import argparse, html, json, os, re, sys, time, unicodedata
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import requests
@@ -240,20 +240,44 @@ DEFAULT_EXCLUDE = ["controller", "controlling", "treasury", "finance", "accounta
                    "customer service", "service assistant", "call cent*", "receptionist",
                    "data entry", "telesales"]
 
+def fold(x):
+    """Lower-case and strip accents. "estee" must find Estee Lauder and Estée
+    Lauder alike — nobody should have to hunt for an é to make a search work.
+    Applied to the terms AND the text, exactly like case."""
+    s = str(x or "").lower()
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return s.replace("\u2019", "'").replace("\u2018", "'")
+
 def term_to_pattern(t):
     """A plain word becomes a whole-word match; a trailing * becomes a prefix match."""
-    t = (t or "").strip().lower()
+    t = fold(t).strip()
     if not t: return None
     if t.endswith("*"):
         core = re.escape(t[:-1])
         return rf"\b{core}\w*" if core else None
     return rf"\b{re.escape(t)}\b"
 
+class TermSet:
+    """Any term may match. A term joined with + must have ALL its words present,
+    in any order: "luxury + product" finds "Head of Product (Luxury)"."""
+    def __init__(self, terms):
+        self.specs = []
+        for t in terms or []:
+            parts = [p.strip() for p in fold(t).split("+") if p.strip()]
+            pats = [term_to_pattern(p) for p in parts]
+            pats = [re.compile(p, re.I) for p in pats if p]
+            if pats: self.specs.append(pats)
+    def __bool__(self): return bool(self.specs)
+    def search(self, text):
+        f = fold(text)
+        return any(all(r.search(f) for r in spec) for spec in self.specs)
+
 def compile_terms(terms, fallback):
-    pats = [p for p in (term_to_pattern(t) for t in (terms or [])) if p]
-    if not pats:                                  # never let an empty list match nothing
-        pats = [p for p in (term_to_pattern(t) for t in fallback) if p]
-    return re.compile("|".join(pats), re.I)
+    ts = TermSet(terms)
+    if not ts:                                    # never let an empty list match nothing
+        ts = TermSet(fallback)
+    return ts
 
 def load_config():
     """Read the editable term lists from the Worker. Falls back to defaults."""
@@ -326,10 +350,10 @@ AGGREGATORS = ("trabajo","jobrapido","neuvoo","talent.com","learn4good","jooble"
 def preferred(company):
     """Is this one of the houses? Honours the edited list, not just the default,
     so removing a brand in Settings really removes it everywhere."""
-    c=(company or "").lower()
+    c=fold(company)
     lst=CONFIG.get("house_brands")
     if not (isinstance(lst,list) and lst): lst=PREFERRED_BRANDS
-    return any(str(b).lower() in c for b in lst)
+    return any(fold(b) in c for b in lst)
 
 def is_agency(company):
     c=(company or "").lower(); return any(a in c for a in AGENCIES)
@@ -338,20 +362,21 @@ def type_of(company):
     """Which brands are houses, and which are agencies — editable from Settings.
     The dashboard is seeded with these exact lists (echoed into jobs.json), so
     what the user edits is the real rule, not a copy of it."""
-    c=(company or "").lower()
+    c=fold(company)
     agy = CONFIG.get("agency_terms") or []
     hse = CONFIG.get("house_brands") or []
     if agy:
-        if any(str(a).lower() in c for a in agy): return "agency"
+        if any(fold(a) in c for a in agy): return "agency"
     elif is_agency(company): return "agency"
     if hse:
-        if any(str(b).lower() in c for b in hse): return "house"
+        if any(fold(b) in c for b in hse): return "house"
     elif preferred(company): return "house"
     return "other"
 
 def _cfg_list(key, fallback):
     v = CONFIG.get(key)
-    return [str(x).lower() for x in v] if isinstance(v, list) and v else list(fallback)
+    src = v if isinstance(v, list) and v else fallback
+    return [fold(x) for x in src]
 
 def sector_of(company, title, desc):
     """Which sector a role belongs to. Two different tests, deliberately:
@@ -359,8 +384,8 @@ def sector_of(company, title, desc):
       • SIGNALS match the whole posting — a tech role that merely mentions Chanel
         as a client shouldn't become a beauty role, which is why they're separate.
     Both lists are editable from Settings; these are just the defaults."""
-    c=(company or "").lower()
-    blob=f"{company} {title} {desc}".lower()
+    c=fold(company)
+    blob=fold(f"{company} {title} {desc}")
     tb=_cfg_list("travel_brands", HOSPITALITY_BRANDS); ts=_cfg_list("travel_signals", HOSP_SIGNALS)
     lb=_cfg_list("luxury_brands", SECTOR_BRANDS);      ls=_cfg_list("luxury_signals", LUX_SIGNALS)
     if any(b in c for b in tb) or any(w in blob for w in ts):
@@ -386,16 +411,16 @@ def category_of(company, title, sector, type_, desc=""):
         # one category on the server and another in the browser:
         #   terms   → the EMPLOYER'S NAME only
         #   signals → the whole posting: employer, title and description
-        who  = (company or "").lower()
-        blob = f"{company} {title} {desc}".lower()
+        who  = company or ""
+        blob = f"{company} {title} {desc}"
         for c in USER_CATS:
             if c.get("locked"): continue
             # Houses and Recruiters are settled by type_of() on the employer's
             # name above. Letting them also match on description would turn any
             # company that says "luxury maison" into a house.
             if c.get("id") in ("house", "agency", "recruiter"): continue
-            if any(str(t).lower() in who  for t in (c.get("terms")   or [])): return c["id"]
-            if any(str(t).lower() in blob for t in (c.get("signals") or [])): return c["id"]
+            if TermSet(c.get("terms")   or []).search(who):  return c["id"]
+            if TermSet(c.get("signals") or []).search(blob): return c["id"]
         if sector=="hospitality":   return "travel"
         if sector=="beauty_luxury": return "beauty_luxury"
         return "other"

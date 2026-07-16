@@ -522,9 +522,35 @@ function newProfile(name,id){
           search:[...DEFAULT_TERMS.search],include:[...DEFAULT_TERMS.include],
           exclude:[...DEFAULT_TERMS.exclude],min_salary_max:DEFAULT_TERMS.min_salary_max};
 }
+/* Categories are cached per device, so a browser can be running last week's
+   SHAPE with this week's code — which is how Houses ended up describing itself
+   as the catch-all. Behaviour flags always come from the current defaults; only
+   the user's own content (label, term lists, order, custom categories) is kept.
+   Anything stored is repaired on load rather than needing a cache clear. */
 function loadCats(){
-  try{const c=JSON.parse(localStorage.getItem("v_cats")||"null");if(Array.isArray(c)&&c.length)return c;}catch(e){}
-  return JSON.parse(JSON.stringify(DEFAULT_CATS));
+  const defs=JSON.parse(JSON.stringify(DEFAULT_CATS));
+  let stored=null;
+  try{stored=JSON.parse(localStorage.getItem("v_cats")||"null");}catch(e){}
+  if(!Array.isArray(stored)||!stored.length)return defs;
+  const merged=stored.filter(c=>c&&c.id).map(c=>{
+    const d=defs.find(x=>x.id===c.id);
+    if(!d)return {id:c.id,label:c.label||"Category",terms:c.terms||[],
+                  signals:Array.isArray(c.signals)?c.signals:undefined};
+    return {
+      id:d.id,
+      label:c.label||d.label,                       // yours
+      terms:Array.isArray(c.terms)?c.terms:[],      // yours
+      signals:d.signals!==undefined ? (Array.isArray(c.signals)?c.signals:[]) : undefined,
+      locked:!!d.locked,                            // ours — behaviour, not content
+      brands:!!d.brands,
+    };
+  });
+  // A category added in a later version must still appear.
+  defs.forEach(d=>{ if(!merged.some(c=>c.id===d.id))merged.push(d); });
+  // The catch-all belongs at the end — a list that reads "… Other, Tech, Finance"
+  // is nonsense even though matching would still work.
+  const other=merged.filter(c=>c.id==="other");
+  return merged.filter(c=>c.id!=="other").concat(other);
 }
 /* Houses and Recruiters are matched on brand names by the scanner. Seed the UI
    with the real lists it published, so what you edit IS the rule — not a copy. */

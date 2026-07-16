@@ -23,22 +23,28 @@
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px 64px;}
-  header{padding:32px 0 16px;text-align:center;border-bottom:1px solid var(--line);position:relative;}
-  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:600;}
-  h1{font-family:"Fraunces",serif;font-weight:500;font-size:38px;line-height:1.02;margin:8px 0 6px;letter-spacing:-.01em;}
-  h1 em{font-style:italic;color:var(--accent);}
-  .byline{font-size:13px;color:var(--muted);}
-  .byline b{color:var(--ink);font-weight:600;}
-
+  /* A real app bar: brand left, navigation next to it, identity right — the
+     shape every professional tool uses, and far calmer than two giant pills. */
+  .appbar{display:flex;align-items:center;gap:6px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:9px;border:0;background:transparent;cursor:pointer;padding:4px 6px 4px 0;flex:0 0 auto;}
+  .logo{width:30px;height:30px;flex:0 0 auto;}
+  .logo svg{width:100%;height:100%;display:block;border-radius:8px;}
+  .wordmark{font-family:"Fraunces",serif;font-size:19px;font-weight:500;color:var(--ink);white-space:nowrap;letter-spacing:-.01em;}
+  .wordmark em{font-style:italic;color:var(--accent);}
+  .nav{display:flex;align-items:stretch;gap:2px;margin-left:18px;flex:1;min-width:0;}
+  .navlink{position:relative;border:0;background:transparent;font:inherit;font-size:14px;font-weight:600;
+           color:var(--muted);cursor:pointer;padding:14px 14px 13px;white-space:nowrap;display:inline-flex;align-items:center;gap:7px;}
+  .navlink:hover{color:var(--ink);}
+  .navlink[aria-selected="true"]{color:var(--ink);}
+  .navlink[aria-selected="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:3px;
+           background:var(--accent);border-radius:3px 3px 0 0;}
+  .nbadge{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ECE8E1;color:var(--muted);}
+  .nbadge.due{background:var(--accent);color:#fff;}
+  .bar-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto;}
+  .bar-meta{font-size:12px;color:var(--muted);white-space:nowrap;}
+  .bar-meta b{color:var(--ink);font-weight:600;}
+  @media (max-width:760px){ .wordmark,.bar-meta{display:none;} .nav{margin-left:8px;} .navlink{padding:14px 10px 13px;font-size:13px;} }
   .controls{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 8px;}
-  .modebar{display:flex;gap:6px;margin-bottom:10px;}
-  .mode{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;border:1px solid var(--line);background:var(--card);border-radius:999px;font:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;}
-  .mode:hover{color:var(--ink);}
-  .mode[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
-  .mbadge{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:#ECE8E1;color:var(--muted);}
-  .mbadge.due{background:var(--accent);color:#fff;}
-  .mode[aria-selected="true"] .mbadge{background:rgba(255,255,255,.22);color:#fff;}
-  .mode[aria-selected="true"] .mbadge.due{background:#fff;color:var(--accent);}
   /* Categories wrap onto as many lines as they need — nothing is ever hidden
      off-screen. (Previously this row scrolled horizontally with the scrollbar
      hidden, so later categories were unreachable and invisible.) */
@@ -104,14 +110,18 @@
   .btn.dismiss:hover{color:var(--accent);border-color:var(--accent);}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
   .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
-  .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;
-         display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .empty{text-align:center;color:var(--muted);padding:44px 20px;font-size:15px;
+         display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;}
   .empty b{color:var(--ink);font-weight:600;display:block;font-family:"Fraunces",serif;font-size:20px;margin-bottom:6px;}
-  .report{width:min(420px,100%);margin:0 auto;text-align:left;}
-  .rep-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;color:var(--ink);text-align:center;}
-  .rep-p{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 16px;line-height:1.5;}
-  .rep-t{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;}
-  .rep-t td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;color:var(--ink);}
+  /* One centred card that contains everything — heading, sentence and table —
+     instead of a narrow table adrift in a wide column. */
+  .report{width:min(460px,100%);margin:0 auto;text-align:left;background:var(--card);
+          border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;
+          box-shadow:0 1px 3px rgba(0,0,0,.03);}
+  .rep-h{font-family:"Fraunces",serif;font-size:20px;font-weight:600;color:var(--ink);text-align:center;}
+  .rep-p{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 18px;line-height:1.5;}
+  .rep-t{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden;}
+  .rep-t td{padding:11px 14px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;color:var(--ink);}
   .rep-t tr:last-child td{border-bottom:0;}
   .rep-t .rv{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;width:64px;}
   .rep-t .rv.accent{color:var(--accent);} .rep-t .rv.ok{color:var(--ok);}
@@ -202,8 +212,9 @@
   .tag.tracked{color:var(--ink);background:#ECE8E1;}
   .btn.track.on{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-  .gear{position:absolute;top:22px;left:0;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
-  .gear span{display:block;width:17px;height:2px;background:currentColor;border-radius:2px;}
+  .gear{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:0 0 auto;}
+  .gear:hover{border-color:var(--accent);color:var(--accent);}
+  .gear span{display:block;width:15px;height:2px;background:currentColor;border-radius:2px;}
   .gear:hover{color:var(--accent);border-color:var(--accent);}
 
   /* Pipeline */
@@ -320,11 +331,10 @@
   .fn-bar span{display:block;height:100%;background:var(--accent);border-radius:999px;}
   .fn-v{font-size:13px;font-weight:700;flex:0 0 34px;text-align:right;}
   /* Who am I working as? Always visible, top right, mirroring the menu on the left. */
-  .whoami{position:absolute;top:18px;right:0;display:inline-flex;align-items:center;gap:8px;
-          background:var(--card);border:1px solid var(--line);border-radius:999px;
-          padding:4px 12px 4px 4px;cursor:pointer;transition:all .15s;max-width:44vw;}
+  .whoami{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);
+          border-radius:999px;padding:3px 11px 3px 3px;cursor:pointer;transition:all .15s;flex:0 0 auto;}
   .whoami:hover{border-color:var(--accent);}
-  .whoami .av-lg{width:32px;height:32px;border-width:0;}
+  .whoami .av-lg{width:28px;height:28px;border-width:0;}
   .whoami .wn{font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .whoami .wc{font-size:10px;color:var(--muted);}
   .whoami img{border-radius:50%;}
@@ -351,16 +361,26 @@
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
-    <button class="whoami" id="whoBtn" title="Switch profile" aria-label="Active profile — switch"></button>
-    <div class="eyebrow">Singapore · E-commerce &amp; Product</div>
-    <h1>The <em>Vitrine</em></h1>
-    <div class="byline" id="byline">Loading roles…</div>
+  <header class="appbar">
+    <button class="brand" id="brandBtn" title="The Vitrine">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#7B1E3B"/>
+          <path d="M14.08 17.28h9.28L33.04 46.72h-8.54z" fill="#F8F7F4"/>
+          <path d="M45.44 17.28h5.12L33.04 46.72h-2.56z" fill="#F8F7F4"/>
+          <rect x="11.9" y="17.28" width="13.64" height="2.18" fill="#F8F7F4"/>
+          <rect x="43.26" y="17.28" width="9.48" height="2.18" fill="#F8F7F4"/></svg>
+      </span>
+      <span class="wordmark">The <em>Vitrine</em></span>
+    </button>
+    <nav class="nav" id="modebar" role="tablist"></nav>
+    <div class="bar-right">
+      <span class="bar-meta" id="byline"></span>
+      <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
+      <button class="whoami" id="whoBtn" title="Switch profile" aria-label="Active profile"></button>
+    </div>
   </header>
 
   <div class="controls">
-    <div class="modebar" id="modebar" role="tablist"></div>
     <div class="tabs" id="tabs" role="tablist"></div>
     <input class="search" id="search" type="search" placeholder="Search role, house, keyword…" autocomplete="off">
     <div class="filterbar" id="filterbar">
@@ -432,13 +452,16 @@ function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.t
    rest match on company/title terms you control. Each profile picks which ones
    it wants to see — Zineb has no interest in Banking & Insurance. */
 const DEFAULT_CATS=[
-  {id:"house",label:"Houses",terms:[],brands:true},
+  {id:"house",label:"Houses",terms:[],signals:[],brands:true},
   {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],signals:[],brands:true},
   {id:"travel",label:"Travel & Hospitality",terms:[],signals:[],brands:true},
-  {id:"tech",label:"Tech",terms:["software","saas","fintech","platform","tiktok","bytedance","grab","shopee","lazada","sea limited","google","meta","amazon","microsoft","startup","gaming"]},
-  {id:"finance",label:"Banking & Insurance",terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
-  {id:"consulting",label:"Consulting",terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
-  {id:"recruiter",label:"Recruiters",terms:[],brands:true},
+  {id:"tech",label:"Tech",signals:[],
+   terms:["software","saas","fintech","platform","tiktok","bytedance","grab","shopee","lazada","sea limited","google","meta","amazon","microsoft","startup","gaming"]},
+  {id:"finance",label:"Banking & Insurance",signals:[],
+   terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
+  {id:"consulting",label:"Consulting",signals:[],
+   terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
+  {id:"recruiter",label:"Recruiters",terms:[],signals:[],brands:true},
   {id:"other",label:"Other",terms:[],locked:true},
 ];
 function allCats(){
@@ -493,10 +516,10 @@ function renderTabs(){
 // its own switch instead of competing with Houses / Tech / etc.
 function renderModebar(){
   const dueN=followUps().length, pipeN=trackedItems().length;
-  const badge=dueN?`<span class="mbadge due">${dueN} due</span>`:(pipeN?`<span class="mbadge">${pipeN}</span>`:"");
+  const badge=dueN?`<span class="nbadge due">${dueN} due</span>`:(pipeN?`<span class="nbadge">${pipeN}</span>`:"");
   document.getElementById("modebar").innerHTML=`
-    <button class="mode" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"}">Browse roles</button>
-    <button class="mode" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"}">Pipeline${badge}</button>`;
+    <button class="navlink" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"&&!state.page}">Browse roles</button>
+    <button class="navlink" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"&&!state.page}">Pipeline${badge}</button>`;
 }
 /* ── Profiles ──────────────────────────────────────────────────────────────
    Each profile is a person: their own search terms, salary floor, pipeline and
@@ -522,35 +545,39 @@ function newProfile(name,id){
           search:[...DEFAULT_TERMS.search],include:[...DEFAULT_TERMS.include],
           exclude:[...DEFAULT_TERMS.exclude],min_salary_max:DEFAULT_TERMS.min_salary_max};
 }
-/* Categories are cached per device, so a browser can be running last week's
-   SHAPE with this week's code — which is how Houses ended up describing itself
-   as the catch-all. Behaviour flags always come from the current defaults; only
-   the user's own content (label, term lists, order, custom categories) is kept.
-   Anything stored is repaired on load rather than needing a cache clear. */
-function loadCats(){
+/* Categories arrive from three places — this device's cache, the Cloudflare
+   config, and the built-in defaults — and the first two can be carrying an
+   older SHAPE than the current code (that's how Houses came to describe itself
+   as the catch-all). So every source is repaired on the way in, not just one:
+     • behaviour flags (locked / brands / whether a signals list exists) always
+       come from the current defaults — they're code, not content;
+     • labels, term lists, order and custom categories are always kept — yours.
+   Nothing needs clearing; a stale copy fixes itself on load. */
+function repairCats(list){
   const defs=JSON.parse(JSON.stringify(DEFAULT_CATS));
-  let stored=null;
-  try{stored=JSON.parse(localStorage.getItem("v_cats")||"null");}catch(e){}
-  if(!Array.isArray(stored)||!stored.length)return defs;
-  const merged=stored.filter(c=>c&&c.id).map(c=>{
+  if(!Array.isArray(list)||!list.length)return defs;
+  const merged=list.filter(c=>c&&c.id).map(c=>{
     const d=defs.find(x=>x.id===c.id);
-    if(!d)return {id:c.id,label:c.label||"Category",terms:c.terms||[],
-                  signals:Array.isArray(c.signals)?c.signals:undefined};
+    if(!d)return {id:c.id,label:c.label||"Category",
+                  terms:Array.isArray(c.terms)?c.terms:[],
+                  signals:Array.isArray(c.signals)?c.signals:[]};
     return {
       id:d.id,
-      label:c.label||d.label,                       // yours
-      terms:Array.isArray(c.terms)?c.terms:[],      // yours
+      label:c.label||d.label,
+      terms:Array.isArray(c.terms)?c.terms:[],
       signals:d.signals!==undefined ? (Array.isArray(c.signals)?c.signals:[]) : undefined,
-      locked:!!d.locked,                            // ours — behaviour, not content
+      locked:!!d.locked,
       brands:!!d.brands,
     };
   });
-  // A category added in a later version must still appear.
-  defs.forEach(d=>{ if(!merged.some(c=>c.id===d.id))merged.push(d); });
-  // The catch-all belongs at the end — a list that reads "… Other, Tech, Finance"
-  // is nonsense even though matching would still work.
+  defs.forEach(d=>{ if(!merged.some(c=>c.id===d.id))merged.push(d); });   // added in a later version
   const other=merged.filter(c=>c.id==="other");
-  return merged.filter(c=>c.id!=="other").concat(other);
+  return merged.filter(c=>c.id!=="other").concat(other);                  // catch-all last
+}
+function loadCats(){
+  let stored=null;
+  try{stored=JSON.parse(localStorage.getItem("v_cats")||"null");}catch(e){}
+  return repairCats(stored);
 }
 /* Houses and Recruiters are matched on brand names by the scanner. Seed the UI
    with the real lists it published, so what you edit IS the rule — not a copy. */
@@ -806,7 +833,7 @@ async function boot(){
   }
   recompile();
   const when=new Date(data.generated_at||Date.now());
-  document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles \u00b7 ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   try{const h=await fetch("data/history.json",{cache:"no-store"});if(h.ok)state.history=await h.json();}catch(e){}
   try{const m=await fetch("data/market.json",{cache:"no-store"});if(m.ok)state.market=await m.json();}catch(e){}
   try{const n=await fetch("data/national.json",{cache:"no-store"});if(n.ok)state.national=await n.json();}catch(e){}
@@ -938,12 +965,12 @@ function render(){
   renderWho();
   const pg=document.getElementById("page"), ctl=document.querySelector(".controls"), lst=document.getElementById("list");
   const srcs=document.getElementById("sources");
+  renderModebar();
   if(state.page){
     ctl.style.display="none";lst.style.display="none";if(srcs)srcs.style.display="none";
     pg.hidden=false;renderPage();return;
   }
   pg.hidden=true;ctl.style.display="";lst.style.display="";
-  renderModebar();
   const inPipe=state.mode==="pipeline";
   document.getElementById("tabs").style.display=inPipe?"none":"";      // categories are a Browse concern
   if(inPipe){renderPipeline();return;}
@@ -1331,7 +1358,7 @@ async function pullConfig(){
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{headers:{Authorization:"Bearer "+SYNC.key}});
     if(!r.ok)return;
     const c=await r.json();
-    if(c && Array.isArray(c.categories) && c.categories.length)state.cats=c.categories;
+    if(c && Array.isArray(c.categories) && c.categories.length)state.cats=repairCats(c.categories);
     if(c && Array.isArray(c.profiles) && c.profiles.length){
       state.profiles=c.profiles;
       if(!state.profiles.some(p=>p.id===state.pid))state.pid=state.profiles[0].id;
@@ -1427,7 +1454,7 @@ function ruleGroup(c,key,label,help){
     <div class="tchips">${list.map((t,i)=>
       `<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-key="${key}" data-i="${i}">\u00d7</button></span>`
     ).join("")||`<span class="hint">Empty \u2014 nothing matches on this rule.</span>`}</div>
-    <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="add ${key==="terms"?"a company name":"a word"}, then press Enter">
+    <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="${key==="terms"?"add a word from the employer's name":"add a word from the title or description"}, then press Enter">
   </div>`;
 }
 function renderPage(){
@@ -1454,7 +1481,7 @@ function renderPage(){
   if(state.page==="cats"){
     const hidden=new Set(P.hidden_cats||[]);
     el.innerHTML=pgTop("Categories",
-      `Which tabs exist, and what lands in each. A role lands in the <b>first</b> category that matches, so order decides ties \u2014 use \u25b2\u25bc to reorder. These are the scanner's live rules: edit them and the next scan follows. Untick anything ${esc(P.name)} doesn't want to see \u2014 that's per profile, so it won't affect anyone else.`)
+      `Which tabs exist, and what lands in each. Every category has two rules: one looks <b>only at the employer's name</b>, the other looks at the <b>whole posting</b> \u2014 title and description. A role lands in the <b>first</b> category that matches, so order decides ties (use \u25b2\u25bc). These are the scanner's live rules: edit them and the next scan follows. Untick anything ${esc(P.name)} doesn't want \u2014 that's per profile.`)
       + changeWarning()
       + allCats().map((c,i)=>`
         <div class="cat-card">
@@ -1469,10 +1496,10 @@ function renderPage(){
           </div>
           ${c.locked
             ? `<div class="hint">The catch-all: anything matching no other category lands here. It has no rules of its own.</div>`
-            : ruleGroup(c,"terms","Company name","Matches the employer's name only \u2014 so a role that merely mentions the brand isn't caught.")
-              + (c.signals!==undefined
-                 ? ruleGroup(c,"signals","Words anywhere in the posting","Matches title or description too \u2014 broader, and catches roles whose employer isn't a known brand.")
-                 : "")}
+            : ruleGroup(c,"terms","In the employer's name",
+                "Only the company field. <b>tiktok</b> catches TikTok Pte Ltd; <b>software</b> catches Acme Software. A role that merely <i>mentions</i> the word elsewhere is not caught.")
+              + ruleGroup(c,"signals","In the job title or description",
+                "The whole posting \u2014 title and full text. Catches roles whose employer isn't a known name (<b>gaming</b> finds \u201cSenior PM, Gaming\u201d anywhere). Broader, so it catches more \u2014 and more by accident.")}
         </div>`).join("")
       + `<button class="set-btn block" data-addcat>+ Add a category</button>
          <button class="set-btn go block" data-savecfg>Save categories</button>`;
@@ -2061,9 +2088,10 @@ document.getElementById("tabs").addEventListener("click",e=>{
   state.scope=t.dataset.scope;render();
 });
 document.getElementById("modebar").addEventListener("click",e=>{
-  const m=e.target.closest(".mode");if(!m)return;
-  state.mode=m.dataset.mode;render();
+  const m=e.target.closest(".navlink");if(!m)return;
+  state.mode=m.dataset.mode;state.page=null;render();      // nav always returns you to the roles
 });
+document.getElementById("brandBtn").addEventListener("click",()=>{state.page=null;state.mode="browse";render();});
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});
 document.getElementById("resetFilters").addEventListener("click",()=>{

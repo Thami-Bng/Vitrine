@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Vitrine — Zineb's roles</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%237B1E3B%22%2F%3E%3Cpath%20d%3D%22M14.08%2017.28H23.36L32.93%2046.72H24.39z%22%20fill%3D%22%23F8F7F4%22%2F%3E%3Cpath%20d%3D%22M44.8%2017.28H49.92L33.7%2046.72H30.37z%22%20fill%3D%22%23F8F7F4%22%2F%3E%3Crect%20x%3D%2211.9%22%20y%3D%2217.28%22%20width%3D%2213.63%22%20height%3D%222.18%22%20fill%3D%22%23F8F7F4%22%2F%3E%3Crect%20x%3D%2242.62%22%20y%3D%2217.28%22%20width%3D%229.47%22%20height%3D%222.18%22%20fill%3D%22%23F8F7F4%22%2F%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7B1E3B">
+<meta name="apple-mobile-web-app-title" content="Vitrine">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -98,9 +104,10 @@
   .btn.dismiss:hover{color:var(--accent);border-color:var(--accent);}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
   .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
-  .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;}
+  .empty{text-align:center;color:var(--muted);padding:56px 20px;font-size:15px;
+         display:flex;flex-direction:column;align-items:center;justify-content:center;}
   .empty b{color:var(--ink);font-weight:600;display:block;font-family:"Fraunces",serif;font-size:20px;margin-bottom:6px;}
-  .report{max-width:380px;margin:0 auto;text-align:left;}
+  .report{width:min(420px,100%);margin:0 auto;text-align:left;}
   .rep-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;color:var(--ink);text-align:center;}
   .rep-p{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 16px;line-height:1.5;}
   .rep-t{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;}
@@ -172,6 +179,9 @@
   .pulse{background:var(--accent-soft);border:1px solid #e7cdd5;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--accent);font-weight:600;}
   .tchips{display:flex;flex-wrap:wrap;gap:6px;}
   .tchip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 11px;font-size:12.5px;font-weight:500;}
+  .tchip.pickcat{cursor:pointer;padding:5px 11px;font-weight:600;color:var(--muted);}
+  .tchip.pickcat:hover{border-color:var(--accent);color:var(--accent);}
+  .tchip.pickcat.on{background:var(--ink);border-color:var(--ink);color:#fff;}
   .tchip button{border:0;background:#ECE8E1;color:var(--muted);width:17px;height:17px;border-radius:50%;font-size:12px;line-height:1;cursor:pointer;padding:0;}
   .tchip button:hover{background:var(--accent);color:#fff;}
   .quota{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-top:1px solid var(--line);font-size:12.5px;}
@@ -277,6 +287,10 @@
   .salhint b{color:var(--ink);}
   .warnbox{border:1px solid var(--ochre);background:var(--ochre-soft);color:#5f4a12;border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.55;margin:0 0 18px;}
   .warnbox b{display:block;color:#4a3a0e;margin-bottom:3px;}
+  .rulegrp{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+  .rulegrp:first-of-type{border-top:0;padding-top:0;margin-top:8px;}
+  .rg-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+  .rg-n{color:var(--accent);}
   .cat-card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;margin-bottom:10px;}
   .cat-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
   .cbx{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;cursor:pointer;}
@@ -419,8 +433,8 @@ function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.t
    it wants to see — Zineb has no interest in Banking & Insurance. */
 const DEFAULT_CATS=[
   {id:"house",label:"Houses",terms:[],brands:true},
-  {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],locked:true},
-  {id:"travel",label:"Travel & Hospitality",terms:["hotel","resort","hospitality","airline","cruise","travel retail","duty free"]},
+  {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],signals:[],brands:true},
+  {id:"travel",label:"Travel & Hospitality",terms:[],signals:[],brands:true},
   {id:"tech",label:"Tech",terms:["software","saas","fintech","platform","tiktok","bytedance","grab","shopee","lazada","sea limited","google","meta","amazon","microsoft","startup","gaming"]},
   {id:"finance",label:"Banking & Insurance",terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
   {id:"consulting",label:"Consulting",terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
@@ -444,10 +458,13 @@ function catOf(j){
 function catOfRaw(j){
   // The scraper's verdict wins for house/recruiter — it knows the brand lists.
   if(j.category==="house"||j.category==="recruiter")return j.category;
-  const blob=`${j.company||""} ${j.title||""}`.toLowerCase();
+  const who=(j.company||"").toLowerCase();
+  const blob=`${j.company||""} ${j.title||""} ${j.description||""}`.toLowerCase();
   for(const c of allCats()){
-    if(c.locked||!c.terms||!c.terms.length)continue;
-    if(c.terms.some(t=>blob.includes(String(t).toLowerCase())))return c.id;
+    if(c.locked)continue;
+    // Brands match the employer's name; signals match anywhere in the posting.
+    if((c.terms||[]).some(t=>who.includes(String(t).toLowerCase())))return c.id;
+    if((c.signals||[]).some(t=>blob.includes(String(t).toLowerCase())))return c.id;
   }
   if(j.category)return j.category;
   if(j.type==="house")return "house";
@@ -513,9 +530,15 @@ function loadCats(){
    with the real lists it published, so what you edit IS the rule — not a copy. */
 function seedBrandRules(){
   const cfg=state.scanCfg||{};
-  const h=state.cats.find(c=>c.id==="house"), r=state.cats.find(c=>c.id==="recruiter");
-  if(h&&!(h.terms||[]).length&&Array.isArray(cfg.house_brands))h.terms=cfg.house_brands.slice();
-  if(r&&!(r.terms||[]).length&&Array.isArray(cfg.agency_terms))r.terms=cfg.agency_terms.slice();
+  const seed=(id,tKey,sKey)=>{
+    const c=state.cats.find(x=>x.id===id); if(!c)return;
+    if(!(c.terms||[]).length&&Array.isArray(cfg[tKey]))c.terms=cfg[tKey].slice();
+    if(sKey&&!(c.signals||[]).length&&Array.isArray(cfg[sKey]))c.signals=cfg[sKey].slice();
+  };
+  seed("house","house_brands");
+  seed("recruiter","agency_terms");
+  seed("beauty_luxury","luxury_brands","luxury_signals");
+  seed("travel","travel_brands","travel_signals");
 }
 function loadProfiles(){
   try{
@@ -525,12 +548,37 @@ function loadProfiles(){
   return [newProfile("Zineb","zineb")];
 }
 const state={jobs:[],history:[],market:null,national:[],cats:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
-  savedSet:new Set(),appliedSet:new Set(),dismissedSet:new Set(),pipeline:{}};
+  savedSet:new Set(),appliedSet:new Set(),dismissedSet:new Set(),pipeline:{},dismissedAt:{}};
+/* Records made before we started stamping dates have no createdAt, so every
+   chart drawn from them read zero while the funnel (which counts state, not
+   events) said 18. Give each one the earliest date we can actually justify,
+   and flag it as approximate rather than pretending. */
+function backfillDates(){
+  let changed=false;
+  Object.keys(state.pipeline).forEach(id=>{
+    const r=state.pipeline[id];
+    if(!r||r.deleted||r.createdAt)return;
+    const c=[];
+    if(r.appliedOn)c.push(new Date(r.appliedOn).getTime());
+    (r.contacts||[]).forEach(x=>{if(x.date)c.push(new Date(x.date).getTime());});
+    (r.interviews||[]).forEach(x=>{if(x.date)c.push(new Date(x.date).getTime());});
+    if(r.updatedAt)c.push(r.updatedAt);
+    const valid=c.filter(t=>isFinite(t)&&t>0);
+    r.createdAt=valid.length?Math.min(...valid):Date.now();
+    r.createdApprox=true;
+    changed=true;
+  });
+  // Roles set aside before we recorded when: keep them countable, undated.
+  [...state.dismissedSet].forEach(id=>{ if(!state.dismissedAt[id])state.dismissedAt[id]="?"; });
+  if(changed)persist();
+}
 function loadProfileData(){
   state.savedSet=new Set(load(pk("v_saved")));
   state.appliedSet=new Set(load(pk("v_applied")));
   state.dismissedSet=new Set(load(pk("v_dismissed")));
   state.pipeline=loadObj(pk("v_pipeline"));
+  state.dismissedAt=loadObj(pk("v_dismissed_at"));
+  backfillDates();
   const p=activeProfile();
   state.config={search:p.search,include:p.include,exclude:p.exclude,min_salary_max:p.min_salary_max};
   state.baseline=termSnapshot(p);
@@ -597,6 +645,7 @@ function cacheLocal(){try{
   localStorage.setItem(pk("v_applied"),JSON.stringify([...state.appliedSet]));
   localStorage.setItem(pk("v_dismissed"),JSON.stringify([...state.dismissedSet]));
   localStorage.setItem(pk("v_pipeline"),JSON.stringify(state.pipeline));
+  localStorage.setItem(pk("v_dismissed_at"),JSON.stringify(state.dismissedAt||{}));
 }catch(e){}}
 
 /* ── Cross-device sync ─────────────────────────────────────────────────────
@@ -635,6 +684,8 @@ function applyRemote(o, adoptMarks){
     state.savedSet=new Set(o.saved||[]);
     state.appliedSet=new Set(o.applied||[]);
     state.dismissedSet=new Set(o.dismissed||[]);
+    if(o.dismissedAt&&typeof o.dismissedAt==="object")
+      state.dismissedAt={...(state.dismissedAt||{}),...o.dismissedAt};   // merge: a date once known is never unknown again
   }
   const remote=(o.pipeline && typeof o.pipeline==="object")?o.pipeline:{};
   const merged=mergePipe(state.pipeline,remote);
@@ -662,7 +713,8 @@ async function pushRemote(){
   if(!syncOn()){state.sync="off";return;}
   try{
     const r=await fetch(SYNC.url+"?profile="+encodeURIComponent(state.pid),{method:"POST",headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
-      body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet],pipeline:state.pipeline})});
+      body:JSON.stringify({saved:[...state.savedSet],applied:[...state.appliedSet],dismissed:[...state.dismissedSet],
+                           dismissedAt:state.dismissedAt||{},pipeline:state.pipeline})});
     state.sync=r.ok?"on":"error";
   }catch(e){state.sync="error";}
 }
@@ -1270,7 +1322,11 @@ async function pushConfig(){
       headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
       body:JSON.stringify({profiles:state.profiles,categories:state.cats,
         house_brands:(state.cats.find(c=>c.id==="house")||{}).terms||[],
-        agency_terms:(state.cats.find(c=>c.id==="recruiter")||{}).terms||[]})});
+        agency_terms:(state.cats.find(c=>c.id==="recruiter")||{}).terms||[],
+        luxury_brands:(state.cats.find(c=>c.id==="beauty_luxury")||{}).terms||[],
+        luxury_signals:(state.cats.find(c=>c.id==="beauty_luxury")||{}).signals||[],
+        travel_brands:(state.cats.find(c=>c.id==="travel")||{}).terms||[],
+        travel_signals:(state.cats.find(c=>c.id==="travel")||{}).signals||[]})});
     if(!r.ok)return false;
     const c=await r.json();
     if(Array.isArray(c.profiles)&&c.profiles.length){state.profiles=c.profiles;saveProfiles();loadProfileData();}
@@ -1303,7 +1359,8 @@ function readPhoto(file){
 }
 function backupData(){
   return {vitrine_backup:1, exported_at:new Date().toISOString(),
-    saved:[...state.savedSet], applied:[...state.appliedSet], dismissed:[...state.dismissedSet], pipeline:state.pipeline};
+    saved:[...state.savedSet], applied:[...state.appliedSet], dismissed:[...state.dismissedSet],
+    dismissedAt:state.dismissedAt||{}, pipeline:state.pipeline};
 }
 function downloadBackup(){
   const blob=new Blob([JSON.stringify(backupData(),null,2)],{type:"application/json"});
@@ -1317,6 +1374,7 @@ function applyBackup(o){
   state.savedSet=new Set(o.saved||[]);
   state.appliedSet=new Set(o.applied||[]);
   state.dismissedSet=new Set(o.dismissed||[]);
+  state.dismissedAt=(o.dismissedAt&&typeof o.dismissedAt==="object")?o.dismissedAt:{};
   state.pipeline=(o.pipeline&&typeof o.pipeline==="object")?o.pipeline:{};
   persist();render();
 }
@@ -1333,6 +1391,18 @@ function termFld(key,label){
 function pgTop(title,sub,back){
   return `<div class="pg-top"><button class="back" data-go="${back===undefined?"menu":back}">‹ Back</button></div>
     <h2 class="pg-h">${esc(title)}</h2>${sub?`<p class="pg-sub">${sub}</p>`:""}`;
+}
+/* Two kinds of rule, shown separately because they behave differently. */
+function ruleGroup(c,key,label,help){
+  const list=c[key]||[];
+  return `<div class="rulegrp">
+    <div class="rg-h">${esc(label)} <span class="rg-n">${list.length}</span></div>
+    <div class="hint" style="margin:0 0 8px">${help}</div>
+    <div class="tchips">${list.map((t,i)=>
+      `<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-key="${key}" data-i="${i}">\u00d7</button></span>`
+    ).join("")||`<span class="hint">Empty \u2014 nothing matches on this rule.</span>`}</div>
+    <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" data-key="${key}" placeholder="add ${key==="terms"?"a company name":"a word"}, then press Enter">
+  </div>`;
 }
 function renderPage(){
   const el=document.getElementById("page");
@@ -1358,7 +1428,7 @@ function renderPage(){
   if(state.page==="cats"){
     const hidden=new Set(P.hidden_cats||[]);
     el.innerHTML=pgTop("Categories",
-      `Which tabs exist, and what lands in each. A role is matched against these terms (company name first, then title) and lands in the <b>first</b> category that matches \u2014 so order decides ties. Untick anything ${esc(P.name)} doesn't want to see; that's per profile, so it won't affect anyone else.`)
+      `Which tabs exist, and what lands in each. A role lands in the <b>first</b> category that matches, so order decides ties \u2014 use \u25b2\u25bc to reorder. These are the scanner's live rules: edit them and the next scan follows. Untick anything ${esc(P.name)} doesn't want to see \u2014 that's per profile, so it won't affect anyone else.`)
       + changeWarning()
       + allCats().map((c,i)=>`
         <div class="cat-card">
@@ -1372,12 +1442,11 @@ function renderPage(){
             </div>
           </div>
           ${c.locked
-            ? `<div class="hint">${c.id==="other"
-                 ? "The catch-all: anything matching no other category lands here. It has no rules of its own."
-                 : "Matched on the scanner's luxury/beauty brand list and description signals \u2014 broader than a name list, so it isn't editable here."}</div>`
-            : `${c.brands?`<div class="hint" style="margin:0 0 8px">Matched on the company name. This is the live list the scanner uses \u2014 edit it and the next scan follows.</div>`:""}
-               <div class="tchips">${(c.terms||[]).map((t,ti)=>`<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-i="${ti}">\u00d7</button></span>`).join("")||`<span class="hint">No terms \u2014 nothing will match.</span>`}</div>
-               <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" placeholder="${c.brands?"add a brand name":"add a company or title term"}, then press Enter">`}
+            ? `<div class="hint">The catch-all: anything matching no other category lands here. It has no rules of its own.</div>`
+            : ruleGroup(c,"terms","Company name","Matches the employer's name only \u2014 so a role that merely mentions the brand isn't caught.")
+              + (c.signals!==undefined
+                 ? ruleGroup(c,"signals","Words anywhere in the posting","Matches title or description too \u2014 broader, and catches roles whose employer isn't a known brand.")
+                 : "")}
         </div>`).join("")
       + `<button class="set-btn block" data-addcat>+ Add a category</button>
          <button class="set-btn go block" data-savecfg>Save categories</button>`;
@@ -1458,15 +1527,28 @@ function renderPage(){
    3. Singapore  — official MOM/SingStat vacancies via data.gov.sg, back to 1998.
       Quarterly, whole-economy. The only way to see seasonality today.          */
 function dayKey(t){return new Date(t).toISOString().slice(0,10);}
+const REACHED=["contacted","replied","no_reply"];
+function isReached(c){return REACHED.includes(c&&c.status);}
 function eventsOf(){
-  // Turn the pipeline into dated events. Everything is derived from dates we
-  // already store, so nothing here is invented.
-  const ev={spotted:[],contacted:[],applied:[],interview:[]};
+  /* Dated events from the pipeline. Where an event certainly happened but has no
+     date of its own (a contact marked Replied straight from the follow-up card,
+     say), fall back to when the record last moved — better an approximate day
+     than a chart that claims nothing happened. */
+  const ev={spotted:[],contacted:[],applied:[],interview:[],reviewed:[]};
   trackedItems().forEach(({rec})=>{
-    if(rec.createdAt)ev.spotted.push(dayKey(rec.createdAt));
+    const fb=dayKey(rec.updatedAt||rec.createdAt||Date.now());
+    if(rec.createdAt){ev.spotted.push(dayKey(rec.createdAt));ev.reviewed.push(dayKey(rec.createdAt));}
     if(rec.appliedOn)ev.applied.push(rec.appliedOn);
-    (rec.contacts||[]).forEach(c=>{if(c.date&&(c.status==="contacted"||c.status==="replied"||c.status==="no_reply"))ev.contacted.push(c.date);});
-    (rec.interviews||[]).forEach(i=>{if(i.date)ev.interview.push(i.date);});
+    (rec.contacts||[]).forEach(c=>{ if(isReached(c))ev.contacted.push(c.date||fb); });
+    const ivs=(rec.interviews||[]).filter(i=>i&&(i.date||i.label));
+    ivs.forEach(i=>ev.interview.push(i.date||fb));
+    // Stage says interviewing but no round was logged — it still happened.
+    if(!ivs.length&&rec.stage==="interviewing")ev.interview.push(fb);
+  });
+  // Roles set aside are real triage work too.
+  Object.keys(state.dismissedAt||{}).forEach(id=>{
+    const d=state.dismissedAt[id];
+    ev.reviewed.push(d==="?"?"1970-01-01":d);       // undated ones sit before the window, so they still count
   });
   return ev;
 }
@@ -1549,13 +1631,28 @@ function changeWarning(){
 }
 function renderAnalytics(){
   const P=activeProfile(), ev=eventsOf(), items=trackedItems();
+  const approxN=items.filter(x=>x.rec.createdApprox).length;
+  const undated=Object.values(state.dismissedAt||{}).filter(d=>d==="?").length;
+  const approxNote=(approxN||undated)
+    ? ` <span style="color:var(--ochre)">${approxN?`${approxN} role${approxN===1?"":"s"} tracked`:""}${approxN&&undated?" and ":""}${undated?`${undated} set aside`:""} before dates were recorded \u2014 placed at the earliest day we can justify, so the totals are right even if the timing is approximate.</span>`
+    : "";
   // Days the filters moved — drawn as seams on every chart built from them.
   const marks=(P.changes||[]).map(c=>({d:c.d,label:c.label}));
   const st=k=>items.filter(x=>(x.rec.stage||"spotted")===k).length;
-  const contactedRoles=items.filter(x=>(x.rec.contacts||[]).some(c=>c.date)).length;
-  const repliedRoles=items.filter(x=>(x.rec.contacts||[]).some(c=>c.status==="replied")).length;
-  const funnel=[["Tracked",items.length],["Contacted someone",contactedRoles],["Got a reply",repliedRoles],
-                ["Applied",ev.applied.length],["Interviewing",st("interviewing")]];
+  const allContacts=items.flatMap(x=>(x.rec.contacts||[]).filter(c=>(c.name||"").trim()));
+  const peopleContacted=allContacts.filter(isReached).length;
+  const peopleReplied=allContacts.filter(c=>c.status==="replied").length;
+  const toContact=allContacts.length-peopleContacted;
+  const dismissedN=Object.keys(state.dismissedAt||{}).length;
+  const interviewingN=items.filter(x=>x.rec.stage==="interviewing"||(x.rec.interviews||[]).some(i=>i&&(i.date||i.label))).length;
+  const funnel=[
+    ["Roles reviewed",items.length+dismissedN],
+    ["Roles tracked",items.length],
+    ["People to contact",toContact],
+    ["People contacted",peopleContacted],
+    ["Replies",peopleReplied],
+    ["Applied",items.filter(x=>x.rec.appliedOn||state.appliedSet.has(x.id)).length],
+    ["Interviewing",interviewingN]];
   const fmax=Math.max(1,...funnel.map(f=>f[1]));
 
   // Progress over time
@@ -1564,6 +1661,8 @@ function renderAnalytics(){
   // the number you'd most want to see move.
   const days=30;
   const series=[
+    {name:"Roles reviewed",color:"#5B4B8A",pts:cumulative(ev.reviewed,days),
+     sub:"tracked + set aside"},
     {name:"Roles tracked",color:"#7B1E3B",pts:cumulative(ev.spotted,days)},
     {name:"People contacted",color:"#8A6A1E",pts:cumulative(ev.contacted,days)},
     {name:"Applications",color:"#3f8f5f",pts:cumulative(ev.applied,days)},
@@ -1575,15 +1674,20 @@ function renderAnalytics(){
         return `<div class="mini-c">
           <div class="mc-h"><span class="mc-n">${esc(sr.name)}</span>
             <span class="mc-v" style="color:${sr.color}">${now}</span></div>
-          <div class="mc-d">${delta>0?`+${delta} in 30 days`:`no change in 30 days`}</div>
+          <div class="mc-d">${sr.sub?esc(sr.sub)+" \u00b7 ":""}${delta>0?`+${delta} in 30 days`:`no change in 30 days`}</div>
           ${lineChart([sr],{marks,compact:true})}
         </div>`;
       }).join("")+`</div>`
     : `<div class="note">Nothing tracked yet — these fill in as ${esc(P.name)} tracks roles, logs contacts and applies.</div>`;
 
   // Our market: postings per week from posted_date (a 30-day backward window)
+  const anCat=state.anCat||"all";
+  const catSel=`<div class="tchips" style="margin:10px 0 2px">
+    <button class="tchip pickcat ${anCat==="all"?"on":""}" data-ancat="all">All categories</button>
+    ${activeCats().map(([id,label])=>`<button class="tchip pickcat ${anCat===id?"on":""}" data-ancat="${esc(id)}">${esc(label)}</button>`).join("")}
+  </div>`;
   const wk={};
-  state.jobs.filter(j=>marketPasses(j,true)).forEach(j=>{   // HER market, not the union scan
+  state.jobs.filter(j=>marketPasses(j,true)&&(anCat==="all"||catOf(j)===anCat)).forEach(j=>{
     const d=j.posted_date;if(!d)return;
     const dt=new Date(d);if(isNaN(dt))return;
     const age=Math.floor((Date.now()-dt)/864e5);if(age<0||age>56)return;
@@ -1643,14 +1747,15 @@ function renderAnalytics(){
   const el=document.getElementById("page");
   el.innerHTML=pgTop(`Analytics — ${P.name}`,"")
     + `<h3 class="an-h">Progress</h3>
-       <p class="pg-sub">What ${esc(P.name)} has actually done. Exact — it's her own pipeline.</p>
+       <p class="pg-sub">What ${esc(P.name)} has actually done — straight from her own pipeline.${approxNote}</p>
        <div class="funnel">${funnel.map(([l,v])=>`
          <div class="fn"><div class="fn-l">${esc(l)}</div>
            <div class="fn-bar"><span style="width:${Math.max(2,(v/fmax)*100)}%"></span></div>
            <div class="fn-v">${v}</div></div>`).join("")}</div>
        ${prog}
-       <h3 class="an-h">Her market — the last 8 weeks</h3>
-       <p class="pg-sub">Roles posted per week that match ${esc(P.name)}'s terms, by the date the employer posted them.</p>
+       <h3 class="an-h">Her market \u2014 the last 8 weeks</h3>
+       <p class="pg-sub">Roles posted per week that match ${esc(P.name)}'s terms, by the date the employer posted them. Filter by category:</p>
+       ${catSel}
        ${barChart(wkRows,"#7B1E3B")}
        <h3 class="an-h">The board over time</h3>
        ${hist}
@@ -1715,7 +1820,15 @@ document.getElementById("list").addEventListener("click",e=>{
       }
       persist();render();return;
     }
-    const set=a==="save"?state.savedSet:state.dismissedSet;
+    if(a==="dismiss"){
+      // Setting a role aside is a decision — record when, so "roles reviewed"
+      // can be charted rather than just counted.
+      state.dismissedAt=state.dismissedAt||{};
+      if(state.dismissedSet.has(id)){state.dismissedSet.delete(id);delete state.dismissedAt[id];}
+      else{state.dismissedSet.add(id);state.dismissedAt[id]=todayStr();}
+      persist();render();return;
+    }
+    const set=state.savedSet;
     set.has(id)?set.delete(id):set.add(id);persist();render();return;
   }
   card.classList.toggle("open");
@@ -1757,6 +1870,8 @@ document.getElementById("whoBtn").addEventListener("click",()=>{
   go("profiles");
 });
 document.getElementById("page").addEventListener("click",e=>{
+  const ac=e.target.closest("[data-ancat]");
+  if(ac){state.anCat=ac.dataset.ancat;renderPage();return;}
   const g=e.target.closest("[data-go]");
   if(g){go(g.dataset.go||null);return;}
   if(e.target.closest("[data-backup]")){downloadBackup();return;}
@@ -1806,7 +1921,8 @@ document.getElementById("page").addEventListener("click",e=>{
     state.cats=state.cats.filter(x=>x.id!==c.id);saveProfiles();renderPage();return;}
   const cdt=e.target.closest("[data-catdelterm]");
   if(cdt){const c=state.cats.find(x=>x.id===cdt.dataset.catdelterm);if(!c)return;
-    c.terms=(c.terms||[]).filter((_,i)=>i!==+cdt.dataset.i);saveProfiles();renderPage();return;}
+    const k=cdt.dataset.key||"terms";
+    c[k]=(c[k]||[]).filter((_,i)=>i!==+cdt.dataset.i);saveProfiles();renderPage();return;}
   if(e.target.closest("[data-addcat]")){
     const n=prompt("Name for the new category? (e.g. Luxury Automotive)");if(!n)return;
     state.cats.splice(Math.max(0,state.cats.length-1),0,{id:"c"+Date.now().toString(36),label:n.trim(),terms:[]});
@@ -1856,7 +1972,8 @@ document.getElementById("page").addEventListener("keydown",e=>{
   if(ca && e.key==="Enter"){
     e.preventDefault();
     const c=state.cats.find(x=>x.id===ca.dataset.cataddterm), v=(ca.value||"").trim().toLowerCase();
-    if(c && v && !(c.terms||[]).includes(v)){c.terms=[...(c.terms||[]),v];saveProfiles();renderPage();}
+    const k=ca.dataset.key||"terms";
+    if(c && v && !(c[k]||[]).includes(v)){c[k]=[...(c[k]||[]),v];saveProfiles();renderPage();}
     return;
   }
   const add=e.target.closest("[data-addterm]");

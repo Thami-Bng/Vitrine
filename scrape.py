@@ -323,8 +323,13 @@ AGGREGATORS = ("trabajo","jobrapido","neuvoo","talent.com","learn4good","jooble"
 
 # ------------------------------- HELPERS ------------------------------- #
 
-def preferred(company): 
-    c=(company or "").lower(); return any(b in c for b in PREFERRED_BRANDS)
+def preferred(company):
+    """Is this one of the houses? Honours the edited list, not just the default,
+    so removing a brand in Settings really removes it everywhere."""
+    c=(company or "").lower()
+    lst=CONFIG.get("house_brands")
+    if not (isinstance(lst,list) and lst): lst=PREFERRED_BRANDS
+    return any(str(b).lower() in c for b in lst)
 
 def is_agency(company):
     c=(company or "").lower(); return any(a in c for a in AGENCIES)
@@ -344,13 +349,24 @@ def type_of(company):
     elif preferred(company): return "house"
     return "other"
 
+def _cfg_list(key, fallback):
+    v = CONFIG.get(key)
+    return [str(x).lower() for x in v] if isinstance(v, list) and v else list(fallback)
+
 def sector_of(company, title, desc):
+    """Which sector a role belongs to. Two different tests, deliberately:
+      • BRANDS match the company name only — 'Chanel' as an employer.
+      • SIGNALS match the whole posting — a tech role that merely mentions Chanel
+        as a client shouldn't become a beauty role, which is why they're separate.
+    Both lists are editable from Settings; these are just the defaults."""
     c=(company or "").lower()
     blob=f"{company} {title} {desc}".lower()
-    if any(b in c for b in HOSPITALITY_BRANDS) or any(w in blob for w in HOSP_SIGNALS):
+    tb=_cfg_list("travel_brands", HOSPITALITY_BRANDS); ts=_cfg_list("travel_signals", HOSP_SIGNALS)
+    lb=_cfg_list("luxury_brands", SECTOR_BRANDS);      ls=_cfg_list("luxury_signals", LUX_SIGNALS)
+    if any(b in c for b in tb) or any(w in blob for w in ts):
         return "hospitality"
-    if preferred(company) or any(b in c for b in SECTOR_BRANDS): return "beauty_luxury"
-    return "beauty_luxury" if any(w in blob for w in LUX_SIGNALS) else "general"
+    if preferred(company) or any(b in c for b in lb): return "beauty_luxury"
+    return "beauty_luxury" if any(w in blob for w in ls) else "general"
 
 FINANCE_SIGNALS = ["bank","banking","insurance","insurer","assurance","reinsur","asset management",
                    "wealth management","private bank","capital markets","securities","brokerage",
@@ -872,8 +888,13 @@ def run(dry_run=False):
                                "config":{"search":KEYWORDS,"min_salary_max":MIN_SALARY_MAX,
                                          "profiles":[p.get("name") for p in (CONFIG.get("profiles") or [])],
                                          # The live house/agency rules, so Settings can show and edit the real thing.
+                                         # Every matching rule, published so Settings can show and edit the real thing.
                                          "house_brands":CONFIG.get("house_brands") or sorted(PREFERRED_BRANDS),
-                                         "agency_terms":CONFIG.get("agency_terms") or sorted(AGENCIES)},
+                                         "agency_terms":CONFIG.get("agency_terms") or sorted(AGENCIES),
+                                         "luxury_brands":CONFIG.get("luxury_brands") or sorted(SECTOR_BRANDS),
+                                         "luxury_signals":CONFIG.get("luxury_signals") or sorted(LUX_SIGNALS),
+                                         "travel_brands":CONFIG.get("travel_brands") or sorted(HOSPITALITY_BRANDS),
+                                         "travel_signals":CONFIG.get("travel_signals") or sorted(HOSP_SIGNALS)},
                                "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 

@@ -288,8 +288,9 @@ def apply_config(cfg):
       • exclude          → intersection (only drop what EVERY profile rejects)
       • salary floor     → the lowest  (the least restrictive wins)
     """
-    global CONFIG, INCLUDE, EXCLUDE, KEYWORDS, MIN_SALARY_MAX
+    global CONFIG, INCLUDE, EXCLUDE, KEYWORDS, MIN_SALARY_MAX, USER_CATS
     CONFIG = cfg or {}
+    USER_CATS = CONFIG.get("categories") or []
     profiles = CONFIG.get("profiles") or []
     if not isinstance(profiles, list) or not profiles:
         profiles = [{"name": "default", "search": DEFAULT_SEARCH, "include": DEFAULT_INCLUDE,
@@ -349,7 +350,22 @@ FINANCE_SIGNALS = ["bank","banking","insurance","insurer","assurance","reinsur",
                    "manulife","ntuc income","income insurance","allianz","axa","chubb","zurich",
                    "swiss re","munich re","marsh","aon","willis towers","tokio marine","msig","etiqa"]
 
+USER_CATS = []
 def category_of(company, title, sector, type_):
+    """User-defined categories win when configured; house/agency stay ours."""
+    if type_=="house":  return "house"
+    if type_=="agency": return "recruiter"
+    if USER_CATS:
+        blob=f"{company} {title}".lower()
+        for c in USER_CATS:
+            if c.get("locked") or not c.get("terms"): continue
+            if any(str(t).lower() in blob for t in c["terms"]): return c["id"]
+        if sector=="hospitality":   return "travel"
+        if sector=="beauty_luxury": return "beauty_luxury"
+        return "other"
+    return _category_builtin(company, title, sector, type_)
+
+def _category_builtin(company, title, sector, type_):
     """Primary bucket for the UI tabs — each role lands in exactly one.
 
     Company identity is checked BEFORE content signals: a 'TikTok Shop — Beauty'
@@ -839,11 +855,110 @@ def run(dry_run=False):
         return
     OUT.parent.mkdir(parents=True,exist_ok=True)
     write_history(jobs, now)
+    for fn, label in ((lambda: fetch_national(now), "national census"), (fetch_market, "official stats")):
+        try: fn()
+        except Exception as e: print(f"  ! {label} skipped: {e}", file=sys.stderr)
     OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"quota":QUOTA,
                                "config":{"search":KEYWORDS,"min_salary_max":MIN_SALARY_MAX,
                                          "profiles":[p.get("name") for p in (CONFIG.get("profiles") or [])]},
                                "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
+
+MARKET = Path("data/market.json")
+# Singapore publishes official job-vacancy statistics going back to 1998 — the
+# only reliable way to see seasonality before our own history is old enough.
+# Quarterly, whole-economy, by industry. Fetched once a day, best-effort: if the
+# endpoint moves or is down, we keep whatever we already had and carry on.
+MOM_DATASETS = {
+    "vacancies_by_industry_annual": "d_01966fdb498fa7fa2863635e25539693",
+    "vacancy_rate_quarterly":       "d_60ba5027f80aef9a07d747067a948bfc",
+}
+def mcf_total(body):
+    """How many SG jobs match this filter right now? MyCareersFuture is the
+    government board (most SG vacancies must be posted there), free and
+    unmetered — the closest thing to a national census of live postings."""
+    try:
+        r = requests.post("https://api.mycareersfuture.gov.sg/v2/search",
+                          params={"limit": 1, "page": 0},
+                          json=body,
+                          headers={"User-Agent": UA, "Content-Type": "application/json",
+                                   "Accept": "application/json"}, timeout=TIMEOUT)
+        if r.status_code != 200:
+            print(f"  ! MCF census HTTP {r.status_code}", file=sys.stderr); return None
+        d = r.json()
+        for k in ("total", "totalCount", "count"):
+            if isinstance(d.get(k), int): return d[k]
+        return None
+    except Exception as e:
+        print(f"  ! MCF census: {e}", file=sys.stderr); return None
+
+def fetch_national(now):
+    """One dated row of the WHOLE Singapore market: total live postings, and the
+    same split by salary band. Our own jobs.json only ever sees roles matching
+    our keywords, so it can never answer 'is Singapore hiring?'. This can."""
+    rows = []
+    if NATIONAL.exists():
+        try:
+            rows = json.loads(NATIONAL.read_text())
+            if not isinstance(rows, list): rows = []
+        except Exception: rows = []
+    today = now[:10]
+    total = mcf_total({"search": "", "sortBy": ["new_posting_date"]})
+    if total is None:
+        print("  ! national census skipped (MCF unavailable)", file=sys.stderr); return
+    bands = {}
+    for label, lo in [("6k+", 6000), ("9k+", 9000), ("12k+", 12000), ("16k+", 16000)]:
+        n = mcf_total({"search": "", "salary": {"minimum": lo}, "sortBy": ["new_posting_date"]})
+        if n is not None: bands[label] = n
+        time.sleep(0.3)
+    row = {"date": today, "total": total, "by_salary_floor": bands}
+    rows = [r for r in rows if r.get("date") != today] + [row]
+    rows.sort(key=lambda r: r.get("date", ""))
+    rows = rows[-1460:]
+    NATIONAL.parent.mkdir(parents=True, exist_ok=True)
+    NATIONAL.write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+    print(f"  \u00b7 national census: {total:,} live SG postings, {len(rows)} day(s) recorded")
+
+NATIONAL = Path("data/national.json")
+
+def fetch_market():
+    out = {}
+    if MARKET.exists():
+        try: out = json.loads(MARKET.read_text()) or {}
+        except Exception: out = {}
+    today = datetime.now(timezone.utc).date().isoformat()
+    if out.get("fetched_on") == today:
+        print("  · market data already fetched today"); return
+    got_any = False
+    for name, ds in MOM_DATASETS.items():
+        try:
+            r = requests.get("https://data.gov.sg/api/action/datastore_search",
+                             params={"resource_id": ds, "limit": 5000}, timeout=30)
+            if r.status_code != 200:
+                print(f"  ! market {name}: HTTP {r.status_code}", file=sys.stderr); continue
+            d = r.json()
+            recs = (d.get("result") or {}).get("records") or []
+            if recs:
+                out[name] = recs; got_any = True
+                print(f"  · market {name}: {len(recs)} rows")
+        except Exception as e:
+            print(f"  ! market {name}: {e}", file=sys.stderr)
+    if got_any:
+        out["fetched_on"] = today
+        out["source"] = "Ministry of Manpower / SingStat via data.gov.sg"
+        MARKET.parent.mkdir(parents=True, exist_ok=True)
+        MARKET.write_text(json.dumps(out, ensure_ascii=False))
+    else:
+        print("  ! no market data fetched (keeping any previous file)", file=sys.stderr)
+
+# Fixed bins so a chart drawn in 2027 is comparable with one drawn today.
+SALARY_BINS = [(0, 6000), (6000, 9000), (9000, 12000), (12000, 16000), (16000, 10**9)]
+SALARY_BINS_LABELS = ["<6k", "6\u20139k", "9\u201312k", "12\u201316k", "16k+", "not stated"]
+def salary_bin(v):
+    if not isinstance(v, (int, float)) or v <= 0: return "not stated"
+    for i, (lo, hi) in enumerate(SALARY_BINS):
+        if lo <= v < hi: return SALARY_BINS_LABELS[i]
+    return "16k+"
 
 HIST = Path("data/history.json")
 def write_history(jobs, now):
@@ -863,8 +978,13 @@ def write_history(jobs, now):
     for j in jobs:
         c = j.get("category") or "other"
         by_cat[c] = by_cat.get(c, 0) + 1
+    # Salary bins (monthly SGD, using the published UPPER band). Recorded now so
+    # that in a year we can say how pay bands moved — impossible to backfill.
+    by_sal = {b: 0 for b in SALARY_BINS_LABELS}
+    for j in jobs:
+        by_sal[salary_bin(j.get("salary_max"))] += 1
     posted_week = sum(1 for j in jobs if (j.get("posted_date") or "") >= (datetime.now(timezone.utc)-timedelta(days=7)).date().isoformat())
-    row = {"date": today, "total": len(jobs), "by_category": by_cat,
+    row = {"date": today, "total": len(jobs), "by_category": by_cat, "by_salary": by_sal,
            "new_this_week": posted_week,
            "first_seen_today": sum(1 for j in jobs if (j.get("first_seen") or "")[:10] == today)}
     rows = [r for r in rows if r.get("date") != today] + [row]

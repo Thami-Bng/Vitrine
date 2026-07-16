@@ -126,6 +126,10 @@
   .person{display:flex;flex-direction:column;align-items:center;gap:4px;width:52px;text-decoration:none;}
   .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F1EAE2;border:2px solid #ddd6c9;position:relative;}
   .avatar{overflow:hidden;}
+  .av-lg{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;border:2px solid var(--line);background:var(--card);flex:0 0 auto;}
+  .av-lg svg{display:block;}
+  .prof-card .av-lg{border-color:var(--line);}
+  .prof-card.on .av-lg{border-color:var(--accent);}
   .avatar .face{width:100%;height:100%;display:block;}
   .face .sk{fill:var(--sk);} .face .hr{fill:var(--hr);} .face .bd{fill:var(--ac);}
   .face .ey{fill:var(--hr);} .face .mo{fill:none;stroke:var(--hr);stroke-width:1.1;stroke-linecap:round;}
@@ -233,19 +237,57 @@
   .pg-h{font-family:"Fraunces",serif;font-size:26px;font-weight:500;margin:10px 0 4px;}
   .pg-sub{font-size:13.5px;color:var(--muted);margin:0 0 20px;line-height:1.5;max-width:60ch;}
   .menu{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;}
-  .menu button{display:flex;width:100%;align-items:center;gap:12px;padding:16px 16px;border:0;border-bottom:1px solid var(--line);background:transparent;font:inherit;text-align:left;cursor:pointer;color:var(--ink);}
+  .menu button{display:flex;width:100%;align-items:center;gap:14px;padding:15px 16px;border:0;border-bottom:1px solid var(--line);background:transparent;font:inherit;text-align:left;cursor:pointer;color:var(--ink);transition:background .12s;}
   .menu button:last-child{border-bottom:0;}
   .menu button:hover{background:var(--paper);}
-  .menu .mi-t{font-size:15px;font-weight:600;}
-  .menu .mi-s{font-size:12.5px;color:var(--muted);margin-top:2px;}
-  .menu .mi-x{margin-left:auto;color:var(--muted);font-size:16px;}
-  .menu .mi-b{flex:1;min-width:0;}
+  .menu .mi-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}   /* was inline — titles ran into subtitles */
+  .menu .mi-t{display:block;font-size:15px;font-weight:600;line-height:1.25;}
+  .menu .mi-s{display:block;font-size:12.5px;color:var(--muted);line-height:1.35;}
+  .menu .mi-x{margin-left:auto;color:#bdb5a8;font-size:18px;flex:0 0 auto;}
+  .mi-ico{flex:0 0 38px;height:38px;border-radius:11px;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent);}
+  .mi-ico svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .menu button:hover .mi-ico{background:var(--card);border-color:var(--accent);}
+  .whoami-row{display:flex;align-items:center;gap:13px;margin:0 0 20px;}
+  .whoami-row .av-lg{flex:0 0 auto;}
+  .whoami-row .wt{font-size:15px;font-weight:600;}
+  .whoami-row .ws{font-size:12.5px;color:var(--muted);}
   .prof-card{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:13px 14px;margin-bottom:10px;}
   .prof-card.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;}
   .prof-name{font-size:15px;font-weight:600;}
   .prof-meta{font-size:12px;color:var(--muted);margin-top:2px;}
   .prof-act{margin-left:auto;display:flex;gap:6px;}
-  .whoami{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);color:var(--accent);border:1px solid #e7cdd5;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;}
+  .warnbox{border:1px solid var(--ochre);background:var(--ochre-soft);color:#5f4a12;border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.55;margin:0 0 18px;}
+  .warnbox b{display:block;color:#4a3a0e;margin-bottom:3px;}
+  .cat-card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;margin-bottom:10px;}
+  .cat-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .cbx{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;cursor:pointer;}
+  .cbx input{width:17px;height:17px;accent-color:var(--accent);}
+  .an-h{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:30px 0 2px;}
+  .chart{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 10px 8px;margin:12px 0;}
+  .chart svg{width:100%;height:auto;display:block;overflow:visible;}
+  .keys{display:flex;gap:14px;flex-wrap:wrap;padding:8px 4px 2px;}
+  .keys .k{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);}
+  .keys .k i{width:10px;height:3px;border-radius:2px;}
+  .note{border:1px dashed var(--line);border-radius:12px;background:var(--card);padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.55;margin:12px 0;}
+  .note b{color:var(--ink);}
+  .note code{background:#ECE8E1;padding:1px 5px;border-radius:4px;font-size:12px;}
+  .funnel{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:6px 14px;margin:12px 0;}
+  .fn{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .fn:last-child{border-bottom:0;}
+  .fn-l{font-size:13px;font-weight:600;flex:0 0 140px;}
+  .fn-bar{flex:1;height:9px;background:#ECE8E1;border-radius:999px;overflow:hidden;}
+  .fn-bar span{display:block;height:100%;background:var(--accent);border-radius:999px;}
+  .fn-v{font-size:13px;font-weight:700;flex:0 0 34px;text-align:right;}
+  /* Who am I working as? Always visible, top right, mirroring the menu on the left. */
+  .whoami{position:absolute;top:18px;right:0;display:inline-flex;align-items:center;gap:8px;
+          background:var(--card);border:1px solid var(--line);border-radius:999px;
+          padding:4px 12px 4px 4px;cursor:pointer;transition:all .15s;max-width:44vw;}
+  .whoami:hover{border-color:var(--accent);}
+  .whoami .av-lg{width:32px;height:32px;border-width:0;}
+  .whoami .wn{font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .whoami .wc{font-size:10px;color:var(--muted);}
+  .whoami img{border-radius:50%;}
+  @media (max-width:520px){ .whoami{padding:4px;} .whoami .wn,.whoami .wc{display:none;} }
   /* Settings opens as a full page, not a peeking sheet — it's a place you go. */
   .overlay.page{align-items:stretch;}
   .pagesheet{max-height:100vh;height:100vh;border-radius:0;max-width:100%;padding-top:26px;}
@@ -270,6 +312,7 @@
 <div class="wrap">
   <header>
     <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
+    <button class="whoami" id="whoBtn" title="Switch profile" aria-label="Active profile — switch"></button>
     <div class="eyebrow">Singapore · E-commerce &amp; Product</div>
     <h1>The <em>Vitrine</em></h1>
     <div class="byline" id="byline">Loading roles…</div>
@@ -327,6 +370,7 @@
 </div>
 
 <input type="file" id="restoreInput" accept="application/json,.json" hidden>
+<input type="file" id="photoInput" accept="image/*" hidden>
 
 <script>
 const SAMPLE={generated_at:new Date().toISOString(),jobs:[
@@ -338,10 +382,42 @@ const SAMPLE={generated_at:new Date().toISOString(),jobs:[
 ]};
 function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
-const CATS=[["house","Houses"],["beauty_luxury","Beauty & Luxury"],["travel","Travel & Hospitality"],
-            ["tech","Tech"],["finance","Banking & Insurance"],["consulting","Consulting"],
-            ["recruiter","Recruiters"],["other","Other"]];
+/* Categories are DATA, editable in Settings. "house" and "recruiter" are decided
+   by the scraper (it knows which brands are houses and which are agencies); the
+   rest match on company/title terms you control. Each profile picks which ones
+   it wants to see — Zineb has no interest in Banking & Insurance. */
+const DEFAULT_CATS=[
+  {id:"house",label:"Houses",terms:[],locked:true},
+  {id:"beauty_luxury",label:"Beauty & Luxury",terms:[],locked:true},
+  {id:"travel",label:"Travel & Hospitality",terms:["hotel","resort","hospitality","airline","cruise","travel retail","duty free"]},
+  {id:"tech",label:"Tech",terms:["software","saas","fintech","platform","tiktok","bytedance","grab","shopee","lazada","sea limited","google","meta","amazon","microsoft","startup","gaming"]},
+  {id:"finance",label:"Banking & Insurance",terms:["bank","banking","insurance","insurer","assurance","dbs","ocbc","uob","standard chartered","hsbc","citibank","aia","prudential","great eastern","manulife","allianz","axa","chubb","income insurance"]},
+  {id:"consulting",label:"Consulting",terms:["consulting","consultancy","advisory","accenture","deloitte","mckinsey","bain","kpmg","pwc","ey"]},
+  {id:"recruiter",label:"Recruiters",terms:[],locked:true},
+  {id:"other",label:"Other",terms:[],locked:true},
+];
+function allCats(){
+  const c=state.cats&&state.cats.length?state.cats:DEFAULT_CATS;
+  return c;
+}
+function activeCats(){
+  const hidden=new Set(activeProfile().hidden_cats||[]);
+  return allCats().filter(c=>!hidden.has(c.id)).map(c=>[c.id,c.label]);
+}
+const CATS_COMPAT=()=>allCats().map(c=>[c.id,c.label]);
 function catOf(j){
+  const hidden=new Set(activeProfile().hidden_cats||[]);
+  const raw=catOfRaw(j);
+  return hidden.has(raw)?"__hidden":raw;
+}
+function catOfRaw(j){
+  // The scraper's verdict wins for house/recruiter — it knows the brand lists.
+  if(j.category==="house"||j.category==="recruiter")return j.category;
+  const blob=`${j.company||""} ${j.title||""}`.toLowerCase();
+  for(const c of allCats()){
+    if(c.locked||!c.terms||!c.terms.length)continue;
+    if(c.terms.some(t=>blob.includes(String(t).toLowerCase())))return c.id;
+  }
   if(j.category)return j.category;
   if(j.type==="house")return "house";
   if(j.sector==="hospitality")return "travel";
@@ -352,16 +428,18 @@ function catOf(j){
 function renderTabs(){
   const counts={}, fresh={};
   state.jobs.forEach(j=>{
-    if(!passes(j,true))return;                        // same rule as the list
+    if(!marketPasses(j,true))return;                  // the MARKET, not the leftovers
     const c=catOf(j); counts[c]=(counts[c]||0)+1;
     if(isNew(j))fresh[c]=(fresh[c]||0)+1;
   });
-  const avail=CATS.filter(([id])=>counts[id]);
+  // Every category this profile cares about is always shown — even at zero, since
+  // "nothing new in Houses this week" is real information.
+  const avail=activeCats();
   if(avail.length&&!avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
   document.getElementById("tabs").innerHTML=avail.map(([id,label])=>
-    `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span>${fresh[id]?`<span class="tnew">+${fresh[id]}</span>`:""}</button>`
+    `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${esc(label)}<span class="tc">${counts[id]||0}</span>${fresh[id]?`<span class="tnew">+${fresh[id]}</span>`:""}</button>`
   ).join("");
-  state.freshCounts=fresh;
+  state.marketCounts=counts;state.freshCounts=fresh;
 }
 // Browse vs Pipeline is a MODE, not a category — a different surface, so it gets
 // its own switch instead of competing with Houses / Tech / etc.
@@ -396,6 +474,10 @@ function newProfile(name,id){
           search:[...DEFAULT_TERMS.search],include:[...DEFAULT_TERMS.include],
           exclude:[...DEFAULT_TERMS.exclude],min_salary_max:DEFAULT_TERMS.min_salary_max};
 }
+function loadCats(){
+  try{const c=JSON.parse(localStorage.getItem("v_cats")||"null");if(Array.isArray(c)&&c.length)return c;}catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_CATS));
+}
 function loadProfiles(){
   try{
     const p=JSON.parse(localStorage.getItem("v_profiles")||"null");
@@ -403,7 +485,7 @@ function loadProfiles(){
   }catch(e){}
   return [newProfile("Zineb","zineb")];
 }
-const state={jobs:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+const state={jobs:[],history:[],market:null,national:[],cats:[],page:null,profiles:loadProfiles(),pid:localStorage.getItem("v_pid")||"zineb",config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
   savedSet:new Set(),appliedSet:new Set(),dismissedSet:new Set(),pipeline:{}};
 function loadProfileData(){
   state.savedSet=new Set(load(pk("v_saved")));
@@ -412,13 +494,42 @@ function loadProfileData(){
   state.pipeline=loadObj(pk("v_pipeline"));
   const p=activeProfile();
   state.config={search:p.search,include:p.include,exclude:p.exclude,min_salary_max:p.min_salary_max};
+  state.baseline=termSnapshot(p);
   recompile();
+}
+/* When the terms or the salary floor change, every chart built from them gets a
+   seam: the line before and the line after are not measuring the same thing.
+   Hiding that would make the chart a liar, so we record the moment and draw it. */
+function termSnapshot(p){
+  return JSON.stringify({search:p.search||[],include:p.include||[],exclude:p.exclude||[],
+                         min_salary_max:p.min_salary_max||0,hidden_cats:(p.hidden_cats||[]).slice().sort()});
+}
+function diffLabel(before,after){
+  const a=JSON.parse(before),b=JSON.parse(after),bits=[];
+  [["search","search"],["include","keep"],["exclude","drop"]].forEach(([k,lbl])=>{
+    const add=b[k].filter(x=>!a[k].includes(x)).length, rem=a[k].filter(x=>!b[k].includes(x)).length;
+    if(add)bits.push(`+${add} ${lbl}`); if(rem)bits.push(`\u2212${rem} ${lbl}`);
+  });
+  if(a.min_salary_max!==b.min_salary_max)bits.push(`floor S$${a.min_salary_max.toLocaleString()}\u2192S$${b.min_salary_max.toLocaleString()}`);
+  const ch=b.hidden_cats.length-a.hidden_cats.length;
+  if(ch)bits.push(ch>0?`\u2212${ch} category`:`+${-ch} category`);
+  return bits.join(", ");
+}
+function logChange(label){
+  const P=activeProfile();
+  P.changes=(P.changes||[]).concat([{d:todayStr(),ts:Date.now(),label}]).slice(-40);
+  saveProfiles();
+}
+function pendingChange(){
+  const P=activeProfile();
+  return state.baseline && state.baseline!==termSnapshot(P) ? diffLabel(state.baseline,termSnapshot(P)) : "";
 }
 function activeProfile(){
   return state.profiles.find(p=>p.id===state.pid) || state.profiles[0] || newProfile("Zineb","zineb");
 }
 function saveProfiles(){
-  try{localStorage.setItem("v_profiles",JSON.stringify(state.profiles));localStorage.setItem("v_pid",state.pid);}catch(e){}
+  try{localStorage.setItem("v_profiles",JSON.stringify(state.profiles));localStorage.setItem("v_pid",state.pid);
+      localStorage.setItem("v_cats",JSON.stringify(state.cats));}catch(e){}
 }
 function switchProfile(pid){
   if(!state.profiles.some(p=>p.id===pid))return;
@@ -566,7 +677,7 @@ function weeksAgo(d){
 }
 
 async function boot(){
-  migrateLegacy();loadProfileData();
+  migrateLegacy();state.cats=loadCats();loadProfileData();
   let data=SAMPLE;
   try{const r=await fetch("data/jobs.json",{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.jobs&&d.jobs.length)data=d;}}catch(e){}
   state.jobs=data.jobs||[];
@@ -576,6 +687,9 @@ async function boot(){
   recompile();
   const when=new Date(data.generated_at||Date.now());
   document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
+  try{const h=await fetch("data/history.json",{cache:"no-store"});if(h.ok)state.history=await h.json();}catch(e){}
+  try{const m=await fetch("data/market.json",{cache:"no-store"});if(m.ok)state.market=await m.json();}catch(e){}
+  try{const n=await fetch("data/national.json",{cache:"no-store"});if(n.ok)state.national=await n.json();}catch(e){}
   renderSources(data.sources);
   render();
   pullRemote();
@@ -601,24 +715,39 @@ function renderSources(sources){
   }
   el.innerHTML=`<summary>Sources &amp; diagnostics</summary><div class="src-body">${rows}${qrow}</div>`;
 }
-/* ONE rule for what's visible. Tab counts and the list both use it, so a tab can
-   never again claim "5" while the list shows 1. ignoreScope=true counts a
-   category without switching to it. */
-function passes(j,ignoreScope){
+/* TWO questions, deliberately separated:
+   marketPasses() = does this role exist in this profile's market? (terms, salary,
+     category) — this is what a tab COUNTS, so a category never disappears just
+     because Zineb has already handled everything in it.
+   listPasses()   = should it still be in front of her? (drops tracked/applied/
+     dismissed) — this is what the list SHOWS.
+   The gap between them is the story: "5 this week — you've applied to 3." */
+function marketPasses(j,ignoreScope){
   const q=state.q.trim().toLowerCase();
-  if(!ignoreScope && !q && catOf(j)!==state.scope)return false;
+  const c=catOf(j);
+  if(c==="__hidden")return false;                     // this profile opted out of the category
+  if(!ignoreScope && !q && c!==state.scope)return false;
   if(!relevantClient(j))return false;
   const floor=state.config.min_salary_max||0;
-  if(floor && j.salary_max && j.salary_max<floor)return false;   // this profile's own salary floor
-  if(state.mApplied!=="only" && isTracked(j.id))return false;
-  if(state.onlyNew&&!isNew(j))return false;
+  if(floor && j.salary_max && j.salary_max<floor)return false;
   if(state.mAgencies==="hide"&&j.type==="agency")return false;
-  const ap=state.appliedSet.has(j.id), di=state.dismissedSet.has(j.id);
-  if(state.mApplied==="hide"&&ap)return false;
-  if(state.mApplied==="only"&&!ap)return false;
-  if(state.mDismissed==="hide"&&di)return false;
-  if(state.mDismissed==="only"&&!di)return false;
   if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
+  return true;
+}
+function handledState(j){
+  if(state.dismissedSet.has(j.id))return "dismissed";
+  if(state.appliedSet.has(j.id))return "applied";
+  if(isTracked(j.id))return "tracked";
+  return null;
+}
+function passes(j,ignoreScope){
+  if(!marketPasses(j,ignoreScope))return false;
+  if(state.onlyNew&&!isNew(j))return false;
+  const h=handledState(j);
+  if(state.mApplied==="only")return h==="applied"||h==="tracked";
+  if(state.mDismissed==="only")return h==="dismissed";
+  if(h==="dismissed"&&state.mDismissed==="hide")return false;
+  if(h&&state.mApplied!=="show")return false;    // tracked/applied live in Pipeline
   return true;
 }
 function visible(){
@@ -639,6 +768,25 @@ function syncPanel(){
   document.getElementById("panel").hidden=!state.panelOpen;
   document.getElementById("filterBtn").setAttribute("aria-expanded",state.panelOpen);
 }
+/* An empty list is not the same as an empty market. Say which. */
+function emptyReport(catLabel){
+  if(state.mDismissed==="only")
+    return `<b>Nothing set aside</b>Roles you mark \u201cNot relevant\u201d collect here so you can restore them anytime.`;
+  const inCat=state.jobs.filter(j=>marketPasses(j,true)&&catOf(j)===state.scope);
+  const fresh=inCat.filter(isNew);
+  if(!inCat.length)
+    return `<b>Nothing in ${esc(catLabel)} yet</b>No roles here match this profile's search terms and salary floor. The next scan may turn some up.`;
+  const n=x=>inCat.filter(j=>handledState(j)===x).length;
+  const t=n("tracked"),a=n("applied"),d=n("dismissed");
+  const parts=[];
+  if(a)parts.push(`applied to <b>${a}</b>`);
+  if(t)parts.push(`tracked <b>${t}</b>`);
+  if(d)parts.push(`set aside <b>${d}</b>`);
+  const week=fresh.length?`<b>${fresh.length}</b> new this week.`:`No new roles this week.`;
+  return `<b>${esc(catLabel)}: all caught up</b>
+    ${week} In total there ${inCat.length===1?"is":"are"} <b>${inCat.length}</b> role${inCat.length===1?"":"s"} matching this profile${parts.length?` \u2014 you've ${parts.join(", ")}`:""}.
+    <div style="margin-top:12px"><button class="mini" data-showhandled>Show them anyway</button></div>`;
+}
 function linkBtns(j){
   const L=j.links||{};const out=[];
   if(L.careers)out.push(`<a class="btn primary" href="${esc(L.careers)}" target="_blank" rel="noopener" data-stop>Careers ↗</a>`);
@@ -649,7 +797,15 @@ function linkBtns(j){
   return out.join("");
 }
 function go(page){state.page=page;render();window.scrollTo(0,0);}
+function renderWho(){
+  const P=activeProfile(), el=document.getElementById("whoBtn");
+  if(!el)return;
+  const more=state.profiles.length>1;
+  el.innerHTML=`${avatarFor(P,32)}<span class="wn">${esc(P.name)}${more?'<span class="wc"> \u25be</span>':""}</span>`;
+  el.title=more?`Working as ${P.name} \u2014 tap to switch`:`Working as ${P.name}`;
+}
 function render(){
+  renderWho();
   const pg=document.getElementById("page"), ctl=document.querySelector(".controls"), lst=document.getElementById("list");
   const srcs=document.getElementById("sources");
   if(state.page){
@@ -665,14 +821,16 @@ function render(){
   document.getElementById("filterbar").style.display="";
   const list=document.getElementById("list");const jobs=visible();
   const onlyDismissed=state.mDismissed==="only";
-  const catLabel=(CATS.find(c=>c[0]===state.scope)||["","this category"])[1];
+  const catLabel=(activeCats().find(c=>c[0]===state.scope)||["","this category"])[1];
   const nf=(state.freshCounts||{})[state.scope]||0;
   const totalFresh=state.jobs.filter(j=>passes(j,true)&&isNew(j)).length;
   document.getElementById("count").innerHTML=jobs.length
     ?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`
       :`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first · <b style="color:var(--accent)">${nf} new this week in ${esc(catLabel)}</b> · ${totalFresh} new across all`)
     :"";
-  if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try another tab, search, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
+  if(!jobs.length){
+    list.innerHTML=`<li class="empty">${emptyReport(catLabel)}</li>`;
+    document.getElementById("footer").textContent="";syncPanel();return;}
   list.innerHTML=jobs.map(j=>{
     const applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id),tracked=isTracked(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
@@ -715,7 +873,7 @@ function ensureRecord(id){
   const r=state.pipeline[id];
   if(!r || r.deleted){
     const j=jobById(id)||{};
-    state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now(),
+    state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],note:"",next:"",createdAt:Date.now(),updatedAt:Date.now(),
       // Snapshot the essentials: a role that disappears from the feed must not
       // vanish from the pipeline — we still show it, flagged as no longer posted.
       snap:{title:j.title||"",company:j.company||"",url:(j.links&&(j.links.careers||j.links.primary))||""}};
@@ -758,25 +916,75 @@ function contactSummary(rec){
   if(replied)parts.push(`${replied} replied`); else if(contacted)parts.push(`${contacted} awaiting reply`);
   return parts.join(" · ");
 }
-/* Four faces and six palettes, picked deterministically from the name — so
-   Isabelle always looks like Isabelle, and a row of contacts looks like people
-   rather than a row of identical grey blobs. */
-const FACES=[
-  // short hair
-  `<circle class="sk" cx="16" cy="15" r="7"/><path class="hr" d="M8.6 13.2C9 8.6 12.2 6 16 6s7 2.6 7.4 7.2c-1.2-1.6-3-2.4-3-2.4S18.8 12.6 16 12.6s-4.4-1.8-4.4-1.8-1.8.8-3 2.4Z"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.4" cy="15.4" r="1"/><circle class="ey" cx="18.6" cy="15.4" r="1"/><path class="mo" d="M13.8 18.4c1.3 1.2 3.1 1.2 4.4 0"/>`,
-  // long hair
-  `<path class="hr" d="M7.6 22c-1-2-1.2-4.6-1.2-7C6.4 9 10.6 5.4 16 5.4S25.6 9 25.6 15c0 2.4-.2 5-1.2 7 .6-6-1-8.6-1-8.6s-3 1.6-7.4 1.6-7.4-1.6-7.4-1.6-1.6 2.6-1 8.6Z"/><circle class="sk" cx="16" cy="15.6" r="6.6"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.5" cy="15.8" r="1"/><circle class="ey" cx="18.5" cy="15.8" r="1"/><path class="mo" d="M13.9 18.8c1.3 1.2 2.9 1.2 4.2 0"/>`,
-  // curly
-  `<circle class="hr" cx="10.6" cy="11.4" r="3.1"/><circle class="hr" cx="16" cy="8.8" r="3.4"/><circle class="hr" cx="21.4" cy="11.4" r="3.1"/><circle class="sk" cx="16" cy="16" r="6.5"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.6" cy="16.2" r="1"/><circle class="ey" cx="18.4" cy="16.2" r="1"/><path class="mo" d="M14 19.2c1.2 1.1 2.8 1.1 4 0"/>`,
-  // bearded / glasses
-  `<circle class="sk" cx="16" cy="15.4" r="6.8"/><path class="hr" d="M9.4 13.6C10.2 9 12.7 6.6 16 6.6s5.8 2.4 6.6 7c-1.6-2-3.8-2.8-6.6-2.8s-5 .8-6.6 2.8Z"/><path class="bd" d="M4.5 30c0-5 5.1-8.4 11.5-8.4S27.5 25 27.5 30Z"/><circle class="ey" cx="13.4" cy="15.2" r="2.3" fill="none" stroke="currentColor" stroke-width="1"/><circle class="ey" cx="18.6" cy="15.2" r="2.3" fill="none" stroke="currentColor" stroke-width="1"/><path d="M15.7 15.2h.6" stroke="currentColor" stroke-width="1"/><path class="mo" d="M13.6 19c1.4 1.4 3.4 1.4 4.8 0"/>`
+/* ── Avatars ───────────────────────────────────────────────────────────────
+   Generated locally, on purpose. Services like DiceBear would mean sending the
+   real names of Zineb's contacts to a third-party server to fetch a picture —
+   for a private job search that's a leak, plus a dependency that breaks offline.
+   Same idea, drawn here: a name hashes to a stable combination of skin tone,
+   hair style + colour, clothing, background and accessories. ~30k combinations,
+   so a row of contacts reads as distinct people, and Isabelle always looks like
+   Isabelle on every device. */
+const SKIN=["#F7D9C4","#F0C3A4","#E5AC86","#CE9067","#B0764E","#8D5A3B","#6A4230"];
+const HAIRC=["#2B1B17","#452C24","#6B4423","#8D6A4F","#B07B4A","#D8B26A","#141414","#7C3A2D","#9A9A9A"];
+const BG=["#F3E4E8","#F1EAD6","#E4EFE7","#E7E9F5","#F7E9DC","#E9EEF2","#F2E7F1","#E6EFEE"];
+const CLOTH=["#7B1E3B","#2F5D50","#4A4E8C","#8A6A1E","#9B3B4E","#33566B","#5B4B8A","#1F6F5C"];
+const HAIR=[
+  // 0 short crop
+  h=>`<path d="M18 30c0-9 5.5-15 14-15s14 6 14 15c0-3.5-1.4-5.6-1.4-5.6s-4.6 3-12.6 3-12.6-3-12.6-3S18 26.5 18 30Z" fill="${h}"/>`,
+  // 1 bob
+  h=>`<path d="M17 33c0-11 6-17 15-17s15 6 15 17c0 4-.7 7.5-1.8 10.5l-3.4-1c.9-2.6 1.2-5.4 1.2-8 0-4-1-6.5-1-6.5s-4.6 3.2-13 3.2c-3.2 0-6.2-.5-8.6-1.3-.6 1.4-1 3-1 4.6 0 2.6.3 5.4 1.2 8l-3.4 1C17.7 40.5 17 37 17 33Z" fill="${h}"/>`,
+  // 2 long
+  h=>`<path d="M16 34c0-12 6.5-19 16-19s16 7 16 19c0 6-.5 13-2 19l-4-1c1.2-5.4 1.6-11.6 1.6-16.4 0-4.4-1.1-7.6-1.1-7.6s-5 3.4-13.5 3.4c-2.4 0-4.7-.3-6.7-.8-.9 1.7-1.4 3.9-1.4 6.6C21 42 21.4 47.6 22.6 53l-4 1c-1.5-6-2.6-13-2.6-19Z" fill="${h}"/>`,
+  // 3 curls
+  h=>`<g fill="${h}"><circle cx="21" cy="26" r="6"/><circle cx="28" cy="20" r="6.6"/><circle cx="36" cy="20" r="6.6"/><circle cx="43" cy="26" r="6"/><circle cx="32" cy="17" r="6"/></g>`,
+  // 4 bun
+  h=>`<g fill="${h}"><circle cx="32" cy="12" r="4.6"/><path d="M18 31c0-10 6-16 14-16s14 6 14 16c0-3.6-1.5-6-1.5-6s-4.5 3-12.5 3-12.5-3-12.5-3S18 27.4 18 31Z"/></g>`,
+  // 5 buzz
+  h=>`<path d="M19 29c0-8.6 5.6-14 13-14s13 5.4 13 14c0-2.4-1-4-1-4s-4.6 2.2-12 2.2-12-2.2-12-2.2-1 1.6-1 4Z" fill="${h}" opacity=".92"/>`,
+  // 6 ponytail
+  h=>`<g fill="${h}"><path d="M18 30c0-9.5 5.8-15.5 14-15.5s14 6 14 15.5c0-3.4-1.4-5.6-1.4-5.6s-4.6 3-12.6 3-12.6-3-12.6-3S18 26.6 18 30Z"/><path d="M45.4 27c3 1.4 4.6 4.6 4.4 8.4-.2 3.6-1.8 6-1.8 6l-3.4-1.6s1.4-2 1.6-4.8c.2-2.6-.8-4.6-2.4-5.6Z"/></g>`,
 ];
-const PALETTES=[["#E8B4A0","#3B2A24","#7B1E3B"],["#F0C9A8","#5C3A21","#2F5D50"],["#C68863","#241A16","#8A6A1E"],["#F2D2B6","#8A5A2B","#4A4E8C"],["#D9A17A","#33231C","#1F6F5C"],["#EFC3A6","#6B3F2A","#9B3B4E"]];
-function hashOf(str){let h=0;for(let i=0;i<(str||"").length;i++)h=((h<<5)-h+str.charCodeAt(i))|0;return Math.abs(h);}
-function faceFor(name){
-  const h=hashOf((name||"?").toLowerCase());
-  const f=FACES[h%FACES.length], p=PALETTES[(h>>3)%PALETTES.length];
-  return `<svg viewBox="0 0 32 32" class="face" style="--sk:${p[0]};--hr:${p[1]};--ac:${p[2]}">${f}</svg>`;
+function hashOf(str){let h=2166136261;for(let i=0;i<(str||"").length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return Math.abs(h);}
+function faceSVG(seed,size){
+  const h=hashOf((seed||"?").toLowerCase());
+  const p=i=>Math.floor(h/Math.pow(7,i))%1000;
+  const si=p(1)%SKIN.length;
+  const skin=SKIN[si], shade=SKIN[Math.min(SKIN.length-1,si+2)], hair=HAIRC[p(2)%HAIRC.length];
+  const bg=BG[p(3)%BG.length], cloth=CLOTH[p(4)%CLOTH.length];
+  const style=p(5)%HAIR.length;
+  const glasses=p(6)%100<28, brows=p(7)%100<70, smile=p(8)%100<74;
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" role="img" aria-label="${esc(seed||"contact")}">
+    <defs><clipPath id="c${h%99999}"><circle cx="32" cy="32" r="32"/></clipPath></defs>
+    <g clip-path="url(#c${h%99999})">
+      <rect width="64" height="64" fill="${bg}"/>
+      <path d="M32 40c11 0 20 7.5 20 17v7H12v-7c0-9.5 9-17 20-17Z" fill="${cloth}"/>
+      <path d="M27 36h10v9c0 2.6-2.2 4.6-5 4.6s-5-2-5-4.6Z" fill="${skin}" opacity=".92"/>
+      <ellipse cx="32" cy="30" rx="13.2" ry="14.4" fill="${skin}"/>
+      <ellipse cx="19.4" cy="31" rx="2.2" ry="3" fill="${skin}"/><ellipse cx="44.6" cy="31" rx="2.2" ry="3" fill="${skin}"/>
+      ${HAIR[style](hair)}
+      ${brows?`<path d="M25.4 26.6c1.3-.9 3-.9 4.3-.2M34.3 26.4c1.3-.7 3-.7 4.3.2" stroke="${hair}" stroke-width="1.3" stroke-linecap="round" fill="none"/>`:""}
+      <circle cx="27.4" cy="31" r="1.5" fill="#2B2018"/><circle cx="36.6" cy="31" r="1.5" fill="#2B2018"/>
+      <path d="M31.4 31.8c-.3 1.9.2 3 1.5 3.4" stroke="${shade}" stroke-width="1.1" stroke-linecap="round" fill="none" opacity=".65"/>
+      ${smile?`<path d="M28.4 37.4c2.2 2 5 2 7.2 0" stroke="#8E4C40" stroke-width="1.4" stroke-linecap="round" fill="none"/>`
+             :`<path d="M28.8 38h6.4" stroke="#8E4C40" stroke-width="1.4" stroke-linecap="round"/>`}
+      ${glasses?`<g fill="none" stroke="#3A342E" stroke-width="1.2" opacity=".85"><circle cx="27.4" cy="31" r="4.2"/><circle cx="36.6" cy="31" r="4.2"/><path d="M31.6 31h.8M23.2 30.2l-2.4.6M40.8 30.2l2.4.6"/></g>`:""}
+    </g></svg>`;
+}
+function avatarFor(p,size){
+  // A real photo wins; otherwise a generated face; the profile's own seed keeps it stable through renames.
+  if(p&&p.photo)return `<span class="av-lg" style="width:${size}px;height:${size}px"><img src="${esc(p.photo)}" alt="${esc(p.name||"")}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></span>`;
+  return `<span class="av-lg" style="width:${size}px;height:${size}px">${faceSVG((p&&(p.seed||p.name))||"?",size)}</span>`;
+}
+const ICO={
+  people:`<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16.5 5.6a3.2 3.2 0 0 1 0 6.3M18 14.4c2.2.7 3.6 2.6 3.6 5.1"/></svg>`,
+  chart:`<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V5M16 20v-7M22 20H2"/></svg>`,
+  tag:`<svg viewBox="0 0 24 24"><path d="M3 12V4h8l9 9-8 8-9-9Z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg>`,
+  search:`<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>`,
+  sync:`<svg viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 0 1 14.6-5.9M20.5 12a8.5 8.5 0 0 1-14.6 5.9"/><path d="M18 2.5v4h-4M6 21.5v-4h4"/></svg>`,
+  save:`<svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14.5l4-4M4 17v3h16v-3"/></svg>`,
+};
+function menuItem(page,ico,title,sub){
+  return `<button data-go="${page}"><span class="mi-ico">${ico}</span><span class="mi-b"><span class="mi-t">${title}</span><span class="mi-s">${sub}</span></span><span class="mi-x">\u203a</span></button>`;
 }
 function personIcons(rec){
   const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
@@ -787,7 +995,7 @@ function personIcons(rec){
     const days=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
     const tag=c.url?"a":"span", href=c.url?` href="${esc(c.url)}" target="_blank" rel="noopener" data-stop`:"";
     return `<${tag} class="person ${st}"${href} title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
-      <span class="avatar">${faceFor(c.name)}<span class="dot2"></span></span>
+      <span class="avatar">${faceSVG(c.name,44)}<span class="dot2"></span></span>
       <span class="nm">${esc(first)}</span></${tag}>`;
   };
   return `<span class="people">${cs.map(one).join("")}</span>`;
@@ -898,7 +1106,7 @@ function addManualRole(){
   const url=prompt("Link (optional) — paste or leave blank")||"";
   const id="man-"+Date.now().toString(36);
   state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],interviews:[],note:"",next:"",
-    manual:true,updatedAt:Date.now(),
+    manual:true,createdAt:Date.now(),updatedAt:Date.now(),
     snap:{title:(title||"Untitled role").trim(),company:(company||"—").trim(),url:url.trim()}};
   persist();state.mode="pipeline";render();openEditor(id);
 }
@@ -967,6 +1175,7 @@ async function pullConfig(){
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{headers:{Authorization:"Bearer "+SYNC.key}});
     if(!r.ok)return;
     const c=await r.json();
+    if(c && Array.isArray(c.categories) && c.categories.length)state.cats=c.categories;
     if(c && Array.isArray(c.profiles) && c.profiles.length){
       state.profiles=c.profiles;
       if(!state.profiles.some(p=>p.id===state.pid))state.pid=state.profiles[0].id;
@@ -981,7 +1190,7 @@ async function pushConfig(){
   try{
     const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{method:"POST",
       headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
-      body:JSON.stringify({profiles:state.profiles})});
+      body:JSON.stringify({profiles:state.profiles,categories:state.cats})});
     if(!r.ok)return false;
     const c=await r.json();
     if(Array.isArray(c.profiles)&&c.profiles.length){state.profiles=c.profiles;saveProfiles();loadProfileData();}
@@ -990,6 +1199,28 @@ async function pushConfig(){
 }
 
 /* ── Settings · backup · sync ────────────────────────────────────────────── */
+/* A photo is resized to 128px and stored as a small JPEG data URL, so it syncs
+   inside the config blob rather than needing any file hosting. */
+function readPhoto(file){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onerror=()=>rej(new Error("read failed"));
+    fr.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>rej(new Error("not an image"));
+      img.onload=()=>{
+        const S=128, c=document.createElement("canvas");
+        c.width=S;c.height=S;
+        const ctx=c.getContext("2d");
+        const m=Math.min(img.width,img.height);
+        ctx.drawImage(img,(img.width-m)/2,(img.height-m)/2,m,m,0,0,S,S);   // centre-crop to a square
+        try{res(c.toDataURL("image/jpeg",0.82));}catch(e){rej(e);}
+      };
+      img.src=fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
 function backupData(){
   return {vitrine_backup:1, exported_at:new Date().toISOString(),
     saved:[...state.savedSet], applied:[...state.appliedSet], dismissed:[...state.dismissedSet], pipeline:state.pipeline};
@@ -1030,13 +1261,42 @@ function renderPage(){
     const m=statusMeta();
     el.innerHTML=`<div class="pg-top"><button class="back" data-go="">\u2039 Back to roles</button></div>
       <h2 class="pg-h">Menu</h2>
-      <p class="pg-sub">You're working as <b>${esc(P.name)}</b>.</p>
+      <div class="whoami-row">${avatarFor(P,44)}
+        <div><div class="wt">${esc(P.name)}</div><div class="ws">${trackedItems().length} role${trackedItems().length===1?"":"s"} tracked \u00b7 ${state.profiles.length} profile${state.profiles.length>1?"s":""}</div></div></div>
       <div class="menu">
-        <button data-go="profiles"><span class="mi-b"><span class="mi-t">Profiles</span><span class="mi-s">${state.profiles.length} profile${state.profiles.length>1?"s":""} \u00b7 switch or add someone</span></span><span class="mi-x">\u203a</span></button>
-        <button data-go="terms"><span class="mi-b"><span class="mi-t">Search terms</span><span class="mi-s">What the scan looks for, for ${esc(P.name)}</span></span><span class="mi-x">\u203a</span></button>
-        <button data-go="sync"><span class="mi-b"><span class="mi-t">Sync across devices</span><span class="mi-s">${esc(m[1])}</span></span><span class="mi-x">\u203a</span></button>
-        <button data-go="backup"><span class="mi-b"><span class="mi-t">Backup</span><span class="mi-s">Download or restore everything</span></span><span class="mi-x">\u203a</span></button>
+        ${menuItem("profiles",ICO.people,"Profiles",`Switch, rename, or add someone`)}
+        ${menuItem("analytics",ICO.chart,"Analytics",`Read the market \u00b7 track ${esc(P.name)}'s progress`)}
+        ${menuItem("cats",ICO.tag,"Categories",`Define the tabs \u00b7 hide ones ${esc(P.name)} doesn't want`)}
+        ${menuItem("terms",ICO.search,"Search terms",`What the scan looks for, for ${esc(P.name)}`)}
+        ${menuItem("sync",ICO.sync,"Sync across devices",esc(m[1]))}
+        ${menuItem("backup",ICO.save,"Backup","Download or restore everything")}
       </div>`;
+    return;
+  }
+  if(state.page==="analytics"){renderAnalytics();return;}
+  if(state.page==="cats"){
+    const hidden=new Set(P.hidden_cats||[]);
+    el.innerHTML=pgTop("Categories",
+      `Which tabs exist, and what lands in each. A role is matched against these terms (company name first, then title) and lands in the <b>first</b> category that matches \u2014 so order decides ties. Untick anything ${esc(P.name)} doesn't want to see; that's per profile, so it won't affect anyone else.`)
+      + changeWarning()
+      + allCats().map((c,i)=>`
+        <div class="cat-card">
+          <div class="cat-head">
+            <label class="cbx"><input type="checkbox" data-cattog="${esc(c.id)}" ${hidden.has(c.id)?"":"checked"}><span>${esc(c.label)}</span></label>
+            <div class="prof-act">
+              ${i>0?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="up" title="Higher priority when matching">\u25b2</button>`:""}
+              ${i<allCats().length-1?`<button class="mini" data-catmove="${esc(c.id)}" data-dir="down">\u25bc</button>`:""}
+              <button class="mini" data-catren="${esc(c.id)}">Rename</button>
+              ${c.locked?"":`<button class="mini" data-catdel="${esc(c.id)}">Delete</button>`}
+            </div>
+          </div>
+          ${c.locked
+            ? `<div class="hint">Decided by the scanner \u2014 it knows which brands are houses and which are agencies. ${c.id==="other"?"Anything that matches nothing else lands here.":""}</div>`
+            : `<div class="tchips">${(c.terms||[]).map((t,ti)=>`<span class="tchip">${esc(t)}<button data-catdelterm="${esc(c.id)}" data-i="${ti}">\u00d7</button></span>`).join("")||`<span class="hint">No terms \u2014 nothing will match.</span>`}</div>
+               <input class="inp" style="margin-top:8px" data-cataddterm="${esc(c.id)}" placeholder="add a company or title term, then press Enter">`}
+        </div>`).join("")
+      + `<button class="set-btn block" data-addcat>+ Add a category</button>
+         <button class="set-btn go block" data-savecfg>Save categories</button>`;
     return;
   }
   if(state.page==="profiles"){
@@ -1046,8 +1306,14 @@ function renderPage(){
         const on=p.id===state.pid;
         const n=Object.keys(loadObj("v_pipeline:"+p.id)).length;
         return `<div class="prof-card ${on?"on":""}">
-          <div><div class="prof-name">${esc(p.name)}${on?' <span style="color:var(--accent);font-size:11px">\u00b7 active</span>':""}</div>
-          <div class="prof-meta">${(p.include||[]).length} keep terms \u00b7 floor S$${(p.min_salary_max||0).toLocaleString()}/mo \u00b7 ${n} tracked</div></div>
+          ${avatarFor(p,48)}
+          <div style="min-width:0"><div class="prof-name">${esc(p.name)}${on?' <span style="color:var(--accent);font-size:11px">\u00b7 active</span>':""}</div>
+          <div class="prof-meta">${(p.include||[]).length} keep terms \u00b7 floor S$${(p.min_salary_max||0).toLocaleString()}/mo \u00b7 ${n} tracked</div>
+          <div class="prof-meta" style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">
+            <button class="mini" data-photo="${esc(p.id)}">${p.photo?"Change photo":"Add photo"}</button>
+            ${p.photo?`<button class="mini" data-unphoto="${esc(p.id)}">Remove photo</button>`
+                     :`<button class="mini" data-shuffle="${esc(p.id)}">Shuffle avatar</button>`}
+          </div></div>
           <div class="prof-act">
             ${on?"":`<button class="mini go" data-switch="${esc(p.id)}">Use</button>`}
             <button class="mini" data-renprof="${esc(p.id)}">Rename</button>
@@ -1060,6 +1326,7 @@ function renderPage(){
   if(state.page==="terms"){
     el.innerHTML=pgTop(`Search terms \u2014 ${P.name}`,
       `What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan \u2014 the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan \u2014 run one to fetch new roles.</b>`:""}`)
+      + changeWarning()
       + termFld("search","Search for (asked of each job site)")
       + termFld("include","Keep titles containing")
       + termFld("exclude","Drop titles containing")
@@ -1092,6 +1359,186 @@ function renderPage(){
   }
   el.innerHTML="";
 }
+/* ── Analytics ────────────────────────────────────────────────────────────
+   Three lenses, three very different reliabilities — labelled honestly:
+   1. Progress  — from this profile's own pipeline. Exact.
+   2. Our market — from data/history.json, one row per scan day. Starts the day
+      you deploy it; a time series can only be built forward.
+   3. Singapore  — official MOM/SingStat vacancies via data.gov.sg, back to 1998.
+      Quarterly, whole-economy. The only way to see seasonality today.          */
+function dayKey(t){return new Date(t).toISOString().slice(0,10);}
+function eventsOf(){
+  // Turn the pipeline into dated events. Everything is derived from dates we
+  // already store, so nothing here is invented.
+  const ev={spotted:[],contacted:[],applied:[],interview:[]};
+  trackedItems().forEach(({rec})=>{
+    if(rec.createdAt)ev.spotted.push(dayKey(rec.createdAt));
+    if(rec.appliedOn)ev.applied.push(rec.appliedOn);
+    (rec.contacts||[]).forEach(c=>{if(c.date&&(c.status==="contacted"||c.status==="replied"||c.status==="no_reply"))ev.contacted.push(c.date);});
+    (rec.interviews||[]).forEach(i=>{if(i.date)ev.interview.push(i.date);});
+  });
+  return ev;
+}
+function cumulative(dates,days){
+  const end=new Date(), out=[];
+  const counts={};dates.forEach(d=>{counts[d]=(counts[d]||0)+1;});
+  let run=0;
+  for(let i=days-1;i>=0;i--){
+    const d=new Date(end);d.setDate(d.getDate()-i);
+    const k=d.toISOString().slice(0,10);
+    run+=counts[k]||0;
+    out.push({d:k,v:run});
+  }
+  // include anything older than the window in the starting total
+  const before=dates.filter(d=>d<out[0].d).length;
+  return out.map(p=>({...p,v:p.v+before}));
+}
+function lineChart(series,opts){
+  opts=opts||{};
+  const w=640,h=190,pad={l:34,r:12,t:12,b:22};
+  const all=series.flatMap(s=>s.pts.map(p=>p.v));
+  const max=Math.max(1,...all), n=Math.max(2,series[0].pts.length);
+  const X=i=>pad.l+i*(w-pad.l-pad.r)/(n-1);
+  const Y=v=>h-pad.b-(v/max)*(h-pad.t-pad.b);
+  const grid=[0,.5,1].map(f=>`<line x1="${pad.l}" x2="${w-pad.r}" y1="${Y(max*f)}" y2="${Y(max*f)}" stroke="var(--line)" stroke-width="1"/><text x="4" y="${Y(max*f)+4}" font-size="10" fill="var(--muted)">${Math.round(max*f)}</text>`).join("");
+  const paths=series.map(s=>{
+    const d=s.pts.map((p,i)=>`${i?"L":"M"}${X(i).toFixed(1)},${Y(p.v).toFixed(1)}`).join("");
+    return `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  }).join("");
+  // Seams: the day the search terms or salary floor moved.
+  const marks=(opts.marks||[]).map(m=>{
+    const i=series[0].pts.findIndex(p=>p.d>=m.d);
+    if(i<0)return "";
+    const x=X(i).toFixed(1);
+    return `<line x1="${x}" x2="${x}" y1="${pad.t}" y2="${h-pad.b}" stroke="var(--ochre)" stroke-width="1.4" stroke-dasharray="3 3"/>`
+         + `<circle cx="${x}" cy="${pad.t}" r="2.6" fill="var(--ochre)"><title>${esc(m.d)} — filters changed: ${esc(m.label||"")}</title></circle>`;
+  }).join("");
+  const first=series[0].pts[0], last=series[0].pts[series[0].pts.length-1];
+  const labels=`<text x="${pad.l}" y="${h-6}" font-size="10" fill="var(--muted)">${first?first.d.slice(5):""}</text>
+                <text x="${w-pad.r}" y="${h-6}" font-size="10" fill="var(--muted)" text-anchor="end">${last?last.d.slice(5):""}</text>`;
+  let key=series.map(s=>`<span class="k"><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join("");
+  if((opts.marks||[]).length)key+=`<span class="k"><i style="background:var(--ochre)"></i>filters changed</span>`;
+  return `<div class="chart"><svg viewBox="0 0 ${w} ${h}">${grid}${marks}${paths}${labels}</svg><div class="keys">${key}</div></div>`;
+}
+function barChart(rows,color){
+  const w=640,h=170,pad={l:34,r:12,t:12,b:26};
+  const max=Math.max(1,...rows.map(r=>r.v));
+  const bw=(w-pad.l-pad.r)/Math.max(1,rows.length);
+  const bars=rows.map((r,i)=>{
+    const bh=(r.v/max)*(h-pad.t-pad.b);
+    return `<rect x="${(pad.l+i*bw+bw*0.16).toFixed(1)}" y="${(h-pad.b-bh).toFixed(1)}" width="${(bw*0.68).toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${color}"><title>${esc(r.k)}: ${r.v}</title></rect>`
+      +`<text x="${(pad.l+i*bw+bw/2).toFixed(1)}" y="${h-8}" font-size="9" fill="var(--muted)" text-anchor="middle">${esc(r.k)}</text>`;
+  }).join("");
+  const grid=[0,.5,1].map(f=>`<line x1="${pad.l}" x2="${w-pad.r}" y1="${(h-pad.b-(h-pad.t-pad.b)*f).toFixed(1)}" y2="${(h-pad.b-(h-pad.t-pad.b)*f).toFixed(1)}" stroke="var(--line)"/><text x="4" y="${(h-pad.b-(h-pad.t-pad.b)*f+4).toFixed(1)}" font-size="10" fill="var(--muted)">${Math.round(max*f)}</text>`).join("");
+  return `<div class="chart"><svg viewBox="0 0 ${w} ${h}">${grid}${bars}</svg></div>`;
+}
+function changeWarning(){
+  const d=pendingChange();
+  if(!d)return "";
+  return `<div class="warnbox"><b>This changes what gets counted.</b>
+    You're about to alter ${esc(d)}. The analytics charts built from these \u2014 <i>the board over time</i> and <i>salary bands</i> \u2014 measure whatever the filters said at the time, so the line before and after won't mean the same thing.
+    Nothing already recorded is lost or rewritten; we mark the day with a dotted line so the seam stays visible.</div>`;
+}
+function renderAnalytics(){
+  const P=activeProfile(), ev=eventsOf(), items=trackedItems();
+  // Days the filters moved — drawn as seams on every chart built from them.
+  const marks=(P.changes||[]).map(c=>({d:c.d,label:c.label}));
+  const st=k=>items.filter(x=>(x.rec.stage||"spotted")===k).length;
+  const contactedRoles=items.filter(x=>(x.rec.contacts||[]).some(c=>c.date)).length;
+  const repliedRoles=items.filter(x=>(x.rec.contacts||[]).some(c=>c.status==="replied")).length;
+  const funnel=[["Tracked",items.length],["Contacted someone",contactedRoles],["Got a reply",repliedRoles],
+                ["Applied",ev.applied.length],["Interviewing",st("interviewing")]];
+  const fmax=Math.max(1,...funnel.map(f=>f[1]));
+
+  // Progress over time
+  const days=30;
+  const prog=items.length?lineChart([
+    {name:"Roles tracked",color:"#7B1E3B",pts:cumulative(ev.spotted,days)},
+    {name:"People contacted",color:"#8A6A1E",pts:cumulative(ev.contacted,days)},
+    {name:"Applications",color:"#3f8f5f",pts:cumulative(ev.applied,days)},
+  ],{marks}):`<div class="note">Nothing tracked yet — the chart fills in as ${esc(P.name)} tracks roles and logs contacts.</div>`;
+
+  // Our market: postings per week from posted_date (a 30-day backward window)
+  const wk={};
+  state.jobs.filter(j=>marketPasses(j,true)).forEach(j=>{   // HER market, not the union scan
+    const d=j.posted_date;if(!d)return;
+    const dt=new Date(d);if(isNaN(dt))return;
+    const age=Math.floor((Date.now()-dt)/864e5);if(age<0||age>56)return;
+    const k=`${dt.getUTCDate()}/${dt.getUTCMonth()+1}`;
+    const wkNo=Math.floor(age/7);
+    wk[wkNo]=(wk[wkNo]||0)+1;
+  });
+  const wkRows=[0,1,2,3,4,5,6,7].map(i=>({k:i===0?"this wk":`-${i}w`,v:wk[i]||0})).reverse();
+
+  // History: one row per scan day
+  const H=(state.history||[]);
+  const hist=H.length>1
+    ? lineChart([{name:"Roles on the board",color:"#7B1E3B",pts:H.slice(-60).map(r=>({d:r.date,v:r.total}))}],{marks})
+      + (marks.length?`<p class="hint">Dotted lines mark the days ${esc(P.name)}'s search terms or salary floor changed \u2014 the counts either side aren't strictly comparable. Hover a marker to see what moved.</p>`:"")
+    : `<div class="note"><b>${H.length?"1 day":"No days"} recorded so far.</b> This chart needs history, and history can only be built forward — <code>jobs.json</code> is overwritten every scan, so nothing before you deployed this is recoverable. It fills in from the next scan onward: a week of shape in a week, seasonality in a year.</div>`;
+
+  // Singapore overall — the national census from MyCareersFuture
+  const N=(state.national||[]);
+  let nat=`<div class="note"><b>Not collecting yet.</b> From the next scan, every run asks MyCareersFuture \u2014 Singapore's government job board \u2014 how many roles are live nationwide, and the same split by salary band. It's free and unmetered, so it runs twice a day forever. One row per day: a trend in a fortnight, seasonality in a year.</div>`;
+  if(N.length>1){
+    nat=lineChart([{name:"Live postings in Singapore",color:"#4A4E8C",pts:N.slice(-90).map(r=>({d:r.date,v:r.total}))}],{})
+      + `<p class="hint">Source: MyCareersFuture (government board). Live postings on each scan day \u2014 the whole country, every sector, regardless of ${esc(P.name)}'s keywords. This is the baseline her own market moves against.</p>`;
+  }else if(N.length===1){
+    const r=N[0];
+    nat=`<div class="note"><b>${r.total.toLocaleString()} live postings in Singapore today.</b> That's day one \u2014 one dot isn't a trend. The line starts drawing from the next scan.</div>`;
+  }
+  // Salary mix in her own market
+  const H2=(state.history||[]);
+  const last=H2.length?H2[H2.length-1]:null;
+  let salmix=`<div class="note">Salary bands are recorded from the next scan onward.</div>`;
+  if(last&&last.by_salary){
+    const rows=Object.entries(last.by_salary).map(([k,v])=>({k,v}));
+    if(rows.some(r=>r.v>0))salmix=barChart(rows,"#8A6A1E")
+      +`<p class="hint">Roles by published upper salary band, in ${esc(P.name)}'s market today. Fixed bins, recorded every day \u2014 so in a year this shows whether the money moved.</p>`;
+  }
+
+  // Official Singapore data
+  let market=`<div class="note">No official data downloaded yet. The scanner fetches Singapore's job-vacancy statistics from <b>data.gov.sg</b> on its next run. If it stays empty, check the Actions log for a line starting <code>! market</code> — the dataset IDs may have moved.</div>`;
+  const M=state.market;
+  if(M && M.vacancy_rate_quarterly){
+    const rows=M.vacancy_rate_quarterly.filter(r=>String(r.level_1||"").toLowerCase().includes("total")||!r.level_1);
+    const byQ={};
+    (M.vacancy_rate_quarterly||[]).forEach(r=>{
+      const q=String(r.quarter||r.period||r.date||"");
+      const m=q.match(/Q([1-4])/i); if(!m)return;
+      const v=parseFloat(r.value||r.vacancy_rate||0); if(!isFinite(v))return;
+      const k="Q"+m[1]; byQ[k]=byQ[k]||[]; byQ[k].push(v);
+    });
+    const qRows=["Q1","Q2","Q3","Q4"].map(k=>({k,v:byQ[k]?+(byQ[k].reduce((a,b)=>a+b,0)/byQ[k].length).toFixed(2):0}));
+    if(qRows.some(r=>r.v>0)){
+      market=`<p class="pg-sub">Average job-vacancy rate by quarter across every year on record — Singapore's whole economy, from the Ministry of Manpower. This is the seasonality signal that exists <b>today</b>.</p>`
+        + barChart(qRows,"#4A4E8C")
+        + `<p class="hint">Source: ${esc(M.source||"MOM via data.gov.sg")}. Vacancies are counted at the <b>end of each quarter</b> — that's unfilled posts, not new postings, so it shows when demand is unmet, not when adverts go up. Whole-economy by industry, so it can't speak to luxury e-commerce specifically.</p>`;
+    }
+  }
+
+  const el=document.getElementById("page");
+  el.innerHTML=pgTop(`Analytics — ${P.name}`,"")
+    + `<h3 class="an-h">Progress</h3>
+       <p class="pg-sub">What ${esc(P.name)} has actually done. Exact — it's her own pipeline.</p>
+       <div class="funnel">${funnel.map(([l,v])=>`
+         <div class="fn"><div class="fn-l">${esc(l)}</div>
+           <div class="fn-bar"><span style="width:${Math.max(2,(v/fmax)*100)}%"></span></div>
+           <div class="fn-v">${v}</div></div>`).join("")}</div>
+       ${prog}
+       <h3 class="an-h">Her market — the last 8 weeks</h3>
+       <p class="pg-sub">Roles posted per week that match ${esc(P.name)}'s terms, by the date the employer posted them.</p>
+       ${barChart(wkRows,"#7B1E3B")}
+       <h3 class="an-h">The board over time</h3>
+       ${hist}
+       <h3 class="an-h">Salary bands in her market</h3>
+       ${salmix}
+       <h3 class="an-h">Singapore overall \u2014 every sector</h3>
+       <p class="pg-sub">The whole national market, tracked from today onward. Independent of ${esc(P.name)}'s keywords \u2014 this is the tide, her chart above is the boat.</p>
+       ${nat}
+       <h3 class="an-h">Singapore, the long view</h3>
+       ${market}`;
+}
 function statusMeta(){
   return ({off:["","Sync is off — add your token to turn it on"],idle:["busy","Sync on — checking…"],
     on:["on","Sync is on"],error:["err","Can't reach sync — check the token"]})[state.sync]||["","—"];
@@ -1106,6 +1553,7 @@ async function saveAndTestSync(){
 }
 
 document.getElementById("list").addEventListener("click",e=>{
+  if(e.target.closest("[data-showhandled]")){state.mApplied="show";state.panelOpen=false;render();return;}
   const fu=e.target.closest("[data-fu]");
   if(fu){
     const id=fu.dataset.id, ci=+fu.dataset.ci, act=fu.dataset.fu, rec=ensureRecord(id);
@@ -1179,6 +1627,10 @@ document.getElementById("overlay").addEventListener("input",e=>{
 
 // Settings interactions
 document.getElementById("settingsBtn").addEventListener("click",()=>go("menu"));
+document.getElementById("whoBtn").addEventListener("click",()=>{
+  // One profile: nothing to switch between, so go where you'd manage it anyway.
+  go("profiles");
+});
 document.getElementById("page").addEventListener("click",e=>{
   const g=e.target.closest("[data-go]");
   if(g){go(g.dataset.go||null);return;}
@@ -1196,10 +1648,52 @@ document.getElementById("page").addEventListener("click",e=>{
     const b=e.target.closest("[data-savecfg]"),t=b.textContent;
     const sf=document.getElementById("salFloor");
     if(sf){activeProfile().min_salary_max=Math.max(0,parseInt(sf.value||"0",10)||0);state.config.min_salary_max=activeProfile().min_salary_max;saveProfiles();}
+    const diff=pendingChange();
+    if(diff)logChange(diff);                       // stamp the seam before it becomes the new normal
     b.textContent="Saving\u2026";
-    pushConfig().then(ok=>{b.textContent=ok?"Saved \u2713":"Saved on this device";setTimeout(()=>renderPage(),1400);});
+    pushConfig().then(ok=>{
+      state.baseline=termSnapshot(activeProfile());
+      b.textContent=ok?"Saved \u2713":"Saved on this device";
+      setTimeout(()=>renderPage(),1400);
+    });
     return;
   }
+  const ct=e.target.closest("[data-cattog]");
+  if(ct){
+    const P=activeProfile(), id=ct.dataset.cattog;
+    const h=new Set(P.hidden_cats||[]);
+    ct.checked?h.delete(id):h.add(id);
+    P.hidden_cats=[...h];saveProfiles();renderPage();return;
+  }
+  const cm=e.target.closest("[data-catmove]");
+  if(cm){
+    const i=state.cats.findIndex(c=>c.id===cm.dataset.catmove);
+    const j=cm.dataset.dir==="up"?i-1:i+1;
+    if(i>=0&&j>=0&&j<state.cats.length){const t=state.cats[i];state.cats[i]=state.cats[j];state.cats[j]=t;saveProfiles();renderPage();}
+    return;
+  }
+  const cr=e.target.closest("[data-catren]");
+  if(cr){const c=state.cats.find(x=>x.id===cr.dataset.catren);if(!c)return;
+    const n=prompt("Rename category",c.label);if(!n)return;c.label=n.trim();saveProfiles();renderPage();return;}
+  const cd=e.target.closest("[data-catdel]");
+  if(cd){const c=state.cats.find(x=>x.id===cd.dataset.catdel);if(!c)return;
+    if(!confirm(`Delete "${c.label}"? Roles in it will fall into the next matching category, or Other.`))return;
+    state.cats=state.cats.filter(x=>x.id!==c.id);saveProfiles();renderPage();return;}
+  const cdt=e.target.closest("[data-catdelterm]");
+  if(cdt){const c=state.cats.find(x=>x.id===cdt.dataset.catdelterm);if(!c)return;
+    c.terms=(c.terms||[]).filter((_,i)=>i!==+cdt.dataset.i);saveProfiles();renderPage();return;}
+  if(e.target.closest("[data-addcat]")){
+    const n=prompt("Name for the new category? (e.g. Luxury Automotive)");if(!n)return;
+    state.cats.splice(Math.max(0,state.cats.length-1),0,{id:"c"+Date.now().toString(36),label:n.trim(),terms:[]});
+    saveProfiles();renderPage();return;
+  }
+  const ph=e.target.closest("[data-photo]");
+  if(ph){state.photoFor=ph.dataset.photo;document.getElementById("photoInput").click();return;}
+  const uph=e.target.closest("[data-unphoto]");
+  if(uph){const p=state.profiles.find(x=>x.id===uph.dataset.unphoto);if(p){delete p.photo;saveProfiles();pushConfig();renderPage();}return;}
+  const shf=e.target.closest("[data-shuffle]");
+  if(shf){const p=state.profiles.find(x=>x.id===shf.dataset.shuffle);
+    if(p){p.seed=(p.name||"")+"#"+Math.random().toString(36).slice(2,7);saveProfiles();pushConfig();renderPage();}return;}
   const sw=e.target.closest("[data-switch]");
   if(sw){switchProfile(sw.dataset.switch);return;}
   if(e.target.closest("[data-addprof]")){
@@ -1223,12 +1717,29 @@ document.getElementById("page").addEventListener("click",e=>{
   }
 });
 document.getElementById("page").addEventListener("keydown",e=>{
+  const ca=e.target.closest("[data-cataddterm]");
+  if(ca && e.key==="Enter"){
+    e.preventDefault();
+    const c=state.cats.find(x=>x.id===ca.dataset.cataddterm), v=(ca.value||"").trim().toLowerCase();
+    if(c && v && !(c.terms||[]).includes(v)){c.terms=[...(c.terms||[]),v];saveProfiles();renderPage();}
+    return;
+  }
   const add=e.target.closest("[data-addterm]");
   if(add && e.key==="Enter"){
     e.preventDefault();
     const k=add.dataset.addterm, v=(add.value||"").trim().toLowerCase(), P=activeProfile();
     if(v && !(P[k]||[]).includes(v)){P[k]=[...(P[k]||[]),v];state.config[k]=P[k];saveProfiles();recompile();renderPage();}
   }
+});
+document.getElementById("photoInput").addEventListener("change",async e=>{
+  const f=e.target.files&&e.target.files[0];e.target.value="";
+  if(!f||!state.photoFor)return;
+  if(f.size>12*1024*1024){alert("That image is very large — please pick one under 12MB.");return;}
+  try{
+    const data=await readPhoto(f);
+    const p=state.profiles.find(x=>x.id===state.photoFor);
+    if(p){p.photo=data;saveProfiles();pushConfig();renderPage();render();}
+  }catch(err){alert("Couldn't read that image — try a JPEG or PNG.");}
 });
 document.getElementById("restoreInput").addEventListener("change",e=>{
   const f=e.target.files&&e.target.files[0];if(!f)return;

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-16T08:04:59.283925+00:00",
+  "generated_at": "2026-07-16T08:44:20.163795+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 452,
-      "kept": 367,
+      "kept": 368,
       "error": false
     },
     {
@@ -57,8 +57,8 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 121,
-      "kept": 7,
+      "fetched": 120,
+      "kept": 6,
       "error": false
     },
     {
@@ -75,13 +75,13 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 370,
+      "fetched": 372,
       "kept": 0,
       "error": false
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 73,
+      "fetched": 72,
       "kept": 66,
       "error": false
     },
@@ -134,6 +134,29 @@
     "profiles": []
   },
   "jobs": [
+    {
+      "id": "mcf-d1701f70d2c4f9d0d5b71ccb08fd5171",
+      "title": "E-COMMERCE RETAIL SALES MANAGER",
+      "company": "57 EMPLOYMENT AGENCY PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-16",
+      "posted_date": "2026-07-16",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d1701f70d2c4f9d0d5b71ccb08fd5171",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d1701f70d2c4f9d0d5b71ccb08fd5171"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d1701f70d2c4f9d0d5b71ccb08fd5171",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-16T08:44:20.163795+00:00"
+    },
     {
       "id": "mcf-5c94511481327fae3f961966e31c0e5f",
       "title": "DC13470977 - Backend Software Engineer | Large-Scale Distributed Systems / E-Commerce Platform",

@@ -66,7 +66,11 @@
   .count{font-size:12px;color:var(--muted);margin:12px 2px 0;}
 
   ul{list-style:none;margin:0;padding:0;}
-  .job{background:var(--card);border:1px solid var(--line);border-left:4px solid #d9d2c6;border-radius:var(--radius);padding:15px 16px 13px;margin-top:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,opacity .2s;}
+  /* Cards in a row share a height and pin their buttons to the bottom, so a
+     two-line title doesn't leave a ragged grid. */
+  .job{background:var(--card);border:1px solid var(--line);border-left:4px solid #d9d2c6;border-radius:var(--radius);padding:15px 16px 13px;margin-top:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,opacity .2s;display:flex;flex-direction:column;}
+  .job .actions{margin-top:auto;padding-top:13px;}
+  .prec{display:flex;flex-direction:column;}
   .job.house{border-left-color:var(--accent);}
   .job.agency{border-left-color:var(--ochre);}
   .job:hover{box-shadow:0 2px 10px rgba(0,0,0,.05);}
@@ -87,9 +91,10 @@
   .desc{max-height:0;overflow:hidden;transition:max-height .28s ease;font-size:14px;color:#3a352e;}
   .desc-inner{padding-top:12px;margin-top:12px;border-top:1px solid var(--line);white-space:pre-line;}
   .job.open .desc{max-height:1600px;}
-  .actions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap;}
+  .actions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap;align-items:center;}
   .btn{font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:8px 13px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
   .btn.dismiss{color:var(--muted);margin-left:auto;font-weight:500;}
+  .tnew{font-size:10px;font-weight:700;color:var(--accent);margin-left:5px;}
   .btn.dismiss:hover{color:var(--accent);border-color:var(--accent);}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
   .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
@@ -115,9 +120,26 @@
   .flag.live{color:var(--ok);background:var(--ok-soft);}
   .flag.gone{color:var(--muted);background:#ECE8E1;}
   .flag i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;}
-  .people{display:inline-flex;align-items:center;gap:3px;margin-left:auto;}
-  .pic{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
-  .pic.todo{color:#c9c2b6;} .pic.contacted{color:var(--ochre);} .pic.replied{color:var(--ok);} .pic.no_reply{color:#c2a08f;}
+  /* Contacts get real presence: a face, a name, a status ring. These people are
+     the point of the whole tool, so they shouldn't be a 14px afterthought. */
+  .people{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .person{display:flex;flex-direction:column;align-items:center;gap:4px;width:52px;text-decoration:none;}
+  .avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--card);border:2px solid #ddd6c9;position:relative;}
+  .avatar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .person .nm{font-size:10.5px;font-weight:600;color:var(--muted);max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;}
+  .avatar .dot2{position:absolute;right:-1px;bottom:-1px;width:13px;height:13px;border-radius:50%;border:2px solid var(--card);background:#c9c2b6;}
+  .person.todo .avatar{color:#a89f92;border-color:#ddd6c9;}
+  .person.contacted .avatar{color:var(--ochre);border-color:var(--ochre);background:var(--ochre-soft);}
+  .person.contacted .dot2{background:var(--ochre);}
+  .person.replied .avatar{color:var(--ok);border-color:var(--ok);background:var(--ok-soft);}
+  .person.replied .dot2{background:var(--ok);}
+  .person.no_reply .avatar{color:#b08a76;border-color:#e2cec3;background:#F7EFEA;}
+  .person.no_reply .dot2{background:#c2a08f;}
+  .person.replied .nm,.person.contacted .nm{color:var(--ink);}
+  .prec-body{display:flex;gap:14px;align-items:center;}
+  .prec-left{flex:1;min-width:0;}
+  .prec-right{flex:0 0 auto;display:flex;align-items:center;}
+  .iv{font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:999px;}
   .prio{display:inline-flex;gap:4px;}
   .prio button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12px;line-height:1;cursor:pointer;}
   .prio button:hover{border-color:var(--accent);color:var(--accent);}
@@ -135,7 +157,7 @@
   /* Use the screen on laptop / iPad: wider canvas and two columns of cards. */
   @media (min-width:900px){
     .wrap{max-width:1080px;}
-    #list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+    #list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;}
     #list .job,#list .prec{margin-top:0;}
     #list .empty,#list .section-h,#list .pulse,#list .bucketbar{grid-column:1/-1;}
     .controls{max-width:100%;}
@@ -146,7 +168,8 @@
   .tag.tracked{color:var(--ink);background:#ECE8E1;}
   .btn.track.on{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-  .gear{position:absolute;top:22px;right:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:16px;line-height:1;cursor:pointer;transition:all .15s;}
+  .gear{position:absolute;top:22px;right:0;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+  .gear span{display:block;width:17px;height:2px;background:currentColor;border-radius:2px;}
   .gear:hover{color:var(--accent);border-color:var(--accent);}
 
   /* Pipeline */
@@ -200,6 +223,13 @@
   .sheet-foot .untrack{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline;}
   .sheet-foot .done{margin-left:auto;background:var(--accent);border:1px solid var(--accent);color:#fff;font:inherit;font-size:13.5px;font-weight:600;border-radius:999px;padding:10px 22px;cursor:pointer;}
   .hint{font-size:11.5px;color:var(--muted);margin-top:6px;}
+  /* Settings opens as a full page, not a peeking sheet — it's a place you go. */
+  .overlay.page{align-items:stretch;}
+  .pagesheet{max-height:100vh;height:100vh;border-radius:0;max-width:100%;padding-top:26px;}
+  .pagesheet > .sheet-h{max-width:var(--maxw);margin:0 auto 4px;}
+  .pagesheet .set-sec{max-width:var(--maxw);margin-left:auto;margin-right:auto;}
+  @media (min-width:560px){.overlay.page{align-items:center;padding:24px;}
+    .pagesheet{height:auto;max-height:92vh;border-radius:20px;max-width:760px;}}
   /* Settings */
   .set-sec{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
   .set-sec:first-of-type{border-top:0;padding-top:0;margin-top:16px;}
@@ -216,7 +246,7 @@
 <body>
 <div class="wrap">
   <header>
-    <button class="gear" id="settingsBtn" title="Backup &amp; sync" aria-label="Settings, backup and sync">⚙</button>
+    <button class="gear" id="settingsBtn" title="Menu" aria-label="Menu and settings"><span></span><span></span><span></span></button>
     <div class="eyebrow">Singapore · E-commerce &amp; Product</div>
     <h1>The <em>Vitrine</em></h1>
     <div class="byline" id="byline">Loading roles…</div>
@@ -233,8 +263,7 @@
       <div class="prow">
         <span class="plabel">Show only</span>
         <div class="pgroup">
-          <button class="pchip" data-toggle="onlyNew">New</button>
-          <button class="pchip" data-toggle="onlySaved">Saved</button>
+          <button class="pchip" data-toggle="onlyNew">New this week</button>
         </div>
       </div>
       <div class="prow">
@@ -273,8 +302,8 @@
   <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 </div>
 <!-- Settings · backup · sync -->
-<div class="overlay" id="setOverlay" hidden>
-  <div class="sheet" id="setSheet" role="dialog" aria-modal="true"></div>
+<div class="overlay page" id="setOverlay" hidden>
+  <div class="sheet pagesheet" id="setSheet" role="dialog" aria-modal="true"></div>
 </div>
 <input type="file" id="restoreInput" accept="application/json,.json" hidden>
 
@@ -300,13 +329,18 @@ function catOf(j){
   return "other";
 }
 function renderTabs(){
-  const counts={};
-  state.jobs.forEach(j=>{if(!state.dismissedSet.has(j.id)){const c=catOf(j);counts[c]=(counts[c]||0)+1;}});
+  const counts={}, fresh={};
+  state.jobs.forEach(j=>{
+    if(!passes(j,true))return;                        // same rule as the list
+    const c=catOf(j); counts[c]=(counts[c]||0)+1;
+    if(isNew(j))fresh[c]=(fresh[c]||0)+1;
+  });
   const avail=CATS.filter(([id])=>counts[id]);
   if(avail.length&&!avail.some(([id])=>id===state.scope))state.scope=avail[0][0];
   document.getElementById("tabs").innerHTML=avail.map(([id,label])=>
-    `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span></button>`
+    `<button class="tab" data-scope="${id}" role="tab" aria-selected="${id===state.scope}">${label}<span class="tc">${counts[id]}</span>${fresh[id]?`<span class="tnew">+${fresh[id]}</span>`:""}</button>`
   ).join("");
+  state.freshCounts=fresh;
 }
 // Browse vs Pipeline is a MODE, not a category — a different surface, so it gets
 // its own switch instead of competing with Houses / Tech / etc.
@@ -317,7 +351,7 @@ function renderModebar(){
     <button class="mode" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"}">Browse roles</button>
     <button class="mode" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"}">Pipeline${badge}</button>`;
 }
-const state={jobs:[],config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+const state={jobs:[],config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
   savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed")),
   pipeline:loadObj("v_pipeline")};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
@@ -480,27 +514,30 @@ function renderSources(sources){
   }
   el.innerHTML=`<summary>Sources &amp; diagnostics</summary><div class="src-body">${rows}${qrow}</div>`;
 }
-function visible(){
+/* ONE rule for what's visible. Tab counts and the list both use it, so a tab can
+   never again claim "5" while the list shows 1. ignoreScope=true counts a
+   category without switching to it. */
+function passes(j,ignoreScope){
   const q=state.q.trim().toLowerCase();
-  return state.jobs.filter(j=>{
-    if(!q && catOf(j)!==state.scope)return false;      // browsing shows one category; search spans all
-    if(!relevantClient(j))return false;                 // live term edits narrow instantly
-    // Anything in the pipeline (tracked or applied) belongs in Pipeline, not here.
-    if(state.mApplied!=="only" && isTracked(j.id))return false;
-    if(state.onlyNew&&!isNew(j))return false;
-    if(state.onlySaved&&!state.savedSet.has(j.id))return false;
-    if(state.mAgencies==="hide"&&j.type==="agency")return false;
-    const ap=state.appliedSet.has(j.id), di=state.dismissedSet.has(j.id);
-    if(state.mApplied==="hide"&&ap)return false;
-    if(state.mApplied==="only"&&!ap)return false;
-    if(state.mDismissed==="hide"&&di)return false;
-    if(state.mDismissed==="only"&&!di)return false;
-    if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
-    return true;
-  }).sort((a,b)=>(b.posted_date||"").localeCompare(a.posted_date||"")||(a.company||"").localeCompare(b.company||""));
+  if(!ignoreScope && !q && catOf(j)!==state.scope)return false;
+  if(!relevantClient(j))return false;
+  if(state.mApplied!=="only" && isTracked(j.id))return false;
+  if(state.onlyNew&&!isNew(j))return false;
+  if(state.mAgencies==="hide"&&j.type==="agency")return false;
+  const ap=state.appliedSet.has(j.id), di=state.dismissedSet.has(j.id);
+  if(state.mApplied==="hide"&&ap)return false;
+  if(state.mApplied==="only"&&!ap)return false;
+  if(state.mDismissed==="hide"&&di)return false;
+  if(state.mDismissed==="only"&&!di)return false;
+  if(q){const hay=`${j.title} ${j.company} ${j.description||""} ${j.source||""}`.toLowerCase();if(!hay.includes(q))return false;}
+  return true;
+}
+function visible(){
+  return state.jobs.filter(j=>passes(j,false))
+    .sort((a,b)=>(b.posted_date||"").localeCompare(a.posted_date||"")||(a.company||"").localeCompare(b.company||""));
 }
 function activeFilterCount(){
-  return (state.onlyNew?1:0)+(state.onlySaved?1:0)+(state.mApplied!=="show"?1:0)+(state.mDismissed!=="hide"?1:0)+(state.mAgencies!=="show"?1:0);
+  return (state.onlyNew?1:0)+(state.mApplied!=="hide"?1:0)+(state.mDismissed!=="hide"?1:0)+(state.mAgencies!=="show"?1:0);
 }
 function syncPanel(){
   document.querySelectorAll("#panel .pchip[data-toggle]").forEach(b=>b.setAttribute("aria-pressed",!!state[b.dataset.toggle]));
@@ -531,10 +568,16 @@ function render(){
   document.getElementById("filterbar").style.display="";
   const list=document.getElementById("list");const jobs=visible();
   const onlyDismissed=state.mDismissed==="only";
-  document.getElementById("count").textContent=jobs.length?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`:`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first`):"";
+  const catLabel=(CATS.find(c=>c[0]===state.scope)||["","this category"])[1];
+  const nf=(state.freshCounts||{})[state.scope]||0;
+  const totalFresh=state.jobs.filter(j=>passes(j,true)&&isNew(j)).length;
+  document.getElementById("count").innerHTML=jobs.length
+    ?(onlyDismissed?`${jobs.length} set aside — tap ↩ to restore`
+      :`Showing ${jobs.length} role${jobs.length>1?"s":""}, newest first · <b style="color:var(--accent)">${nf} new this week in ${esc(catLabel)}</b> · ${totalFresh} new across all`)
+    :"";
   if(!jobs.length){list.innerHTML=`<li class="empty"><b>${onlyDismissed?"Nothing set aside":"Nothing here yet"}</b>${onlyDismissed?"Roles you mark “Not relevant” collect here so you can restore them anytime.":"Try another tab, search, clear filters, or wait for the next scan."}</li>`;document.getElementById("footer").textContent="";syncPanel();return;}
   list.innerHTML=jobs.map(j=>{
-    const saved=state.savedSet.has(j.id),applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id),tracked=isTracked(j.id);
+    const applied=state.appliedSet.has(j.id),dismissed=state.dismissedSet.has(j.id),tracked=isTracked(j.id);
     const meta=[j.source,j.posted_date||j.posted].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("")+(j.salary?`<span class="sal">${esc(j.salary)}</span>`:"");
     const tag=j.type==="house"?`<span class="tag house">House</span>`:j.type==="agency"?`<span class="tag agency">Agency</span>`:"";
     return `<li class="job ${j.type}${applied?" applied":""}" data-id="${esc(j.id)}">
@@ -549,7 +592,6 @@ function render(){
       <div class="desc"><div class="desc-inner">${esc(j.description||"No description captured — open the role to read the full posting.")}</div></div>
       <div class="actions">${linkBtns(j)}
         <button class="btn track${tracked?" on":""}" data-act="track">${tracked?"Tracking ✓":"Track"}</button>
-        <button class="btn${saved?" on":""}" data-act="save">${saved?"Saved ✓":"Save"}</button>
         <button class="btn${applied?" on":""}" data-act="applied">${applied?"Applied ✓":"Mark applied"}</button>
         <button class="btn dismiss" data-act="dismiss">${dismissed?"↩ Restore":"Not relevant"}</button>
       </div>
@@ -619,11 +661,20 @@ function contactSummary(rec){
   if(replied)parts.push(`${replied} replied`); else if(contacted)parts.push(`${contacted} awaiting reply`);
   return parts.join(" · ");
 }
+const FACE=`<svg viewBox="0 0 24 24"><path d="M12 3.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8Z"/><path d="M7.6 7.2c1.6.9 5.1 1.5 8.6.2"/><path d="M3.9 20.4c0-3.7 3.6-6.2 8.1-6.2s8.1 2.5 8.1 6.2"/></svg>`;
 function personIcons(rec){
   const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
   if(!cs.length)return "";
-  const ico=c=>`<svg class="pic ${c.status||"todo"}" viewBox="0 0 24 24" role="img" aria-label="${esc(c.name||"contact")} — ${esc(CSTAT_LABEL[c.status||"to_contact"])}"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"/></svg>`;
-  return `<span class="people" title="${esc(cs.map(c=>`${c.name} — ${CSTAT_LABEL[c.status||"to_contact"]}`).join(" · "))}">${cs.map(ico).join("")}</span>`;
+  const one=c=>{
+    const st=c.status||"to_contact";
+    const first=(c.name||"").trim().split(/\s+/)[0];
+    const days=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
+    const tag=c.url?"a":"span", href=c.url?` href="${esc(c.url)}" target="_blank" rel="noopener" data-stop`:"";
+    return `<${tag} class="person ${st}"${href} title="${esc(c.name)} — ${esc(CSTAT_LABEL[st])}${days}">
+      <span class="avatar">${FACE}<span class="dot2"></span></span>
+      <span class="nm">${esc(first)}</span></${tag}>`;
+  };
+  return `<span class="people">${cs.map(one).join("")}</span>`;
 }
 function contactLine(rec){
   const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
@@ -639,14 +690,25 @@ function precCard(x){
   const bits=[contactLine(rec)];
   if(rec.cv)bits.push("CV: "+esc(rec.cv));
   if(rec.next)bits.push("Next: "+esc(rec.next));
-  const flag=live?`<span class="flag live"><i></i>Live</span>`:`<span class="flag gone"><i></i>No longer posted</span>`;
+  const flag=rec.manual?`<span class="flag gone"><i></i>Added by you</span>`
+            :live?`<span class="flag live"><i></i>Live</span>`
+            :`<span class="flag gone"><i></i>No longer posted</span>`;
   const age=rec.appliedOn?`<span class="agetag">Applied ${esc(weeksAgo(rec.appliedOn))}</span>`:"";
   const pr=bucketOf(rec), idx=PRIOS.findIndex(x=>x[0]===pr);
+  const ivs=(rec.interviews||[]).filter(i=>i&&(i.label||i.date));
+  const nextIv=ivs.filter(i=>i.date&&i.date>=todayStr()).sort((a,b)=>a.date.localeCompare(b.date))[0];
+  const ivTag=nextIv?`<span class="iv">Interview ${esc(nextIv.label||"")} ${esc(nextIv.date)}</span>`
+              :(ivs.length?`<span class="iv">${ivs.length} interview${ivs.length>1?"s":""} logged</span>`:"");
   return `<div class="prec" data-id="${esc(id)}">
-    <div class="pc-head">${flag}${age}${personIcons(rec)}</div>
-    <div class="pc-co" style="margin-top:6px">${esc(job.company||"—")}</div>
+    <div class="pc-head">${flag}${age}${ivTag}</div>
+    <div class="prec-body" style="margin-top:6px">
+    <div class="prec-left">
+    <div class="pc-co">${esc(job.company||"—")}</div>
     <div class="pc-title">${esc(job.title)}</div>
     <div class="pc-meta">${bits.map(b=>`<span>${b}</span>`).join("")}</div>
+    </div>
+    <div class="prec-right">${personIcons(rec)}</div>
+    </div>
     <div class="prec-actions" style="margin-top:10px">
       <span class="prio">
         <button data-prio="up" data-id="${esc(id)}" ${idx<=0?"disabled":""} title="Raise priority">▲</button>
@@ -667,12 +729,12 @@ function renderPipeline(){
   document.getElementById("footer").textContent="The Vitrine · your pipeline";
   if(!all.length){
     document.getElementById("count").textContent="";
-    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.</li>`;
+    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.<div style="margin-top:14px"><button class="mini go" data-addmanual>+ Add a role that isn't listed</button></div></li>`;
     return;
   }
   const counts={};PRIOS.forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec)===k).length);
   document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
-  let html="";
+  let html=`<div style="grid-column:1/-1"><button class="mini" data-addmanual style="margin-top:10px">+ Add a role that isn't listed</button></div>`;
   // Follow-ups cut across every bucket — urgency shouldn't hide behind a tab.
   if(fu.length){
     html+=`<div class="section-h due">Follow-ups due <span class="n">${fu.length}</span></div>`;
@@ -712,6 +774,19 @@ function renderPipeline(){
   list.innerHTML=html;
 }
 
+/* A role heard about privately — a referral, a role not advertised, a
+   conversation — belongs in the pipeline too. The scraper will never find it. */
+function addManualRole(){
+  const company=prompt("Company?");if(company===null)return;
+  const title=prompt("Role title?");if(title===null)return;
+  const url=prompt("Link (optional) — paste or leave blank")||"";
+  const id="man-"+Date.now().toString(36);
+  state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],interviews:[],note:"",next:"",
+    manual:true,updatedAt:Date.now(),
+    snap:{title:(title||"Untitled role").trim(),company:(company||"—").trim(),url:url.trim()}};
+  persist();state.mode="pipeline";render();openEditor(id);
+}
+
 /* ── Editor sheet ────────────────────────────────────────────────────────── */
 function openEditor(id){ensureRecord(id);state.editId=id;renderEditor();document.getElementById("overlay").hidden=false;}
 function closeEditor(){document.getElementById("overlay").hidden=true;state.editId=null;render();}
@@ -747,6 +822,20 @@ function renderEditor(){
       <button class="addc" data-addc>+ Add a contact</button>
       <div class="hint">Tap a contact's status to move it: To contact → Contacted → Replied. “Contacted” stamps today's date and starts the ${FOLLOWUP_DAYS}-day follow-up clock.</div>
     </div>
+    <div class="fld">
+      <label>Interviews</label>
+      <div id="ivs">${(rec.interviews||[]).map((iv,i)=>`
+        <div class="contact" data-ivi="${i}">
+          <div class="crow">
+            <input class="inp" data-iv="label" placeholder="Round (e.g. HR screen, Hiring manager)" value="${esc(iv.label||"")}">
+            <input class="inp" style="flex:0 0 150px" type="date" data-iv="date" value="${esc(iv.date||"")}">
+          </div>
+          <div class="crow" style="margin-top:8px"><input class="inp" data-iv="note" placeholder="Who you met, how it went, next step…" value="${esc(iv.note||"")}"></div>
+          <div class="crow2"><button class="cdel" data-ivdel title="Remove">✕</button></div>
+        </div>`).join("")||`<div class="hint" style="margin-bottom:10px">No interviews logged yet.</div>`}</div>
+      <button class="addc" data-addiv>+ Add an interview round</button>
+    </div>
+
     <div class="fld"><label>CV / resume sent</label><input class="inp" data-f="cv" placeholder="e.g. v3 — luxury e-com PM" value="${esc(rec.cv||"")}"></div>
     <div class="fld"><label>Next action — remind me on</label><input class="inp" type="date" data-f="next" value="${esc(rec.next||"")}"></div>
     <div class="fld"><label>Notes</label><textarea class="inp" data-f="note" placeholder="Where she applied, who referred, what to say next…">${esc(rec.note||"")}</textarea></div>
@@ -875,6 +964,7 @@ document.getElementById("list").addEventListener("click",e=>{
     else if(act==="opennext"){openEditor(id);return;}
     rec.updatedAt=Date.now();persist();render();return;
   }
+  if(e.target.closest("[data-addmanual]")){addManualRole();return;}
   const bk=e.target.closest("[data-bucket]");
   if(bk){state.bucket=bk.dataset.bucket;render();return;}
   const pr=e.target.closest("[data-prio]");
@@ -915,6 +1005,9 @@ document.getElementById("overlay").addEventListener("click",e=>{
   if(e.target.closest("[data-close]")){closeEditor();return;}
   if(e.target.closest("[data-untrack]")){state.pipeline[id]={deleted:true,updatedAt:Date.now()};persist();closeEditor();return;}
   if(e.target.closest("[data-addc]")){rec.contacts=rec.contacts||[];rec.contacts.push({name:"",role:"",channel:"linkedin",status:"to_contact",date:"",url:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
+  if(e.target.closest("[data-addiv]")){rec.interviews=rec.interviews||[];rec.interviews.push({label:"",date:"",note:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
+  const ivd=e.target.closest("[data-ivdel]");
+  if(ivd){const i=+ivd.closest("[data-ivi]").dataset.ivi;rec.interviews.splice(i,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
   const del=e.target.closest("[data-cdel]");
   if(del){const ci=+del.closest(".contact").dataset.ci;rec.contacts.splice(ci,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
   const cs=e.target.closest("[data-cstat]");
@@ -924,6 +1017,8 @@ document.getElementById("overlay").addEventListener("click",e=>{
 });
 document.getElementById("overlay").addEventListener("input",e=>{
   const id=state.editId;if(id==null)return;const rec=ensureRecord(id);
+  const ivf=e.target.closest("[data-iv]");
+  if(ivf){const i=+ivf.closest("[data-ivi]").dataset.ivi;rec.interviews[i][ivf.dataset.iv]=e.target.value;rec.updatedAt=Date.now();persist();return;}
   const f=e.target.closest("[data-f]");if(!f)return;const key=f.dataset.f;
   if(["cv","next","note"].includes(key)){rec[key]=e.target.value;}
   else{const ci=+e.target.closest(".contact").dataset.ci;rec.contacts[ci][key]=e.target.value;}
@@ -984,7 +1079,7 @@ document.getElementById("modebar").addEventListener("click",e=>{
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});
 document.getElementById("resetFilters").addEventListener("click",()=>{
-  state.onlyNew=false;state.onlySaved=false;state.mApplied="hide";state.mDismissed="hide";state.mAgencies="show";render();
+  state.onlyNew=false;state.mApplied="hide";state.mDismissed="hide";state.mAgencies="show";render();
 });
 document.getElementById("panel").addEventListener("click",e=>{
   const tog=e.target.closest(".pchip[data-toggle]");

@@ -810,12 +810,42 @@ def run(dry_run=False):
             print(f"  [{j['type'][:5]:5}|{j['sector'][:6]:6}] {j['posted_date']}  {j['title']} — {j['company']}")
         return
     OUT.parent.mkdir(parents=True,exist_ok=True)
+    write_history(jobs, now)
     OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"quota":QUOTA,
                                "config":{"search":KEYWORDS,"include":CONFIG.get("include") or DEFAULT_INCLUDE,
                                          "exclude":CONFIG.get("exclude") or DEFAULT_EXCLUDE,
                                          "min_salary_max":MIN_SALARY_MAX},
                                "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
+
+HIST = Path("data/history.json")
+def write_history(jobs, now):
+    """Append one dated row per day so the market can be read over time.
+
+    A time series can only be built forward — jobs.json is overwritten every run,
+    so without this the past is unrecoverable. One row per day (last run wins),
+    kept for two years; a few KB a year.
+    """
+    try:
+        rows = json.loads(HIST.read_text()) if HIST.exists() else []
+        if not isinstance(rows, list): rows = []
+    except Exception:
+        rows = []
+    today = now[:10]
+    by_cat = {}
+    for j in jobs:
+        c = j.get("category") or "other"
+        by_cat[c] = by_cat.get(c, 0) + 1
+    posted_week = sum(1 for j in jobs if (j.get("posted_date") or "") >= (datetime.now(timezone.utc)-timedelta(days=7)).date().isoformat())
+    row = {"date": today, "total": len(jobs), "by_category": by_cat,
+           "new_this_week": posted_week,
+           "first_seen_today": sum(1 for j in jobs if (j.get("first_seen") or "")[:10] == today)}
+    rows = [r for r in rows if r.get("date") != today] + [row]
+    rows.sort(key=lambda r: r.get("date", ""))
+    rows = rows[-730:]
+    HIST.parent.mkdir(parents=True, exist_ok=True)
+    HIST.write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+    print(f"  · history: {len(rows)} day(s) recorded")
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--dry-run",action="store_true")

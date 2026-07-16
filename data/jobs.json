@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T07:38:10.790050+00:00",
+  "generated_at": "2026-07-16T08:04:59.283925+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -51,7 +51,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 147,
+      "fetched": 148,
       "kept": 7,
       "error": false
     },
@@ -130,62 +130,8 @@
       "business analyst",
       "performance analyst"
     ],
-    "include": [
-      "product owner",
-      "digital project manager",
-      "ecommerce",
-      "e-commerce",
-      "ecomm",
-      "e-comm",
-      "ebusiness",
-      "e-business",
-      "omnichannel",
-      "omni-channel",
-      "digital consultant",
-      "product manager",
-      "product management",
-      "ui ux",
-      "ui/ux",
-      "uiux",
-      "ux ui",
-      "ux/ui",
-      "business analyst",
-      "performance analyst"
-    ],
-    "exclude": [
-      "controller",
-      "controlling",
-      "treasury",
-      "finance",
-      "accountant",
-      "tax",
-      "audit*",
-      "payroll",
-      "clienteling",
-      "intern",
-      "internship",
-      "apprentice",
-      "working student",
-      "fresh graduate",
-      "beauty advisor",
-      "client advisor",
-      "sales associate",
-      "retail associate",
-      "store manager",
-      "boutique manager",
-      "counter",
-      "cashier",
-      "supply chain",
-      "logistics",
-      "warehouse",
-      "customer service",
-      "service assistant",
-      "call cent*",
-      "receptionist",
-      "data entry",
-      "telesales"
-    ],
-    "min_salary_max": 9000
+    "min_salary_max": 9000,
+    "profiles": []
   },
   "jobs": [
     {

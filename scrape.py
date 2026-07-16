@@ -100,6 +100,7 @@ def record(label, fetched, kept, error=False):
 # Shared keyword list for keyword-driven sources (Workday needs a search term).
 KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
             "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
+# (replaced at runtime by apply_config() using the editable list from the Worker)
 
 # Google Jobs (SerpApi) — free quota is 250/month. We rotate a pool so we cover the bot-walled
 # houses (Kering) by name without exceeding budget: GJ_PER_RUN x 2 runs/day x 30 = must stay <250.
@@ -215,19 +216,76 @@ CONSULT_SIGNALS = ["consulting","consultancy","advisory","management consult","a
                    "cognizant","infosys","wipro","tata consultancy","oliver wyman","roland berger","kearney",
                    "l.e.k","strategy&","slalom","thoughtworks","publicis sapient"]
 
-INCLUDE = re.compile("|".join([
-    r"product owner", r"digital project manager", r"e-?commerce", r"e-?comm", r"e-?business",
-    r"omni-?channel", r"digital consultant", r"product manager", r"product management",
-    r"ui\s*/?\s*ux", r"ux\s*/?\s*ui", r"business analyst", r"performance analyst",
-]), re.I)
-EXCLUDE = re.compile("|".join([
-    r"controller", r"controlling", r"treasury", r"finance", r"accountant", r"\btax\b", r"\baudit",
-    r"payroll", r"clienteling", r"\bintern\b", r"internship", r"apprentice", r"working student",
-    r"fresh graduate", r"beauty advisor", r"client advisor", r"sales associate", r"retail associate",
-    r"store manager", r"boutique manager", r"\bcounter\b", r"cashier", r"supply chain", r"logistics",
-    r"warehouse", r"customer service", r"service assistant", r"call cent", r"receptionist",
-    r"data entry", r"telesales",
-]), re.I)
+# ── Editable search terms ────────────────────────────────────────────────
+# These are plain words, not regex, so they can be edited from the dashboard's
+# ⚙ Settings by someone who doesn't write code. Matching rules:
+#   "intern"  → whole word only  (won't match "International")
+#   "audit*"  → prefix match     (matches "auditor", "auditing")
+# The live lists come from the Cloudflare Worker (so edits sync across devices
+# and reach this scraper). If the Worker is unreachable we fall back to these
+# defaults — a network blip must never silently empty the dashboard.
+DEFAULT_SEARCH = ["ecommerce", "e-commerce", "product owner", "product manager",
+                  "digital project manager", "omnichannel", "digital consultant",
+                  "ui ux", "business analyst", "performance analyst"]
+DEFAULT_INCLUDE = ["product owner", "digital project manager", "ecommerce", "e-commerce",
+                   "ecomm", "e-comm", "ebusiness", "e-business", "omnichannel", "omni-channel",
+                   "digital consultant", "product manager", "product management",
+                   "ui ux", "ui/ux", "uiux", "ux ui", "ux/ui", "business analyst",
+                   "performance analyst"]
+DEFAULT_EXCLUDE = ["controller", "controlling", "treasury", "finance", "accountant", "tax",
+                   "audit*", "payroll", "clienteling", "intern", "internship", "apprentice",
+                   "working student", "fresh graduate", "beauty advisor", "client advisor",
+                   "sales associate", "retail associate", "store manager", "boutique manager",
+                   "counter", "cashier", "supply chain", "logistics", "warehouse",
+                   "customer service", "service assistant", "call cent*", "receptionist",
+                   "data entry", "telesales"]
+
+def term_to_pattern(t):
+    """A plain word becomes a whole-word match; a trailing * becomes a prefix match."""
+    t = (t or "").strip().lower()
+    if not t: return None
+    if t.endswith("*"):
+        core = re.escape(t[:-1])
+        return rf"\b{core}\w*" if core else None
+    return rf"\b{re.escape(t)}\b"
+
+def compile_terms(terms, fallback):
+    pats = [p for p in (term_to_pattern(t) for t in (terms or [])) if p]
+    if not pats:                                  # never let an empty list match nothing
+        pats = [p for p in (term_to_pattern(t) for t in fallback) if p]
+    return re.compile("|".join(pats), re.I)
+
+def load_config():
+    """Read the editable term lists from the Worker. Falls back to defaults."""
+    url, tok = os.getenv("SYNC_URL", "").rstrip("/"), os.getenv("SYNC_TOKEN", "")
+    cfg = {}
+    if url and tok:
+        try:
+            r = requests.get(f"{url}/config", headers={"Authorization": f"Bearer {tok}"}, timeout=15)
+            if r.status_code == 200:
+                cfg = r.json() or {}
+                print(f"  · config loaded from Worker (updated {cfg.get('updated','?')})")
+            else:
+                print(f"  ! config HTTP {r.status_code} — using defaults", file=sys.stderr)
+        except Exception as e:
+            print(f"  ! config unreachable ({e}) — using defaults", file=sys.stderr)
+    else:
+        print("  · no SYNC_URL/SYNC_TOKEN — using default search terms")
+    return cfg
+
+CONFIG = {}
+INCLUDE = compile_terms(DEFAULT_INCLUDE, DEFAULT_INCLUDE)
+EXCLUDE = compile_terms(DEFAULT_EXCLUDE, DEFAULT_EXCLUDE)
+
+def apply_config(cfg):
+    """Point the module-level knobs at whatever the user configured."""
+    global CONFIG, INCLUDE, EXCLUDE, KEYWORDS, MIN_SALARY_MAX
+    CONFIG = cfg or {}
+    INCLUDE = compile_terms(CONFIG.get("include"), DEFAULT_INCLUDE)
+    EXCLUDE = compile_terms(CONFIG.get("exclude"), DEFAULT_EXCLUDE)
+    KEYWORDS = [k for k in (CONFIG.get("search") or []) if k.strip()] or DEFAULT_SEARCH
+    v = CONFIG.get("min_salary_max")
+    if isinstance(v, (int, float)) and v >= 0: MIN_SALARY_MAX = int(v)
 
 GOOD_LINK = ("smartrecruiters","myworkdayjobs","eightfold","avature","successfactors","taleo","icims",
              "workday","lever.co","greenhouse","careers.","jobs.","/careers")
@@ -255,14 +313,31 @@ def sector_of(company, title, desc):
     if preferred(company) or any(b in c for b in SECTOR_BRANDS): return "beauty_luxury"
     return "beauty_luxury" if any(w in blob for w in LUX_SIGNALS) else "general"
 
+FINANCE_SIGNALS = ["bank","banking","insurance","insurer","assurance","reinsur","asset management",
+                   "wealth management","private bank","capital markets","securities","brokerage",
+                   "dbs","ocbc","uob","standard chartered","stanchart","citibank","citigroup","hsbc",
+                   "jpmorgan","j.p. morgan","goldman sachs","morgan stanley","bnp paribas","credit suisse",
+                   "deutsche bank","barclays","maybank","cimb","aia","prudential","great eastern",
+                   "manulife","ntuc income","income insurance","allianz","axa","chubb","zurich",
+                   "swiss re","munich re","marsh","aon","willis towers","tokio marine","msig","etiqa"]
+
 def category_of(company, title, sector, type_):
-    """Primary bucket for the UI tabs — each role lands in exactly one."""
+    """Primary bucket for the UI tabs — each role lands in exactly one.
+
+    Company identity is checked BEFORE content signals: a 'TikTok Shop — Beauty'
+    role is a tech-company role that happens to mention beauty, not a beauty
+    house. Previously the beauty/luxury sector test ran first and swallowed it,
+    so the tech test below was never reached."""
     if type_=="house":            return "house"
+    who=(company or "").lower()
+    if any(w in who for w in TECH_SIGNALS):    return "tech"
+    if any(w in who for w in FINANCE_SIGNALS): return "finance"
     if sector=="hospitality":     return "travel"
     if sector=="beauty_luxury":   return "beauty_luxury"
     if type_=="agency":           return "recruiter"
     blob=f"{company} {title}".lower()
     if any(w in blob for w in TECH_SIGNALS):    return "tech"
+    if any(w in blob for w in FINANCE_SIGNALS): return "finance"
     if any(w in blob for w in CONSULT_SIGNALS): return "consulting"
     return "other"
 
@@ -442,9 +517,24 @@ def sr_detail(slug,pid,hdr):
     except requests.RequestException:
         return ""
 
+QUOTA={}
+def serpapi_quota(key):
+    """Ask SerpApi how many searches are left this month, so the dashboard can warn."""
+    try:
+        r=requests.get("https://serpapi.com/account.json",params={"api_key":key},timeout=15)
+        if r.status_code!=200: return
+        d=r.json()
+        left=d.get("total_searches_left"); used=d.get("this_month_usage")
+        limit=d.get("searches_per_month")
+        QUOTA["serpapi"]={"left":left,"used":used,"limit":limit}
+        print(f"  · SerpApi quota: {used}/{limit} used, {left} left")
+    except Exception as e:
+        print(f"  ! SerpApi quota check failed: {e}",file=sys.stderr)
+
 def connector_google_jobs():
     key=os.getenv("SERPAPI_KEY")
     if not key: print("  · Google Jobs skipped (no SERPAPI_KEY)"); return []
+    serpapi_quota(key)
     out=[]
     queries=gj_queries_for_this_run()
     print(f"  · Google Jobs queries this run: {queries}")
@@ -677,6 +767,7 @@ def load_previous():
     return {}
 
 def run(dry_run=False):
+    apply_config(load_config())          # editable search terms, before anything is fetched
     prev=load_previous(); now=datetime.now(timezone.utc).isoformat()
     STATS.clear()
     collected={}
@@ -719,7 +810,11 @@ def run(dry_run=False):
             print(f"  [{j['type'][:5]:5}|{j['sector'][:6]:6}] {j['posted_date']}  {j['title']} — {j['company']}")
         return
     OUT.parent.mkdir(parents=True,exist_ok=True)
-    OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"jobs":jobs},indent=2,ensure_ascii=False))
+    OUT.write_text(json.dumps({"generated_at":now,"sources":STATS,"quota":QUOTA,
+                               "config":{"search":KEYWORDS,"include":CONFIG.get("include") or DEFAULT_INCLUDE,
+                                         "exclude":CONFIG.get("exclude") or DEFAULT_EXCLUDE,
+                                         "min_salary_max":MIN_SALARY_MAX},
+                               "jobs":jobs},indent=2,ensure_ascii=False))
     print(f"Wrote {OUT} ({len(jobs)} roles).")
 
 def main():

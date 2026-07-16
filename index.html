@@ -104,6 +104,43 @@
   .src-n{color:var(--muted);white-space:nowrap;}
   .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;}
   .dot.ok{background:#3f8f5f;} .dot.zero{background:#cec7bb;} .dot.err{background:#b3371f;}
+  /* Priority buckets inside Pipeline */
+  .bucketbar{display:flex;flex-wrap:wrap;gap:4px;background:#ECE8E1;border-radius:16px;padding:4px;margin-bottom:2px;}
+  .bk{flex:1 1 auto;text-align:center;padding:8px 12px;border:0;background:transparent;border-radius:999px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;}
+  .bk .tc{opacity:.6;font-weight:500;margin-left:4px;}
+  .bk[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  /* Pipeline card head: flags, people, priority */
+  .pc-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .flag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;}
+  .flag.live{color:var(--ok);background:var(--ok-soft);}
+  .flag.gone{color:var(--muted);background:#ECE8E1;}
+  .flag i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;}
+  .people{display:inline-flex;align-items:center;gap:3px;margin-left:auto;}
+  .pic{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+  .pic.todo{color:#c9c2b6;} .pic.contacted{color:var(--ochre);} .pic.replied{color:var(--ok);} .pic.no_reply{color:#c2a08f;}
+  .prio{display:inline-flex;gap:4px;}
+  .prio button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12px;line-height:1;cursor:pointer;}
+  .prio button:hover{border-color:var(--accent);color:var(--accent);}
+  .prio button:disabled{opacity:.3;cursor:default;}
+  .agetag{font-size:11px;font-weight:600;color:var(--ochre);background:var(--ochre-soft);padding:2px 8px;border-radius:999px;}
+  .pulse{background:var(--accent-soft);border:1px solid #e7cdd5;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--accent);font-weight:600;}
+  .tchips{display:flex;flex-wrap:wrap;gap:6px;}
+  .tchip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 11px;font-size:12.5px;font-weight:500;}
+  .tchip button{border:0;background:#ECE8E1;color:var(--muted);width:17px;height:17px;border-radius:50%;font-size:12px;line-height:1;cursor:pointer;padding:0;}
+  .tchip button:hover{background:var(--accent);color:#fff;}
+  .quota{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-top:1px solid var(--line);font-size:12.5px;}
+  .quota b{font-weight:600;}
+  .quota.warn b{color:#b3371f;}
+  .clink{font-size:11.5px;color:var(--accent);text-decoration:none;font-weight:600;}
+  /* Use the screen on laptop / iPad: wider canvas and two columns of cards. */
+  @media (min-width:900px){
+    .wrap{max-width:1080px;}
+    #list{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+    #list .job,#list .prec{margin-top:0;}
+    #list .empty,#list .section-h,#list .pulse,#list .bucketbar{grid-column:1/-1;}
+    .controls{max-width:100%;}
+  }
+  @media (min-width:1280px){ .wrap{max-width:1240px;} #list{grid-template-columns:1fr 1fr 1fr;} }
   @media (max-width:420px){h1{font-size:32px;}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
   .tag.tracked{color:var(--ink);background:#ECE8E1;}
@@ -201,7 +238,7 @@
         </div>
       </div>
       <div class="prow">
-        <span class="plabel">Applied</span>
+        <span class="plabel">Tracked &amp; applied</span>
         <div class="seg" data-seg="mApplied">
           <button data-val="show">Show</button><button data-val="hide">Hide</button><button data-val="only">Only</button>
         </div>
@@ -252,7 +289,8 @@ const SAMPLE={generated_at:new Date().toISOString(),jobs:[
 function iso(offset){const d=new Date();d.setDate(d.getDate()+offset);return d.toISOString().slice(0,10);}
 
 const CATS=[["house","Houses"],["beauty_luxury","Beauty & Luxury"],["travel","Travel & Hospitality"],
-            ["tech","Tech"],["consulting","Consulting"],["recruiter","Recruiters"],["other","Other"]];
+            ["tech","Tech"],["finance","Banking & Insurance"],["consulting","Consulting"],
+            ["recruiter","Recruiters"],["other","Other"]];
 function catOf(j){
   if(j.category)return j.category;
   if(j.type==="house")return "house";
@@ -279,7 +317,7 @@ function renderModebar(){
     <button class="mode" data-mode="browse" role="tab" aria-selected="${state.mode==="browse"}">Browse roles</button>
     <button class="mode" data-mode="pipeline" role="tab" aria-selected="${state.mode==="pipeline"}">Pipeline${badge}</button>`;
 }
-const state={jobs:[],mode:"browse",scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"show",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
+const state={jobs:[],config:{search:[],include:[],exclude:[],min_salary_max:9000},cfgDirty:false,scannedAt:0,mode:"browse",bucket:"high",scope:"house",q:"",onlyNew:false,onlySaved:false,mApplied:"hide",mDismissed:"hide",mAgencies:"show",panelOpen:false,editId:null,
   savedSet:new Set(load("v_saved")),appliedSet:new Set(load("v_applied")),dismissedSet:new Set(load("v_dismissed")),
   pipeline:loadObj("v_pipeline")};
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"[]");}catch(e){return [];}}
@@ -302,15 +340,39 @@ const SYNC={
   get key(){return localStorage.getItem("v_sync_token")||"";}
 };
 function syncOn(){return !!(SYNC.url&&SYNC.key);}
-let lastLocalChange=0, pushTimer=null;
+let lastLocalChange=0, pushTimer=null, firstPull=true;
 state.sync=syncOn()?"idle":"off";
-function applyRemote(o){
+/* Merge two pipelines per role, newest edit wins — the same rule the Worker uses.
+   NEVER assign the remote pipeline wholesale: an empty or stale remote would
+   erase months of contacts and notes that only exist on this device (e.g. roles
+   tracked before sync was switched on). Marks stay last-write-wins: they're one
+   tap to redo. The pipeline isn't. */
+function mergePipe(a,b){
+  const out={}, ids=new Set([...Object.keys(a||{}),...Object.keys(b||{})]);
+  for(const id of ids){
+    const x=(a||{})[id], y=(b||{})[id];
+    if(!x){out[id]=y;continue;}
+    if(!y){out[id]=x;continue;}
+    out[id]=((y.updatedAt||0)>=(x.updatedAt||0))?y:x;
+  }
+  return out;
+}
+function applyRemote(o, adoptMarks){
   if(!o) return;
-  state.savedSet=new Set(o.saved||[]);
-  state.appliedSet=new Set(o.applied||[]);
-  state.dismissedSet=new Set(o.dismissed||[]);
-  if(o.pipeline && typeof o.pipeline==="object") state.pipeline=o.pipeline;   // only adopt if remote carries it
+  // Marks are a whole-set replace, so only take them when the server isn't stale
+  // (or on the first pull of the session, when we have nothing better).
+  if(adoptMarks){
+    state.savedSet=new Set(o.saved||[]);
+    state.appliedSet=new Set(o.applied||[]);
+    state.dismissedSet=new Set(o.dismissed||[]);
+  }
+  const remote=(o.pipeline && typeof o.pipeline==="object")?o.pipeline:{};
+  const merged=mergePipe(state.pipeline,remote);
+  // If this device knows records the server doesn't, push the union back.
+  const needsPush=JSON.stringify(merged)!==JSON.stringify(remote);
+  state.pipeline=merged;
   cacheLocal();
+  if(needsPush && syncOn()){clearTimeout(pushTimer);pushTimer=setTimeout(pushRemote,800);}
 }
 async function pullRemote(){
   if(!syncOn()){state.sync="off";return;}
@@ -319,7 +381,11 @@ async function pullRemote(){
     if(!r.ok){state.sync="error";return;}
     const o=await r.json();
     state.sync="on";
-    if((o.updated||0) >= lastLocalChange){ applyRemote(o); render(); }   // don't clobber a fresh local edit
+    // The pipeline ALWAYS merges (merging can't lose anything). Only the marks
+    // wait for a server that isn't older than our last local edit.
+    applyRemote(o, firstPull || (o.updated||0) >= lastLocalChange);
+    firstPull=false;
+    render();
   }catch(e){state.sync="error";}
 }
 async function pushRemote(){
@@ -336,17 +402,63 @@ function persist(){                       // called on every save/applied/dismis
   if(syncOn()){clearTimeout(pushTimer);pushTimer=setTimeout(pushRemote,800);}
 }
 function daysSince(iso){if(!iso)return 999;return (Date.now()-new Date(iso))/864e5;}
-function isNew(j){return daysSince(j.first_seen)<=7;}
+/* "New" = the ROLE was posted within the last week — its real age, not when our
+   scraper happened to notice it. (first_seen only says when we started looking,
+   so it marked everything New while the scraper was young.) A few sources don't
+   publish a posted date; for those we fall back to first_seen as the best proxy. */
+/* Search terms. Two different questions, and the difference matters:
+   • REMOVING a term hides roles we already fetched → takes effect instantly here.
+   • ADDING a term can't conjure roles we never asked for → needs a scan to run.
+   The panel says so, so the filter never pretends to be a search. */
+let cfgInc=null, cfgExc=null;
+function termRe(t){
+  t=(t||"").trim().toLowerCase(); if(!t)return null;
+  const esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  if(t.endsWith("*")){const c=esc(t.slice(0,-1));return c?`\\b${c}\\w*`:null;}
+  return `\\b${esc(t)}\\b`;
+}
+function compileTerms(list){
+  const p=(list||[]).map(termRe).filter(Boolean);
+  return p.length?new RegExp(p.join("|"),"i"):null;
+}
+function recompile(){
+  cfgInc=compileTerms(state.config.include);
+  cfgExc=compileTerms(state.config.exclude);
+}
+function relevantClient(j){
+  const t=j.title||"";
+  if(cfgInc && !cfgInc.test(t))return false;
+  if(cfgExc && cfgExc.test(t))return false;
+  return true;
+}
+const NEW_DAYS=7;
+function isNew(j){
+  const d=j.posted_date||j.first_seen;
+  return !!d && daysSince(d)<=NEW_DAYS;
+}
+function weeksAgo(d){
+  if(!d)return "";
+  const n=Math.floor(daysSince(d));
+  if(n<=0)return "today"; if(n===1)return "yesterday";
+  if(n<7)return n+" days ago";
+  const w=Math.floor(n/7);
+  return w===1?"1 week ago":w+" weeks ago";
+}
 
 async function boot(){
   let data=SAMPLE;
   try{const r=await fetch("data/jobs.json",{cache:"no-store"});if(r.ok){const d=await r.json();if(d&&d.jobs&&d.jobs.length)data=d;}}catch(e){}
   state.jobs=data.jobs||[];
+  state.scannedAt=new Date(data.generated_at||0).getTime();
+  state.quota=data.quota||{};
+  if(data.config){state.config={...state.config,...data.config};}   // what the last scan actually used
+  recompile();
   const when=new Date(data.generated_at||Date.now());
   document.getElementById("byline").innerHTML=`<b>${state.jobs.length}</b> roles · updated ${when.toLocaleDateString(undefined,{day:"numeric",month:"short"})}`;
   renderSources(data.sources);
   render();
-  pullRemote();                                   // adopt any marks made on other devices
+  pullRemote();
+  pullConfig();                                   // adopt any marks made on other devices
 }
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)pullRemote();});
 window.addEventListener("focus",pullRemote);
@@ -358,12 +470,23 @@ function renderSources(sources){
     const cls=s.error?"err":(s.fetched===0?"zero":"ok");
     return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}</span><span class="src-n">${s.fetched} fetched · ${s.kept} SG</span></div>`;
   }).join("");
-  el.innerHTML=`<summary>Sources &amp; diagnostics</summary><div class="src-body">${rows}</div>`;
+  const q=(state.quota||{}).serpapi;
+  let qrow="";
+  if(q && q.limit){
+    const left=q.left==null?"?":q.left;
+    const low=typeof q.left==="number" && q.left<=25;
+    qrow=`<div class="quota ${low?"warn":""}"><span>Google Jobs (SerpApi) monthly quota</span><span><b>${esc(String(left))} left</b> of ${esc(String(q.limit))}</span></div>`
+       + (low?`<div class="quota warn"><span></span><span><b>Quota nearly gone — Google Jobs results will stop until it resets.</b></span></div>`:"");
+  }
+  el.innerHTML=`<summary>Sources &amp; diagnostics</summary><div class="src-body">${rows}${qrow}</div>`;
 }
 function visible(){
   const q=state.q.trim().toLowerCase();
   return state.jobs.filter(j=>{
     if(!q && catOf(j)!==state.scope)return false;      // browsing shows one category; search spans all
+    if(!relevantClient(j))return false;                 // live term edits narrow instantly
+    // Anything in the pipeline (tracked or applied) belongs in Pipeline, not here.
+    if(state.mApplied!=="only" && isTracked(j.id))return false;
     if(state.onlyNew&&!isNew(j))return false;
     if(state.onlySaved&&!state.savedSet.has(j.id))return false;
     if(state.mAgencies==="hide"&&j.type==="agency")return false;
@@ -432,7 +555,7 @@ function render(){
       </div>
     </li>`;
   }).join("");
-  document.getElementById("footer").textContent="The Vitrine · refreshed 9am & 3pm SGT";
+  document.getElementById("footer").textContent="The Vitrine · refreshed 9am & 5pm SGT";
   syncPanel();
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
@@ -447,14 +570,30 @@ const FOLLOWUP_DAYS=5;
 function todayStr(){return new Date().toISOString().slice(0,10);}
 function jobById(id){return state.jobs.find(j=>j.id===id);}
 function isTracked(id){const r=state.pipeline[id];return !!r && !r.deleted;}
+const PRIOS=[["high","High"],["med","Medium"],["low","Low"],["closed","Closed"]];
+const PRIO_LABEL=Object.fromEntries(PRIOS);
 function ensureRecord(id){
   const r=state.pipeline[id];
-  if(!r || r.deleted) state.pipeline[id]={stage:"spotted",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now()};
-  return state.pipeline[id];
+  if(!r || r.deleted){
+    const j=jobById(id)||{};
+    state.pipeline[id]={stage:"spotted",prio:"high",cv:"",contacts:[],note:"",next:"",updatedAt:Date.now(),
+      // Snapshot the essentials: a role that disappears from the feed must not
+      // vanish from the pipeline — we still show it, flagged as no longer posted.
+      snap:{title:j.title||"",company:j.company||"",url:(j.links&&(j.links.careers||j.links.primary))||""}};
+  }
+  const rec=state.pipeline[id];
+  if(!rec.prio)rec.prio="high";
+  return rec;
 }
 function trackedItems(){
-  return Object.keys(state.pipeline).map(id=>({id,rec:state.pipeline[id],job:jobById(id)}))
-    .filter(x=>x.job && x.rec && !x.rec.deleted).sort((a,b)=>(b.rec.updatedAt||0)-(a.rec.updatedAt||0));
+  return Object.keys(state.pipeline).map(id=>{
+    const rec=state.pipeline[id], live=jobById(id);
+    if(!rec||rec.deleted)return null;
+    const snap=rec.snap||{};
+    // live = still in today's feed. Otherwise fall back to the snapshot so the
+    // role stays visible, flagged as no longer posted.
+    return {id,rec,job:live||{title:snap.title||"(role no longer listed)",company:snap.company||"—",links:{primary:snap.url||""}},live:!!live};
+  }).filter(Boolean).sort((a,b)=>(b.rec.updatedAt||0)-(a.rec.updatedAt||0));
 }
 function followUps(){
   const out=[];
@@ -480,21 +619,61 @@ function contactSummary(rec){
   if(replied)parts.push(`${replied} replied`); else if(contacted)parts.push(`${contacted} awaiting reply`);
   return parts.join(" · ");
 }
+function personIcons(rec){
+  const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
+  if(!cs.length)return "";
+  const ico=c=>`<svg class="pic ${c.status||"todo"}" viewBox="0 0 24 24" role="img" aria-label="${esc(c.name||"contact")} — ${esc(CSTAT_LABEL[c.status||"to_contact"])}"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"/></svg>`;
+  return `<span class="people" title="${esc(cs.map(c=>`${c.name} — ${CSTAT_LABEL[c.status||"to_contact"]}`).join(" · "))}">${cs.map(ico).join("")}</span>`;
+}
+function contactLine(rec){
+  const cs=(rec.contacts||[]).filter(c=>(c.name||"").trim());
+  if(!cs.length)return "No contact yet";
+  return cs.map(c=>{
+    const d=c.date?` · ${Math.floor(daysSince(c.date))}d`:"";
+    return `${esc(c.name)}${d}`;
+  }).join(" · ");
+}
+function bucketOf(rec){return rec.prio||"high";}
+function precCard(x){
+  const {id,rec,job,live}=x;
+  const bits=[contactLine(rec)];
+  if(rec.cv)bits.push("CV: "+esc(rec.cv));
+  if(rec.next)bits.push("Next: "+esc(rec.next));
+  const flag=live?`<span class="flag live"><i></i>Live</span>`:`<span class="flag gone"><i></i>No longer posted</span>`;
+  const age=rec.appliedOn?`<span class="agetag">Applied ${esc(weeksAgo(rec.appliedOn))}</span>`:"";
+  const pr=bucketOf(rec), idx=PRIOS.findIndex(x=>x[0]===pr);
+  return `<div class="prec" data-id="${esc(id)}">
+    <div class="pc-head">${flag}${age}${personIcons(rec)}</div>
+    <div class="pc-co" style="margin-top:6px">${esc(job.company||"—")}</div>
+    <div class="pc-title">${esc(job.title)}</div>
+    <div class="pc-meta">${bits.map(b=>`<span>${b}</span>`).join("")}</div>
+    <div class="prec-actions" style="margin-top:10px">
+      <span class="prio">
+        <button data-prio="up" data-id="${esc(id)}" ${idx<=0?"disabled":""} title="Raise priority">▲</button>
+        <button data-prio="down" data-id="${esc(id)}" ${idx>=PRIOS.length-1?"disabled":""} title="Lower priority">▼</button>
+      </span>
+      <span class="stage-note" style="font-size:11.5px;color:var(--muted);align-self:center">${esc(STAGE_LABEL[rec.stage||"spotted"])} · ${esc(PRIO_LABEL[pr])}</span>
+    </div>
+  </div>`;
+}
 function renderPipeline(){
   document.getElementById("filterbar").style.display="none";
   syncPanel();
   const q=state.q.trim().toLowerCase();
   const match=x=>!q||`${x.job.title} ${x.job.company}`.toLowerCase().includes(q);
-  const items=trackedItems().filter(match), fu=followUps().filter(match);
+  const all=trackedItems().filter(match);
+  const fu=followUps().filter(f=>!q||`${f.job.title} ${f.job.company}`.toLowerCase().includes(q));
   const list=document.getElementById("list");
-  document.getElementById("footer").textContent="The Vitrine · your pipeline lives on your devices";
-  if(!items.length){
+  document.getElementById("footer").textContent="The Vitrine · your pipeline";
+  if(!all.length){
     document.getElementById("count").textContent="";
-    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Open any role and tap <strong>Track</strong> to follow it here — contacts, replies, follow-ups and which CV you sent.</li>`;
+    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.</li>`;
     return;
   }
-  document.getElementById("count").textContent=`${items.length} role${items.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
+  const counts={};PRIOS.forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec)===k).length);
+  document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
   let html="";
+  // Follow-ups cut across every bucket — urgency shouldn't hide behind a tab.
   if(fu.length){
     html+=`<div class="section-h due">Follow-ups due <span class="n">${fu.length}</span></div>`;
     html+=fu.map(f=>{
@@ -517,20 +696,19 @@ function renderPipeline(){
         <div class="prec-actions"><button class="mini go" data-fu="opennext" data-id="${esc(f.id)}">Open</button><button class="mini" data-fu="clearnext" data-id="${esc(f.id)}">Clear reminder</button></div></div>`;
     }).join("");
   }
-  STAGES.forEach(([key,label])=>{
-    const inStage=items.filter(x=>(x.rec.stage||"spotted")===key);
-    if(!inStage.length)return;
-    html+=`<div class="section-h">${esc(label)} <span class="n">${inStage.length}</span></div>`;
-    html+=inStage.map(({id,rec,job})=>{
-      const bits=[contactSummary(rec)];
-      if(rec.cv)bits.push("CV: "+esc(rec.cv));
-      if(rec.next)bits.push("Next: "+esc(rec.next));
-      return `<div class="prec" data-id="${esc(id)}">
-        <div class="pc-co">${esc(job.company||"—")}</div>
-        <div class="pc-title">${esc(job.title)}</div>
-        <div class="pc-meta">${bits.map(b=>`<span>${b}</span>`).join("")}</div></div>`;
-    }).join("");
-  });
+  html+=`<div class="bucketbar">`+PRIOS.map(([k,l])=>
+    `<button class="bk" data-bucket="${k}" aria-selected="${state.bucket===k}">${l}<span class="tc">${counts[k]}</span></button>`).join("")+`</div>`;
+  const inB=all.filter(x=>bucketOf(x.rec)===state.bucket);
+  if(!inB.length){
+    html+=`<li class="empty"><b>Nothing in ${esc(PRIO_LABEL[state.bucket])}</b>Use ▲ / ▼ on a role to move it between priorities.</li>`;
+  }else{
+    STAGES.forEach(([key,label])=>{
+      const inStage=inB.filter(x=>(x.rec.stage||"spotted")===key);
+      if(!inStage.length)return;
+      html+=`<div class="section-h">${esc(label)} <span class="n">${inStage.length}</span></div>`;
+      html+=inStage.map(precCard).join("");
+    });
+  }
   list.innerHTML=html;
 }
 
@@ -549,9 +727,11 @@ function renderEditor(){
         <select class="inp cchan" data-f="channel">${chan}</select>
       </div>
       <div class="crow" style="margin-top:8px"><input class="inp" data-f="role" placeholder="Role @ company (e.g. Digital Dir. @ Cartier)" value="${esc(c.role||"")}"></div>
+      <div class="crow" style="margin-top:8px"><input class="inp" data-f="url" placeholder="LinkedIn profile link (paste)" value="${esc(c.url||"")}"></div>
       <div class="crow2">
         <button class="cstat" data-cstat data-s="${stat}">${esc(CSTAT_LABEL[stat])}</button>
-        ${c.date?`<span class="cdate">since ${esc(c.date)}</span>`:""}
+        ${c.date?`<span class="cdate">${Math.floor(daysSince(c.date))} day${Math.floor(daysSince(c.date))===1?"":"s"} ago</span>`:""}
+        ${c.url?`<a class="clink" href="${esc(c.url)}" target="_blank" rel="noopener">Open profile ↗</a>`:""}
         <button class="cdel" data-cdel title="Remove contact">✕</button>
       </div></div>`;
   }).join("");
@@ -576,6 +756,32 @@ function renderEditor(){
     </div>`;
 }
 
+async function pullConfig(){
+  if(!syncOn())return;
+  try{
+    const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{headers:{Authorization:"Bearer "+SYNC.key}});
+    if(!r.ok)return;
+    const c=await r.json();
+    if(c && (c.include||c.search||c.exclude)){
+      state.config={...state.config,...c};
+      state.cfgDirty=(c.updated||0)>state.scannedAt;   // edited since the last scan?
+      recompile();render();
+    }
+  }catch(e){}
+}
+async function pushConfig(){
+  if(!syncOn()){alert("Turn on sync first — the search terms are shared through the Worker, which is also what the scanner reads.");return false;}
+  try{
+    const r=await fetch(SYNC.url.replace(/\/+$/,"")+"/config",{method:"POST",
+      headers:{Authorization:"Bearer "+SYNC.key,"Content-Type":"application/json"},
+      body:JSON.stringify({search:state.config.search,include:state.config.include,
+                           exclude:state.config.exclude,min_salary_max:state.config.min_salary_max})});
+    if(!r.ok)return false;
+    const c=await r.json(); state.config={...state.config,...c};
+    state.cfgDirty=true; recompile(); render(); return true;
+  }catch(e){return false;}
+}
+
 /* ── Settings · backup · sync ────────────────────────────────────────────── */
 function backupData(){
   return {vitrine_backup:1, exported_at:new Date().toISOString(),
@@ -595,6 +801,16 @@ function applyBackup(o){
   state.dismissedSet=new Set(o.dismissed||[]);
   state.pipeline=(o.pipeline&&typeof o.pipeline==="object")?o.pipeline:{};
   persist();render();
+}
+function termFld(key,label){
+  const list=state.config[key]||[];
+  const chips=list.map((t,i)=>`<span class="tchip">${esc(t)}<button data-delterm="${key}" data-i="${i}" title="Remove">×</button></span>`).join("")
+    || `<span class="hint">None — the defaults will be used.</span>`;
+  return `<div class="fld"><label>${esc(label)} <span style="text-transform:none;letter-spacing:0;font-weight:500">· ${list.length}</span></label>
+    <div class="tchips">${chips}</div>
+    <div class="crow" style="margin-top:8px">
+      <input class="inp" data-addterm="${key}" placeholder="add a term, then press Enter">
+    </div></div>`;
 }
 function statusMeta(){
   return ({off:["","Sync is off — add your token to turn it on"],idle:["busy","Sync on — checking…"],
@@ -617,6 +833,17 @@ function renderSettings(){
       <button class="set-btn go block" data-backup>Download backup</button>
       <button class="set-btn block" data-restore>Restore from a backup file…</button>
     </div>
+    <div class="set-sec">
+      <h3 class="set-h">Search terms</h3>
+      <p class="set-sub">What the twice-daily scan looks for. <b>Removing</b> a term hides matching roles straight away. <b>Adding</b> one only finds new roles at the next scan — the scanner runs on GitHub, not in this browser.${state.cfgDirty?` <b style="color:var(--accent)">Terms changed since the last scan — run one to fetch new roles.</b>`:""}</p>
+      ${termFld("search","Search for (asked of each job site)")}
+      ${termFld("include","Keep titles containing")}
+      ${termFld("exclude","Drop titles containing")}
+      <p class="hint" style="margin-top:10px"><b>intern</b> matches the whole word only (not "International"). <b>audit*</b> also matches "auditor", "auditing".</p>
+      <button class="set-btn go block" data-savecfg>Save terms</button>
+      <a class="set-btn block" style="display:block;text-align:center;text-decoration:none" href="https://github.com/Thami-Bng/Vitrine/actions" target="_blank" rel="noopener">Run a scan now ↗</a>
+    </div>
+
     <div class="set-sec">
       <h3 class="set-h">Sync across devices</h3>
       <div class="statusrow"><span class="sdot ${cls}"></span><span>${esc(label)}</span></div>
@@ -648,6 +875,15 @@ document.getElementById("list").addEventListener("click",e=>{
     else if(act==="opennext"){openEditor(id);return;}
     rec.updatedAt=Date.now();persist();render();return;
   }
+  const bk=e.target.closest("[data-bucket]");
+  if(bk){state.bucket=bk.dataset.bucket;render();return;}
+  const pr=e.target.closest("[data-prio]");
+  if(pr){
+    const rec=ensureRecord(pr.dataset.id);
+    const i=PRIOS.findIndex(x=>x[0]===(rec.prio||"high"));
+    const ni=pr.dataset.prio==="up"?Math.max(0,i-1):Math.min(PRIOS.length-1,i+1);
+    rec.prio=PRIOS[ni][0];rec.updatedAt=Date.now();persist();render();return;
+  }
   const prec=e.target.closest(".prec");
   if(prec){openEditor(prec.dataset.id);return;}
   const card=e.target.closest(".job");if(!card)return;const id=card.dataset.id;
@@ -656,7 +892,17 @@ document.getElementById("list").addEventListener("click",e=>{
   if(act){
     e.stopPropagation();const a=act.dataset.act;
     if(a==="track"){openEditor(id);return;}
-    const set=a==="save"?state.savedSet:a==="applied"?state.appliedSet:state.dismissedSet;
+    if(a==="applied"){
+      // Applying IS pipeline activity — it shouldn't need a separate Track tap.
+      if(state.appliedSet.has(id)){state.appliedSet.delete(id);}
+      else{
+        state.appliedSet.add(id);
+        const r=ensureRecord(id);
+        r.stage="applied"; r.appliedOn=r.appliedOn||todayStr(); r.updatedAt=Date.now();
+      }
+      persist();render();return;
+    }
+    const set=a==="save"?state.savedSet:state.dismissedSet;
     set.has(id)?set.delete(id):set.add(id);persist();render();return;
   }
   card.classList.toggle("open");
@@ -668,7 +914,7 @@ document.getElementById("overlay").addEventListener("click",e=>{
   const id=state.editId;if(id==null)return;const rec=ensureRecord(id);
   if(e.target.closest("[data-close]")){closeEditor();return;}
   if(e.target.closest("[data-untrack]")){state.pipeline[id]={deleted:true,updatedAt:Date.now()};persist();closeEditor();return;}
-  if(e.target.closest("[data-addc]")){rec.contacts=rec.contacts||[];rec.contacts.push({name:"",role:"",channel:"linkedin",status:"to_contact",date:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
+  if(e.target.closest("[data-addc]")){rec.contacts=rec.contacts||[];rec.contacts.push({name:"",role:"",channel:"linkedin",status:"to_contact",date:"",url:""});rec.updatedAt=Date.now();persist();renderEditor();return;}
   const del=e.target.closest("[data-cdel]");
   if(del){const ci=+del.closest(".contact").dataset.ci;rec.contacts.splice(ci,1);rec.updatedAt=Date.now();persist();renderEditor();return;}
   const cs=e.target.closest("[data-cstat]");
@@ -690,8 +936,27 @@ document.getElementById("setOverlay").addEventListener("click",e=>{
   if(e.target.id==="setOverlay"||e.target.closest("[data-sclose]")){closeSettings();return;}
   if(e.target.closest("[data-backup]")){downloadBackup();return;}
   if(e.target.closest("[data-restore]")){document.getElementById("restoreInput").click();return;}
+  const del=e.target.closest("[data-delterm]");
+  if(del){
+    const k=del.dataset.delterm;
+    state.config[k]=(state.config[k]||[]).filter((_,i)=>i!==+del.dataset.i);
+    recompile();renderSettings();render();return;
+  }
+  if(e.target.closest("[data-savecfg]")){
+    const b=e.target.closest("[data-savecfg]");const t=b.textContent;b.textContent="Saving…";
+    pushConfig().then(ok=>{b.textContent=ok?"Saved ✓":"Couldn't save";setTimeout(()=>{b.textContent=t;renderSettings();},1400);});
+    return;
+  }
   if(e.target.closest("[data-savesync]")){saveAndTestSync();return;}
   if(e.target.closest("[data-clearsync]")){localStorage.removeItem("v_sync_token");state.sync="off";renderSettings();return;}
+});
+document.getElementById("setOverlay").addEventListener("keydown",e=>{
+  const add=e.target.closest("[data-addterm]");
+  if(add && e.key==="Enter"){
+    e.preventDefault();
+    const k=add.dataset.addterm, v=(add.value||"").trim().toLowerCase();
+    if(v && !(state.config[k]||[]).includes(v)){state.config[k]=[...(state.config[k]||[]),v];recompile();renderSettings();render();}
+  }
 });
 document.getElementById("restoreInput").addEventListener("change",e=>{
   const f=e.target.files&&e.target.files[0];if(!f)return;
@@ -719,7 +984,7 @@ document.getElementById("modebar").addEventListener("click",e=>{
 document.getElementById("filterBtn").addEventListener("click",()=>{state.panelOpen=!state.panelOpen;syncPanel();});
 document.getElementById("closeFilters").addEventListener("click",()=>{state.panelOpen=false;syncPanel();});
 document.getElementById("resetFilters").addEventListener("click",()=>{
-  state.onlyNew=false;state.onlySaved=false;state.mApplied="show";state.mDismissed="hide";state.mAgencies="show";render();
+  state.onlyNew=false;state.onlySaved=false;state.mApplied="hide";state.mDismissed="hide";state.mAgencies="show";render();
 });
 document.getElementById("panel").addEventListener("click",e=>{
   const tog=e.target.closest(".pchip[data-toggle]");

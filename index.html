@@ -354,6 +354,29 @@
   .cat-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
   .cbx{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;cursor:pointer;}
   .cbx input{width:17px;height:17px;accent-color:var(--accent);}
+  /* Three numbers, side by side, minimal height. */
+  .stats{display:flex;gap:8px;margin:12px 0 4px;}
+  .stats.wrapstats{flex-wrap:wrap;}
+  .stats.wrapstats .stat{flex:1 1 92px;min-width:92px;}
+  .stat{flex:1;position:relative;border:1px solid var(--line);border-radius:12px;background:var(--card);
+        padding:10px 8px 9px;display:flex;flex-direction:column;align-items:center;gap:1px;}
+  .stat .st-i{color:var(--accent);height:17px;}
+  .stat .st-i svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+  .stat .st-v{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15;}
+  .stat .st-l{font-size:10.5px;color:var(--muted);font-weight:600;text-align:center;}
+  .stat.warn{border-color:var(--ochre);background:var(--ochre-soft);}
+  .stat.warn .st-i{color:var(--ochre);}
+  .st-flag{position:absolute;top:7px;right:7px;width:8px;height:8px;border-radius:50%;background:var(--ochre);}
+  /* A role that isn't on any board still deserves tracking — make it findable. */
+  .addrole{display:inline-flex;align-items:center;gap:6px;margin-top:12px;border:1px dashed var(--accent);
+           background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:9px 16px;
+           font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;}
+  .addrole:hover{background:var(--accent);color:#fff;border-style:solid;}
+  .flag.due{color:var(--accent);background:var(--accent-soft);}
+  .prec.isdue{border-color:var(--accent);}
+  .duebox{border:1px solid #e7cdd5;background:var(--accent-soft);border-radius:10px;
+          padding:9px 11px;margin-top:9px;font-size:12.5px;color:#5c2130;}
+  .duebox b{color:var(--accent);}
   .impact{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:14px 16px;margin:14px 0 4px;}
   .impact .rep-t{background:var(--paper);}
   .imp-h{font-family:"Fraunces",serif;font-size:15px;font-weight:600;margin-bottom:10px;}
@@ -860,6 +883,13 @@ const state={jobs:[],history:[],market:null,national:[],cats:[],page:null,profil
    and flag it as approximate rather than pretending. */
 function backfillDates(){
   let changed=false;
+  // Old records used eight stages; fold them into the four that remain.
+  Object.keys(state.pipeline).forEach(id=>{
+    const r=state.pipeline[id];
+    if(!r||r.deleted)return;
+    const n=normStage(r.stage);
+    if(r.stage!==n){r.stage=n;changed=true;}
+  });
   Object.keys(state.pipeline).forEach(id=>{
     const r=state.pipeline[id];
     if(!r||r.deleted||r.createdAt)return;
@@ -1296,7 +1326,13 @@ function render(){
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 /* ── Pipeline (Memory layer) ─────────────────────────────────────────────── */
-const STAGES=[["spotted","Spotted"],["researching","Finding a contact"],["contacted","Contacted"],["replied","Got a reply"],["intro","Intro made"],["applied","Applied"],["interviewing","Interviewing"],["closed","Closed"]];
+/* Four stages, because a role is in exactly one of them. Where each PERSON has
+   got to (to contact → contacted → replied) belongs on the person, not on the
+   role — one role can have three contacts at three different points. */
+const STAGES=[["spotted","Spotted"],["applied","Applied"],["interviewing","Interviewing"],["closed","Closed"]];
+const STAGE_MAP={spotted:"spotted",researching:"spotted",contacted:"spotted",replied:"spotted",intro:"spotted",
+                 applied:"applied",interviewing:"interviewing",closed:"closed"};
+function normStage(v){return STAGE_MAP[v]||"spotted";}
 const STAGE_LABEL=Object.fromEntries(STAGES);
 const CSTAT=[["to_contact","To contact"],["contacted","Contacted"],["replied","Replied"],["no_reply","No reply"]];
 const CSTAT_LABEL=Object.fromEntries(CSTAT);
@@ -1478,8 +1514,12 @@ function bucketOf(rec,id){
   const j=jobById(id);
   return j?catOf(j):(rec.cat||"other");
 }
+function dueFor(id){
+  return followUps().filter(f=>f.id===id);
+}
 function precCard(x){
   const {id,rec,job,live}=x;
+  const due=dueFor(id);
   const bits=[contactLine(rec)];
   if(rec.cv)bits.push("CV: "+esc(rec.cv));
   if(rec.next)bits.push("Next: "+esc(rec.next));
@@ -1491,8 +1531,22 @@ function precCard(x){
   const nextIv=ivs.filter(i=>i.date&&i.date>=todayStr()).sort((a,b)=>a.date.localeCompare(b.date))[0];
   const ivTag=nextIv?`<span class="iv">Interview ${esc(nextIv.label||"")} ${esc(nextIv.date)}</span>`
               :(ivs.length?`<span class="iv">${ivs.length} interview${ivs.length>1?"s":""} logged</span>`:"");
-  return `<div class="prec" data-id="${esc(id)}">
-    <div class="pc-head">${flag}${age}${ivTag}</div>
+  const dueTag=due.length?`<span class="flag due"><i></i>${due[0].reason==="reping"?"Follow up":"Reminder"} due</span>`:"";
+  const dueBox=due.length?due.map(f=>f.reason==="reping"
+    ? `<div class="duebox">
+         <b>${esc((f.contact.name||"Your contact").split(/\s+/)[0])}</b> hasn't replied in ${f.days} days.
+         <div class="prec-actions" style="margin-top:8px">
+           <button class="mini go" data-fu="reping" data-id="${esc(id)}" data-ci="${f.ci}">Re-pinged today</button>
+           <button class="mini" data-fu="replied" data-id="${esc(id)}" data-ci="${f.ci}">They replied</button>
+           <button class="mini" data-fu="noreply" data-id="${esc(id)}" data-ci="${f.ci}">Stop chasing</button>
+         </div></div>`
+    : `<div class="duebox">
+         Reminder set for <b>${esc(f.rec.next)}</b>.
+         <div class="prec-actions" style="margin-top:8px">
+           <button class="mini" data-fu="clearnext" data-id="${esc(id)}">Clear reminder</button>
+         </div></div>`).join(""):"";
+  return `<div class="prec${due.length?" isdue":""}" data-id="${esc(id)}">
+    <div class="pc-head">${dueTag}${flag}${age}${ivTag}</div>
     <div class="prec-body" style="margin-top:6px">
     <div class="prec-left">
     <div class="pc-co">${esc(job.company||"—")}</div>
@@ -1501,8 +1555,9 @@ function precCard(x){
     </div>
     <div class="prec-right">${personIcons(rec)}</div>
     </div>
+    ${dueBox}
     <div class="prec-actions" style="margin-top:10px">
-      <span class="stage-note" style="font-size:11.5px;color:var(--muted)">${esc(STAGE_LABEL[rec.stage||"spotted"])}</span>
+      <span class="stage-note" style="font-size:11.5px;color:var(--muted)">${esc(STAGE_LABEL[normStage(rec.stage)])}</span>
     </div>
   </div>`;
 }
@@ -1510,31 +1565,29 @@ function precCard(x){
    works better — so show whether it's true for HER, honestly. With small numbers
    her own data can't prove anything, and the copy says so rather than dressing
    four data points up as a finding. */
+const STAT_ICO={
+  tracked:`<svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg>`,
+  applied:`<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>`,
+  warm:`<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16.5 5.6a3.2 3.2 0 0 1 0 6.3"/></svg>`,
+};
+/* Three numbers, no prose. The flag does the talking: orange when more than half
+   the applications went out with nobody contacted. */
 function contactImpact(items){
   const applied=items.filter(x=>x.rec.appliedOn||state.appliedSet.has(x.id));
   const isWarm=x=>(x.rec.contacts||[]).some(isReached);
-  const iv=x=>x.rec.stage==="interviewing"||(x.rec.interviews||[]).some(i=>i&&(i.date||i.label));
-  const warm=applied.filter(isWarm), cold=applied.filter(x=>!isWarm(x));
-  const warmIv=warm.filter(iv).length, coldIv=cold.filter(iv).length;
-  const people=items.flatMap(x=>(x.rec.contacts||[]).filter(c=>(c.name||"").trim()));
-  const reached=people.filter(isReached).length;
-  const ratio=applied.length?warm.length/applied.length:0, good=ratio>=0.5;
-  const flag=!applied.length?"":`<div class="flagline">
-      <span class="fl ${good?"ok":"warn"}"></span>
-      <span>${good
-        ? `<b>${Math.round(ratio*100)}% of applications went out warm.</b> Keep that up \u2014 it's the half of a search that actually moves.`
-        : `<b>Only ${Math.round(ratio*100)}% of applications went out with a contact.</b> Consider contacting more people \u2014 a warm introduction is worth more than another cold application.`}</span></div>`;
-  return `<div class="impact">
-    <div class="imp-h">Where things stand</div>
-    <table class="rep-t">
-      <tr><td>Roles tracked</td><td class="rv">${items.length}</td><td class="rv muted"></td></tr>
-      <tr><td>People contacted</td><td class="rv ochre">${reached}</td><td class="rv muted"></td></tr>
-      <tr><td>Applied after contacting someone</td><td class="rv ok">${warm.length}</td><td class="rv muted">${warmIv} interview${warmIv===1?"":"s"}</td></tr>
-      <tr><td>Applied with no contact</td><td class="rv muted">${cold.length}</td><td class="rv muted">${coldIv} interview${coldIv===1?"":"s"}</td></tr>
-      <tr><td><b>Total applications</b></td><td class="rv"><b>${applied.length}</b></td><td class="rv muted">${warmIv+coldIv} interview${(warmIv+coldIv)===1?"":"s"}</td></tr>
-    </table>
-    ${flag}
-  </div>`;
+  const warm=applied.filter(isWarm).length;
+  const cold=applied.length-warm;
+  const tooCold=applied.length>0 && cold/applied.length>0.5;
+  const cells=[["tracked","Roles tracked",items.length,""],
+               ["applied","Applied",applied.length,""],
+               ["warm","With a contact",warm,tooCold?"warn":""]];
+  return `<div class="stats">${cells.map(([k,l,v,cls])=>`
+    <div class="stat ${cls}" ${cls?`title="More than half of the applications went out with no contact"`:""}>
+      <span class="st-i">${STAT_ICO[k]}</span>
+      <span class="st-v">${v}</span>
+      <span class="st-l">${esc(l)}</span>
+      ${cls?`<span class="st-flag"></span>`:""}
+    </div>`).join("")}</div>`;
 }
 function renderPipeline(){
   document.getElementById("filterbar").style.display="none";
@@ -1547,7 +1600,7 @@ function renderPipeline(){
   document.getElementById("footer").textContent="The Vitrine · your pipeline";
   if(!all.length){
     document.getElementById("count").textContent="";
-    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.<div style="margin-top:14px"><button class="mini go" data-addmanual>+ Add a role that isn't listed</button></div></li>`;
+    list.innerHTML=`<li class="empty"><b>Your pipeline is empty</b>Tap <strong>Track</strong> on any role — or just <strong>Mark applied</strong> — and it will appear here.<div style="margin-top:14px"><button class="addrole" data-addmanual>+ Add a role that isn't listed</button></div></li>`;
     return;
   }
   const buckets=[["all","All"],...activeCats()];
@@ -1556,30 +1609,7 @@ function renderPipeline(){
   if(!buckets.some(b=>b[0]===state.bucket))state.bucket="all";
   document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
   let html=`<div style="grid-column:1/-1">${contactImpact(all)}
-    <button class="mini" data-addmanual style="margin-top:10px">+ Add a role that isn't listed</button></div>`;
-  // Follow-ups cut across every bucket — urgency shouldn't hide behind a tab.
-  if(fu.length){
-    html+=`<div class="section-h due">Follow-ups due <span class="n">${fu.length}</span></div>`;
-    html+=fu.map(f=>{
-      if(f.reason==="reping"){
-        const c=f.contact;
-        return `<div class="prec duecard" data-id="${esc(f.id)}">
-          <div class="pc-co">${esc(f.job.company||"—")}</div>
-          <div class="pc-title">${esc(f.job.title)}</div>
-          <div class="due-line"><b>${esc(c.name||"A contact")}</b> was messaged <b>${f.days} day${f.days!==1?"s":""} ago</b> with no reply.</div>
-          <div class="prec-actions">
-            <button class="mini go" data-fu="reping" data-id="${esc(f.id)}" data-ci="${f.ci}">Re-pinged today</button>
-            <button class="mini" data-fu="replied" data-id="${esc(f.id)}" data-ci="${f.ci}">They replied</button>
-            <button class="mini" data-fu="noreply" data-id="${esc(f.id)}" data-ci="${f.ci}">No reply — stop</button>
-          </div></div>`;
-      }
-      return `<div class="prec duecard next" data-id="${esc(f.id)}">
-        <div class="pc-co">${esc(f.job.company||"—")}</div>
-        <div class="pc-title">${esc(f.job.title)}</div>
-        <div class="due-line">Reminder set for <b>${esc(f.rec.next)}</b>.</div>
-        <div class="prec-actions"><button class="mini go" data-fu="opennext" data-id="${esc(f.id)}">Open</button><button class="mini" data-fu="clearnext" data-id="${esc(f.id)}">Clear reminder</button></div></div>`;
-    }).join("");
-  }
+    <button class="addrole" data-addmanual>+ Add a role that isn't listed</button></div>`;
   html+=`<div class="bucketbar">`+buckets.map(([k,l])=>
     `<button class="bk" data-bucket="${k}" aria-selected="${state.bucket===k}">${esc(l)}<span class="tc">${counts[k]||0}</span></button>`).join("")+`</div>`;
   const inB=state.bucket==="all"?all:all.filter(x=>bucketOf(x.rec,x.id)===state.bucket);
@@ -2004,6 +2034,15 @@ function changeWarning(){
     You're about to alter ${esc(d)}. The analytics charts built from these \u2014 <i>the board over time</i> and <i>salary bands</i> \u2014 measure whatever the filters said at the time, so the line before and after won't mean the same thing.
     Nothing already recorded is lost or rewritten; we mark the day with a dotted line so the seam stays visible.</div>`;
 }
+const FUN_ICO=[
+  `<svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg>`,
+  `<svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 11h8M8 15h5"/></svg>`,
+  `<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-6.6 7-6.6s7 2.7 7 6.6"/></svg>`,
+  `<svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg>`,
+  `<svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M9 10.5h6"/></svg>`,
+  `<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>`,
+  `<svg viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0z"/><path d="M12 12v4M9 20h6"/><path d="M8 5H5a3 3 0 0 0 3 3M16 5h3a3 3 0 0 1-3 3"/></svg>`,
+];
 function renderAnalytics(){
   const P=activeProfile(), ev=eventsOf(), items=trackedItems();
   const approxN=items.filter(x=>x.rec.createdApprox).length;
@@ -2061,16 +2100,23 @@ function renderAnalytics(){
     <button class="tchip pickcat ${anCat==="all"?"on":""}" data-ancat="all">All categories</button>
     ${activeCats().map(([id,label])=>`<button class="tchip pickcat ${anCat===id?"on":""}" data-ancat="${esc(id)}">${esc(label)}</button>`).join("")}
   </div>`;
+  /* Only weeks we were actually watching. The board holds roles that are STILL
+     open, so counting by posting date makes every older week look emptier than it
+     was — the roles were filled and dropped off, not never posted. Charting weeks
+     from before the scanner existed would show a fake boom every single week. */
+  const seen=state.jobs.map(j=>j.first_seen).filter(Boolean).sort();
+  const startedMs=seen.length?new Date(seen[0]).getTime():Date.now();
+  const weeksWatched=Math.min(8,Math.max(1,Math.ceil((Date.now()-startedMs)/(7*864e5))));
   const wk={};
   state.jobs.filter(j=>marketPasses(j,true)&&(anCat==="all"||catOf(j)===anCat)).forEach(j=>{
     const d=j.posted_date;if(!d)return;
     const dt=new Date(d);if(isNaN(dt))return;
-    const age=Math.floor((Date.now()-dt)/864e5);if(age<0||age>56)return;
-    const k=`${dt.getUTCDate()}/${dt.getUTCMonth()+1}`;
+    const age=Math.floor((Date.now()-dt)/864e5);if(age<0)return;
     const wkNo=Math.floor(age/7);
+    if(wkNo>=weeksWatched)return;
     wk[wkNo]=(wk[wkNo]||0)+1;
   });
-  const wkRows=[0,1,2,3,4,5,6,7].map(i=>({k:i===0?"this wk":`-${i}w`,v:wk[i]||0})).reverse();
+  const wkRows=Array.from({length:weeksWatched},(_,i)=>({k:i===0?"this wk":`-${i}w`,v:wk[i]||0})).reverse();
 
   // History: one row per scan day
   const H=(state.history||[]);
@@ -2122,16 +2168,15 @@ function renderAnalytics(){
   const el=document.getElementById("page");
   el.innerHTML=`<h2 class="pg-h" style="margin-top:20px">Analytics — ${esc(P.name)}</h2>`
     + `<h3 class="an-h">Progress</h3>
-       <p class="pg-sub">What ${esc(P.name)} has actually done — straight from her own pipeline.${approxNote}</p>
-       <div class="funnel">${funnel.map(([l,v])=>`
-         <div class="fn"><div class="fn-l">${esc(l)}</div>
-           <div class="fn-bar"><span style="width:${Math.max(2,(v/fmax)*100)}%"></span></div>
-           <div class="fn-v">${v}</div></div>`).join("")}</div>
+       <div class="stats wrapstats">${funnel.map(([l,v],n)=>`
+         <div class="stat"><span class="st-i">${FUN_ICO[n]||FUN_ICO[0]}</span>
+           <span class="st-v">${v}</span><span class="st-l">${esc(l)}</span></div>`).join("")}</div>
        ${prog}
-       <h3 class="an-h">Her market \u2014 the last 8 weeks</h3>
-       <p class="pg-sub">Roles posted per week that match ${esc(P.name)}'s terms, by the date the employer posted them. Filter by category:</p>
+       <h3 class="an-h">Her market ${weeksWatched===1?"\u2014 this week":`\u2014 the last ${weeksWatched} weeks`}</h3>
+       <p class="pg-sub">Roles on the board that match ${esc(P.name)}'s terms, by the week the employer posted them. Only weeks the scanner has been running are shown \u2014 it started ${esc(new Date(startedMs).toLocaleDateString(undefined,{day:"numeric",month:"short"}))}, and the window grows to 8 weeks from there.</p>
        ${catSel}
        ${barChart(wkRows,"#7B1E3B")}
+       <p class="hint">A caveat worth knowing: the board only holds roles that are <b>still open</b>. Older weeks always look thinner because those roles were filled and dropped off \u2014 not because nothing was posted. For a clean trend use <i>the board over time</i> below, which counts what was actually there on each scan day.</p>
        <h3 class="an-h">The board over time</h3>
        ${hist}
        <h3 class="an-h">Salary bands in her market</h3>

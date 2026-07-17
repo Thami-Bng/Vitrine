@@ -71,9 +71,13 @@ SF_SITES = {
     "Sephora":  {"host": "jobs.sephora.com"},
     "Clarins":  {"host": "careers.groupeclarins.com"},
     "Coty":     {"host": "careers.coty.com"},
-    "Shiseido": {"host": "career5.successfactors.eu", "company": "shiseidoco"},
-    "Puig":     {"host": "career2.successfactors.eu", "company": "Puig"},
-    "Changi":   {"host": "career10.successfactors.com", "company": "C0010141078P"},
+    # These three were configured as legacy hosted portals (careerN.successfactors.eu
+    # with ?company=X) and returned HTTP 404 on every run. They aren't hosted portals
+    # at all — each runs Career Site Builder on its own domain, exactly like Sephora,
+    # so the plain /search/ path works and no company parameter is needed.
+    "Shiseido": {"host": "careers.shiseido.com"},
+    "Puig":     {"host": "jobs.puig.com"},
+    "Changi":   {"host": "jobs.changiairport.com"},
 }
 SF_MAX_PAGES = 6           # 50 roles/page; we search "Singapore" so this is plenty
 
@@ -734,18 +738,31 @@ def wd_detail(host,tenant,site,path,hdr):
         return "",""
 
 def connector_eightfold():
+    """Records per tenant. It used to `continue` past every failure without a
+    record(), so a broken tenant showed as a mute grey "0 fetched" that could
+    never say why."""
     out=[]; hdr={"User-Agent":UA,"Accept":"application/json"}
     for label,cfg in EIGHTFOLD_TENANTS.items():
+        fetched=0; kept=0; why=""
         try:
             r=requests.get(f"https://{cfg['host']}/api/apply/v2/jobs",
                 params={"domain":cfg["domain"],"location":"Singapore","start":0,"num":100},
                 headers=hdr,timeout=TIMEOUT)
         except requests.RequestException as e:
-            print(f"  ! Eightfold {label}: {e}",file=sys.stderr); continue
+            why=type(e).__name__
+            print(f"  ! Eightfold {label}: {e}",file=sys.stderr)
+            record(f"Eightfold · {label}",0,0,error=True,detail=why); continue
         if r.status_code!=200:
-            print(f"  ! Eightfold {label}: HTTP {r.status_code} (may need endpoint tweak)",file=sys.stderr); continue
-        data=r.json()
-        for p in (data.get("positions") or data.get("data") or []):
+            why=f"HTTP {r.status_code}"
+            print(f"  ! Eightfold {label}: HTTP {r.status_code}",file=sys.stderr)
+            record(f"Eightfold · {label}",0,0,error=True,detail=why); continue
+        try:
+            data=r.json()
+        except Exception:
+            record(f"Eightfold · {label}",0,0,error=True,detail="200 but not JSON"); continue
+        positions=(data.get("positions") or data.get("data") or [])
+        fetched=len(positions)
+        for p in positions:
             loc=p.get("location") or (", ".join(p.get("locations",[])) if isinstance(p.get("locations"),list) else "")
             if "singapore" not in (loc or "").lower():
                 continue
@@ -754,6 +771,9 @@ def connector_eightfold():
             links={"primary":url,"careers":url,"linkedin":"","mcf":""}
             out.append(job(f"ef-{pid}",p.get("name") or p.get("title"),label,"Eightfold",links,
                            "",clean_text(p.get("job_description",""))))
+            kept+=1
+        record(f"Eightfold · {label}",fetched,kept,
+               error=False, detail="" if fetched else "200 but no positions in the response")
     return out
 
 def connector_successfactors():
@@ -905,7 +925,8 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
-            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse","connector_oracle"):  # these record per-site
+            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse",
+                                     "connector_oracle","connector_eightfold"):   # these record per-site
                 record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)

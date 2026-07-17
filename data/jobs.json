@@ -1,119 +1,137 @@
 {
-  "generated_at": "2026-07-17T03:27:18.627155+00:00",
+  "generated_at": "2026-07-17T03:37:17.459296+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 450,
-      "kept": 368,
-      "error": false
+      "fetched": 452,
+      "kept": 371,
+      "error": false,
+      "detail": ""
     },
     {
       "label": "smartrecruiters",
       "fetched": 20,
       "kept": 0,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Sephora",
       "fetched": 15,
       "kept": 2,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Clarins",
       "fetched": 5,
       "kept": 5,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Coty",
       "fetched": 6,
       "kept": 6,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Shiseido",
       "fetched": 0,
       "kept": 0,
-      "error": true
+      "error": true,
+      "detail": "HTTP 404"
     },
     {
       "label": "SuccessFactors · Puig",
       "fetched": 0,
       "kept": 0,
-      "error": true
+      "error": true,
+      "detail": "HTTP 404"
     },
     {
       "label": "SuccessFactors · Changi",
       "fetched": 0,
       "kept": 0,
-      "error": true
+      "error": true,
+      "detail": "HTTP 404"
     },
     {
       "label": "Workday · Richemont / Cartier",
       "fetched": 149,
       "kept": 7,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Workday · Chanel",
       "fetched": 123,
       "kept": 7,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Workday · Aman",
       "fetched": 33,
       "kept": 0,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Workday · Pernod Ricard",
       "fetched": 94,
       "kept": 0,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Greenhouse · Soho House",
       "fetched": 374,
       "kept": 0,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Oracle · Marriott",
       "fetched": 81,
       "kept": 75,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Oracle · Hermès",
       "fetched": 2,
       "kept": 1,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Oracle · Tiffany",
       "fetched": 4,
       "kept": 3,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "eightfold",
       "fetched": 0,
       "kept": 0,
-      "error": false
+      "error": false,
+      "detail": ""
     },
     {
       "label": "google_jobs",
       "fetched": 26,
       "kept": 11,
-      "error": false
+      "error": false,
+      "detail": ""
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 172,
-      "used": 78,
+      "left": 168,
+      "used": 82,
       "limit": 250
     }
   },
@@ -522,6 +540,29 @@
     ]
   },
   "jobs": [
+    {
+      "id": "mcf-885a337dac1a8d3df2c52f6dcec0ecc7",
+      "title": "Solution Product Manager",
+      "company": "STARLINK FINANCIAL TECHNOLOGIES PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$8,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/885a337dac1a8d3df2c52f6dcec0ecc7",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/885a337dac1a8d3df2c52f6dcec0ecc7"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/885a337dac1a8d3df2c52f6dcec0ecc7",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T03:37:17.459296+00:00"
+    },
     {
       "id": "mcf-4497eaa7a79b86a79096134aa4726d0b",
       "title": "Business Analyst",
@@ -3538,29 +3579,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-21b8b03067f31a865ff22f58079acd56",
-      "title": "Senior Business Analyst - A26222",
-      "company": "ACTIVATE INTERACTIVE PTE LTD",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-09",
-      "posted_date": "2026-07-09",
-      "salary": "S$8,000–16,000/mo",
-      "salary_max": 16000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "eyJqb2JfdGl0bGUiOiJPbW5pY2hhbm5lbCBNYXJrZXRpbmcgTGVhZCDigJQgQ2FtcGFpZ25zIFx1MDAyNiBHcm93dGgiLCJjb21wYW55X25hbWUiOiJLZXBw",
       "title": "Omnichannel Marketing Lead — Campaigns & Growth",
       "company": "Keppel Corporation",
@@ -3582,6 +3600,29 @@
       "description": "Keppel Corporation in Singapore seeks a Marketing Executive responsible for driving sales through innovative promotions and managing vendors for successful campaigns. The role requires a Bachelor's degree, with a minimum of 2 years in retail marketing and skills in digital marketing. \n\nThe successful candidate will implement marketing strategies, assess campaign effectiveness, and collaborate with teams to enhance performance across channels. Strong communication and leadership skills are essential. \n\n#J-18808-Ljbffr",
       "preferred": false,
       "first_seen": "2026-07-17T03:27:18.627155+00:00"
+    },
+    {
+      "id": "mcf-21b8b03067f31a865ff22f58079acd56",
+      "title": "Senior Business Analyst - A26222",
+      "company": "ACTIVATE INTERACTIVE PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-09",
+      "posted_date": "2026-07-09",
+      "salary": "S$8,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/21b8b03067f31a865ff22f58079acd56",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "mcf-06fd528deb9530e3912729fa38bbdb5f",
@@ -4111,6 +4152,29 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-d4254d799e751d7e4646a0c9f4b39103",
+      "title": "IT Business Analyst (Trading & Settlements)",
+      "company": "BEATHCHAPMAN (PTE. LTD.)",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-6454da51f4cb7cead6036e906caa4e00",
       "title": "Assistant Vice President, Business Analyst (Cash Management) (Job ID: 10077763)",
       "company": "MUFG BANK, LTD. Singapore Branch",
@@ -4244,29 +4308,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/d979e8ea3cdf1b8e8b0c037c64cbcd2b"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/d979e8ea3cdf1b8e8b0c037c64cbcd2b",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-d4254d799e751d7e4646a0c9f4b39103",
-      "title": "IT Business Analyst (Trading & Settlements)",
-      "company": "BEATHCHAPMAN (PTE. LTD.)",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$6,000–9,000/mo",
-      "salary_max": 9000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"

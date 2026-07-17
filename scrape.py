@@ -113,6 +113,11 @@ GJ_POOL = [
     # brands on platforms we don't scrape directly (Oracle / Avature / legacy SF / custom)
     "L'Oreal Singapore", "Lancome Singapore", "YSL Beauty Singapore", "Kiehl's Singapore",
     "Ralph Lauren Singapore", "Hermes Singapore", "Tiffany Singapore", "Chanel Singapore",
+    # Their own ATS connectors are currently failing (SuccessFactors hosted portals,
+    # eightfold), leaving these houses invisible. The pool always runs GJ_PER_RUN
+    # queries per scan, so a longer pool costs no extra quota — only a slower
+    # rotation, which the 12-day carry-forward absorbs.
+    "Shiseido Singapore", "Puig Singapore", "Estee Lauder Singapore",
     # luxury hospitality / travel on Oracle / Workable / iCIMS / custom sites
     "Marriott luxury Singapore", "Four Seasons Singapore", "Belmond Singapore",
     "Mandarin Oriental Singapore", "Banyan Tree Singapore",

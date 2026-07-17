@@ -77,18 +77,31 @@
   .nr-ico.iv{background:#E7E9F5;color:#4A4E8C;}
   .nr-ico.rem{background:var(--ochre-soft);color:var(--ochre);}
   .nr-ico.stale{background:#ECE8E1;color:var(--muted);}
-  .nr-b{flex:1;min-width:0;}
-  .nr-t{font-size:13.5px;font-weight:600;color:var(--ink);}
-  .nr-s{font-size:12px;color:var(--muted);margin-top:2px;}
-  .nr-w{font-size:11px;color:#b0a89a;margin-top:3px;}
+  .nr-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+  .nr-t{display:block;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+  .nr-s{display:block;font-size:12px;color:var(--muted);line-height:1.35;}
+  .nr-w{display:block;font-size:11px;color:#b0a89a;}
   .flagline{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;line-height:1.5;margin-top:11px;}
   .flagline .fl{flex:0 0 auto;width:9px;height:9px;border-radius:50%;margin-top:4px;}
   .flagline .fl.warn{background:var(--ochre);} .flagline .fl.ok{background:var(--ok);}
   .flagline b{color:var(--ink);}
-  .bar-right{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto;}
+  .bar-right{display:flex;align-items:center;gap:12px;margin-left:auto;flex:0 0 auto;}
   .bar-meta{font-size:12px;color:var(--muted);white-space:nowrap;}
   .bar-meta b{color:var(--ink);font-weight:600;}
-  @media (max-width:760px){ .wordmark,.bar-meta{display:none;} .nav{margin-left:8px;} .navlink{padding:14px 10px 13px;font-size:13px;} }
+  /* A phone can't hold menu + logo + three nav links + bell + menu + avatar on
+     one line. Rather than shrink the labels to nothing or hide them behind a
+     scroll, the navigation drops to its own full-width row: nothing hidden,
+     bigger tap targets, and the identity stays where it was. */
+  @media (max-width:860px){ .bar-meta{display:none;} }
+  @media (max-width:700px){
+    .wordmark{display:none;}
+    .appbar{flex-wrap:wrap;padding:8px 0 0;gap:8px;}
+    .menuwrap{order:1;} .brand{order:2;margin-right:auto;} .bar-right{order:3;margin-left:0;}
+    .nav{order:4;flex:1 0 100%;margin-left:0;border-top:1px solid var(--line);justify-content:space-between;}
+    .navlink{flex:1;justify-content:center;padding:12px 4px 11px;font-size:13.5px;}
+    .navlink[aria-selected="true"]::after{left:14%;right:14%;}
+  }
+  @media (max-width:360px){ .navlink{font-size:12.5px;gap:5px;} .nbadge{display:none;} }
   .controls{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 8px;}
   /* Categories wrap onto as many lines as they need — nothing is ever hidden
      off-screen. (Previously this row scrolled horizontally with the scrollbar
@@ -179,6 +192,7 @@
   .src-body{padding-bottom:8px;}
   .src-row{display:flex;justify-content:space-between;gap:10px;padding:6px 2px;border-top:1px solid var(--line);}
   .src-n{color:var(--muted);white-space:nowrap;}
+  .src-why{display:block;margin-left:16px;font-size:11px;color:#b3371f;}
   .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;}
   .dot.ok{background:#3f8f5f;} .dot.zero{background:#cec7bb;} .dot.err{background:#b3371f;}
   /* Priority buckets inside Pipeline */
@@ -668,10 +682,24 @@ function whenWord(d){
   if(n<7)return `${n} days ago`;
   const w=Math.floor(n/7); return w===1?"1 week ago":`${w} weeks ago`;
 }
-function toggleDrop(id,render){
+/* On a phone the dropdown is anchored to a button near the right edge, so a
+   380px panel hanging off it starts at a negative x — half of it lands off
+   screen. Narrow screens get it pinned to the viewport instead, under whatever
+   opened it. */
+function placeDrop(el,btn){
+  if(window.innerWidth<=700 && btn){
+    const r=btn.getBoundingClientRect();
+    el.style.position="fixed";
+    el.style.top=Math.round(r.bottom+8)+"px";
+    el.style.left="12px"; el.style.right="12px"; el.style.width="auto"; el.style.minWidth="0";
+  }else{
+    el.style.position=""; el.style.top=""; el.style.left=""; el.style.right=""; el.style.width=""; el.style.minWidth="";
+  }
+}
+function toggleDrop(id,render,btnId){
   const el=document.getElementById(id), open=el.hidden;
   closeDrops();
-  if(open){ if(render)render(); el.hidden=false; }
+  if(open){ if(render)render(); placeDrop(el,btnId?document.getElementById(btnId):null); el.hidden=false; }
 }
 function closeDrops(){
   ["menuDrop","bellDrop"].forEach(i=>{const e=document.getElementById(i); if(e)e.hidden=true;});
@@ -1158,7 +1186,9 @@ function renderSources(sources){
   el.style.display="";
   const rows=sources.map(s=>{
     const cls=s.error?"err":(s.fetched===0?"zero":"ok");
-    return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}</span><span class="src-n">${s.fetched} fetched · ${s.kept} SG</span></div>`;
+    // A red dot with no reason is a dead end — show what it actually hit.
+    const why=s.detail?`<span class="src-why">${esc(s.detail)}</span>`:"";
+    return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}${why}</span><span class="src-n">${s.fetched} fetched · ${s.kept} SG</span></div>`;
   }).join("");
   const q=(state.quota||{}).serpapi;
   let qrow="";
@@ -1607,7 +1637,9 @@ function renderPipeline(){
   const counts={all:all.length};
   activeCats().forEach(([k])=>counts[k]=all.filter(x=>bucketOf(x.rec,x.id)===k).length);
   if(!buckets.some(b=>b[0]===state.bucket))state.bucket="all";
-  document.getElementById("count").textContent=`${all.length} role${all.length>1?"s":""} tracked${fu.length?` · ${fu.length} need a follow-up`:""}`;
+  // "18 roles tracked" duplicates the stat card two lines below it — say only
+  // what the cards don't.
+  document.getElementById("count").textContent=fu.length?`${fu.length} need${fu.length===1?"s":""} a follow-up`:"";
   let html=`<div style="grid-column:1/-1">${contactImpact(all)}
     <button class="addrole" data-addmanual>+ Add a role that isn't listed</button></div>`;
   html+=`<div class="bucketbar">`+buckets.map(([k,l])=>
@@ -2280,7 +2312,7 @@ document.getElementById("overlay").addEventListener("input",e=>{
 document.getElementById("settingsBtn").addEventListener("click",e=>{
   e.stopPropagation();
   const willOpen=document.getElementById("menuDrop").hidden;
-  toggleDrop("menuDrop",renderMenuDrop);
+  toggleDrop("menuDrop",renderMenuDrop,"settingsBtn");
   document.getElementById("settingsBtn").setAttribute("aria-expanded",String(willOpen));
 });
 document.getElementById("menuDrop").addEventListener("click",e=>{
@@ -2471,13 +2503,14 @@ document.getElementById("brandBtn").addEventListener("click",()=>{state.page=nul
 document.getElementById("bellBtn").addEventListener("click",e=>{
   e.stopPropagation();
   const willOpen=document.getElementById("bellDrop").hidden;
-  toggleDrop("bellDrop",()=>{state.notesAll=false;renderBellDrop();});
+  toggleDrop("bellDrop",()=>{state.notesAll=false;renderBellDrop();},"bellBtn");
   document.getElementById("bellBtn").setAttribute("aria-expanded",String(willOpen));
 });
 document.getElementById("bellDrop").addEventListener("click",e=>{
   e.stopPropagation();
-  if(e.target.closest("[data-notesall]")){state.notesAll=true;renderBellDrop();return;}
-  if(e.target.closest("[data-notesrecent]")){state.notesAll=false;renderBellDrop();return;}
+  const keep=()=>placeDrop(document.getElementById("bellDrop"),document.getElementById("bellBtn"));
+  if(e.target.closest("[data-notesall]")){state.notesAll=true;renderBellDrop();keep();return;}
+  if(e.target.closest("[data-notesrecent]")){state.notesAll=false;renderBellDrop();keep();return;}
   const row=e.target.closest("[data-noteid]");
   if(row){closeDrops();state.page=null;state.mode="pipeline";render();openEditor(row.dataset.noteid);}
 });

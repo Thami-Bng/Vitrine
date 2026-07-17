@@ -1,19 +1,29 @@
 {
-  "generated_at": "2026-07-17T04:20:17.307857+00:00",
+  "generated_at": "2026-07-17T10:42:30.509720+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 453,
-      "kept": 373,
+      "kept": 376,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 376
     },
     {
-      "label": "smartrecruiters",
+      "label": "SmartRecruiters · LVMH Beauty",
       "fetched": 20,
+      "kept": 20,
+      "error": false,
+      "detail": "",
+      "relevant": 0
+    },
+    {
+      "label": "SmartRecruiters · LVMH Perfumes & Cosmetics",
+      "fetched": 0,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "no Singapore roles on this site right now",
+      "relevant": 0
     },
     {
       "label": "SuccessFactors · Sephora",
@@ -33,8 +43,8 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 6,
-      "kept": 6,
+      "fetched": 5,
+      "kept": 5,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -89,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 94,
+      "fetched": 92,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -97,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 374,
+      "fetched": 375,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -105,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 81,
-      "kept": 75,
+      "fetched": 79,
+      "kept": 73,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -131,22 +141,23 @@
       "label": "Eightfold · Estée Lauder",
       "fetched": 0,
       "kept": 0,
-      "error": true,
-      "detail": "HTTP 403",
+      "error": false,
+      "detail": "HTTP 403 — blocks automated clients; this brand is reached via Google Jobs instead",
       "relevant": 0
     },
     {
       "label": "google_jobs",
-      "fetched": 16,
+      "fetched": 18,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 168,
-      "used": 82,
+      "left": 164,
+      "used": 86,
       "limit": 250
     }
   },
@@ -556,6 +567,52 @@
   },
   "jobs": [
     {
+      "id": "mcf-23d08ca3a7ab43661a14a9bf4a0be5e4",
+      "title": "DIGITAL PRODUCT MANAGER",
+      "company": "DV TECH PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$7,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/23d08ca3a7ab43661a14a9bf4a0be5e4",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/23d08ca3a7ab43661a14a9bf4a0be5e4"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/23d08ca3a7ab43661a14a9bf4a0be5e4",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-3a012e93428918a8d9d73e5cea0aa5b1",
+      "title": "Product Manager",
+      "company": "DCS CARD CENTRE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$10,000–15,000/mo",
+      "salary_max": 15000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/3a012e93428918a8d9d73e5cea0aa5b1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/3a012e93428918a8d9d73e5cea0aa5b1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/3a012e93428918a8d9d73e5cea0aa5b1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
       "id": "mcf-885a337dac1a8d3df2c52f6dcec0ecc7",
       "title": "Solution Product Manager",
       "company": "STARLINK FINANCIAL TECHNOLOGIES PTE. LTD.",
@@ -579,6 +636,29 @@
       "first_seen": "2026-07-17T03:37:17.459296+00:00"
     },
     {
+      "id": "mcf-ee5de696a937cc71e4d8554e61e4b89b",
+      "title": "Product Manager (Digital Transformation Project)",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$8,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ee5de696a937cc71e4d8554e61e4b89b",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ee5de696a937cc71e4d8554e61e4b89b"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ee5de696a937cc71e4d8554e61e4b89b",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
       "id": "mcf-26ef0ce62bfd7401c2477d37ddb74ae7",
       "title": "Digital Project Manager (Triple A plus, API, Unix) - Contract",
       "company": "QUESS ENGINEERING PTE. LTD.",
@@ -600,6 +680,236 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-17T03:57:15.302512+00:00"
+    },
+    {
+      "id": "mcf-e1b7503544d4f220a6c56344eea12074",
+      "title": "Senior Business Analyst (Agile / Government Project)",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$5,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e1b7503544d4f220a6c56344eea12074",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e1b7503544d4f220a6c56344eea12074"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e1b7503544d4f220a6c56344eea12074",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-fd11dc07a38950cbcf82107085163bd4",
+      "title": "HRIS Business Analyst #ESY",
+      "company": "RECRUIT EXPRESS PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$12,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/fd11dc07a38950cbcf82107085163bd4",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/fd11dc07a38950cbcf82107085163bd4"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/fd11dc07a38950cbcf82107085163bd4",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-1eca449a3e1ae3bdcb4646c14aac5ccc",
+      "title": "Business Analyst (Stablecoin)",
+      "company": "UARROW PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/1eca449a3e1ae3bdcb4646c14aac5ccc",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/1eca449a3e1ae3bdcb4646c14aac5ccc"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/1eca449a3e1ae3bdcb4646c14aac5ccc",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-f1f1479cbb501c9879ffb3f2f12e1206",
+      "title": "Business Analyst, CBD, Bonus, Luxury fashion, Hybrid",
+      "company": "AMBITION GROUP SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "beauty_luxury",
+      "category": "recruiter",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$7,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f1f1479cbb501c9879ffb3f2f12e1206",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f1f1479cbb501c9879ffb3f2f12e1206"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f1f1479cbb501c9879ffb3f2f12e1206",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-e2db65391ea362be9561b57ff2a37705",
+      "title": "Business Analyst (Stablecoin)",
+      "company": "RISKDATA CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e2db65391ea362be9561b57ff2a37705",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e2db65391ea362be9561b57ff2a37705"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e2db65391ea362be9561b57ff2a37705",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-79cee3b85280867e932e7d58b4960b4d",
+      "title": "Business Analyst (Stablecoin)",
+      "company": "REGTECH INSIGHT PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/79cee3b85280867e932e7d58b4960b4d",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/79cee3b85280867e932e7d58b4960b4d"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/79cee3b85280867e932e7d58b4960b4d",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-cc2664facf07236bbe2e60f7ecdd91d1",
+      "title": "Business Analyst (Stablecoin)",
+      "company": "UNISON CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/cc2664facf07236bbe2e60f7ecdd91d1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/cc2664facf07236bbe2e60f7ecdd91d1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/cc2664facf07236bbe2e60f7ecdd91d1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-3259ad8e2f2bf4220efb0cb26a6ed749",
+      "title": "Business Analyst & Project Manager (Claims)",
+      "company": "ARGYLL SCOTT CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$8,000–10,500/mo",
+      "salary_max": 10500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/3259ad8e2f2bf4220efb0cb26a6ed749",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/3259ad8e2f2bf4220efb0cb26a6ed749"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/3259ad8e2f2bf4220efb0cb26a6ed749",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-cbe76c6f91f554b9e749121a0d627c75",
+      "title": "Attractive Job Opening for Senior Business Analyst/ Telco Data Modelerr in Singapore",
+      "company": "IITMATRIX PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/cbe76c6f91f554b9e749121a0d627c75",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/cbe76c6f91f554b9e749121a0d627c75"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/cbe76c6f91f554b9e749121a0d627c75",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
+    },
+    {
+      "id": "mcf-f4f889015bb714f308d6c1b2c29602dc",
+      "title": "Attractive Job Opening for Senior Business Analyst/ Telco Data Modeler in Singapore",
+      "company": "TALENT XPERTS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$9,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f4f889015bb714f308d6c1b2c29602dc",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f4f889015bb714f308d6c1b2c29602dc"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f4f889015bb714f308d6c1b2c29602dc",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T10:42:30.509720+00:00"
     },
     {
       "id": "mcf-4497eaa7a79b86a79096134aa4726d0b",
@@ -2082,7 +2392,7 @@
       "links": {
         "primary": "https://www.mycareersfuture.gov.sg/job/ad99c8e73d784effc420c110f0f725f4",
         "careers": "",
-        "linkedin": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/digital-project-manager-digital-transformation-project-at-optimum-solutions-pte-ltd-4439126060?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
         "mcf": "https://www.mycareersfuture.gov.sg/job/ad99c8e73d784effc420c110f0f725f4"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/ad99c8e73d784effc420c110f0f725f4",
@@ -2570,28 +2880,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJEaWdpdGFsIFByb2plY3QgTWFuYWdlciAoRGlnaXRhbCBUcmFuc2Zvcm1hdGlvbiBQcm9qZWN0KSIsImNvbXBhbnlfbmFtZSI6Ik9w",
-      "title": "Digital Project Manager (Digital Transformation Project)",
-      "company": "Optimum Solutions Pte Ltd",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "posted": "1 day ago",
-      "posted_date": "2026-07-13",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.linkedin.com/jobs/view/digital-project-manager-digital-transformation-project-at-optimum-solutions-pte-ltd-4439126060?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/digital-project-manager-digital-transformation-project-at-optimum-solutions-pte-ltd-4439126060?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": ""
-      },
-      "url": "https://sg.linkedin.com/jobs/view/digital-project-manager-digital-transformation-project-at-optimum-solutions-pte-ltd-4439126060?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Responsibilities\n\nManage the full project lifecycle from planning through implementation, testing, deployment, and operational handover.Drive project governance, including scope, schedule, budget, risks, issues, dependencies, and executive reporting.Coordinate cross-functional teams across business, engineering, architecture, security, infrastructure, and vendors.Manage vendor performance, procurement activities, contract deliverables, and project quality.Support Agile delivery, UAT, deployment planning, change management, and continuous improvement initiatives.Ensure compliance with government standards for security, cloud adoption, data protection, and operational resilience.\n\nRequirement\n\ns8–10 years of project management experience delivering large-scale technology or digital transformation projects.Proven experience managing multiple stakeholders, vendors, system integrations, and complex project dependencies.Strong knowledge of SDLC, Agile methodologies, project governance, risk management, and release management.Experience working with cloud, SaaS, system integration, data, AI, or modernization initiatives is advantageous.Excellent stakeholder management, communication, planning, and problem-solving skills.PMP, PRINCE2, Scrum, SAFe, ITIL, or cloud certifications are advantageous\n\n.",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-f679d6f7f3501462f7eca7444d972441",
       "title": "26977108 Digital Wealth Product Owner (Vice President)",
       "company": "CITIBANK SINGAPORE LIMITED",
@@ -2874,13 +3162,13 @@
       "links": {
         "primary": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
         "careers": "",
-        "linkedin": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/e-commerce-product-manager-lead-singapore-based-at-michael-page-4437843412?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
         "mcf": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
       "description": "",
       "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+      "first_seen": "2026-07-13T15:00:40.944211+00:00"
     },
     {
       "id": "mcf-403c3016e426a95b79f491aa169cca9b",
@@ -3295,27 +3583,27 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJFLUJ1c2luZXNzIE1hbmFnZXIsIFNFQUEgKDEyLW1vbnRoIEZpeGVkIFRlcm0pIiwiY29tcGFueV9uYW1lIjoiQ0hBTkVMIEFTSUEg",
-      "title": "E-Business Manager, SEAA (12-month Fixed Term)",
-      "company": "CHANEL ASIA PACIFIC PTE LIMITED",
-      "source": "Google Jobs",
+      "id": "wd-/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
+      "title": "E-Business Manager, SEAA (12-Month Fixed Term)",
+      "company": "Chanel",
+      "source": "Workday",
       "type": "house",
-      "sector": "hospitality",
+      "sector": "beauty_luxury",
       "category": "house",
       "posted": "7 days ago",
       "posted_date": "2026-07-09",
       "salary": "",
       "salary_max": null,
       "links": {
-        "primary": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "primary": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
+        "careers": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
         "linkedin": "https://sg.linkedin.com/jobs/view/e-business-manager-seaa-12-month-fixed-term-at-chanel-4426910886?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
         "mcf": "https://www.mycareersfuture.gov.sg/job/advertising/e-business-manager-seaa-chanel-asia-pacific-e6bbde1da0d6118cc8141aad354f1957?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
       },
-      "url": "https://sg.fashionjobs.com/job/chanel/E-business-manager-seaa,11743265.html?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Why this Mission? \n\nAt CHANEL, we strive to create an environment where people can perform at their best, feel fulfilled, and confident in their work. As a privately-owned company, we deeply value humanity, uniqueness, and the opportunity for each individual to bring their full selves to work. \n\nWithin this context, the SEAA Fragrance & Beauty (FBP) division seeks a Senior eBusiness professional for a 12-month maternity cover. This role is performance focused, with a key eye for elevating brand positioning & driving commercial achievement. You will champion CHANEL’s eBusiness vision in the region while actively monitoring and reporting on business performance, strategizing AB Testing and merchandising campaigns, and playing a pivotal part in enhancing the client experience. \n\nYou will help to lead core eBusiness projects including the launch of new online channels, (eShops, eRetail & eTravel Retail), partnering with markets to provide insight and leadership based on your significant eBusiness experience. \n\nImpact You can create in this role:\n\nDigital Campaign & eMerchandising \n\nDrive and enhance digital campaign planning, ensuring global calendars are adapted for local relevance, in line with regional priorities. Based on your experience, enrich business performance with best-in-class eMerchandising practices, including product recommendations, on-site search, menu/category optimization, and proposals to grow the online business. Take an experienced eye to online client journeys from traffic to conversion, and constantly enrich the customer experience based on insights and intuition. Performance & Analytics \n\nIndependently utilize data and analytics to generate actionable business insights and drive continuous optimization. Define and align key KPIs across client, brand, sales, and profitability dimensions with all stakeholders. Identify gaps in data, recommend solutions and tools, and drive adoption of improved reporting frameworks. AB Testing & Personalization \n\nLead the regional AB testing program based on market needs and ensure rigorous documentation and reporting. Collaborate with global and regional teams to embed testing and personalization into the client journey, leveraging cross-functional expertise (Tech, CRM, Marketing, Design). Project Management & Collaboration \n\nLead projects related to campaigns and new initiatives (e.g., gift finder, try-before-you-commit). Manage multiple projects simultaneously, ensuring all requests are recognized, prioritized, and delivered for optimal business impact. Proactively propose and drive new ideas to enhance the client experience and brand equity. eBusiness Excellence \n\nBring an entrepreneurial mindset, considering evolving online behaviors and market trends. Act as a key advocate for eBusiness, partnering with stakeholders to support the strategy of doubling .com revenue by 2028. You are energized by:\n\nBeing a strategic voice in shaping the digital future of CHANEL’s Fragrance & Beauty divisionPartnering with passionate, diverse, and talented colleagues across the regionDriving meaningful change and innovation in an inclusive, human-centric cultureGrowing personally, feeling empowered, and making a lasting impactWhat you will bring: \n\nAt least 8 years’ experience in eBusiness, ideally with a luxury or premium fragrance/beauty brand. Strong knowledge of performance marketing & media (highly desirable). Strong expertise in Google Analytics (preferred). Deep understanding of the balance between brand positioning and client experience for premium clientele. Demonstrated ability to work in a matrixed, multicultural environment with diverse stakeholders. Data-driven, analytical, and commercially focused. Strategic thinker with an innovative approach to online business. Comprehensive understanding of eCommerce & retail: e-merchandising, CRM, promotions, media, stock management, last mile delivery, invoicing, etc. Excellent English communication skills, written and spoken. Motivated, proactive, and results-driven; able to work independently with sound judgment. Flexible, positive, and adaptable in a fast-paced setting. Empathetic communicator, skilled at building strong relationships across APAC markets. Strong project management and multitasking skills; able to manage ambiguity and competing priorities. At Chanel, we are focused on creating an inclusive culture that nurtures personal growth, contributing to collective progress. We believe the uniqueness of each individual increases the diversity, complementarity, and effectiveness of our teams. We strongly encourage your application, as we value the perspective, experience, and potential you could bring to Chanel.",
+      "url": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
+      "description": "",
       "preferred": true,
-      "first_seen": "2026-07-16T03:58:06.858708+00:00"
+      "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
     {
       "id": "mcf-19bbee5913685199db14201a71bb1f1e",
@@ -5553,28 +5841,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJQcm9kdWN0IE93bmVyLCBSZXBvcnRpbmcgXHUwMDI2IE1JIChTaW5nYXBvcmUsIE1hbGF5c2lhKSIsImNvbXBhbnlfbmFtZSI6IlN0",
-      "title": "Product Owner, Reporting & MI (Singapore, Malaysia)",
-      "company": "Standard Chartered Bank",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "posted": "20 days ago",
-      "posted_date": "2026-06-24",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.jobstreet.com/job/92900898?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://sg.jobstreet.com/job/92900898?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Job Summary\n\nThis role could be based in Singapore or Malaysia. \n\nWe are seeking a talented and passionate, individual to join Standard Chartered as the Product Owner of Reporting and MI in the Markets COO Post Trade Transformation team. \n• Our Product Owners have a deep understanding of the target market/industry and build close relationships with key stakeholders to ensure the teams effort is aligned with overall strategy and client / customer needs. \n\nThe Markets COO Post Trade Transformation team drives and executes the overall strategic transformation on various Post Trade capabilities (Settlement, Clearing, Margining, Documentation, Business and Reference static data management, etc…)\nThe Product Owner works under the guidance of the Chief Product Owner Post Trade, Alexandre Nguyem\nIf tackling complex challenges excites you, then join our Markets COO Post Trade Transformation team where you will get to collaborate and work on solutions across business and functions.\n\nYou will have the opportunity to build and maintain the best-in-class products / services for our clients and customers, harness the power of AI whilst continuously striving to reduce time-to-market and streamline our processes.\n\nKey Responsibilities\n\nThe Product Owner for Reporting and Business Intelligence is an empowered decision maker, accountable for maximizing the business value of reporting, management information and analytics capabilities across the trade lifecycle.\nThey define and deliver self-service reporting capabilities for end users, enabling operations teams to access timely, accurate and actionable insights to manage processing activities, risks and performance.\nThe role focuses on modernising reporting and data consumption across operations, reducing reliance on manual reporting and fragmented data sources, and enabling scalability across multiple processing capabilities.\nThe Product Owner represents the voice of operations, management and stakeholders throughout the lifecycle of the product, ensuring reporting solutions are fit-for-purpose, intuitive and aligned to business needs.\nThey are a core member of the team, fully dedicated to the role, and accountable for a unified backlog aligned to reporting and business intelligence outcomes.\n\nAccountable for:\n• Maximising business value by ensuring confirmations processes deliver the right outcomes at the right time, balancing efficiency, client experience, and risk\n• Driving the reduction of manual processing through automation and standardisation across products and regions\n• Ensuring confirmations are accurate, timely, and compliant with regulatory and control requirements\n• Balancing new features, operational improvements, and risk remediation while maintaining a low cost of change\n• Delivering measurable outcomes aligned to business objectives, including efficiency gains, risk reduction, and improved client satisfaction\n• Optimising value through continuous feedback from operations, clients, and stakeholders, and ongoing refinement of priorities.\n\n• Owning and managing a single confirmations backlog:\n• Clearly defining backlog items in a structured format with clear acceptance criteria\n• Continuously prioritising based on value, risk, and operational impact\n• Using data such as volumes, processing times, errors, and exceptions to inform decisions\n• Ensuring backlog visibility and transparency to all stakeholders\n• Acting as the primary interface between business, operations, and technology teams to ensure delivery of end-to-end outcomes\n• Ensuring solutions are scalable, standardised, and aligned across products, avoiding fragmented or bespoke implementations\n• Managing operational risk, process changes, and delivery risks associated with the Payments capability\n\nBusiness\nDefine and maintain the reporting and business intelligence product vision and roadmap, aligned to post-trade transformation priorities and operational scalability goals\nDrive the development of self-service capabilities, enabling users to:\n• Access data independently\n• Create and consume reports without manual intervention\n• Monitor performance and risks in real time\n• Modernise and simplify the management information landscape, reducing fragmentation and duplication across reporting solutions\n• Establish a single source of truth for operational data, ensuring consistency, accuracy and transparency across stakeholders\n• Enable data-driven decision making across operations, supporting management with clear visibility on volumes, performance, risks and exceptions\n• Promote standardisation of reporting metrics and definitions across capabilities to ensure alignment and comparability\n• Drive automation of data extraction, aggregation and reporting processes to reduce manual effort and improve timeliness\n• Collaborate with other Product Owners to ensure reporting capabilities are integrated across the full trade lifecycle, from execution to post-trade processing\n• Leverage data and user feedback to continuously refine reporting capabilities and prioritise high-value use cases\n\nProcesses\nEnsure alignment of reporting and data processes with enterprise standards across the trade lifecycle\nOwn and continuously improve end-to-end reporting workflows, including:\n• Data sourcing and aggregation\n• Data validation and quality controls\n• Report generation and distribution\n• Dashboard creation and self-service enablement\n• Ensure strong data quality, governance and auditability, with clear ownership and traceability of data\nEnable efficient workflows by:\n• Reducing manual data manipulation\n• Simplifying access to data\n• Standardising report generation processes\nPartner closely with operations teams to:\n• Understand reporting needs and pain points\n• Validate usability and effectiveness of reporting solutions\n• Ensure adoption of self-service capabilities\n• Maintain clear visibility on dependencies with upstream data providers and downstream consumers\n• Ensure all governance, documentation and assurance standards are met for reporting and analytics solutions\n\nPeople and Talent \n• Champion and act as a role model of the Group’s values and culture. Lead through example and build the appropriate culture and values. Sets appropriate tone and expectations for their team and work in collaboration with risk and control partners.\n• Lead and support a change in mindset, building a culture of client centricity, agility, and accountability through standardised metrics and measurement, ensuring everyone in the Bank are drivers and owners of client outcomes.\n• Set effective metrics and standards, transparently communicating them to team members, providing feedback and rewarding employees accordingly. Set the appropriate tone and expectations for the wider team.\n• Employ, engage, and retain high quality people, with succession planning for critical roles.\n• Ensure team structure/capacity is reviewed to enable delivery of client outcomes. \n• Ensure the provision of on-going training & development, ensure that direct reports are suitably skilled and qualified for their roles and that they have effective supervision in place to mitigate any risk.\n• Set and monitor job descriptions and objectives for direct reports and provide feedback and rewards in line with their performance against those responsibilities and objectives.\n• Create a motivational and challenging environment for staff which is conducive to creativity and performance with customer centricity in mind.\n• Provide feedback on transformation leaders to their people leaders, as part of performance reviews\n\nRisk Management\n• Create transparency around backlog item progress, blockers, impediments, dependencies, and product value delivery via fit for purpose business and delivery metrics. \n• Engage process and risk control owners in upfront in design of process changes. Have oversight of, direct tracking and monitoring of projects. \n\nGovernance \n• Adopt and embed the Ways of Working Standards throughout the lifecycle of the product / service.\n• Awareness and understanding of the regulatory framework in which the Group operates, and the regulatory requirements and expectations relevant to the role.\n\nRegulatory & Business Conduct \n• Display exemplary conduct and live by the Group’s Values and Code of Conduct. \n• Take personal responsibility for embedding the highest standards of ethics, including regulatory and business conduct, across Standard Chartered Bank. This includes understanding and ensuring compliance with, in letter and spirit, all applicable laws, regulations, guidelines and the Group Code of Conduct.\n• Effectively and collaboratively identify, escalate, mitigate and resolve risk, conduct and compliance matters.\n\nKey stakeholders\n\n• T&O Markets & Post Trade Technology Leadership team \n• Markets COO Leadership team \n• Markets Trading and Sales \n• Markets Operations Leadership team \n• Operations BAU teams across Middle-Office, Post Trade, Clearing, Margining, etc… \n• Credit and Market Risk teams\n• Functional Partners : CFCC, HR, Finance, Legal, GIA\n• Transformation Leads across the Bank\n• Group Process owners\n\nSkills and Experience\n\n• Academic or Professional Education/Qualifications: As per Bank’s requirements and HR policy\n• Licences and Certifications/accreditations: \n• Product Owner certification from Scrum Alliance, Scrum.org or other associations are must\n• Practitioner certification of Scaled Agile framework like LeSS, SAFe, Scrum@Scale, Spotify, Nexus and Human Centred Design or Design Thinking are plus.\n• Professional Memberships: Association or Discipline Association Membership well regarded.\n\nOur Ideal Candidate\n\n• 5 plus years of experience in Financial Markets operations, post-trade processing or capability delivery, with exposure to reporting, data or analytics\n• Solid understanding of the end-to-end trade lifecycle, with the ability to connect operational processes to reporting and management information needs\n• Proven experience in reporting, data analysis or business intelligence, with strong understanding of how operational data is structured, transformed and consumed\n• Hands-on experience as a Product Owner or equivalent role, with strong capability in:\n• Managing and prioritising a backlog\n• Driving delivery outcomes across cross-functional teams\n• Translating business needs into data and reporting solutions\n• Proven ability to:\n• Define clear requirements for reporting and analytics use cases\n• Translate complex data needs into actionable insights and user-friendly outputs\n• Apply prioritisation and decision-making techniques effectively\n• Strong understanding of operational metrics, including volumes, performance, exceptions and risk indicators\n• Demonstrated experience working with globally distributed teams, including operations, technology and business stakeholders\n• Strong analytical and problem-solving skills, with the ability to interpret data and drive decision making.\n\n• Articulate reporting needs and product vision clearly\n• Influence stakeholders on data-driven priorities\n• Ensure transparency on data issues and resolution plans\n• Good knowledge of Agile ways of working, including iterative delivery, backlog refinement and continuous improvement\n• A forward-looking, adaptable mindset, with a strong focus on modernisation, simplification and scalability\n• Awareness of how to leverage automation and emerging technologies, including artificial intelligence, to enhance reporting capabilities, improve data access and enable smarter insights\n• Familiarity with user-centric design approaches, ensuring reporting tools and dashboards are intuitive and drive adoption\n\nRole Specific Technical Competencies\n\n• Product / Service subject matter expertise \n• Product delivery lifecycle experience using Agile Ways of Working (Scrum, Kanban, Lean, etc…)\n• Understanding Customer Needs (research, insights & communication)\n• Data driven decision making & product analytics \n• Business plan – design and execution (tactical and strategic)\n• Marketing Strategy and Positioning\n• Stakeholder management and communication\n• Regulatory Environment – Financial Services \n\nAbout Standard Chartered\n\nWe're an international bank, nimble enough to act, big enough for impact. For more than 170 years, we've worked to make a positive difference for our clients, communities, and each other. We question the status quo, love a challenge and enjoy finding new opportunities to grow and do better than before.\n\nIf you're looking for a career with purpose and you want to work for a bank making a difference, we want to hear from you. You can count on us to celebrate your unique talents and we can't wait to see the talents you can bring us.\n\nOur purpose, to drive commerce and prosperity through our unique diversity, together with our brand promise, to be here for good are achieved by how we each live our valued behaviours. When you work with us, you'll see how we value difference and advocate inclusion.\n\nTogether we:\n\nDo the right thing and are assertive, challenge one another, and live with integrity, while putting the client at the heart of what we do\n\nNever settle, continuously striving to improve and innovate, keeping things simple and learning from doing well, and not so well\n\nAre better together, we can be ourselves, be inclusive, see more good in others, and work collectively to build for the long...",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-26b7936fe613c3c4f26e218cc4da1e40",
       "title": "Senior UI/UX Designer",
       "company": "CYGNIFY PTE. LTD.",
@@ -5823,29 +6089,6 @@
       "first_seen": "2026-07-14T02:54:55.249068+00:00"
     },
     {
-      "id": "wd-/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
-      "title": "E-Business Manager, SEAA (12-Month Fixed Term)",
-      "company": "Chanel",
-      "source": "Workday",
-      "type": "house",
-      "sector": "beauty_luxury",
-      "category": "house",
-      "posted": "Posted 30+ Days Ago",
-      "posted_date": "",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
-        "careers": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://cc.wd3.myworkdayjobs.com/ChanelCareers/job/Singapore/E-Business-Manager--SEAA--12-Month-Fixed-Term-_JOBREQ00113854",
-      "description": "",
-      "preferred": true,
-      "first_seen": "2026-07-14T11:18:52.049707+00:00"
-    },
-    {
       "id": "eyJqb2JfdGl0bGUiOiJSZWdpb25hbCBFY29tbWVyY2UgT3BlcmF0aW9ucyBDb29yZGluYXRvciIsImNvbXBhbnlfbmFtZSI6IlNHMDMgUmljaGVtb250IEx1",
       "title": "Regional Ecommerce Operations Coordinator",
       "company": "SG03 Richemont Luxury (Singapore) Pte Ltd",
@@ -6003,28 +6246,6 @@
       "description": "Responsibilities\nAbout the Team\nTikTok is shaping the future of advertising and e-commerce on one of the world's leading platforms. The TikTok Content and Service Ads team, within the TikTok Monetization Product organization, is seeking a Product Leader to define and drive the vision, strategy, and execution of innovative advertising products serving web advertisers and travel and entertainment clients.\nOur mission is to establish TikTok as the premier advertising platform for these verticals by delivering scalable, data-driven product solutions that accelerate advertiser growth, maximize performance, and create long-term business value.\n\nResponsibilities\n- Define and lead the long-term product vision, strategy, and roadmap for Web Ads and Open-Loop E-Commerce advertising solutions across travel, entertainment, and web advertiser segments.\n- Own business outcomes, including revenue growth, advertiser satisfaction, retention, and overall platform adoption, while ensuring sustainable and scalable product development.\n- Build, mentor, and inspire high-performing product management teams, fostering a culture of innovation, customer obsession, operational excellence, and accountability.\n- Partner with executive leadership and cross-functional stakeholders to align product investments with company objectives and market opportunities.\n- Drive the development of highly scalable machine learning–powered advertising products that improve advertiser performance and maximize return on ad spend (ROAS).\n- Lead cross-functional teams across engineering, data science, design, operations, sales, and marketing to deliver end-to-end product solutions from concept through launch and continuous optimization.\n- Establish frameworks for identifying market opportunities, customer pain points, and emerging industry trends, translating insights into impactful product strategies.\n- Champion advertiser-centric innovation by developing advanced targeting, optimization, attribution, measurement, and product-matching capabilities.\n- Ensure products adhere to evolving privacy regulations and industry standards while promoting responsible and effective use of advertising signals.\n- Foster strong partnerships across Targeting, Attribution, Optimization, Insights, and other platform teams to unlock new capabilities and improve advertising performance globally.\n- Serve as a thought leader and advocate for the travel, entertainment, and web advertising ecosystem, influencing product direction across the broader monetization organization.\n\nQualifications\nMinimum Qualification(s)\n- Bachelor's degree in Computer Science, Engineering, Mathematics, Statistics, or a related technical field.\n- 5+ years of product management experience, including significant experience leading advertising technology products and teams.\n- Demonstrated success defining product vision, strategy, and execution for large-scale advertising, monetization, or machine learning–driven products.\n- Deep expertise in the digital advertising ecosystem, preferably including ad delivery, targeting, attribution, optimization, and measurement systems.\n- Strong understanding of the travel, entertainment, and/or web advertising industries and their evolving business needs.\n- Experience leading global cross-functional initiatives involving engineering, data science, sales, operations, and business teams.\n- Fluency in both English and Mandarin required: the role involves frequent communication with global teams, clients and stakeholders in English - speaking regions as well as Chinese- speaking markets. Proficiency in Mandarin is essential to effectively engage with Chinese- speaking partners, understand cultural nuances, and navigate business transactions in key markets, ensuring smooth cross- cultural collaboration and market expansion.\n\nPreferred Qualification(s)\n- MBA, Master's degree, or other advanced degree in a relevant field.\n- Experience leading product organizations in a fast-growing technology company or fast-paced environment.\n- Strong understanding of web advertiser needs, performance marketing, and e-commerce advertising solutions.\n- Experience scaling international advertising products across multiple markets and regions.\n- Demonstrated ability to drive organizational alignment and influence company-wide product strategy.\n\nAbout TikTok\nTikTok is the leading destination for short-form mobile video. At TikTok, our mission is to inspire creativity and bring joy. TikTok's global headquarters are in Los Angeles and Singapore, and we also have offices in New York City, London, Dublin, Paris, Berlin, Dubai, Jakarta, Seoul, and Tokyo.​\n\nWhy Join Us\nInspiring creativity is at the core of TikTok's mission. Our innovative product is built to help people authentically express themselves, discover and connect – and our global, diverse teams make that possible. Together, we create value for our communities, inspire creativity and bring joy - a mission we work towards every day.​\nWe strive to do great things with great people. We lead with curiosity, humility, and a desire to make impact in a rapidly growing tech company. Every challenge is an opportunity to learn and innovate as one team. We're resilient and embrace challenges as they come. By constantly iterating and fostering an Always Day 1 mindset, we achieve meaningful breakthroughs for ourselves, our company, and our users. When we create and grow together, the possibilities are limitless. Join us.​\n​\nDiversity & Inclusion​\nTikTok is committed to creating an inclusive space where employees are valued for their skills, experiences, and unique perspectives. Our platform connects people from across the globe and so does our workplace. At TikTok, our mission is to inspire creativity and bring joy. To achieve that goal, we are committed to celebrating our diverse voices and to creating an environment that reflects the many communities we reach. We are passionate about this and hope you are too.​",
       "preferred": false,
       "first_seen": "2026-07-14T05:54:30.507086+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJFLWNvbW1lcmNlIFByb2R1Y3QgTWFuYWdlciBMZWFkIChTaW5nYXBvcmUtYmFzZWQpIiwiY29tcGFueV9uYW1lIjoiTWljaGFlbCBQ",
-      "title": "E-commerce Product Manager Lead (Singapore-based)",
-      "company": "Michael Page",
-      "source": "Google Jobs",
-      "type": "agency",
-      "sector": "general",
-      "posted": "",
-      "posted_date": "",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.linkedin.com/jobs/view/e-commerce-product-manager-lead-singapore-based-at-michael-page-4437843412?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/e-commerce-product-manager-lead-singapore-based-at-michael-page-4437843412?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/information-technology/e-commerce-product-manager-lead-michael-page-international-3b4c2eb036d983cdfbc71e5d01cffff9?source=MCF&event=RecommendedJobJD&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
-      },
-      "url": "https://sg.linkedin.com/jobs/view/e-commerce-product-manager-lead-singapore-based-at-michael-page-4437843412?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Own end-to-end product lifecycle at scaleDrive large-scale e-commerce product initiatives \nAbout Our Client\n\nOur client is a well-established consumer-focused organisation with a strong presence in Singapore, supported by an extensive network of operations and a growing digital ecosystem. The business is investing in enhancing its e-commerce capabilities, with a focus on platform development, customer experience, and data-driven innovation. \n\nJob Description\n\nDefine and execute product strategy for their omnichannel e-commerce platformOwn end-to-end product lifecycle from concept to optimisation, with a strong emphasis on product thought leadershipCollaborate with engineering, design, and business teamsUse data and customer insights to drive product decisionsImprove user journey, conversion, and engagement metricsMonitor market trends and identify new product opportunitiesDeliver scalable solutions aligned with business objectives \nThe Successful Applicant\n\n7+ years of product management experienceStrong experience in e-commerce or digital platform environmentsProven track record of managing products at scale (traffic, transactions, or users)Experience owning roadmap and product delivery independentlyStrong analytical and data-driven decision-making capabilityExperience working in fast-paced, iterative development environmentsExposure to platform, marketplace, or consumer internet products is advantageous\n\nWhat's on Offer\n\nThis opportunity provides exposure to a rapidly evolving digital environment with the chance to own impactful product initiatives at scale. You will gain regional experience in Singapore while working alongside cross-functional teams in a collaborative setting. The organisation offers a structured environment for professional growth, exposure to transformation projects, and a competitive compensation and benefits package.",
-      "preferred": false,
-      "first_seen": "2026-07-13T15:00:40.944211+00:00"
     }
   ]
 }

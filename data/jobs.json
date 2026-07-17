@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-17T03:53:54.128016+00:00",
+  "generated_at": "2026-07-17T03:57:15.302512+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 452,
-      "kept": 371,
+      "fetched": 453,
+      "kept": 373,
       "error": false,
       "detail": ""
     },
@@ -31,17 +31,17 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 0,
-      "kept": 0,
-      "error": true,
-      "detail": "ConnectTimeout"
+      "fetched": 6,
+      "kept": 6,
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Shiseido",
-      "fetched": 0,
-      "kept": 0,
-      "error": true,
-      "detail": "ConnectTimeout"
+      "fetched": 20,
+      "kept": 5,
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Puig",
@@ -562,6 +562,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-17T03:37:17.459296+00:00"
+    },
+    {
+      "id": "mcf-26ef0ce62bfd7401c2477d37ddb74ae7",
+      "title": "Digital Project Manager (Triple A plus, API, Unix) - Contract",
+      "company": "QUESS ENGINEERING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-17",
+      "posted_date": "2026-07-17",
+      "salary": "S$8,500–9,800/mo",
+      "salary_max": 9800,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/26ef0ce62bfd7401c2477d37ddb74ae7",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/26ef0ce62bfd7401c2477d37ddb74ae7"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/26ef0ce62bfd7401c2477d37ddb74ae7",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-17T03:57:15.302512+00:00"
     },
     {
       "id": "mcf-4497eaa7a79b86a79096134aa4726d0b",
@@ -3303,6 +3326,28 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-d63f530ddcfe08335eb09134b9341bd5",
+      "title": "Product Manager",
+      "company": "TALENTVIS SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-09",
+      "posted_date": "2026-07-09",
+      "salary": "S$8,000–9,500/mo",
+      "salary_max": 9500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-1a906921a7f7fcea2804ee845cc4b680",
       "title": "Senior Product Manager - A26220",
       "company": "ACTIVATE INTERACTIVE PTE LTD",
@@ -3829,28 +3874,6 @@
       "description": "REGRIP \\\"RE-ENGINEERED TYRES\\\" in Singapore is seeking a Retail Operations Coordinator responsible for supporting and optimizing both digital and physical retail operations. The successful candidate will manage daily store functions, ensuring customer satisfaction and efficient business processes. This role requires a Bachelor's degree in a relevant field, with proven experience in retail and e-commerce operations. Ideal candidates will possess strong analytical skills, a proactive mindset, and the ability to collaborate with various teams to drive business growth.",
       "preferred": false,
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
-    },
-    {
-      "id": "mcf-d63f530ddcfe08335eb09134b9341bd5",
-      "title": "Product Manager",
-      "company": "TALENTVIS SINGAPORE PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-09",
-      "posted_date": "2026-07-09",
-      "salary": "S$8,000–9,500/mo",
-      "salary_max": 9500,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/d63f530ddcfe08335eb09134b9341bd5",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "mcf-81b2d96d00ce95874c5d7c5465aa6f5a",

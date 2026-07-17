@@ -94,8 +94,12 @@ MIN_SALARY_MAX = 9000
 
 # Per-source diagnostics, written into jobs.json so the page can show a "Sources" panel.
 STATS = []
-def record(label, fetched, kept, error=False):
-    STATS.append({"label": label, "fetched": fetched, "kept": kept, "error": bool(error)})
+def record(label, fetched, kept, error=False, detail=""):
+    """A red dot with no reason is a dead end: it says something broke but not
+    what, so the only way to learn is to read the Actions log. Carry the real
+    status or message into jobs.json so the dashboard can show it."""
+    STATS.append({"label": label, "fetched": fetched, "kept": kept,
+                  "error": bool(error), "detail": str(detail)[:160]})
 
 # Shared keyword list for keyword-driven sources (Workday needs a search term).
 KEYWORDS = ["ecommerce", "e-commerce", "product owner", "product manager", "digital project manager",
@@ -759,7 +763,7 @@ def connector_successfactors():
     job_re=re.compile(r'href="([^"]*?/job/([^"/]+?)/(\d+)/)"[^>]*>\s*([^<]{3,160}?)\s*</a>', re.I)
     for label,cfg in SF_SITES.items():
         host=cfg["host"]; company=cfg.get("company")
-        seen=set(); fetched=0; kept=0; errored=False
+        seen=set(); fetched=0; kept=0; errored=False; why=""
         try:
             for page in range(SF_MAX_PAGES):
                 params={"q":"Singapore","sortColumn":"referencedate","sortDirection":"desc","startrow":page*50}
@@ -767,11 +771,21 @@ def connector_successfactors():
                 try:
                     r=requests.get(f"https://{host}/search/",params=params,headers=hdr,timeout=TIMEOUT)
                 except requests.RequestException as e:
+                    why=type(e).__name__
                     print(f"  ! SF {label}: {e}",file=sys.stderr); errored=True; break
                 if r.status_code!=200:
+                    why=f"HTTP {r.status_code}"
                     print(f"  ! SF {label}: HTTP {r.status_code}",file=sys.stderr); errored=True; break
                 matches=job_re.findall(r.text)
                 if not matches:
+                    if page==0 and not fetched:
+                        # 200 but nothing job-shaped. Almost always the wrong URL
+                        # shape: the hosted portals (career5.successfactors.eu with
+                        # ?company=X) are the legacy Jobs2Web portal at
+                        # /career?company=X, not the Career Site Builder /search/
+                        # that the brand-domain sites use.
+                        why="200 but no job links — wrong URL shape?"
+                        print(f"  ! SF {label}: {why}",file=sys.stderr); errored=True
                     break                                       # past the last page
                 new=False
                 for href,slug,jid,title in matches:
@@ -789,8 +803,9 @@ def connector_successfactors():
                 if not new:
                     break
         except Exception as e:
+            why=f"crashed: {type(e).__name__}"
             print(f"  ! SF {label} crashed: {e}",file=sys.stderr); errored=True
-        record(f"SuccessFactors · {label}", fetched, kept, error=errored)
+        record(f"SuccessFactors · {label}", fetched, kept, error=errored, detail=why)
     return out
 
 def connector_greenhouse():

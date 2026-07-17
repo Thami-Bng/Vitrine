@@ -34,8 +34,15 @@ TIMEOUT = 25
 MCF_QUERIES = ["ecommerce", "product owner", "product manager", "digital project manager",
                "omnichannel", "digital consultant", "ui ux", "business analyst", "performance analyst"]
 
-# SmartRecruiters slugs (LVMH2 confirmed). Kering is NOT here — it's on Workday (see below).
-SR_COMPANIES = {"LVMH Beauty": "LVMH2"}
+# SmartRecruiters slugs. The Posting API is public and documented — no key, no
+# bot wall — so this is the cheapest connector we have. Company IDs are the
+# segment after smartrecruiters.com/ in the careers URL and ARE case-sensitive.
+# LVMH is decentralised: several maisons run their own SmartRecruiters site, so
+# one slug does not cover the group. Kering is NOT here — it's on Workday.
+SR_COMPANIES = {
+    "LVMH Beauty": "LVMH2",                                # returns SG roles today
+    "LVMH Perfumes & Cosmetics": "LVMHPerfumesCosmetics",  # Dior Perfumes, Guerlain, Acqua di Parma
+}
 SR_FETCH_DETAIL = True
 
 # Workday tenants (direct from the source). host + site come from the "Apply" URL, e.g.
@@ -496,8 +503,31 @@ GROUP_MAP = [
     (("amorepacific","sulwhasoo","laneige","innisfree"),"amorepacific"),
     (("puig","charlotte tilbury","carolina herrera","jean paul gaultier","byredo","rabanne"),"puig"),
 ]
+# Legal and geographic noise that makes the same employer look like three.
+# Deliberately NOT stripped: "sea" (Sea Limited is a real company), "co" (Coty),
+# "group" — each would erase a name rather than tidy it.
+COMPANY_NOISE = re.compile(
+    r"\b(pte|ptd|ltd|limited|inc|incorporated|llc|llp|plc|gmbh|ag|sas|sarl|srl|bv|nv|"
+    r"corp|corporation|company|holdings?|asia|pacific|apac|seaa|singapore|spore|"
+    r"regional|international|intl|global)\b")
+
+def norm_company(company):
+    """Strip the boilerplate around an employer's name.
+
+    "CHANEL ASIA PACIFIC PTE LIMITED" and "Chanel" are one employer, but dedupe
+    keyed on the raw strings, so the same role showed up twice — once from
+    Workday and once from Google Jobs. Adding "chanel" to GROUP_MAP would have
+    fixed that one duplicate and left the next one waiting; this fixes the cause.
+    """
+    # Apostrophes are dropped, not turned into spaces: "L'Oréal" must become
+    # "loreal", not "l oreal", or it stops matching the brand list.
+    s = re.sub(r"[^a-z0-9 ]", " ", fold(company).replace("'", ""))
+    s = re.sub(r"\bsg\d+\b", " ", s)              # "SG03 Richemont Luxury…"
+    out = re.sub(r"\s+", " ", COMPANY_NOISE.sub(" ", s)).strip()
+    return out or re.sub(r"\s+", " ", s).strip()   # never let it strip to nothing
+
 def group_of(company):
-    c=(company or "").lower()
+    c = norm_company(company)
     for kws,g in GROUP_MAP:
         if any(k in c for k in kws): return g
     return c
@@ -604,19 +634,29 @@ def connector_mycareersfuture():
     return out
 
 def connector_smartrecruiters():
+    """Records per company, like Workday and SuccessFactors. One lumped
+    "smartrecruiters" row couldn't tell you which slug worked — and with LVMH
+    decentralised across several sites, that's exactly what we need to see."""
     out=[]; base="https://api.smartrecruiters.com/v1/companies/{c}/postings"
     hdr={"User-Agent":UA,"Accept":"application/json"}
     for label,slug in SR_COMPANIES.items():
-        offset=0
+        offset=0; fetched=0; why=""; errored=False
         while True:
             try:
                 r=requests.get(base.format(c=slug),params={"country":"sg","limit":100,"offset":offset},
                                headers=hdr,timeout=TIMEOUT)
             except requests.RequestException as e:
+                why=type(e).__name__; errored=True
                 print(f"  ! SR {label}: {e}",file=sys.stderr); break
+            if r.status_code==404:
+                why="HTTP 404 — wrong slug? IDs are case-sensitive"; errored=True
+                print(f"  ! SR {label}: {why}",file=sys.stderr); break
             if r.status_code!=200:
+                why=f"HTTP {r.status_code}"; errored=True
                 print(f"  ! SR {label}: HTTP {r.status_code}",file=sys.stderr); break
             data=r.json()
+            if offset==0 and not data.get("totalFound"):
+                why="no Singapore roles on this site right now"
             for p in data.get("content",[]):
                 pid=p.get("id","")
                 desc=sr_detail(slug,pid,hdr) if SR_FETCH_DETAIL else ""
@@ -626,9 +666,11 @@ def connector_smartrecruiters():
                 links={"primary":apply_url,"careers":apply_url,"linkedin":"","mcf":""}
                 out.append(job(pid,p.get("name",""),label,"SmartRecruiters",links,
                                (p.get("releasedDate") or "")[:10],desc))
+                fetched+=1
             offset+=100
             if offset>=data.get("totalFound",0): break
             time.sleep(0.3)
+        record(f"SmartRecruiters · {label}", fetched, fetched, error=errored, detail=why)
     return out
 
 def sr_detail(slug,pid,hdr):
@@ -767,6 +809,15 @@ def connector_eightfold():
             why=type(e).__name__
             print(f"  ! Eightfold {label}: {e}",file=sys.stderr)
             record(f"Eightfold · {label}",0,0,error=True,detail=why); continue
+        if r.status_code in (401,403):
+            # Browser headers didn't lift it, so this is a deliberate wall rather
+            # than something we've misconfigured. Not an error we can fix, and not
+            # a gap either: this brand is in the Google Jobs rotation. Grey, with
+            # the reason — a permanent red dot would imply work left undone.
+            print(f"  · Eightfold {label}: HTTP {r.status_code} — blocked; covered via Google Jobs",file=sys.stderr)
+            record(f"Eightfold · {label}",0,0,error=False,
+                   detail=f"HTTP {r.status_code} — blocks automated clients; this brand is reached via Google Jobs instead")
+            continue
         if r.status_code!=200:
             why=f"HTTP {r.status_code}"
             print(f"  ! Eightfold {label}: HTTP {r.status_code}",file=sys.stderr)
@@ -941,18 +992,22 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
+            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse",
+                                     "connector_oracle","connector_eightfold",
+                                     "connector_smartrecruiters"):                # these record per-site
+                record(conn.__name__.replace("connector_",""), len(got), len(kept))
+            # AFTER every row for this connector exists — annotating before the
+            # generic record() above left mycareersfuture, smartrecruiters and
+            # google_jobs with no `relevant` field at all.
             # Per-site connectors recorded "kept = in Singapore" before the search
-            # terms were applied. Annotate each row with how many actually matched,
-            # so "5 SG · 0 match your terms" reads as the fact it is.
+            # terms were applied; give every row the number that actually matched,
+            # so "5 in SG · none match your terms" reads as the fact it is.
             by_site={}
             for j in kept:
                 k=f"{j.get('source','')} · {j.get('company','')}"
                 by_site[k]=by_site.get(k,0)+1
             for st in STATS[stats_before:]:
                 st["relevant"]=by_site.get(st["label"], len(kept) if " · " not in st["label"] else 0)
-            if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse",
-                                     "connector_oracle","connector_eightfold"):   # these record per-site
-                record(conn.__name__.replace("connector_",""), len(got), len(kept))
         except Exception as e:
             print(f"  ! {conn.__name__} crashed: {e}",file=sys.stderr)
             record(conn.__name__.replace("connector_",""), 0, 0, error=True)

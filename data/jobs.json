@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T03:57:15.302512+00:00",
+  "generated_at": "2026-07-17T04:20:17.307857+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -20,110 +20,125 @@
       "fetched": 15,
       "kept": 2,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "SuccessFactors · Clarins",
       "fetched": 5,
       "kept": 5,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 1
     },
     {
       "label": "SuccessFactors · Coty",
       "fetched": 6,
       "kept": 6,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "SuccessFactors · Shiseido",
       "fetched": 20,
       "kept": 5,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "SuccessFactors · Puig",
       "fetched": 11,
       "kept": 1,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "SuccessFactors · Changi",
       "fetched": 42,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Workday · Richemont / Cartier",
       "fetched": 149,
       "kept": 7,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 2
     },
     {
       "label": "Workday · Chanel",
       "fetched": 123,
       "kept": 7,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 1
     },
     {
       "label": "Workday · Aman",
       "fetched": 33,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Workday · Pernod Ricard",
       "fetched": 94,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Greenhouse · Soho House",
       "fetched": 374,
       "kept": 0,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Oracle · Marriott",
       "fetched": 81,
       "kept": 75,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Oracle · Hermès",
       "fetched": 2,
       "kept": 1,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Oracle · Tiffany",
       "fetched": 4,
       "kept": 3,
       "error": false,
-      "detail": ""
+      "detail": "",
+      "relevant": 0
     },
     {
       "label": "Eightfold · Estée Lauder",
       "fetched": 0,
       "kept": 0,
       "error": true,
-      "detail": "HTTP 403"
+      "detail": "HTTP 403",
+      "relevant": 0
     },
     {
       "label": "google_jobs",
-      "fetched": 26,
-      "kept": 11,
+      "fetched": 16,
+      "kept": 0,
       "error": false,
       "detail": ""
     }
@@ -1099,7 +1114,7 @@
       "source": "MyCareersFuture",
       "type": "other",
       "sector": "general",
-      "category": "other",
+      "category": "tech",
       "posted": "2026-07-15",
       "posted_date": "2026-07-15",
       "salary": "S$16,000–22,000/mo",

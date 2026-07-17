@@ -101,7 +101,13 @@ STATS = []
 def record(label, fetched, kept, error=False, detail=""):
     """A red dot with no reason is a dead end: it says something broke but not
     what, so the only way to learn is to read the Actions log. Carry the real
-    status or message into jobs.json so the dashboard can show it."""
+    status or message into jobs.json so the dashboard can show it.
+
+    `kept` means "in Singapore" for the per-site connectors and "matched the
+    search terms" for the rest — two different things in one column, which made
+    "Shiseido: 5 SG" look like five roles you could go and read when in fact none
+    of them matched. run() annotates every row with `relevant` afterwards so the
+    dashboard can show both numbers and the gap between them."""
     STATS.append({"label": label, "fetched": fetched, "kept": kept,
                   "error": bool(error), "detail": str(detail)[:160]})
 
@@ -223,7 +229,10 @@ TECH_SIGNALS = ["software","saas","b2b saas","fintech","technology company","pla
                 "grab","shopee","sea limited","sea ltd","lazada","gojek","goto","bytedance","tiktok","tik tok",
                 "stripe","google","meta","amazon","microsoft","salesforce","adobe","atlassian","canva","razer",
                 "ninja van","ninjavan","carousell","propertyguru","nium","thunes","wise","revolut","binance",
-                "coinbase","circles.life","coda payments","advance intelligence","openai","anthropic"]
+                "coinbase","circles.life","coda payments","advance intelligence","openai","anthropic",
+                 # adtech / martech — product roles here match her profile but the
+                 # names were missing, so they fell into "Other".
+                 "trade desk", "criteo", "appsflyer", "braze", "amplitude", "mixpanel"]
 CONSULT_SIGNALS = ["consulting","consultancy","advisory","management consult","accenture","deloitte","mckinsey",
                    "bain","boston consulting","bcg","kpmg","pwc","pricewaterhouse","ernst & young","capgemini",
                    "cognizant","infosys","wipro","tata consultancy","oliver wyman","roland berger","kearney",
@@ -741,8 +750,14 @@ def connector_eightfold():
     """Records per tenant. It used to `continue` past every failure without a
     record(), so a broken tenant showed as a mute grey "0 fetched" that could
     never say why."""
-    out=[]; hdr={"User-Agent":UA,"Accept":"application/json"}
+    # eightfold refused our self-identifying UA with HTTP 403 while every other
+    # ATS connector — Workday, SuccessFactors, Greenhouse, Oracle — is accepted
+    # with a browser UA. Same headers a browser would send. If it still 403s the
+    # wall is real, and Estée Lauder is already reached through Google Jobs.
+    out=[]; hdr={"User-Agent":BROWSER_UA,"Accept":"application/json, text/plain, */*",
+                 "Accept-Language":"en-US,en;q=0.9"}
     for label,cfg in EIGHTFOLD_TENANTS.items():
+        hdr={**hdr,"Referer":f"https://{cfg['host']}/careers","Origin":f"https://{cfg['host']}"}
         fetched=0; kept=0; why=""
         try:
             r=requests.get(f"https://{cfg['host']}/api/apply/v2/jobs",
@@ -918,6 +933,7 @@ def run(dry_run=False):
     collected={}
     for conn in CONNECTORS:
         print(f"→ {conn.__name__}")
+        stats_before=len(STATS)
         try:
             got=conn()
             kept=[j for j in got if relevant(j["title"])]
@@ -925,6 +941,15 @@ def run(dry_run=False):
                 j["first_seen"]=prev.get(j["id"],{}).get("first_seen",now)
                 collected[j["id"]]=j
             print(f"   {len(got)} fetched · {len(kept)} relevant")
+            # Per-site connectors recorded "kept = in Singapore" before the search
+            # terms were applied. Annotate each row with how many actually matched,
+            # so "5 SG · 0 match your terms" reads as the fact it is.
+            by_site={}
+            for j in kept:
+                k=f"{j.get('source','')} · {j.get('company','')}"
+                by_site[k]=by_site.get(k,0)+1
+            for st in STATS[stats_before:]:
+                st["relevant"]=by_site.get(st["label"], len(kept) if " · " not in st["label"] else 0)
             if conn.__name__ not in ("connector_workday","connector_successfactors","connector_greenhouse",
                                      "connector_oracle","connector_eightfold"):   # these record per-site
                 record(conn.__name__.replace("connector_",""), len(got), len(kept))

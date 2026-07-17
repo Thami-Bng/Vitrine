@@ -193,6 +193,7 @@
   .src-row{display:flex;justify-content:space-between;gap:10px;padding:6px 2px;border-top:1px solid var(--line);}
   .src-n{color:var(--muted);white-space:nowrap;}
   .src-why{display:block;margin-left:16px;font-size:11px;color:#b3371f;}
+  .src-gap{display:block;margin-left:16px;font-size:11px;color:var(--muted);}
   .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;}
   .dot.ok{background:#3f8f5f;} .dot.zero{background:#cec7bb;} .dot.err{background:#b3371f;}
   /* Priority buckets inside Pipeline */
@@ -811,13 +812,14 @@ const RULE_DEFAULTS={
     "airline","airport","aviation","concierge","cruise","duty free","duty-free","hospitality","hotel",
     "members club","members' club","private club","resort","spa resort","travel retail"],
   tech_signals: [
-    "adobe","advance intelligence","amazon","anthropic","artificial intelligence","atlassian","b2b saas",
-    "binance","blockchain","bytedance","canva","carousell","circles.life","cloud","coda payments",
-    "coinbase","crypto","cybersecurity","data science","developer","digital agency","e-wallet","engineer",
-    "fintech","gaming","gojek","google","goto","grab","lazada","machine learning","meta","microsoft",
-    "ninja van","ninjavan","nium","openai","platform","propertyguru","razer","revolut","saas","salesforce",
-    "sea limited","sea ltd","semiconductor","shopee","software","startup","stripe","super app",
-    "technology company","thunes","tik tok","tiktok","wise"],
+    "adobe","advance intelligence","amazon","amplitude","anthropic","appsflyer","artificial intelligence",
+    "atlassian","b2b saas","binance","blockchain","braze","bytedance","canva","carousell","circles.life",
+    "cloud","coda payments","coinbase","criteo","crypto","cybersecurity","data science","developer",
+    "digital agency","e-wallet","engineer","fintech","gaming","gojek","google","goto","grab","lazada",
+    "machine learning","meta","microsoft","mixpanel","ninja van","ninjavan","nium","openai","platform",
+    "propertyguru","razer","revolut","saas","salesforce","sea limited","sea ltd","semiconductor","shopee",
+    "software","startup","stripe","super app","technology company","thunes","tik tok","tiktok","trade desk",
+    "wise"],
   finance_signals: [
     "aia","allianz","aon","asset management","assurance","axa","bank","banking","barclays","bnp paribas",
     "brokerage","capital markets","chubb","cimb","citibank","citigroup","credit suisse","dbs",
@@ -1188,7 +1190,13 @@ function renderSources(sources){
     const cls=s.error?"err":(s.fetched===0?"zero":"ok");
     // A red dot with no reason is a dead end — show what it actually hit.
     const why=s.detail?`<span class="src-why">${esc(s.detail)}</span>`:"";
-    return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}${why}</span><span class="src-n">${s.fetched} fetched · ${s.kept} SG</span></div>`;
+    // "5 SG" used to mean "five roles in Singapore", which read as five roles to
+    // go and look at — when none of them matched the search terms. Show both.
+    const rel=(s.relevant===undefined)?null:s.relevant;
+    const gap=(rel!==null && rel<s.kept)
+      ? `<span class="src-gap">${s.kept} in SG \u00b7 ${rel===0?"none match your terms":`${rel} match`}</span>` : "";
+    const n=(rel!==null)?`${s.fetched} fetched \u00b7 ${rel} for you`:`${s.fetched} fetched \u00b7 ${s.kept} SG`;
+    return `<div class="src-row"><span><i class="dot ${cls}"></i>${esc(s.label)}${why}${gap}</span><span class="src-n">${n}</span></div>`;
   }).join("");
   const q=(state.quota||{}).serpapi;
   let qrow="";

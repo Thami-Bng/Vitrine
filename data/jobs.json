@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T03:37:17.459296+00:00",
+  "generated_at": "2026-07-17T03:53:54.128016+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
@@ -31,31 +31,31 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 6,
-      "kept": 6,
-      "error": false,
-      "detail": ""
+      "fetched": 0,
+      "kept": 0,
+      "error": true,
+      "detail": "ConnectTimeout"
     },
     {
       "label": "SuccessFactors · Shiseido",
       "fetched": 0,
       "kept": 0,
       "error": true,
-      "detail": "HTTP 404"
+      "detail": "ConnectTimeout"
     },
     {
       "label": "SuccessFactors · Puig",
-      "fetched": 0,
-      "kept": 0,
-      "error": true,
-      "detail": "HTTP 404"
+      "fetched": 11,
+      "kept": 1,
+      "error": false,
+      "detail": ""
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 0,
+      "fetched": 42,
       "kept": 0,
-      "error": true,
-      "detail": "HTTP 404"
+      "error": false,
+      "detail": ""
     },
     {
       "label": "Workday · Richemont / Cartier",
@@ -114,11 +114,11 @@
       "detail": ""
     },
     {
-      "label": "eightfold",
+      "label": "Eightfold · Estée Lauder",
       "fetched": 0,
       "kept": 0,
-      "error": false,
-      "detail": ""
+      "error": true,
+      "detail": "HTTP 403"
     },
     {
       "label": "google_jobs",

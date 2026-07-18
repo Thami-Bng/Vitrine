@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-18T03:51:52.645120+00:00",
+  "generated_at": "2026-07-18T10:15:25.712882+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 453,
+      "fetched": 454,
       "kept": 372,
       "error": false,
       "detail": "",
@@ -67,10 +67,10 @@
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 42,
+      "fetched": 0,
       "kept": 0,
-      "error": false,
-      "detail": "",
+      "error": true,
+      "detail": "ReadTimeout",
       "relevant": 0
     },
     {
@@ -91,9 +91,9 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 0,
+      "fetched": 33,
       "kept": 0,
-      "error": true,
+      "error": false,
       "detail": "",
       "relevant": 0
     },
@@ -147,17 +147,17 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 17,
-      "kept": 1,
+      "fetched": 32,
+      "kept": 0,
       "error": false,
       "detail": "",
-      "relevant": 1
+      "relevant": 0
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 160,
-      "used": 90,
+      "left": 156,
+      "used": 94,
       "limit": 250
     }
   },
@@ -3194,29 +3194,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-3b4c2eb036d983cdfbc71e5d01cffff9",
-      "title": "E-commerce Product Manager Lead (Singapore-based)",
-      "company": "MICHAEL PAGE INTERNATIONAL PTE LTD",
-      "source": "MyCareersFuture",
-      "type": "agency",
-      "sector": "general",
-      "category": "recruiter",
-      "posted": "2026-07-10",
-      "posted_date": "2026-07-10",
-      "salary": "S$10,000–13,333/mo",
-      "salary_max": 13333,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-13T15:00:40.944211+00:00"
-    },
-    {
       "id": "mcf-403c3016e426a95b79f491aa169cca9b",
       "title": "Product Manager (Games/Software)",
       "company": "ATLAS IMMIGRATION SERVICES PTE. LTD.",
@@ -3330,6 +3307,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-3b4c2eb036d983cdfbc71e5d01cffff9",
+      "title": "E-commerce Product Manager Lead (Singapore-based)",
+      "company": "MICHAEL PAGE INTERNATIONAL PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-10",
+      "posted_date": "2026-07-10",
+      "salary": "S$10,000–13,333/mo",
+      "salary_max": 13333,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/3b4c2eb036d983cdfbc71e5d01cffff9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-13T15:00:40.944211+00:00"
     },
     {
       "id": "mcf-0523ffbb2c83120d7efb8d32c44132e0",

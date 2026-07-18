@@ -600,7 +600,8 @@ function catOfRaw(j){
 function renderTabs(){
   const counts={}, fresh={};
   state.jobs.forEach(j=>{
-    if(!marketPasses(j,true))return;                  // the MARKET, not the leftovers
+    if(!marketPasses(j,true))return;                  // in this profile's market…
+    if(handledState(j))return;                        // …but only what's NOT treated yet (drops tracked/applied/set-aside)
     const c=catOf(j); counts[c]=(counts[c]||0)+1;
     if(isNew(j))fresh[c]=(fresh[c]||0)+1;
   });

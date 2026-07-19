@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-19T04:19:03.892883+00:00",
+  "generated_at": "2026-07-19T10:23:26.825995+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 452,
-      "kept": 370,
+      "kept": 371,
       "error": false,
       "detail": "",
-      "relevant": 370
+      "relevant": 371
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 372,
+      "fetched": 373,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 152,
-      "used": 98,
+      "left": 148,
+      "used": 102,
       "limit": 250
     }
   },

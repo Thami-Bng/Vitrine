@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-18T10:15:25.712882+00:00",
+  "generated_at": "2026-07-19T04:19:03.892883+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 454,
-      "kept": 372,
+      "fetched": 452,
+      "kept": 370,
       "error": false,
       "detail": "",
-      "relevant": 372
+      "relevant": 370
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -51,7 +51,7 @@
     },
     {
       "label": "SuccessFactors · Shiseido",
-      "fetched": 20,
+      "fetched": 19,
       "kept": 5,
       "error": false,
       "detail": "",
@@ -67,10 +67,10 @@
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 0,
+      "fetched": 42,
       "kept": 0,
-      "error": true,
-      "detail": "ReadTimeout",
+      "error": false,
+      "detail": "",
       "relevant": 0
     },
     {
@@ -83,8 +83,8 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 126,
-      "kept": 7,
+      "fetched": 125,
+      "kept": 6,
       "error": false,
       "detail": "",
       "relevant": 1
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 373,
+      "fetched": 372,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 79,
-      "kept": 73,
+      "fetched": 78,
+      "kept": 72,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -147,7 +147,7 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 32,
+      "fetched": 30,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 156,
-      "used": 94,
+      "left": 152,
+      "used": 98,
       "limit": 250
     }
   },

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-19T10:23:26.825995+00:00",
+  "generated_at": "2026-07-20T04:32:59.669206+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 452,
-      "kept": 371,
+      "fetched": 453,
+      "kept": 369,
       "error": false,
       "detail": "",
-      "relevant": 371
+      "relevant": 369
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -83,7 +83,7 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 125,
+      "fetched": 126,
       "kept": 6,
       "error": false,
       "detail": "",
@@ -115,15 +115,15 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 78,
-      "kept": 72,
+      "fetched": 77,
+      "kept": 71,
       "error": false,
       "detail": "",
       "relevant": 0
     },
     {
       "label": "Oracle · Hermès",
-      "fetched": 2,
+      "fetched": 1,
       "kept": 1,
       "error": false,
       "detail": "",
@@ -147,17 +147,17 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 30,
-      "kept": 0,
+      "fetched": 32,
+      "kept": 1,
       "error": false,
       "detail": "",
-      "relevant": 0
+      "relevant": 1
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 148,
-      "used": 102,
+      "left": 144,
+      "used": 106,
       "limit": 250
     }
   },
@@ -566,6 +566,52 @@
     ]
   },
   "jobs": [
+    {
+      "id": "mcf-a8f650ad498d4f027107f1a869f52909",
+      "title": "Business Analyst (6 months contract role)",
+      "company": "ITCAN PTE. LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$7,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a8f650ad498d4f027107f1a869f52909",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a8f650ad498d4f027107f1a869f52909"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a8f650ad498d4f027107f1a869f52909",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T04:32:59.669206+00:00"
+    },
+    {
+      "id": "mcf-e12de9c2e6ac9554d1cf5cde0f52e774",
+      "title": "Business Analyst (Stablecoin)",
+      "company": "JEET ANALYTICS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e12de9c2e6ac9554d1cf5cde0f52e774",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e12de9c2e6ac9554d1cf5cde0f52e774"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e12de9c2e6ac9554d1cf5cde0f52e774",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T04:32:59.669206+00:00"
+    },
     {
       "id": "eyJqb2JfdGl0bGUiOiJHcm91cCBQcm9kdWN0IE1hbmFnZXIgZm9yIEzigJlPcsOpYWwgSW50ZXJuYXRpb25hbCBEaXN0cmlidXRpb24sIGZvciBM4oCZT3LD",
       "title": "Group Product Manager for L’Oréal International Distribution, for L’Oréal – SEA & S.Asia",
@@ -2247,7 +2293,7 @@
       "type": "house",
       "sector": "beauty_luxury",
       "category": "house",
-      "posted": "4 days ago",
+      "posted": "7 days ago",
       "posted_date": "2026-07-13",
       "salary": "",
       "salary_max": null,

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-20T04:32:59.669206+00:00",
+  "generated_at": "2026-07-20T11:41:08.117029+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 453,
-      "kept": 369,
+      "fetched": 462,
+      "kept": 377,
       "error": false,
       "detail": "",
-      "relevant": 369
+      "relevant": 377
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -75,7 +75,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 149,
+      "fetched": 148,
       "kept": 7,
       "error": false,
       "detail": "",
@@ -91,7 +91,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 33,
+      "fetched": 34,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -99,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 92,
+      "fetched": 91,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 373,
+      "fetched": 364,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,7 +115,7 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 77,
+      "fetched": 78,
       "kept": 71,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 144,
-      "used": 106,
+      "left": 140,
+      "used": 110,
       "limit": 250
     }
   },
@@ -566,6 +566,328 @@
     ]
   },
   "jobs": [
+    {
+      "id": "mcf-e5b1b5640c8455153064e6f0b41db4af",
+      "title": "Regional Ecommerce & Growth Manager",
+      "company": "STREAMCAST ASIA PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$5,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e5b1b5640c8455153064e6f0b41db4af",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e5b1b5640c8455153064e6f0b41db4af"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e5b1b5640c8455153064e6f0b41db4af",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-4f125826543f6cf692a923f902ec1164",
+      "title": "Product Manager - KT",
+      "company": "DCI CONSULTANTS PRIVATE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$6,000–9,400/mo",
+      "salary_max": 9400,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/4f125826543f6cf692a923f902ec1164",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/4f125826543f6cf692a923f902ec1164"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/4f125826543f6cf692a923f902ec1164",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-90e7fc2e5a354c2d1a8262a64ec7cae9",
+      "title": "Lead/Principal Product Manager",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$15,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/90e7fc2e5a354c2d1a8262a64ec7cae9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/90e7fc2e5a354c2d1a8262a64ec7cae9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/90e7fc2e5a354c2d1a8262a64ec7cae9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-9c9d9452259c3affc5516bb122354821",
+      "title": "Vice President - Head of Product Management - Product Management",
+      "company": "NOMURA SINGAPORE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$15,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/9c9d9452259c3affc5516bb122354821",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/9c9d9452259c3affc5516bb122354821"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/9c9d9452259c3affc5516bb122354821",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-fa3fece712631da202c09965c5117705",
+      "title": "VP, Lending Solutions Product Management",
+      "company": "HSBC BANK (SINGAPORE) LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$8,600–12,800/mo",
+      "salary_max": 12800,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/fa3fece712631da202c09965c5117705",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/fa3fece712631da202c09965c5117705"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/fa3fece712631da202c09965c5117705",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-dd36859002aea8f74492b277de5543e9",
+      "title": "Product Business Analyst (Digital Transformation Platform)",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$5,500–9,500/mo",
+      "salary_max": 9500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/dd36859002aea8f74492b277de5543e9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/dd36859002aea8f74492b277de5543e9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/dd36859002aea8f74492b277de5543e9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-7cd0eb31c52a6a61a6bce34ffbb8768c",
+      "title": "Project Manager / Business Analyst",
+      "company": "INFRASOFT TECHNOLOGIES PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$9,500–13,500/mo",
+      "salary_max": 13500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/7cd0eb31c52a6a61a6bce34ffbb8768c",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/7cd0eb31c52a6a61a6bce34ffbb8768c"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/7cd0eb31c52a6a61a6bce34ffbb8768c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-a582536332da78729f8f2e93b1943d80",
+      "title": "Business Analyst, Cash Management & Transaction Banking (for banking industry)",
+      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$8,000–10,500/mo",
+      "salary_max": 10500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a582536332da78729f8f2e93b1943d80",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a582536332da78729f8f2e93b1943d80"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a582536332da78729f8f2e93b1943d80",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-03549e8d2fd64fca4f313910a772f248",
+      "title": "Business Analyst (Banking / up to $9000)",
+      "company": "PERSOL SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$7,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/03549e8d2fd64fca4f313910a772f248",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/03549e8d2fd64fca4f313910a772f248"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/03549e8d2fd64fca4f313910a772f248",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-70f60e5e4b81e6a1530075d65db011d3",
+      "title": "Senior Business Analyst (Contract / up to $13,500)",
+      "company": "PERSOL SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$10,000–13,500/mo",
+      "salary_max": 13500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/70f60e5e4b81e6a1530075d65db011d3",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/70f60e5e4b81e6a1530075d65db011d3"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/70f60e5e4b81e6a1530075d65db011d3",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-6127d3cc55bbdb25870fa414e6bdb880",
+      "title": "Business Analyst (Banking / up to $12K)",
+      "company": "PERSOL SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$9,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6127d3cc55bbdb25870fa414e6bdb880",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6127d3cc55bbdb25870fa414e6bdb880"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6127d3cc55bbdb25870fa414e6bdb880",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-5056a5442991bf073132b73cbb23c529",
+      "title": "Business Analyst, Fircosoft",
+      "company": "NICOLL CURTIN TECHNOLOGY PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$10,000–12,500/mo",
+      "salary_max": 12500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5056a5442991bf073132b73cbb23c529",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5056a5442991bf073132b73cbb23c529"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5056a5442991bf073132b73cbb23c529",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-9927b63566e265985521047fe098f718",
+      "title": "#Hiring- Business Analyst (6 months contract role)",
+      "company": "ITCAN PTE. LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$7,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/9927b63566e265985521047fe098f718",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/9927b63566e265985521047fe098f718"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/9927b63566e265985521047fe098f718",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
+    {
+      "id": "mcf-e4d371ed1eabf96557724498e768a8a1",
+      "title": "Business Analyst – HRIS & SAP SuccessFactors",
+      "company": "GOLDTECH RESOURCES PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-20",
+      "posted_date": "2026-07-20",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e4d371ed1eabf96557724498e768a8a1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e4d371ed1eabf96557724498e768a8a1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e4d371ed1eabf96557724498e768a8a1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-20T11:41:08.117029+00:00"
+    },
     {
       "id": "mcf-a8f650ad498d4f027107f1a869f52909",
       "title": "Business Analyst (6 months contract role)",
@@ -2539,6 +2861,29 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-faa6636950ebc601c190494f5a5f120b",
+      "title": "Salesforce Business Analyst",
+      "company": "CAPGEMINI SINGAPORE  PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-13",
+      "posted_date": "2026-07-13",
+      "salary": "S$6,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-492631ba764a5b4cbeb3916fd8169b96",
       "title": "BUSINESS ANALYST",
       "company": "RMR INTERNATIONAL PRIVATE LIMITED",
@@ -2718,29 +3063,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/2ef719c74e1b8c337c5f2b90db423e1d"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/2ef719c74e1b8c337c5f2b90db423e1d",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-faa6636950ebc601c190494f5a5f120b",
-      "title": "Salesforce Business Analyst",
-      "company": "CAPGEMINI SINGAPORE  PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-13",
-      "posted_date": "2026-07-13",
-      "salary": "S$6,000–12,000/mo",
-      "salary_max": 12000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"

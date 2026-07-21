@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-21T04:12:43.283796+00:00",
+  "generated_at": "2026-07-21T11:03:55.413324+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 465,
-      "kept": 376,
+      "fetched": 464,
+      "kept": 379,
       "error": false,
       "detail": "",
-      "relevant": 376
+      "relevant": 379
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -43,8 +43,8 @@
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 5,
-      "kept": 5,
+      "fetched": 4,
+      "kept": 4,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -76,10 +76,10 @@
     {
       "label": "Workday · Richemont / Cartier",
       "fetched": 150,
-      "kept": 7,
+      "kept": 6,
       "error": false,
       "detail": "",
-      "relevant": 2
+      "relevant": 1
     },
     {
       "label": "Workday · Chanel",
@@ -91,7 +91,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 34,
+      "fetched": 35,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -99,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 93,
+      "fetched": 94,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 365,
+      "fetched": 360,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 78,
-      "kept": 71,
+      "fetched": 82,
+      "kept": 75,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 136,
-      "used": 114,
+      "left": 132,
+      "used": 118,
       "limit": 250
     }
   },
@@ -567,6 +567,52 @@
   },
   "jobs": [
     {
+      "id": "mcf-8864e8e773ee4e5a3bb1aaf87a85032c",
+      "title": "VP, Product Management – Network & Wallet Ecosystems",
+      "company": "LIQUID GROUP PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$15,000–25,000/mo",
+      "salary_max": 25000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/8864e8e773ee4e5a3bb1aaf87a85032c",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/8864e8e773ee4e5a3bb1aaf87a85032c"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/8864e8e773ee4e5a3bb1aaf87a85032c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-6cf7d01c4188f35fa26be9dab38c05e1",
+      "title": "Staff Product Owner, Industrial & Physical AI, SMAI",
+      "company": "MICRON SEMICONDUCTOR ASIA OPERATIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$9,500–16,500/mo",
+      "salary_max": 16500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6cf7d01c4188f35fa26be9dab38c05e1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6cf7d01c4188f35fa26be9dab38c05e1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6cf7d01c4188f35fa26be9dab38c05e1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
       "id": "mcf-b272d4dd4ae741880cc1401ef8a7375e",
       "title": "*BANK, 12 months contract* Corporate Banking Product Owner - Client Onboarding and Management @ Central",
       "company": "ALLEGIS GLOBAL SOLUTIONS (SINGAPORE) PTE. LTD.",
@@ -588,6 +634,144 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-21T04:12:43.283796+00:00"
+    },
+    {
+      "id": "mcf-e27582867c33d6c3a329738971bee9b0",
+      "title": "Core Network Product Manager",
+      "company": "PERSOL SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$6,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/e27582867c33d6c3a329738971bee9b0",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/e27582867c33d6c3a329738971bee9b0"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/e27582867c33d6c3a329738971bee9b0",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-7376b385755b97171ea15bf5c785ae80",
+      "title": "Urgent hiring: Technical Product Manager (MNC Semicon Backend)",
+      "company": "TALENT TRADER GROUP PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$10,500–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/7376b385755b97171ea15bf5c785ae80",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/7376b385755b97171ea15bf5c785ae80"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/7376b385755b97171ea15bf5c785ae80",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-f5c46a3ee6e162633db526901c948a9e",
+      "title": "Business Analyst, AML (Banking) - 6-12 month renewable contract",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$8,000–11,500/mo",
+      "salary_max": 11500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f5c46a3ee6e162633db526901c948a9e",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f5c46a3ee6e162633db526901c948a9e"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f5c46a3ee6e162633db526901c948a9e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-d36934c4ed3d74783dfbab2d7a33d328",
+      "title": "Business Analyst (CRS / FATCA / Risk) - Banking, 1-year renewable contract",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d36934c4ed3d74783dfbab2d7a33d328",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d36934c4ed3d74783dfbab2d7a33d328"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d36934c4ed3d74783dfbab2d7a33d328",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-0e5e7170f21483ec7230a9f78c702f36",
+      "title": "Business Analyst",
+      "company": "A-IT SOFTWARE SERVICES PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$8,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/0e5e7170f21483ec7230a9f78c702f36",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/0e5e7170f21483ec7230a9f78c702f36"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/0e5e7170f21483ec7230a9f78c702f36",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-068899bac1e2fd87443b095b84729df5",
+      "title": "Salesforce Business Analyst",
+      "company": "IKAS INTERNATIONAL (ASIA) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$10,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/068899bac1e2fd87443b095b84729df5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/068899bac1e2fd87443b095b84729df5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/068899bac1e2fd87443b095b84729df5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-21T11:03:55.413324+00:00"
     },
     {
       "id": "mcf-9ea9b572745ace7881cb7cef90b523a8",
@@ -5281,6 +5465,72 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-ef575b0ee251e79ee4e2791556376ea7",
+      "title": "Business Analyst, Data Management (for Banking industry)",
+      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-07",
+      "posted_date": "2026-07-07",
+      "salary": "S$8,000–10,500/mo",
+      "salary_max": 10500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-eb72440ba30c59b99ec2b95138671b67",
+      "title": "Business Analyst / PMO, Transaction Banking Cash & Trade (Banking Industry)",
+      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-07",
+      "posted_date": "2026-07-07",
+      "salary": "S$12,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
+      "title": "Lead Business Analyst – AI & Data (Banking Industry)",
+      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-07-07",
+      "posted_date": "2026-07-07",
+      "salary": "S$10,000–15,000/mo",
+      "salary_max": 15000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-b08e450286a4af692f6114a8e1bf4138",
       "title": "Product Manager",
       "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
@@ -5463,50 +5713,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
-      "title": "Lead Business Analyst – AI & Data (Banking Industry)",
-      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-07",
-      "posted_date": "2026-07-07",
-      "salary": "S$10,000–15,000/mo",
-      "salary_max": 15000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/fa98e5d50a6c0f0d03f4f7ad0f4d9ef2",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-eb72440ba30c59b99ec2b95138671b67",
-      "title": "Business Analyst / PMO, Transaction Banking Cash & Trade (Banking Industry)",
-      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-07",
-      "posted_date": "2026-07-07",
-      "salary": "S$12,000–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/eb72440ba30c59b99ec2b95138671b67",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-cd30591856572dac35a90b02423dfaf9",
       "title": "Business Analyst",
       "company": "VINOVA PTE. LTD.",
@@ -5524,28 +5730,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/cd30591856572dac35a90b02423dfaf9",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-ef575b0ee251e79ee4e2791556376ea7",
-      "title": "Business Analyst, Data Management (for Banking industry)",
-      "company": "ABEAM CONSULTING (SINGAPORE) PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-07-07",
-      "posted_date": "2026-07-07",
-      "salary": "S$8,000–10,500/mo",
-      "salary_max": 10500,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/ef575b0ee251e79ee4e2791556376ea7",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -6192,28 +6376,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-9cecef2d2bcd3203d1fe766696039b4b",
-      "title": "Product Manager",
-      "company": "UNIZEN TECHNOLOGIES PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "posted": "2026-06-30",
-      "posted_date": "2026-06-30",
-      "salary": "S$11,500–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-287032c74f659688ba86b84b9130686c",
       "title": "Interface Designer UX/UI",
       "company": "INFRASOFT TECHNOLOGIES PTE LTD",
@@ -6232,6 +6394,28 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/287032c74f659688ba86b84b9130686c",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-9cecef2d2bcd3203d1fe766696039b4b",
+      "title": "Product Manager",
+      "company": "UNIZEN TECHNOLOGIES PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "posted": "2026-06-30",
+      "posted_date": "2026-06-30",
+      "salary": "S$11,500–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/9cecef2d2bcd3203d1fe766696039b4b",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -6641,29 +6825,6 @@
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
     {
-      "id": "wd-/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
-      "title": "Reg Ecommerce Executive (1-year contract)",
-      "company": "Richemont / Cartier",
-      "source": "Workday",
-      "type": "house",
-      "sector": "beauty_luxury",
-      "category": "house",
-      "posted": "Posted 30+ Days Ago",
-      "posted_date": "",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
-        "careers": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
-      "description": "",
-      "preferred": true,
-      "first_seen": "2026-07-14T03:10:16.298037+00:00"
-    },
-    {
       "id": "wd-/job/SINGAPORE/Regional-Digital-Project-Manager_JR127887-1",
       "title": "Regional Digital Project Manager",
       "company": "Richemont / Cartier",
@@ -6708,6 +6869,29 @@
       "description": "",
       "preferred": true,
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
+    },
+    {
+      "id": "wd-/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
+      "title": "Reg Ecommerce Executive (1-year contract)",
+      "company": "Richemont / Cartier",
+      "source": "Workday",
+      "type": "house",
+      "sector": "beauty_luxury",
+      "category": "house",
+      "posted": "Posted 30+ Days Ago",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
+        "careers": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://richemont.wd3.myworkdayjobs.com/richemont/job/SINGAPORE/Reg-Ecommerce-Executive--1-year-contract-_JR127218-1",
+      "description": "",
+      "preferred": true,
+      "first_seen": "2026-07-14T03:10:16.298037+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJSZWdpb25hbCBFY29tbWVyY2UgT3BlcmF0aW9ucyBDb29yZGluYXRvciIsImNvbXBhbnlfbmFtZSI6IlNHMDMgUmljaGVtb250IEx1",

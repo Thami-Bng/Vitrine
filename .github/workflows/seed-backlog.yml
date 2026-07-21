@@ -1,0 +1,87 @@
+name: Seed backlog issues
+
+# Run this ONCE from the Actions tab (Run workflow). It creates the labels
+# and all 26 backlog issues, then you can delete this file.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Create labels
+        run: |
+          gh label create "Compliance" --color 5319E7 --description "Legal / compliance" --force || true
+          gh label create "Backend"    --color 1D76DB --description "Backend / reliability" --force || true
+          gh label create "AI"         --color 0E8A16 --description "AI layer" --force || true
+          gh label create "UX"         --color FBCA04 --description "Product / UX" --force || true
+          gh label create "P1"         --color B60205 --description "Priority 1" --force || true
+          gh label create "P2"         --color D93F0B --description "Priority 2" --force || true
+          gh label create "P3"         --color 0052CC --description "Priority 3" --force || true
+
+      - name: Create issues
+        run: |
+          # --- Compliance ---
+          gh issue create --label "Compliance,P1" --title "Store snippet + source link instead of full description" --body "Store a short 1-2 line snippet plus a link to the source instead of the full job description. Reading the full text to compute CV-match scores is fine (internal use); displaying it verbatim is the copyright exposure. Compliant reframe of the earlier 'add job description' idea."
+          sleep 1
+          gh issue create --label "Compliance,P1" --title "Strip recruiter personal data at ingest" --body "Strip recruiter names, emails and phone numbers at ingest so no personal data is stored or displayed. Closes the PDPA/GDPR gate before The Vitrine serves external users."
+          sleep 1
+          gh issue create --label "Compliance,P2" --title "Tag each job with source tier (provenance)" --body "Tag every job with its source lane (employer-direct / government API / SERP middleman) at track time, so provenance and risk are visible per role."
+          sleep 1
+          gh issue create --label "Compliance,P2" --title "Demote Google Jobs (SerpApi) to backup only" --body "Treat Google Jobs via SerpApi as a backup source only; prefer employer-direct access and add fallbacks for bot-walled brands (Kering, BVLGARI). SerpApi is under active litigation (Google v SerpApi) and degrading in quality."
+          sleep 1
+          gh issue create --label "Compliance,P2" --title "Add polite-crawler hygiene per connector" --body "Add rate limiting, exponential backoff, an identifying user-agent, and robots.txt respect to every connector."
+          sleep 1
+          gh issue create --label "Compliance,P2" --title "Confirm MyCareersFuture ToS; prefer official API" --body "Confirm the MyCareersFuture Terms of Use on automated access and prefer the official public API endpoint over HTML scraping. No auth bypass keeps this the safest high-volume source."
+          sleep 1
+          gh issue create --label "Compliance,P3" --title "Pre-public legal-review checklist" --body "Before serving external users: snippet-not-verbatim, personal data stripped, source ToS reviewed, and ideally a Singapore IP/tech lawyer sign-off."
+          sleep 1
+          # --- Backend ---
+          gh issue create --label "Backend,P1" --title "Dedup jobs across sources" --body "Deduplicate jobs using norm_company() to strip legal-entity noise (PTE LIMITED, ASIA PACIFIC) plus a fuzzy title/company/location key, so the same role never shows twice."
+          sleep 1
+          gh issue create --label "Backend,P1" --title "Ghost/expired sweep with 'No longer advertised' flag" --body "Sweep listed roles for listings that have disappeared and flag them as no longer advertised / filter ghost offers."
+          sleep 1
+          gh issue create --label "Backend,P1" --title "Per-brand try/except isolation in connectors" --body "Wrap each brand's connector loop in try/except so one brand's anti-bot response fails independently and cannot silently kill the whole connector."
+          sleep 1
+          gh issue create --label "Backend,P2" --title "Retry + exponential backoff on ATS/API calls" --body "Add retry with exponential backoff to survive transient failures and rate limits."
+          sleep 1
+          gh issue create --label "Backend,P2" --title "Connector health check + alerting" --body "Alert when a source returns zero rows or errors, so silent breakage is caught."
+          sleep 1
+          gh issue create --label "Backend,P2" --title "Structured run logging + history" --body "Log what ran, counts per source, and failures across the twice-daily runs for observability."
+          sleep 1
+          gh issue create --label "Backend,P2" --title "Response caching to cut API cost" --body "Cache responses to reduce SerpApi/API cost, extending the cheap-broad / paid-targeted discipline to network calls."
+          sleep 1
+          gh issue create --label "Backend,P2" --title "Split schema: facts vs on-demand fields" --body "Split the schema into facts fields (safe to store/display) vs on-demand fields (fetch and link, do not store). Ties the storage model to the compliance approach."
+          sleep 1
+          # --- AI ---
+          gh issue create --label "AI,P1" --title "CV-match Layer 1: free local keyword scoring" --body "Layer 1 of CV-match scoring: free local keyword scoring across all roles, no token cost."
+          sleep 1
+          gh issue create --label "AI,P2" --title "CV-match Layer 2: open-model scoring for shortlist" --body "Layer 2: on-demand open-model scoring via OpenRouter for the shortlist only (paid targeted pass)."
+          sleep 1
+          gh issue create --label "AI,P2" --title "CV-match Layer 3: Sonnet suggestions for applications" --body "Layer 3: Sonnet-quality application suggestions reserved for application-stage roles."
+          sleep 1
+          gh issue create --label "AI,P2" --title "AI-generated original role summary" --body "Generate an original short AI summary of each role instead of copying the employer text. Gives users description value while staying transformative, which also solves the verbatim-description compliance item."
+          sleep 1
+          gh issue create --label "AI,P3" --title "Skill-gap analysis vs candidate profile" --body "Compare a role's requirements against the candidate profile to surface gaps."
+          sleep 1
+          gh issue create --label "AI,P3" --title "Auto-tag roles: sector, seniority, work mode" --body "Auto-tag roles by sector (luxury/beauty/adjacent), seniority, and on-site/hybrid for filtering and ranking."
+          sleep 1
+          gh issue create --label "AI,P3" --title "Interview-prep generation for application-stage roles" --body "Generate interview-prep material for roles at the application stage."
+          sleep 1
+          # --- UX ---
+          gh issue create --label "UX,P3" --title "Google social login" --body "Add Google social login for account creation."
+          sleep 1
+          gh issue create --label "UX,P2" --title "Filters: sector, seniority, salary, location, recency" --body "Add filters for sector, seniority, salary band, location, and recency."
+          sleep 1
+          gh issue create --label "UX,P3" --title "Saved searches + new-match alerts" --body "Let users save searches and get notified when matching roles appear."
+          sleep 1
+          gh issue create --label "UX,P3" --title "Pipeline UX polish" --body "Polish the pipeline UX, building on the editable contact dates and enriched snapshot already shipped."
+          sleep 1
+          echo "Done. 26 issues created."

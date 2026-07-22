@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-22T04:13:59.610032+00:00",
+  "generated_at": "2026-07-22T11:04:39.517313+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 468,
-      "kept": 380,
+      "kept": 376,
       "error": false,
       "detail": "",
-      "relevant": 380
+      "relevant": 376
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -35,16 +35,16 @@
     },
     {
       "label": "SuccessFactors · Clarins",
-      "fetched": 5,
-      "kept": 5,
+      "fetched": 4,
+      "kept": 4,
       "error": false,
       "detail": "",
       "relevant": 1
     },
     {
       "label": "SuccessFactors · Coty",
-      "fetched": 4,
-      "kept": 4,
+      "fetched": 3,
+      "kept": 3,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -59,15 +59,15 @@
     },
     {
       "label": "SuccessFactors · Puig",
-      "fetched": 1,
+      "fetched": 11,
       "kept": 1,
-      "error": true,
-      "detail": "ReadTimeout",
+      "error": false,
+      "detail": "",
       "relevant": 0
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 42,
+      "fetched": 44,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -91,7 +91,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 32,
+      "fetched": 33,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -99,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 93,
+      "fetched": 91,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 371,
+      "fetched": 368,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 82,
-      "kept": 76,
+      "fetched": 81,
+      "kept": 75,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -147,7 +147,7 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 30,
+      "fetched": 31,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 128,
-      "used": 122,
+      "left": 124,
+      "used": 126,
       "limit": 250
     }
   },
@@ -566,6 +566,144 @@
     ]
   },
   "jobs": [
+    {
+      "id": "mcf-564caa4ca47b3441dcc6be7582f12390",
+      "title": "Product Owner (Agile SAFe)",
+      "company": "DORMAKABA PRODUCTION GMBH & CO. KG.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$9,500–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-d8dd3ac3879093c2b65b219cb887ba51",
+      "title": "Director, Markets Efficiency Product Management",
+      "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$15,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d8dd3ac3879093c2b65b219cb887ba51",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d8dd3ac3879093c2b65b219cb887ba51"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d8dd3ac3879093c2b65b219cb887ba51",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-a8bdf7236777ba4dbd2765cf32119f74",
+      "title": "Technical Product Manager, Payment & Settlement - Digital Bank",
+      "company": "NORTHERN POINT TECHNOLOGY PRIVATE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$6,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-178cdedca3fc18dcd3e29777e559e79e",
+      "title": "Solution Product Manager (Cards & Payments)",
+      "company": "DCS CARD CENTRE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$8,500–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/178cdedca3fc18dcd3e29777e559e79e",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/178cdedca3fc18dcd3e29777e559e79e"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/178cdedca3fc18dcd3e29777e559e79e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-b86d43d5853892b45b5e30cc3c3ee268",
+      "title": "Business Analyst (T24)",
+      "company": "LYNEER CORP (SINGAPORE) PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$9,500–12,500/mo",
+      "salary_max": 12500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/b86d43d5853892b45b5e30cc3c3ee268",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/b86d43d5853892b45b5e30cc3c3ee268"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/b86d43d5853892b45b5e30cc3c3ee268",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-c6d8e40053aa93d1bcca1326878f226e",
+      "title": "Technical Business Analyst - Modern ERP",
+      "company": "CAPGEMINI SINGAPORE  PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/c6d8e40053aa93d1bcca1326878f226e",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/c6d8e40053aa93d1bcca1326878f226e"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/c6d8e40053aa93d1bcca1326878f226e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
     {
       "id": "mcf-445e83d3a2d186736c5bb81d0306b15f",
       "title": "Business Analyst",

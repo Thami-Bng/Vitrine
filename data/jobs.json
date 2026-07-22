@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-21T11:03:55.413324+00:00",
+  "generated_at": "2026-07-22T04:13:59.610032+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 464,
-      "kept": 379,
+      "fetched": 468,
+      "kept": 380,
       "error": false,
       "detail": "",
-      "relevant": 379
+      "relevant": 380
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -59,10 +59,10 @@
     },
     {
       "label": "SuccessFactors · Puig",
-      "fetched": 11,
+      "fetched": 1,
       "kept": 1,
-      "error": false,
-      "detail": "",
+      "error": true,
+      "detail": "ReadTimeout",
       "relevant": 0
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 150,
+      "fetched": 149,
       "kept": 6,
       "error": false,
       "detail": "",
@@ -83,7 +83,7 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 125,
+      "fetched": 126,
       "kept": 6,
       "error": false,
       "detail": "",
@@ -91,7 +91,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 35,
+      "fetched": 32,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -99,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 94,
+      "fetched": 93,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 360,
+      "fetched": 371,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -116,7 +116,7 @@
     {
       "label": "Oracle · Marriott",
       "fetched": 82,
-      "kept": 75,
+      "kept": 76,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -131,8 +131,8 @@
     },
     {
       "label": "Oracle · Tiffany",
-      "fetched": 4,
-      "kept": 3,
+      "fetched": 5,
+      "kept": 4,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -147,7 +147,7 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 16,
+      "fetched": 30,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 132,
-      "used": 118,
+      "left": 128,
+      "used": 122,
       "limit": 250
     }
   },
@@ -567,6 +567,29 @@
   },
   "jobs": [
     {
+      "id": "mcf-445e83d3a2d186736c5bb81d0306b15f",
+      "title": "Business Analyst",
+      "company": "HITACHI ENERGY SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$85,000–100,000/mo",
+      "salary_max": 100000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/445e83d3a2d186736c5bb81d0306b15f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/445e83d3a2d186736c5bb81d0306b15f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/445e83d3a2d186736c5bb81d0306b15f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T04:13:59.610032+00:00"
+    },
+    {
       "id": "mcf-8864e8e773ee4e5a3bb1aaf87a85032c",
       "title": "VP, Product Management – Network & Wallet Ecosystems",
       "company": "LIQUID GROUP PTE. LTD.",
@@ -680,6 +703,75 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-21T11:03:55.413324+00:00"
+    },
+    {
+      "id": "mcf-dc9f9d2b8346f0dc213f5e57ee408fc1",
+      "title": "Business Analyst/Project Manager (Outsystems) - SPVL",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$7,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/dc9f9d2b8346f0dc213f5e57ee408fc1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/dc9f9d2b8346f0dc213f5e57ee408fc1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/dc9f9d2b8346f0dc213f5e57ee408fc1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T04:13:59.610032+00:00"
+    },
+    {
+      "id": "mcf-63067058b6ec6a4df90d1d3562d4a029",
+      "title": "Business Analyst",
+      "company": "VIRTUSA SINGAPORE PRIVATE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/63067058b6ec6a4df90d1d3562d4a029",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/63067058b6ec6a4df90d1d3562d4a029"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/63067058b6ec6a4df90d1d3562d4a029",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T04:13:59.610032+00:00"
+    },
+    {
+      "id": "mcf-335c858f691a07676f22d7c10c07c8a1",
+      "title": "IT Business Analyst | Outsystems | Agile",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-21",
+      "posted_date": "2026-07-21",
+      "salary": "S$6,500–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/335c858f691a07676f22d7c10c07c8a1",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/335c858f691a07676f22d7c10c07c8a1"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/335c858f691a07676f22d7c10c07c8a1",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T04:13:59.610032+00:00"
     },
     {
       "id": "mcf-f5c46a3ee6e162633db526901c948a9e",
@@ -2566,6 +2658,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T10:44:57.779796+00:00"
+    },
+    {
+      "id": "mcf-740291319864a7f5bd1ed8beec21938f",
+      "title": "Business Analyst",
+      "company": "AVENSYS CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-15",
+      "posted_date": "2026-07-15",
+      "salary": "S$5,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/740291319864a7f5bd1ed8beec21938f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/740291319864a7f5bd1ed8beec21938f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/740291319864a7f5bd1ed8beec21938f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T04:13:59.610032+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgUHJvZHVjdCBNYW5hZ2VyLCBSZXRhaWwgUGxhdGZvcm0gXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFueV9uYW1lIjoi",

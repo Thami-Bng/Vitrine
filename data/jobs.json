@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-22T11:04:39.517313+00:00",
+  "generated_at": "2026-07-23T04:11:42.328287+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
       "fetched": 468,
-      "kept": 376,
+      "kept": 371,
       "error": false,
       "detail": "",
-      "relevant": 376
+      "relevant": 371
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -67,7 +67,7 @@
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 44,
+      "fetched": 45,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -83,7 +83,7 @@
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 126,
+      "fetched": 128,
       "kept": 6,
       "error": false,
       "detail": "",
@@ -91,7 +91,7 @@
     },
     {
       "label": "Workday · Aman",
-      "fetched": 33,
+      "fetched": 34,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 368,
+      "fetched": 365,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 81,
-      "kept": 75,
+      "fetched": 80,
+      "kept": 74,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -147,17 +147,17 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 31,
-      "kept": 0,
+      "fetched": 26,
+      "kept": 9,
       "error": false,
       "detail": "",
-      "relevant": 0
+      "relevant": 9
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 124,
-      "used": 126,
+      "left": 120,
+      "used": 130,
       "limit": 250
     }
   },
@@ -567,27 +567,73 @@
   },
   "jobs": [
     {
-      "id": "mcf-564caa4ca47b3441dcc6be7582f12390",
-      "title": "Product Owner (Agile SAFe)",
-      "company": "DORMAKABA PRODUCTION GMBH & CO. KG.",
+      "id": "mcf-bb9288a8be854a1c716db1068abcd3af",
+      "title": "Product Owner (ONE/VOM)",
+      "company": "ONE TECH STOP PTE. LTD.",
       "source": "MyCareersFuture",
       "type": "other",
       "sector": "general",
       "category": "other",
-      "posted": "2026-07-22",
-      "posted_date": "2026-07-22",
-      "salary": "S$9,500–11,000/mo",
-      "salary_max": 11000,
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$10,000–15,000/mo",
+      "salary_max": 15000,
       "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
+        "primary": "https://www.mycareersfuture.gov.sg/job/bb9288a8be854a1c716db1068abcd3af",
         "careers": "",
         "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390"
+        "mcf": "https://www.mycareersfuture.gov.sg/job/bb9288a8be854a1c716db1068abcd3af"
       },
-      "url": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
+      "url": "https://www.mycareersfuture.gov.sg/job/bb9288a8be854a1c716db1068abcd3af",
       "description": "",
       "preferred": false,
-      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
+    },
+    {
+      "id": "mcf-52c940959c616ee25552a39a8cf1eece",
+      "title": "Business Analyst #10174",
+      "company": "ANRADUS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$7,000–9,200/mo",
+      "salary_max": 9200,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/52c940959c616ee25552a39a8cf1eece",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/52c940959c616ee25552a39a8cf1eece"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/52c940959c616ee25552a39a8cf1eece",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
+    },
+    {
+      "id": "mcf-0cb70a362d7f485f360c1e8c476ef629",
+      "title": "*GOV* Product Manager | Agile",
+      "company": "SCIENTEC CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$6,800–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/0cb70a362d7f485f360c1e8c476ef629",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/0cb70a362d7f485f360c1e8c476ef629"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/0cb70a362d7f485f360c1e8c476ef629",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
     },
     {
       "id": "mcf-d8dd3ac3879093c2b65b219cb887ba51",
@@ -613,24 +659,24 @@
       "first_seen": "2026-07-22T11:04:39.517313+00:00"
     },
     {
-      "id": "mcf-a8bdf7236777ba4dbd2765cf32119f74",
-      "title": "Technical Product Manager, Payment & Settlement - Digital Bank",
-      "company": "NORTHERN POINT TECHNOLOGY PRIVATE LIMITED",
+      "id": "mcf-564caa4ca47b3441dcc6be7582f12390",
+      "title": "Product Owner (Agile SAFe)",
+      "company": "DORMAKABA PRODUCTION GMBH & CO. KG.",
       "source": "MyCareersFuture",
       "type": "other",
       "sector": "general",
-      "category": "finance",
+      "category": "other",
       "posted": "2026-07-22",
       "posted_date": "2026-07-22",
-      "salary": "S$6,000–10,000/mo",
-      "salary_max": 10000,
+      "salary": "S$9,500–11,000/mo",
+      "salary_max": 11000,
       "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
+        "primary": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
         "careers": "",
         "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74"
+        "mcf": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390"
       },
-      "url": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
+      "url": "https://www.mycareersfuture.gov.sg/job/564caa4ca47b3441dcc6be7582f12390",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-22T11:04:39.517313+00:00"
@@ -654,6 +700,29 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/178cdedca3fc18dcd3e29777e559e79e"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/178cdedca3fc18dcd3e29777e559e79e",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-22T11:04:39.517313+00:00"
+    },
+    {
+      "id": "mcf-a8bdf7236777ba4dbd2765cf32119f74",
+      "title": "Technical Product Manager, Payment & Settlement - Digital Bank",
+      "company": "NORTHERN POINT TECHNOLOGY PRIVATE LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-22",
+      "posted_date": "2026-07-22",
+      "salary": "S$6,000–10,000/mo",
+      "salary_max": 10000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a8bdf7236777ba4dbd2765cf32119f74",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-22T11:04:39.517313+00:00"
@@ -1025,6 +1094,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-21T04:12:43.283796+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJOb3cgSGlyaW5nOiBPbW5pY2hhbm5lbCBHcm93dGggTWFuYWdlciIsImNvbXBhbnlfbmFtZSI6Ik5cdTAwMjZFIElubm92YXRpb25z",
+      "title": "Now Hiring: Omnichannel Growth Manager",
+      "company": "N&E Innovations Pte Ltd",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2 days ago",
+      "posted_date": "2026-07-21",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.trabajo.org/job-2173-c789f34868584e67b6f22717af7119b1?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.trabajo.org/job-2173-c789f34868584e67b6f22717af7119b1?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Company Description N&E Innovations Pte Ltd is a BioTech company dedicated to solving global challenges with all-natural solutions that are sustainable, environmentally safe, and health-conscious. The company pioneered ViKANG, a patented antimicrobial technology that is transforming applications in Food, Medical, Hygiene, and Plastics. ViKANG is Green Label Certified, non-toxic, long lasting, and free from toxic chemicals and heavy metals, and can be used as both a coating and embedded additive. Recent innovations include food packaging plastics engineered to be 99.9% antibacterial, significantly reducing food poisoning risks, extending the shelf life of fresh produce, and helping to cut CO2 emissions from food spoilage. About the Role We're looking for a commercially-minded Manager to own KeepWell's B2C sales growth across Singapore — spanning online sales channels, physical retail (including department stores), and livestream/social commerce. KeepWell is a startup, so this is a hands-on, high-ownership role: you'll set the channel strategy and execute it yourself, wear multiple hats, and move fast with limited resources. This person will be the bridge between our brand and the customer, wherever the customer shops, and will use AI tools hands-on to sharpen campaigns and accelerate growth. Key Responsibilities • Drive B2C sales growth across all channels: e-commerce marketplaces (Shopee, Lazada, TikTok Shop, own D2C site), physical retail, and livestream sales • Build and manage relationships with local physical stores and department stores (e.g., Tangs, Isetan, Metro) — securing shelf space, negotiating terms, and managing in-store visibility • Plan and execute livestream commerce strategy — whether via in-house hosts or partnering with KOLs/streamers on platforms like TikTok Live or Shopee Live • Own online channel performance: listings, promotions, pricing strategy, and platform relationship management • Track sales performance across channels and report on KPIs (revenue, conversion, channel mix, ROI) • Coordinate with marketing, supply chain, and finance to ensure stock availability and consistent brand presentation across all touchpoints • Identify new offline retail partnerships and online channel opportunities for expansion Requirements • 3–6 years of experience in B2C sales, retail, or e-commerce channel management (Singapore market experience strongly preferred) • Proven track record managing both online marketplace channels and offline retail/distributor relationships • Experience with or strong understanding of livestream commerce (TikTok Live, Shopee Live, or similar) • Existing relationships with local retailers/department store buyers is a strong plus • Comfortable working across data (sales dashboards, channel P&L) and relationship-building (store visits, negotiations) • Fluent with AI tools for sales and marketing — hands-on experience using AI for content/ad creation, campaign optimization, customer segmentation, or chatbot/CRM automation, with demonstrable results in boosting campaign performance • Prior experience working in a startup or early-stage/high-growth environment — comfortable with ambiguity, lean teams, limited budgets, and doing the work yourself rather than delegating to a large team • Self-starter who can operate autonomously across multiple channels at once Nice to Have • Experience in the health/wellness, supplements, or FMCG space • Bilingual (English/Mandarin) — useful for livestream hosting and local vendor negotiation Reporting Line & Compensation • Reports directly to the Founder • Base salary: S$5,000 – S$7,500 per month, commensurate with experience • Plus sales commission tied to channel revenue targets — strong performers can meaningfully out-earn the base What Working Here Looks Like This is a startup role, not a corporate one. You'll have real ownership of the B2C P&L and the freedom to test ideas quickly — but also fewer resources, shifting priorities, and days that range from negotiating with a department store buyer to running a livestream to building a campaign in an AI tool. If you thrive on that variety and pace, you'll do well here. Qualifications - Candidates should possess strong Analytical Skills and the ability to work with Analytics tools to interpret data, identify trends, and drive data-informed decisions. - Candidates should possess excellent Communication skills, including clear written and verbal communication and the ability to collaborate effectively with internal teams and external partners. - Candidates should possess solid Sales skills, with experience in B2C sales, e-commerce growth, and conversion optimization across multiple channels. - Candidates should possess Project Management skills",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
     },
     {
       "id": "mcf-e5b1b5640c8455153064e6f0b41db4af",
@@ -1554,6 +1646,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-20T04:32:59.669206+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJPbW5pY2hhbm5lbCBNZXJjaGFuZGlzaW5nIExlYWQ6IEludmVudG9yeSBcdTAwMjYgR3Jvd3RoIiwiY29tcGFueV9uYW1lIjoiSkFD",
+      "title": "Omnichannel Merchandising Lead: Inventory & Growth",
+      "company": "JAC Recruitment Pte Ltd",
+      "source": "Google Jobs",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "3 days ago",
+      "posted_date": "2026-07-20",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://www.jobleads.com/sg/job/omnichannel-merchandising-lead-inventory-growth--singapore--e8aa54c59e9db242a0c3c422e9c3c5865?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://www.jobleads.com/sg/job/omnichannel-merchandising-lead-inventory-growth--singapore--e8aa54c59e9db242a0c3c422e9c3c5865?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "A global fashion and lifestyle brand is seeking a Merchandise Planning Manager (Fashion & Footwear) to drive inventory performance across retail and e-commerce channels. This role develops merchandise plans, optimizes allocation, and leads an integrated inventory strategy to maximize sales.\n\nYou will build demand forecasts, design dashboards (Power BI, Excel), conduct performance reviews, manage lifecycle planning, and shape pricing to improve margins while supporting an omnichannel customer",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJHcm91cCBQcm9kdWN0IE1hbmFnZXIgZm9yIEzigJlPcsOpYWwgSW50ZXJuYXRpb25hbCBEaXN0cmlidXRpb24sIGZvciBM4oCZT3LD",
@@ -2683,6 +2798,29 @@
       "first_seen": "2026-07-15T03:55:14.674601+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgUHJvZHVjdCBNYW5hZ2VyLCBSZXRhaWwgUGxhdGZvcm0gXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFueV9uYW1lIjoi",
+      "title": "Senior Product Manager, Retail Platform & Omnichannel",
+      "company": "PayerMax",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "8 days ago",
+      "posted_date": "2026-07-15",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://en-sg.whatjobs.com/jobs/senior-product-manager-loans/singapore?id=88500020&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "https://en-sg.whatjobs.com/jobs/senior-product-manager-loans/singapore?id=88500020&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://en-sg.whatjobs.com/jobs/senior-product-manager-loans/singapore?id=88500020&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "PayerMax is seeking a Product Manager focused on retail platform design in Singapore. You will play a crucial role in defining and optimizing product features, managing end-to-end capabilities from merchant onboarding to consumer experience.\n\nThe ideal candidate has over 3 years of experience in product management within retail or e-commerce and is skilled in data-driven decision making and cross-functional collaboration. Join us to make an impact in the fintech space.",
+      "preferred": false,
+      "first_seen": "2026-07-17T03:27:18.627155+00:00"
+    },
+    {
       "id": "mcf-6bb7c542121204ac12dd90f08e4754aa",
       "title": "Senior Business Analyst(1year Contract) ES",
       "company": "DYNAMIC HUMAN CAPITAL PTE. LTD.",
@@ -2819,29 +2957,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-22T04:13:59.610032+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgUHJvZHVjdCBNYW5hZ2VyLCBSZXRhaWwgUGxhdGZvcm0gXHUwMDI2IE9tbmljaGFubmVsIiwiY29tcGFueV9uYW1lIjoi",
-      "title": "Senior Product Manager, Retail Platform & Omnichannel",
-      "company": "PayerMax",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2 days ago",
-      "posted_date": "2026-07-15",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://bebee.com/sg/jobs/senior-product-manager-retail-platform-omnichannel-payermax-singapore--bs-sg-92fdccff-9e47-4b35-a125-241e36f6ce15?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://bebee.com/sg/jobs/senior-product-manager-retail-platform-omnichannel-payermax-singapore--bs-sg-92fdccff-9e47-4b35-a125-241e36f6ce15?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "PayerMax is seeking a Product Manager focused on retail platform design in Singapore. You will play a crucial role in defining and optimizing product features, managing end-to-end capabilities from merchant onboarding to consumer experience.\n\nThe ideal candidate has over 3 years of experience in product management within retail or e-commerce and is skilled in data-driven decision making and cross-functional collaboration. Join us to make an impact in the fintech space.",
-      "preferred": false,
-      "first_seen": "2026-07-17T03:27:18.627155+00:00"
     },
     {
       "id": "mcf-84394d69d051d85907753aca1f192ae6",
@@ -3259,7 +3374,7 @@
       "type": "house",
       "sector": "beauty_luxury",
       "category": "house",
-      "posted": "7 days ago",
+      "posted": "10 days ago",
       "posted_date": "2026-07-13",
       "salary": "",
       "salary_max": null,
@@ -3968,7 +4083,7 @@
       "type": "other",
       "sector": "general",
       "category": "consulting",
-      "posted": "5 days ago",
+      "posted": "11 days ago",
       "posted_date": "2026-07-12",
       "salary": "",
       "salary_max": null,
@@ -5214,29 +5329,6 @@
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
     {
-      "id": "mcf-81b2d96d00ce95874c5d7c5465aa6f5a",
-      "title": "Product Manager(Satellite Comm)",
-      "company": "OAKTREE CONSULTING",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "consulting",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$8,000–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-4fc2c2e98f6b3ea9f2013bd9524ebcdf",
       "title": "Product Owner, SMAI, FE Cost",
       "company": "MICRON SEMICONDUCTOR ASIA OPERATIONS PTE. LTD.",
@@ -5260,24 +5352,24 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-a34739875f24dbcf207bf8b6fb6fca0f",
-      "title": "Product Manager",
-      "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
+      "id": "mcf-81b2d96d00ce95874c5d7c5465aa6f5a",
+      "title": "Product Manager(Satellite Comm)",
+      "company": "OAKTREE CONSULTING",
       "source": "MyCareersFuture",
       "type": "other",
       "sector": "general",
-      "category": "finance",
+      "category": "consulting",
       "posted": "2026-07-08",
       "posted_date": "2026-07-08",
-      "salary": "S$9,833–14,833/mo",
-      "salary_max": 14833,
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
       "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f",
+        "primary": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
         "careers": "",
         "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f"
+        "mcf": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a"
       },
-      "url": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f",
+      "url": "https://www.mycareersfuture.gov.sg/job/81b2d96d00ce95874c5d7c5465aa6f5a",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -5301,52 +5393,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-134e7f5f119d0a9af05f1bb7257300fc",
-      "title": "Content Product Manager, ModelArk",
-      "company": "BYTEPLUS PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$7,000–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-c3170c3723e1e572be1199c31d300d85",
-      "title": "Product Manager",
-      "company": "NSEARCH GLOBAL PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$8,000–13,000/mo",
-      "salary_max": 13000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -5444,52 +5490,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-9eb68cee9992c1ca105a3e063fab93b6",
-      "title": "Product Manager",
-      "company": "DOW JONES AER COMPANY, INC. (Singapore Branch)",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$6,000–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-bb6384aeaff6f7027a72f9978acbb7a4",
-      "title": "Product Manager, Digital News Products",
-      "company": "HYPERSCAL SOLUTIONS PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$5,000–9,500/mo",
-      "salary_max": 9500,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-6a80b6a2d6517ed589121fa06821b783",
       "title": "Senior/Product Manager(Defence/Aerospace)",
       "company": "OAKTREE CONSULTING",
@@ -5531,6 +5531,121 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/d4254d799e751d7e4646a0c9f4b39103",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-a34739875f24dbcf207bf8b6fb6fca0f",
+      "title": "Product Manager",
+      "company": "STANDARD CHARTERED BANK (SINGAPORE) LIMITED",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$9,833–14,833/mo",
+      "salary_max": 14833,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a34739875f24dbcf207bf8b6fb6fca0f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-134e7f5f119d0a9af05f1bb7257300fc",
+      "title": "Content Product Manager, ModelArk",
+      "company": "BYTEPLUS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$7,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/134e7f5f119d0a9af05f1bb7257300fc",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-c3170c3723e1e572be1199c31d300d85",
+      "title": "Product Manager",
+      "company": "NSEARCH GLOBAL PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$8,000–13,000/mo",
+      "salary_max": 13000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/c3170c3723e1e572be1199c31d300d85",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-9eb68cee9992c1ca105a3e063fab93b6",
+      "title": "Product Manager",
+      "company": "DOW JONES AER COMPANY, INC. (Singapore Branch)",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$6,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/9eb68cee9992c1ca105a3e063fab93b6",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-bb6384aeaff6f7027a72f9978acbb7a4",
+      "title": "Product Manager, Digital News Products",
+      "company": "HYPERSCAL SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$5,000–9,500/mo",
+      "salary_max": 9500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/bb6384aeaff6f7027a72f9978acbb7a4",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -6876,6 +6991,29 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJBUEFDIFJlc2VhcmNoIE1hcmtldGluZyBNYW5hZ2VyIOKAlCBPbW5pY2hhbm5lbCBDYW1wYWlnbnMiLCJjb21wYW55X25hbWUiOiJN",
+      "title": "APAC Research Marketing Manager — Omnichannel Campaigns",
+      "company": "Morningstar",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "29 days ago",
+      "posted_date": "2026-06-24",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.thebigjobsite.com/details/83B0857BA0D1EF652D9F9A4C7A3EA0B8/apac-research-marketing-manager---omnichannel-campaigns?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.thebigjobsite.com/details/83B0857BA0D1EF652D9F9A4C7A3EA0B8/apac-research-marketing-manager---omnichannel-campaigns?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Morningstar is seeking an experienced Marketing Manager for its Singapore office. This role is crucial in planning and executing content‑driven campaigns aimed at enhancing the visibility of Morningstar’s research. The Marketing Manager will collaborate with various teams to deliver effective omnichannel marketing strategies. The ideal candidate will have 3–5+ years of relevant B2B marketing experience, strong project management skills, and a data-driven approach. Knowledge of content and brand marketing is essential to succeed in this dynamic role.",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
+    },
+    {
       "id": "mcf-26b7936fe613c3c4f26e218cc4da1e40",
       "title": "Senior UI/UX Designer",
       "company": "CYGNIFY PTE. LTD.",
@@ -6942,29 +7080,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJBY2NvdW50IE1hbmFnZXIsIE9tbmljaGFubmVsIFNhbGVzIiwiY29tcGFueV9uYW1lIjoiTWVkaWFjb3JwIFB0ZS4gTHRkLiIsImh0",
-      "title": "Account Manager, Omnichannel Sales",
-      "company": "Mediacorp Pte. Ltd.",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "29 days ago",
-      "posted_date": "2026-06-18",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.indeed.com/viewjob?jk=974050e10ffaee04&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/account-manager-omnichannel-sales-at-mediacorp-pte-ltd-4429081627?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/account-manager-omnichannel-sales-mediacorp-b0e3f9bff51401fb8cec5939ee6cd9c2?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
-      },
-      "url": "https://sg.indeed.com/viewjob?jk=974050e10ffaee04&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Full Time\n\nManager\n\nBachelor's Degree or equivalent | Diploma\n\nSingapore | \nClosing On 15 Jul 2026\n\nOnsite\n\nAbout Us\n\nMediacorp is Singapore's largest content creator and national media network, operating a suite of TV channels, radio stations, and multiple digital platforms. Its mission is to engage, entertain, and enrich audiences by harnessing the power of creativity.\n\nWe are committed to creating an inclusive and diverse workplace where talent thrives. Our hiring decisions are made based on merit and fit-to-role. If you have a disability or special need which requires accommodation to participate in the recruitment process, please inform us when you submit your online application. We will be happy to support as necessary.\n\nThank you for your interest and application to this role. Please note that only short-listed candidates will be contacted.\n\nJob Description\n\nPurpose of this role is to:\n\nGenerate revenue and drive business growth for the company through selling of media solutions\nExpand customer base by growing existing clients and acquiring new ones\nIncrease market share\n\nScope of the role:\n\nBuild relationships with existing clients and agencies\nProspect new leads\nIdentify clients' needs, conduct sales presentations, negotiate terms and close deals\nUnderstand market/sector insights\n\nResponsibilities :\n\nAchieve individual target set by the company\nPrepare sales forecasts and monitor sales revenue (TX) to ensure accuracy in monthly sales achievements\nMarket and monetize all available inventory across Mediacorp's media platforms through programme sponsorships and other creative media solutions\nPossess basic understanding of Mediacorp's offerings, with an ability to conceptualize ideas, leveraging the strengths of our media to offer value to clients' marketing strategies\nResponsible for all aspects of account management, including developing strong relationships with clients, attending to their business needs and ensuring smooth delivery of media solutions to maintain client satisfaction\nAct as a conduit between clients and internal stakeholders to come up with relevant and effective media solutions to achieve clients' marketing and communication objectives\nCommunicate crafted media solutions effectively and persuasively to clients\nHandle objections and resolve any challenges to close sales\nEnsure campaigns are executed smoothly as promised through prompt follow-ups\nLiaise with different internal stakeholders at various points of the sales journey. E.g. Creative team, booking admin, ad-ops, finance, customer & content group, central marketing, legal etc\n\nFor more senior Team Members:\n\nProvide a consultative approach in understanding and addressing clients' needs\nWork independently to drive growth from existing clients and develop new accounts\nThink strategically to uncover new business opportunities\n\nQualifications\n\nDegree or Diploma with minimum 5 years' experience in Sales & Marketing environment\nTeam player with high level of energy, resourcefulness & business acumen\nSkilled communicator and problem solver\nAbility to build trust and rapport with clients\nAttention to details (meticulous) to ensure optimum delivery of campaign",
-      "preferred": false,
-      "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
     {
       "id": "eyJqb2JfdGl0bGUiOiJIZWFkIG9mIEJyYW5kIFx1MDAyNiBFLUNvbW1lcmNlIChTa2luY2FyZSBTdGFydHVwKSIsImNvbXBhbnlfbmFtZSI6IkxVTUlTIFBU",
@@ -7170,25 +7285,25 @@
       "first_seen": "2026-07-16T07:04:56.018459+00:00"
     },
     {
-      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgQXNzb2NpYXRlL0FWUCwgRGlnaXRhbCBcdTAwMjYgT21uaWNoYW5uZWwgRXhwZXJpZW5jZSwgZGlnaVdlYWx0aCwgQ29u",
-      "title": "Senior Associate/AVP, Digital & Omnichannel Experience, digiWealth, Consumer Banking Singapore",
-      "company": "DBS Bank",
+      "id": "eyJqb2JfdGl0bGUiOiJBY2NvdW50IE1hbmFnZXIsIE9tbmljaGFubmVsIFNhbGVzIiwiY29tcGFueV9uYW1lIjoiTWVkaWFjb3JwIFB0ZS4gTHRkLiIsImh0",
+      "title": "Account Manager, Omnichannel Sales",
+      "company": "Mediacorp Pte. Ltd.",
       "source": "Google Jobs",
       "type": "other",
       "sector": "general",
-      "category": "finance",
+      "category": "other",
       "posted": "",
       "posted_date": "",
       "salary": "",
       "salary_max": null,
       "links": {
-        "primary": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "primary": "https://sg.indeed.com/viewjob?jk=974050e10ffaee04&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
         "careers": "",
-        "linkedin": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "linkedin": "",
         "mcf": ""
       },
-      "url": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "What we're looking for:\n\nThe digiWealth team is building a new digital franchise for the future that drives investment & insurance (I&I) / retail-wealth customer acquisitions and retention, both through online transactions and offline leads. The goal is to build a tangible, sticky wealth relationship with 3.8 million retail-wealth customers in Singapore.\n\nWe seek a Digital & O2O Experience team member to orchestrate journeys and optimise platform experiences. Through effective product design, digiWealth will seek to acquire and deepen relationships with retail-wealth customers throughout their I&I lifecycle, and via an omnichannel strategy.\n\nThe successful candidate must demonstrate strong understanding of innovative product design, be sharp and creative about how to better position financial solutions to retail customers, and able to balance platform optimisation against resiliency risks. The successful candidate should be a self-starter with the initiative and ability to learn, adapt and achieve results in this fast-moving initiative. Strong skills in communications, stakeholder management, and project management, will be immediate pluses.\n\nThe job of the successful candidate will mainly involve:\n\nObsession with the next leap in the digital retail wealth experience: Track and analyse developments in the digital consumer business (from ecommerce to digital media) and digital wealth experiences to uncover new ways to build effective digital retail wealth journeys. Identify and close drop-off gaps to prevent leads leakage.Drive I&I customer acquisitions & retention: Combine strong journey build with data-driven growth marketing to acquire, retain and deepen customer relationships. To take a data-driven approach to drive and communicate digiWealth CVPs that tie I&I solutions meaningfully to customers needs. To contribute to building engagement loops as part of the in-app experience.Optimising O2O strategy: Leverage on the bank's strong phygital advantage to drive quality offline leads from the digital franchise.Performance monitoring and optimisation: Track key performance indicators, analyse product usage data, and iterate on features to continuously improve customer satisfaction and drive business results.Cross-functional collaboration with product specialists, key stakeholders: Collaborate with I&I product teams to generate and refine new initiatives. Partner with Wealth Planning Managers, Platform, and Tech to ensure customer journeys are fit-for-purpose.\n\nMinimum requirements:\n\n4-7 years experience in digital product management, customer experience, growth marketing, or related fields.Strong skills in digital journey design and product optimisation, with exposure to design thinking and user‑centric development.Ability to analyse customer behaviour and platform data to translate insights into actions that drive acquisition, retention, and engagement; comfortable with dashboards and analytics tools.Experience supporting omnichannel or lead‑management journeys, including integrating digital experiences with offline advisory teams.Excellent communication and stakeholder management skills across product, platform, and frontline teams.Solid project management abilities with disciplined execution, attention to detail, and capability to manage multiple workstreams.Personal and professional interest in consumer financial journeys and literacy, particularly in how customers discover and engage with wealth solutions in Singapore's investment landscape.\n\nLocation:\n\nDBS Asia Central\n\nJob: \n\nDigital.\n\nSchedule: \n\nRegular\n\nEmployee Status: \n\nFull time",
+      "url": "https://sg.indeed.com/viewjob?jk=974050e10ffaee04&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Full Time\n\nManager\n\nBachelor's Degree or equivalent | Diploma\n\nSingapore | \nClosing On 15 Jul 2026\n\nOnsite\n\nAbout Us\n\nMediacorp is Singapore's largest content creator and national media network, operating a suite of TV channels, radio stations, and multiple digital platforms. Its mission is to engage, entertain, and enrich audiences by harnessing the power of creativity.\n\nWe are committed to creating an inclusive and diverse workplace where talent thrives. Our hiring decisions are made based on merit and fit-to-role. If you have a disability or special need which requires accommodation to participate in the recruitment process, please inform us when you submit your online application. We will be happy to support as necessary.\n\nThank you for your interest and application to this role. Please note that only short-listed candidates will be contacted.\n\nJob Description\n\nPurpose of this role is to:\n\nGenerate revenue and drive business growth for the company through selling of media solutions\nExpand customer base by growing existing clients and acquiring new ones\nIncrease market share\n\nScope of the role:\n\nBuild relationships with existing clients and agencies\nProspect new leads\nIdentify clients' needs, conduct sales presentations, negotiate terms and close deals\nUnderstand market/sector insights\n\nResponsibilities :\n\nAchieve individual target set by the company\nPrepare sales forecasts and monitor sales revenue (TX) to ensure accuracy in monthly sales achievements\nMarket and monetize all available inventory across Mediacorp's media platforms through programme sponsorships and other creative media solutions\nPossess basic understanding of Mediacorp's offerings, with an ability to conceptualize ideas, leveraging the strengths of our media to offer value to clients' marketing strategies\nResponsible for all aspects of account management, including developing strong relationships with clients, attending to their business needs and ensuring smooth delivery of media solutions to maintain client satisfaction\nAct as a conduit between clients and internal stakeholders to come up with relevant and effective media solutions to achieve clients' marketing and communication objectives\nCommunicate crafted media solutions effectively and persuasively to clients\nHandle objections and resolve any challenges to close sales\nEnsure campaigns are executed smoothly as promised through prompt follow-ups\nLiaise with different internal stakeholders at various points of the sales journey. E.g. Creative team, booking admin, ad-ops, finance, customer & content group, central marketing, legal etc\n\nFor more senior Team Members:\n\nProvide a consultative approach in understanding and addressing clients' needs\nWork independently to drive growth from existing clients and develop new accounts\nThink strategically to uncover new business opportunities\n\nQualifications\n\nDegree or Diploma with minimum 5 years' experience in Sales & Marketing environment\nTeam player with high level of energy, resourcefulness & business acumen\nSkilled communicator and problem solver\nAbility to build trust and rapport with clients\nAttention to details (meticulous) to ensure optimum delivery of campaign",
       "preferred": false,
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },
@@ -7212,6 +7327,29 @@
       },
       "url": "https://www.adzuna.sg/details/3249913484?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
       "description": "Behavioural Response is a global marketing technology consulting firm on a mission to deliver sustainable growth for ambitious clients. Partnered with leading-edge technology solution providers, our experienced team brings expertise from various industries to ensure our endeavours are always rooted in insight and technology.\n\nWe keep our gaze at the latest technology advancements to underpin innovation in everything we do. Our expertise is guided by strategic planning and understanding of highly impactful marketing activities to enable your long-term and future-proofed growth. Our methods have been tested, refined, and proven repeatedly, and we are just getting started.\n\nWhat You'll do:\n\nAs an Omnichannel Strategist, you will help our APAC clients make the best decisions and solve the problems related to the Design, Build, Orchestration, Improvement, and Scaling of their omnichannel initiatives.\n\nMore specifically you will:\n\nCreate audience-centric strategies to help drive marketing omnichannel campaigns\n\nEstablish key objectives and performance metrics for digital marketing campaigns and identify and implement appropriate measurements\nResponsible for providing actionable insights & optimizations on media performance to drive greater efficiency and results for clients\n\nExperience with stakeholder mapping, persona development, buyer journey definition, and developing content strategies to align with the sales funnel.\n\nMap digital tactics to identify gaps, opportunities, and insights to optimize spending, performance & ROI\n\nEvaluate emerging trends and technologies and provide thought leadership and perspective for implementing when appropriate\n\nAnalyze customer experiences, generate insights, and provide recommendations on digital strategies\n\nSupport clients to transition to an omnichannel model and adoption of digital channels\n\nIntegrate offline and online channels to offer a unified customer experience\n\nEvaluate and recommend to clients the best marketing technologies to implement\n\nProficiency with best practices for content marketing, SEO, social media, email marketing, and copywriting.\n\nCreate and execute strategic plans for digital media campaigns across channels such as Paid Search, Programmatic, Paid Social, and SEO.\n\nWhat You'll Need:\n\nBachelor’s degree in marketing or communication or equivalent (minimum 10 years work experience)\nAt least 5 years experience in building and rolling out omnichannel campaigns\nAt least 5 years demonstrating strategic acumen in developing digital initiatives and marketing communication plans\nAt least 5 years of proven analytical acuity with the ability to transform key data into meaningful and actionable insights that lead to informed decision-making\nExperience with stakeholder mapping, persona development, buyer journey definition, and developing content strategies to align with the sales funnel. \n\nAbility to recognize business opportunities and develop compelling communications to various audience groups with moderate guidance.",
+      "preferred": false,
+      "first_seen": "2026-07-14T11:18:52.049707+00:00"
+    },
+    {
+      "id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgQXNzb2NpYXRlL0FWUCwgRGlnaXRhbCBcdTAwMjYgT21uaWNoYW5uZWwgRXhwZXJpZW5jZSwgZGlnaVdlYWx0aCwgQ29u",
+      "title": "Senior Associate/AVP, Digital & Omnichannel Experience, digiWealth, Consumer Banking Singapore",
+      "company": "DBS Bank",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "",
+      "posted_date": "",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "mcf": ""
+      },
+      "url": "https://sg.linkedin.com/jobs/view/senior-associate-avp-digital-omnichannel-experience-digiwealth-fpii-consumer-banking-singapore-at-dbs-bank-4396568417?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "What we're looking for:\n\nThe digiWealth team is building a new digital franchise for the future that drives investment & insurance (I&I) / retail-wealth customer acquisitions and retention, both through online transactions and offline leads. The goal is to build a tangible, sticky wealth relationship with 3.8 million retail-wealth customers in Singapore.\n\nWe seek a Digital & O2O Experience team member to orchestrate journeys and optimise platform experiences. Through effective product design, digiWealth will seek to acquire and deepen relationships with retail-wealth customers throughout their I&I lifecycle, and via an omnichannel strategy.\n\nThe successful candidate must demonstrate strong understanding of innovative product design, be sharp and creative about how to better position financial solutions to retail customers, and able to balance platform optimisation against resiliency risks. The successful candidate should be a self-starter with the initiative and ability to learn, adapt and achieve results in this fast-moving initiative. Strong skills in communications, stakeholder management, and project management, will be immediate pluses.\n\nThe job of the successful candidate will mainly involve:\n\nObsession with the next leap in the digital retail wealth experience: Track and analyse developments in the digital consumer business (from ecommerce to digital media) and digital wealth experiences to uncover new ways to build effective digital retail wealth journeys. Identify and close drop-off gaps to prevent leads leakage.Drive I&I customer acquisitions & retention: Combine strong journey build with data-driven growth marketing to acquire, retain and deepen customer relationships. To take a data-driven approach to drive and communicate digiWealth CVPs that tie I&I solutions meaningfully to customers needs. To contribute to building engagement loops as part of the in-app experience.Optimising O2O strategy: Leverage on the bank's strong phygital advantage to drive quality offline leads from the digital franchise.Performance monitoring and optimisation: Track key performance indicators, analyse product usage data, and iterate on features to continuously improve customer satisfaction and drive business results.Cross-functional collaboration with product specialists, key stakeholders: Collaborate with I&I product teams to generate and refine new initiatives. Partner with Wealth Planning Managers, Platform, and Tech to ensure customer journeys are fit-for-purpose.\n\nMinimum requirements:\n\n4-7 years experience in digital product management, customer experience, growth marketing, or related fields.Strong skills in digital journey design and product optimisation, with exposure to design thinking and user‑centric development.Ability to analyse customer behaviour and platform data to translate insights into actions that drive acquisition, retention, and engagement; comfortable with dashboards and analytics tools.Experience supporting omnichannel or lead‑management journeys, including integrating digital experiences with offline advisory teams.Excellent communication and stakeholder management skills across product, platform, and frontline teams.Solid project management abilities with disciplined execution, attention to detail, and capability to manage multiple workstreams.Personal and professional interest in consumer financial journeys and literacy, particularly in how customers discover and engage with wealth solutions in Singapore's investment landscape.\n\nLocation:\n\nDBS Asia Central\n\nJob: \n\nDigital.\n\nSchedule: \n\nRegular\n\nEmployee Status: \n\nFull time",
       "preferred": false,
       "first_seen": "2026-07-14T11:18:52.049707+00:00"
     },

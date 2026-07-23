@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-23T04:11:42.328287+00:00",
+  "generated_at": "2026-07-23T11:06:03.616647+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 468,
-      "kept": 371,
+      "fetched": 469,
+      "kept": 372,
       "error": false,
       "detail": "",
-      "relevant": 371
+      "relevant": 372
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -27,8 +27,8 @@
     },
     {
       "label": "SuccessFactors · Sephora",
-      "fetched": 15,
-      "kept": 2,
+      "fetched": 16,
+      "kept": 3,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -51,8 +51,8 @@
     },
     {
       "label": "SuccessFactors · Shiseido",
-      "fetched": 20,
-      "kept": 5,
+      "fetched": 19,
+      "kept": 4,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -67,7 +67,7 @@
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 45,
+      "fetched": 46,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -75,15 +75,15 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 149,
-      "kept": 6,
+      "fetched": 150,
+      "kept": 7,
       "error": false,
       "detail": "",
       "relevant": 1
     },
     {
       "label": "Workday · Chanel",
-      "fetched": 128,
+      "fetched": 127,
       "kept": 6,
       "error": false,
       "detail": "",
@@ -99,7 +99,7 @@
     },
     {
       "label": "Workday · Pernod Ricard",
-      "fetched": 91,
+      "fetched": 92,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -156,8 +156,8 @@
   ],
   "quota": {
     "serpapi": {
-      "left": 120,
-      "used": 130,
+      "left": 116,
+      "used": 134,
       "limit": 250
     }
   },
@@ -567,6 +567,75 @@
   },
   "jobs": [
     {
+      "id": "mcf-5a2db2e33f626fe19dcaef74eb3f820a",
+      "title": "Backend Engineer, TikTok E-commerce Search Architecture - Singapore",
+      "company": "TIKTOK PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$6,500–13,000/mo",
+      "salary_max": 13000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5a2db2e33f626fe19dcaef74eb3f820a",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5a2db2e33f626fe19dcaef74eb3f820a"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5a2db2e33f626fe19dcaef74eb3f820a",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-8c32b7160f816b391198a0e78470cae9",
+      "title": "Digital Product Manager",
+      "company": "INC HR SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$10,000–15,000/mo",
+      "salary_max": 15000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/8c32b7160f816b391198a0e78470cae9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/8c32b7160f816b391198a0e78470cae9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/8c32b7160f816b391198a0e78470cae9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-aebf916c3140fb113047b6e2e6e9f4e2",
+      "title": "Product Manager",
+      "company": "AGILE SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$7,500–12,500/mo",
+      "salary_max": 12500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/aebf916c3140fb113047b6e2e6e9f4e2",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/aebf916c3140fb113047b6e2e6e9f4e2"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/aebf916c3140fb113047b6e2e6e9f4e2",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
       "id": "mcf-bb9288a8be854a1c716db1068abcd3af",
       "title": "Product Owner (ONE/VOM)",
       "company": "ONE TECH STOP PTE. LTD.",
@@ -588,6 +657,190 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-23T04:11:42.328287+00:00"
+    },
+    {
+      "id": "mcf-2a2bed1e422172bfdcf94fb4601452eb",
+      "title": "Product Manager – Investment-Linked Products (ILP) | Insurance",
+      "company": "ARGYLL SCOTT CONSULTING PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2a2bed1e422172bfdcf94fb4601452eb",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2a2bed1e422172bfdcf94fb4601452eb"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2a2bed1e422172bfdcf94fb4601452eb",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-2138010d69645081a4fa89a2b8b9498d",
+      "title": "Business Analyst Support, AML System Implementation/FIRCO (Banking Industry",
+      "company": "WEB SYNERGIES (S) PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$9,000–11,800/mo",
+      "salary_max": 11800,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/2138010d69645081a4fa89a2b8b9498d",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/2138010d69645081a4fa89a2b8b9498d"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/2138010d69645081a4fa89a2b8b9498d",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-ed373eaecbd2f5ae176d3534f37c78ca",
+      "title": "Urgent!!! Senior / Business Analyst (PEGA)",
+      "company": "TRUST RECRUIT PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$7,200–9,200/mo",
+      "salary_max": 9200,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ed373eaecbd2f5ae176d3534f37c78ca",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ed373eaecbd2f5ae176d3534f37c78ca"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ed373eaecbd2f5ae176d3534f37c78ca",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-ff3cd6f8044b3dcb6ce21b8a426daeca",
+      "title": "Business Analyst (Wealth Management)",
+      "company": "IOTALENTS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$8,000–9,300/mo",
+      "salary_max": 9300,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/ff3cd6f8044b3dcb6ce21b8a426daeca",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/ff3cd6f8044b3dcb6ce21b8a426daeca"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/ff3cd6f8044b3dcb6ce21b8a426daeca",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-41a6758fc82ac320d3298ade8b1b0f14",
+      "title": "Business Analyst (Risk), Banking - 1-year renewable contract",
+      "company": "EVOLUTION RECRUITMENT SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$9,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/41a6758fc82ac320d3298ade8b1b0f14",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/41a6758fc82ac320d3298ade8b1b0f14"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/41a6758fc82ac320d3298ade8b1b0f14",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-07f7ef8fa3124b8af4e0df8723a6bda9",
+      "title": "Business Analyst (Compliance/Data)",
+      "company": "SYNPULSE SINGAPORE PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$8,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/07f7ef8fa3124b8af4e0df8723a6bda9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/07f7ef8fa3124b8af4e0df8723a6bda9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/07f7ef8fa3124b8af4e0df8723a6bda9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-6e4300532c87f6f14cc324b5afcfa042",
+      "title": "Business Analyst (ITSM/ServiceNow)",
+      "company": "ADECCO PERSONNEL PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$8,000–12,000/mo",
+      "salary_max": 12000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6e4300532c87f6f14cc324b5afcfa042",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6e4300532c87f6f14cc324b5afcfa042"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6e4300532c87f6f14cc324b5afcfa042",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-d7dcfaaaf96fe27a9cbf78ac5052c5d9",
+      "title": "SAP Signavio Business Analyst",
+      "company": "CAPGEMINI SINGAPORE  PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$6,000–9,000/mo",
+      "salary_max": 9000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/d7dcfaaaf96fe27a9cbf78ac5052c5d9",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/d7dcfaaaf96fe27a9cbf78ac5052c5d9"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/d7dcfaaaf96fe27a9cbf78ac5052c5d9",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-23T11:06:03.616647+00:00"
     },
     {
       "id": "mcf-52c940959c616ee25552a39a8cf1eece",
@@ -2062,6 +2315,29 @@
       "first_seen": "2026-07-17T10:42:30.509720+00:00"
     },
     {
+      "id": "eyJqb2JfdGl0bGUiOiJBUEFDIFJlc2VhcmNoIE1hcmtldGluZyBNYW5hZ2VyIOKAlCBPbW5pY2hhbm5lbCBDYW1wYWlnbnMiLCJjb21wYW55X25hbWUiOiJN",
+      "title": "APAC Research Marketing Manager — Omnichannel Campaigns",
+      "company": "Morningstar",
+      "source": "Google Jobs",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "6 days ago",
+      "posted_date": "2026-07-17",
+      "salary": "",
+      "salary_max": null,
+      "links": {
+        "primary": "https://sg.trabajo.org/job-979-4817670e1236fa6c28d31be287ed2a51?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+        "careers": "",
+        "linkedin": "",
+        "mcf": ""
+      },
+      "url": "https://sg.trabajo.org/job-979-4817670e1236fa6c28d31be287ed2a51?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
+      "description": "Morningstar is seeking an experienced Marketing Manager for its Singapore office. This role is crucial in planning and executing content‑driven campaigns aimed at enhancing the visibility of Morningstar’s research. The Marketing Manager will collaborate with various teams to deliver effective omnichannel marketing strategies. The ideal candidate will have 3–5+ years of relevant B2B marketing experience, strong project management skills, and a data-driven approach. Knowledge of content and brand marketing is essential to succeed in this dynamic role.",
+      "preferred": false,
+      "first_seen": "2026-07-23T04:11:42.328287+00:00"
+    },
+    {
       "id": "mcf-4497eaa7a79b86a79096134aa4726d0b",
       "title": "Business Analyst",
       "company": "CMC MARKETS SINGAPORE PTE. LTD.",
@@ -3390,6 +3666,29 @@
       "first_seen": "2026-07-14T03:40:40.311934+00:00"
     },
     {
+      "id": "mcf-924069f5aed3170232bcdc3ab6360087",
+      "title": "Senior Product Manager",
+      "company": "RECRUIT EXPRESS PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-13",
+      "posted_date": "2026-07-13",
+      "salary": "S$15,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-d824cc5aa8bb382bbbea916ab222efca",
       "title": "Product Manager (Government Project / Digital Transformation)",
       "company": "SCIENTEC CONSULTING PTE. LTD.",
@@ -3436,29 +3735,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-924069f5aed3170232bcdc3ab6360087",
-      "title": "Senior Product Manager",
-      "company": "RECRUIT EXPRESS PTE LTD",
-      "source": "MyCareersFuture",
-      "type": "agency",
-      "sector": "general",
-      "category": "recruiter",
-      "posted": "2026-07-13",
-      "posted_date": "2026-07-13",
-      "salary": "S$15,000–20,000/mo",
-      "salary_max": 20000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/924069f5aed3170232bcdc3ab6360087",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-09fb4131d74a181f93e3288077bc2363",
       "title": "Product Manager",
       "company": "AEVICE HEALTH PTE. LTD.",
@@ -3500,52 +3776,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/2711cc83b9d8a3ac5ac86623729726e5"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/2711cc83b9d8a3ac5ac86623729726e5",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-0fdcda4ada57823cbd2f6de7bd53b38f",
-      "title": "AI Product Manager (B2C) - Apps/Software",
-      "company": "ENVIRODYNAMICS SOLUTIONS PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-13",
-      "posted_date": "2026-07-13",
-      "salary": "S$10,000–16,000/mo",
-      "salary_max": 16000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-5066b269e96db4c32114e26ba584ae16",
-      "title": "AI Product Manager (B2C)",
-      "company": "ENVIRODYNAMICS SOLUTIONS PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "2026-07-13",
-      "posted_date": "2026-07-13",
-      "salary": "S$10,000–16,000/mo",
-      "salary_max": 16000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -3638,6 +3868,52 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/faa6636950ebc601c190494f5a5f120b",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-0fdcda4ada57823cbd2f6de7bd53b38f",
+      "title": "AI Product Manager (B2C) - Apps/Software",
+      "company": "ENVIRODYNAMICS SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-13",
+      "posted_date": "2026-07-13",
+      "salary": "S$10,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/0fdcda4ada57823cbd2f6de7bd53b38f",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-5066b269e96db4c32114e26ba584ae16",
+      "title": "AI Product Manager (B2C)",
+      "company": "ENVIRODYNAMICS SOLUTIONS PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-13",
+      "posted_date": "2026-07-13",
+      "salary": "S$10,000–16,000/mo",
+      "salary_max": 16000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5066b269e96db4c32114e26ba584ae16",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -5398,6 +5674,29 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
+      "id": "mcf-6a80b6a2d6517ed589121fa06821b783",
+      "title": "Senior/Product Manager(Defence/Aerospace)",
+      "company": "OAKTREE CONSULTING",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "consulting",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$8,000–11,000/mo",
+      "salary_max": 11000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
       "id": "mcf-26585b4e52f367653271368f7941e9a9",
       "title": "Product Manager",
       "company": "COGNIZANT TECHNOLOGY SOLUTIONS ASIA PACIFIC PTE. LTD.",
@@ -5485,29 +5784,6 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/a11f1033962bf58b26f8939025374e3e"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/a11f1033962bf58b26f8939025374e3e",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "mcf-6a80b6a2d6517ed589121fa06821b783",
-      "title": "Senior/Product Manager(Defence/Aerospace)",
-      "company": "OAKTREE CONSULTING",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "consulting",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$8,000–11,000/mo",
-      "salary_max": 11000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
@@ -6989,29 +7265,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
-      "id": "eyJqb2JfdGl0bGUiOiJBUEFDIFJlc2VhcmNoIE1hcmtldGluZyBNYW5hZ2VyIOKAlCBPbW5pY2hhbm5lbCBDYW1wYWlnbnMiLCJjb21wYW55X25hbWUiOiJN",
-      "title": "APAC Research Marketing Manager — Omnichannel Campaigns",
-      "company": "Morningstar",
-      "source": "Google Jobs",
-      "type": "other",
-      "sector": "general",
-      "category": "other",
-      "posted": "29 days ago",
-      "posted_date": "2026-06-24",
-      "salary": "",
-      "salary_max": null,
-      "links": {
-        "primary": "https://sg.thebigjobsite.com/details/83B0857BA0D1EF652D9F9A4C7A3EA0B8/apac-research-marketing-manager---omnichannel-campaigns?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-        "careers": "",
-        "linkedin": "",
-        "mcf": ""
-      },
-      "url": "https://sg.thebigjobsite.com/details/83B0857BA0D1EF652D9F9A4C7A3EA0B8/apac-research-marketing-manager---omnichannel-campaigns?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic",
-      "description": "Morningstar is seeking an experienced Marketing Manager for its Singapore office. This role is crucial in planning and executing content‑driven campaigns aimed at enhancing the visibility of Morningstar’s research. The Marketing Manager will collaborate with various teams to deliver effective omnichannel marketing strategies. The ideal candidate will have 3–5+ years of relevant B2B marketing experience, strong project management skills, and a data-driven approach. Knowledge of content and brand marketing is essential to succeed in this dynamic role.",
-      "preferred": false,
-      "first_seen": "2026-07-23T04:11:42.328287+00:00"
     },
     {
       "id": "mcf-26b7936fe613c3c4f26e218cc4da1e40",

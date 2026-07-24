@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-23T11:06:03.616647+00:00",
+  "generated_at": "2026-07-24T04:11:00.397624+00:00",
   "sources": [
     {
       "label": "mycareersfuture",
-      "fetched": 469,
-      "kept": 372,
+      "fetched": 467,
+      "kept": 370,
       "error": false,
       "detail": "",
-      "relevant": 372
+      "relevant": 370
     },
     {
       "label": "SmartRecruiters · LVMH Beauty",
@@ -67,7 +67,7 @@
     },
     {
       "label": "SuccessFactors · Changi",
-      "fetched": 46,
+      "fetched": 47,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -75,7 +75,7 @@
     },
     {
       "label": "Workday · Richemont / Cartier",
-      "fetched": 150,
+      "fetched": 147,
       "kept": 7,
       "error": false,
       "detail": "",
@@ -84,14 +84,14 @@
     {
       "label": "Workday · Chanel",
       "fetched": 127,
-      "kept": 6,
+      "kept": 7,
       "error": false,
       "detail": "",
       "relevant": 1
     },
     {
       "label": "Workday · Aman",
-      "fetched": 34,
+      "fetched": 33,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -107,7 +107,7 @@
     },
     {
       "label": "Greenhouse · Soho House",
-      "fetched": 365,
+      "fetched": 370,
       "kept": 0,
       "error": false,
       "detail": "",
@@ -115,8 +115,8 @@
     },
     {
       "label": "Oracle · Marriott",
-      "fetched": 80,
-      "kept": 74,
+      "fetched": 78,
+      "kept": 72,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -131,8 +131,8 @@
     },
     {
       "label": "Oracle · Tiffany",
-      "fetched": 5,
-      "kept": 4,
+      "fetched": 6,
+      "kept": 5,
       "error": false,
       "detail": "",
       "relevant": 0
@@ -147,17 +147,17 @@
     },
     {
       "label": "google_jobs",
-      "fetched": 26,
-      "kept": 9,
+      "fetched": 6,
+      "kept": 0,
       "error": false,
       "detail": "",
-      "relevant": 9
+      "relevant": 0
     }
   ],
   "quota": {
     "serpapi": {
-      "left": 116,
-      "used": 134,
+      "left": 112,
+      "used": 138,
       "limit": 250
     }
   },
@@ -567,6 +567,75 @@
   },
   "jobs": [
     {
+      "id": "mcf-a7d1c1a9d152028aa2b26bb392c3723d",
+      "title": "Reporting and Analytics Product Owner",
+      "company": "ROBERT WALTERS (SINGAPORE) PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "agency",
+      "sector": "general",
+      "category": "recruiter",
+      "posted": "2026-07-24",
+      "posted_date": "2026-07-24",
+      "salary": "S$17,000–20,000/mo",
+      "salary_max": 20000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/a7d1c1a9d152028aa2b26bb392c3723d",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/a7d1c1a9d152028aa2b26bb392c3723d"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/a7d1c1a9d152028aa2b26bb392c3723d",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-24T04:11:00.397624+00:00"
+    },
+    {
+      "id": "mcf-5d1f87ef7f497e929c2a8c9327381f6d",
+      "title": "IT Business Analyst (Banking)",
+      "company": "OPTIMUM SOLUTIONS (SINGAPORE) PTE LTD",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "finance",
+      "posted": "2026-07-24",
+      "posted_date": "2026-07-24",
+      "salary": "S$9,500–11,500/mo",
+      "salary_max": 11500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/5d1f87ef7f497e929c2a8c9327381f6d",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/5d1f87ef7f497e929c2a8c9327381f6d"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/5d1f87ef7f497e929c2a8c9327381f6d",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-24T04:11:00.397624+00:00"
+    },
+    {
+      "id": "mcf-fb303ee2c52746e455bec1412bb6daea",
+      "title": "Business Analyst",
+      "company": "ASTEK SINGAPORE INNOVATION TECHNOLOGY PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "other",
+      "posted": "2026-07-24",
+      "posted_date": "2026-07-24",
+      "salary": "S$11,500–13,500/mo",
+      "salary_max": 13500,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/fb303ee2c52746e455bec1412bb6daea",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/fb303ee2c52746e455bec1412bb6daea"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/fb303ee2c52746e455bec1412bb6daea",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-24T04:11:00.397624+00:00"
+    },
+    {
       "id": "mcf-5a2db2e33f626fe19dcaef74eb3f820a",
       "title": "Backend Engineer, TikTok E-commerce Search Architecture - Singapore",
       "company": "TIKTOK PTE. LTD.",
@@ -660,7 +729,7 @@
     },
     {
       "id": "mcf-2a2bed1e422172bfdcf94fb4601452eb",
-      "title": "Product Manager – Investment-Linked Products (ILP) | Insurance",
+      "title": "Product Manager – Insurance",
       "company": "ARGYLL SCOTT CONSULTING PTE. LTD.",
       "source": "MyCareersFuture",
       "type": "other",
@@ -680,6 +749,29 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-23T11:06:03.616647+00:00"
+    },
+    {
+      "id": "mcf-f6667ae4e2f5bcb655187c9fd5aa6bd5",
+      "title": "Product Manager (Cybersecurity Solutions)",
+      "company": "JJ CONSULTING SERVICES",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-23",
+      "posted_date": "2026-07-23",
+      "salary": "S$10,000–14,000/mo",
+      "salary_max": 14000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "mcf-2138010d69645081a4fa89a2b8b9498d",
@@ -3003,29 +3095,6 @@
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-15T01:39:10.873874+00:00"
-    },
-    {
-      "id": "mcf-f6667ae4e2f5bcb655187c9fd5aa6bd5",
-      "title": "Product Manager (Cybersecurity Solutions)",
-      "company": "JJ CONSULTING SERVICES",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-15",
-      "posted_date": "2026-07-15",
-      "salary": "S$10,000–14,000/mo",
-      "salary_max": 14000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/f6667ae4e2f5bcb655187c9fd5aa6bd5",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
       "id": "mcf-bd532677f50cdeb1902b255032cc80b8",
@@ -5651,29 +5720,6 @@
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
     },
     {
-      "id": "mcf-297382f9766c668b069196a24abf6a3a",
-      "title": "Product Manager, Cards",
-      "company": "METACOMP PTE. LTD.",
-      "source": "MyCareersFuture",
-      "type": "other",
-      "sector": "general",
-      "category": "tech",
-      "posted": "2026-07-08",
-      "posted_date": "2026-07-08",
-      "salary": "S$7,000–13,000/mo",
-      "salary_max": 13000,
-      "links": {
-        "primary": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a",
-        "careers": "",
-        "linkedin": "",
-        "mcf": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a"
-      },
-      "url": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a",
-      "description": "",
-      "preferred": false,
-      "first_seen": "2026-07-14T01:52:23.137956+00:00"
-    },
-    {
       "id": "mcf-6a80b6a2d6517ed589121fa06821b783",
       "title": "Senior/Product Manager(Defence/Aerospace)",
       "company": "OAKTREE CONSULTING",
@@ -5692,6 +5738,29 @@
         "mcf": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783"
       },
       "url": "https://www.mycareersfuture.gov.sg/job/6a80b6a2d6517ed589121fa06821b783",
+      "description": "",
+      "preferred": false,
+      "first_seen": "2026-07-14T01:52:23.137956+00:00"
+    },
+    {
+      "id": "mcf-297382f9766c668b069196a24abf6a3a",
+      "title": "Product Manager, Cards",
+      "company": "METACOMP PTE. LTD.",
+      "source": "MyCareersFuture",
+      "type": "other",
+      "sector": "general",
+      "category": "tech",
+      "posted": "2026-07-08",
+      "posted_date": "2026-07-08",
+      "salary": "S$7,000–13,000/mo",
+      "salary_max": 13000,
+      "links": {
+        "primary": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a",
+        "careers": "",
+        "linkedin": "",
+        "mcf": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a"
+      },
+      "url": "https://www.mycareersfuture.gov.sg/job/297382f9766c668b069196a24abf6a3a",
       "description": "",
       "preferred": false,
       "first_seen": "2026-07-14T01:52:23.137956+00:00"
